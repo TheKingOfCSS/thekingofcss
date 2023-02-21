@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deep Parallax Slider / The King Of CSS</title>
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		#closePack {
+			position: fixed;
+			top: -100%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			font: 26px sans-serif;
+			cursor: pointer;
+			width: 50px;
+			height: 40px;
+			background: #000;
+			color: #fff;
+			border-radius: 0 0 30px 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			padding-top: 2px;
+			z-index: 10000;
+			border: 2px solid #fff;
+			border-top: 0;
+			-webkit-box-shadow: 0 3px 5px #000;
+			box-shadow: 0 3px 5px #000;
+			-webkit-transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: box-shadow .4s, border-color .4s, top 2s;
+			transition: box-shadow .4s, border-color .4s, top 2s, -webkit-box-shadow .4s;
+			-webkit-animation: toPackClose 1s 1s forwards;
+			animation: toPackClose 1s 1s forwards;
+		}
+		#closePack:hover {
+			border-color: #f00;
+			-webkit-box-shadow: 0 5px 8px #f00;
+			box-shadow: 0 5px 8px #f00;
+		}
+		#closePack:active {
+			border-color: #0f0;
+			-webkit-box-shadow: 0 5px 8px #0f0;
+			box-shadow: 0 5px 8px #0f0;
+		}
+		@-webkit-keyframes toPackClose {
+			to { top: 0; }
+		}
+		@keyframes toPackClose {
+			to { top: 0; }
+		}
+		.slider {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			background: #191917;
+		}
+		.slider .view {
+			width: 30%;
+			height: 75%;
+			overflow: hidden;
+			position: relative;
+		}
+		.slider .view .big {
+			height: 100%;
+			position: relative;
+			top: 0;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.slider .view .big .item {
+			height: 100%;
+			overflow: hidden;
+		}
+		.slider .view .big .item:not(:first-child) img {
+			scale: 1 2;
+		}
+		.slider .view .big .item img {
+			width: 100%;
+			height: 100%;
+			-o-object-fit: cover;
+			object-fit: cover;
+			-webkit-transition: 1s;
+			transition: 1s;
+			pointer-events: none;
+		}
+		.slider .view .cursor {
+			position: absolute;
+			top: -200px;
+			left: -200px;
+			width: 200px;
+			height: 200px;
+    		z-index: 1;
+			backdrop-filter: brightness(1.1);
+			border-radius: 50%;
+			pointer-events: none;
+			transition: width .4s, height .4s;
+		}
+		.slider button {
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			padding: 5px 30px 8px;
+			font-size: 4rem;
+			background: #0009;
+			color: #fff;
+			-webkit-box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			border-radius: 12px;
+			border: 0;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			z-index: 1;
+		}
+		.slider button:hover {
+			background: #fff;
+			color: #000;
+		}
+		@-webkit-keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@-webkit-keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		@keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		.slider button.prev {
+			left: 3%;
+			-webkit-animation: vers1Prev 1s infinite;
+			animation: vers1Prev 1s infinite;
+		}
+		.slider button.next {
+			right: 3%;
+			-webkit-animation: vers1Next 1s infinite;
+			animation: vers1Next 1s infinite;
+		}
+		.slider .radio {
+			position: absolute;
+			bottom: 4%;
+			left: 0;
+			width: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			color: #fff;
+			font: 20px sans-serif;
+		}
+		.slider .radio .cur {
+			overflow: hidden;
+			height: 25px;
+		}
+		.slider .radio .cur .inf {
+			height: 100%;
+			position: relative;
+			top: 0;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.slider .radio .cur .inf span {
+			display: block;
+			height: 100%;
+		}
+		.slider #variant {
+			position: absolute;
+			top: 8%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			z-index: 2;
+			cursor: pointer;
+			accent-color: #000;
+			-webkit-filter: drop-shadow(0 0 3px #fff);
+			filter: drop-shadow(0 0 3px #fff);
+		}
+	</style>
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="slider">
+		<div class="view">
+			<div class="cursor"></div>
+			<div class="big">
+				<div class="item">
+					<img src="img/1.webp" alt="Img">
+				</div>
+				<div class="item">
+					<img src="img/2.webp" alt="Img">
+				</div>
+				<div class="item">
+					<img src="img/3.jpg" alt="Img">
+				</div>
+				<div class="item">
+					<img src="img/4.jpg" alt="Img">
+				</div>
+				<div class="item">
+					<img src="img/5.webp" alt="Img">
+				</div>
+			</div>
+		</div>
+		<button class="prev">&#10092;</button>
+		<button class="next">&#10093;</button>
+		<div class="radio">
+			<div class="cur">
+				<div class="inf">
+					<span>1</span>
+					<span>2</span>
+					<span>3</span>
+					<span>4</span>
+					<span>5</span>
+				</div>
+			</div>
+			&nbsp;-&nbsp;
+			<div class="all">5</div>
+		</div>
+		<input type="range" id="variant" min="30" max="90" value="0">
+	</div>
+	<script>
+		const deepParallaxbock = document.querySelector('.slider');
+		const deepParallaxView = document.querySelector('.slider .view');
+		const deepParallax = document.querySelector('.slider .view .big');
+		const deepParallaxItem = document.querySelectorAll('.slider .view .big .item');
+		const deepParallaxBtn = document.querySelectorAll('.slider button');
+		const deepParallaxInp = document.querySelector('.slider .radio .cur .inf');
+		const deepParallaxCursor = document.querySelector('.slider .view .cursor');
+		let deepParallaxCur = 0;
+		const control = (variant, option) => {
+			variant ? deepParallaxCur++ : !option ? deepParallaxCur-- : option < 0 ? deepParallaxCur-- : option > 0 ? deepParallaxCur++ : '';
+			deepParallaxCur == deepParallaxItem.length ? deepParallaxCur = 0 : deepParallaxCur < 0 ? deepParallaxCur = deepParallaxItem.length-1 : '';
+			deepParallaxItem.forEach(item => item.firstElementChild.style = 'scale: 1 2; filter: hue-rotate(200deg);');
+			deepParallaxItem[deepParallaxCur].firstElementChild.style = 'scale: 1;';
+			deepParallax.style.top = deepParallaxCur * -100 + '%';
+			deepParallaxInp.style.top = deepParallaxCur * -100 + '%';
+		};
+		deepParallaxBtn[1].onclick = () => control(true);
+		deepParallaxBtn[0].onclick = () => control();
+		deepParallaxbock.onmousewheel = e => control(null, e.deltaY);
+		variant.oninput = () => (deepParallaxView.style = `width: ${variant.value}%; border-radius: ${Math.min((variant.value - 30) * 5, 100)}px`, deepParallaxItem.forEach(item => item.firstElementChild.style.objectPosition = variant.value < 46 ? 'center' : `center ${variant.value}%`));
+		deepParallaxView.onmousemove = e => {
+			const elem = document.createElement('span');
+			elem.className = 'cursor';
+			deepParallaxView.appendChild(elem);
+			elem.style = `left: ${e.offsetX - deepParallaxCursor.offsetWidth / 2}px; top: ${e.offsetY - deepParallaxCursor.offsetHeight / 2}px; width: ${Math.random() * (200 - 50) + 50}px; height: ${Math.random() * (200 - 50) + 50}px;`;
+			setTimeout(() => elem.remove(), 200);
+		};
+		
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
