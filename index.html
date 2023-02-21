@@ -66,6 +66,7 @@
 			place-items: center;
 			text-decoration: none;
 			color: #fff;
+			transition: .6s linear;
 		}
 		.menu .section::before {
 			content: '';
@@ -79,10 +80,6 @@
 		.menu .section:hover {
 			scale: 1.05;
 		}
-		.menu .section:active {
-			scale: 1.1;
-			background: #efff00;
-		}
 		.menu .section:hover::before {
 			inset: -5px;
 			border-color: #fff;
@@ -94,6 +91,10 @@
 			transition-duration: .7s;
 		}
 		.menu .section:active {
+			scale: 1.1;
+			background: #efff00;
+		}
+		.menu .section:active a {
 			color: #000;
 			text-shadow: -2px 4px 2px #fff, 0 5px 5px #000;
 		}
