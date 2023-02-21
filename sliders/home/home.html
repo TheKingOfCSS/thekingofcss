@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The King Of CSS3 / Home Slider</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="img/gallery/home.png">
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="controlsGalleryButtons">
+		<button class="leftWall">Left</button>
+		<button class="Table">Table</button>
+		<button class="tv">TV</button>
+		<button class="rightWall">Right</button>
+		<button class="exit">Exit</button>
+	</div>
+	<div class="gallerySlider">
+		<div class="homeBlock">
+			<div class="face start">
+				<img src="img/gallery/home.png" alt="Img">
+				<img src="img/gallery/door.png" class="door" alt="Img">
+			</div>
+			<div class="face left">
+				<div class="item">
+					<span></span>
+					<img src="../img/1.jpg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/2.jpg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/3.jpg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/4.webp" alt="img">
+				</div>
+			</div>
+			<div class="face right">
+				<div class="item">
+					<span></span>
+					<img src="../albom/wingchun.jpeg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/5.jpg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/6.jpg" alt="img">
+				</div>
+				<div class="item">
+					<span></span>
+					<img src="../img/7.jpg" alt="img">
+				</div>
+			</div>
+			<div class="face end">
+				<div class="tv">
+					<div class="slide"></div>
+					<button class="prev">&#10092;</button>
+					<button class="next">&#10093;</button>
+				</div>
+			</div>
+			<div class="face table">
+				<div class="body">
+					<div class="stFace item">
+						<img src="../perfectlist/img/9.jpg" alt="img">
+						<img src="../perfectlist/img/10.jpg" alt="img">
+						<img src="../perfectlist/img/11.jpg" alt="img">
+						<img src="../perfectlist/img/12.jpg" alt="img">
+						<img src="../perfectlist/img/13.jpg" alt="img">
+						<img src="../perfectlist/img/14.png" alt="img">
+						<img src="../perfectlist/img/15.jpg" alt="img">
+						<img src="../perfectlist/img/16.jpg" alt="img">
+						<img src="../perfectlist/img/17.jpg" alt="img">
+						<img src="../perfectlist/img/18.jpg" alt="img">
+						<img src="../perfectlist/img/19.jpg" alt="img">
+						<img src="../perfectlist/img/20.jpg" alt="img">
+						<img src="../perfectlist/img/21.jpg" alt="img">
+						<img src="../perfectlist/img/22.jpg" alt="img">
+						<img src="../perfectlist/img/23.jpg" alt="img">
+						<img src="../perfectlist/img/24.jpg" alt="img">
+						<img src="../perfectlist/img/25.jpg" alt="img">
+					</div>
+					<div class="stBot"></div>
+					<div class="stBot2"></div>
+					<div class="stBot3"></div>
+					<div class="stBot4"></div>
+					<div class="foot1"></div>
+					<div class="foot2"></div>
+					<div class="foot3"></div>
+					<div class="foot4"></div>
+					<div class="foot5"></div>
+					<div class="foot6"></div>
+					<div class="foot7"></div>
+					<div class="foot8"></div>
+					<div class="foot9"></div>
+					<div class="foot10"></div>
+					<div class="foot11"></div>
+					<div class="foot12"></div>
+					<div class="foot13"></div>
+					<div class="foot14"></div>
+					<div class="foot15"></div>
+					<div class="foot16"></div>
+				</div>
+			</div>
+			<div class="face top"></div>
+			<div class="face bottom"></div>
+		</div>
+	</div>
+	<script>
+		const galleryHomeSlider = document.querySelectorAll('.gallerySlider');
+		const galleryLeftWallItems = document.querySelectorAll('.gallerySlider .face .item img');
+		const galleryHomeDoor = document.querySelector('.gallerySlider .face.start .door');
+		const galleryHomeBlock = document.querySelector('.gallerySlider .homeBlock');
+		const galleryHomeControls = document.querySelector('.controlsGalleryButtons');
+		const galleryHomeControlsLeft = document.querySelector('.controlsGalleryButtons .leftWall');
+		const galleryHomeControlsTable = document.querySelector('.controlsGalleryButtons .Table');
+		const galleryHomeControlsTV = document.querySelector('.controlsGalleryButtons .tv');
+		const galleryHomeControlsRight = document.querySelector('.controlsGalleryButtons .rightWall');
+		const galleryHomeControlsExit = document.querySelector('.controlsGalleryButtons .exit');
+		const galleryHomeSlideBtn = document.querySelectorAll('.gallerySlider .homeBlock .end .tv button');
+		const galleryHomeSlide = document.querySelector('.gallerySlider .homeBlock .end .tv .slide');
+		const imageArr = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/4.webp', '../img/5.jpg', '../img/6.jpg', '../img/7.jpg', '../img/8.jpg'];
+		let homeCurrent = 0;
+		galleryHomeSlideBtn[1].onclick = () => {
+			homeCurrent++;
+			homeCurrent == imageArr.length ? homeCurrent = 0 : '';
+			galleryHomeSlide.style.backgroundImage = `url(${imageArr[homeCurrent]})`;
+		};
+		galleryHomeSlideBtn[0].onclick = () => {
+			homeCurrent--;
+			homeCurrent < 0 ? homeCurrent = imageArr.length-1 : '';
+			galleryHomeSlide.style.backgroundImage = `url(${imageArr[homeCurrent]})`;
+		};
+		galleryHomeDoor.addEventListener('click', function() {
+			this.style.pointerEvents = 'none';
+			this.classList.add('active');
+			galleryHomeControls.classList.add('active');
+			galleryHomeBlock.classList.remove('active6');
+			galleryHomeBlock.classList.add('active1');
+			galleryHomeControlsExit.style.visibility = 'hidden';
+			galleryHomeControlsLeft.style.visibility = 'visible';
+		});
+		galleryHomeControlsLeft.addEventListener('click', () => {
+			galleryHomeBlock.classList.remove('active1');
+			galleryHomeBlock.classList.add('active2');
+			galleryHomeControlsLeft.style.visibility = 'hidden';
+			galleryHomeControlsTable.style.visibility = 'visible';
+		});
+		galleryHomeControlsTable.addEventListener('click', () => {
+			galleryHomeBlock.classList.remove('active2');
+			galleryHomeBlock.classList.add('active3');
+			galleryHomeControlsTable.style.visibility = 'hidden';
+			galleryHomeControlsTV.style.visibility = 'visible';
+		});
+		galleryHomeControlsTV.addEventListener('click', () => {
+			galleryHomeBlock.classList.remove('active3');
+			galleryHomeBlock.classList.add('active4');
+			galleryHomeControlsTV.style.visibility = 'hidden';
+			galleryHomeControlsRight.style.visibility = 'visible';
+		});
+		galleryHomeControlsRight.addEventListener('click', () => {
+			galleryHomeBlock.classList.remove('active4');
+			galleryHomeBlock.classList.add('active5');
+			galleryHomeControlsRight.style.visibility = 'hidden';
+			galleryHomeControlsExit.style.visibility = 'visible';
+		});
+		galleryHomeControlsExit.addEventListener('click', () => {
+			galleryHomeBlock.classList.remove('active5');
+			galleryHomeBlock.classList.add('active6');
+			setTimeout(() => {
+				galleryHomeDoor.classList.remove('active');
+			}, 4000);
+			galleryHomeControls.classList.remove('active');
+			galleryHomeDoor.style.pointerEvents = 'auto';
+		});
+		console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
