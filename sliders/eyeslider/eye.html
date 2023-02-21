@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Eyes Slider / The King Of CSS3</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="logPwd">
+		<h1>The King Of CSS3</h1>
+		<div class="display">
+			<img src="logo.png" alt="Logo">
+			<div class="unq unq1"></div>
+			<div class="unq unq2"></div>
+			<div class="hand">
+				<div class="mat mat1"></div>
+				<div class="mat mat2"></div>
+				<div class="mat mat3"></div>
+				<div class="mat mat4"></div>
+				<div class="mat tat"></div>
+				<div class="mat but"></div>
+			</div>
+			<div class="hand right">
+				<div class="mat mat1"></div>
+				<div class="mat mat2"></div>
+				<div class="mat mat3"></div>
+				<div class="mat mat4"></div>
+				<div class="mat tat"></div>
+				<div class="mat but"></div>
+			</div>
+			<div class="eyBlock">
+				<div class="eye">
+					<div class="glass">
+						<div class="bib"></div>
+					</div>
+				</div>
+			</div>
+			<div class="eyBlock">
+				<div class="eye">
+					<div class="glass">
+						<div class="bib"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slider">
+			<div class="big">
+				<div class="item">
+					<img src="../img/1.jpg" alt="Img">
+				</div>
+				<div class="item">
+					<img src="../img/2.jpg" alt="Img">
+				</div>
+				<div class="item">
+					<img src="../img/3.jpg" alt="Img">
+				</div>
+				<div class="item">
+					<img src="../img/4.webp" alt="Img">
+				</div>
+				<div class="item">
+					<img src="../img/5.jpg" alt="Img">
+				</div>
+			</div>
+		</div>
+		<div class="radio">
+			<input type="radio" name="dot" checked>
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+		</div>
+	</div>
+	<script>
+		const eyBlock = document.querySelectorAll('.logPwd .display .eyBlock');
+		const slider = document.querySelector('.logPwd .slider .big');
+		const Inp = document.querySelectorAll('.radio input');
+		const leftHand = document.querySelector('.logPwd .display .hand');
+		const rightHand = document.querySelector('.logPwd .display .hand.right');
+		const eye = document.querySelectorAll('.logPwd .display .eyBlock .eye');
+		const unq1 = document.querySelector('.logPwd .display .unq.unq1');
+		const unq2 = document.querySelector('.logPwd .display .unq.unq2');
+		let current = 0;
+		let current2 = 0;
+		setInterval(() => {
+			eyBlock.forEach(item => item.classList.add('tart'));
+			setTimeout(() => {
+				eyBlock.forEach(item => item.classList.remove('tart'));
+			}, 300);
+		}, 2000);
+		Inp.forEach((item, index) => {
+			item.onchange = () => {
+				current = index;
+				leftHand.style.bottom = '-30%';
+				leftHand.style.left = '-12%';
+				leftHand.style.transform = 'rotate(105deg) scale(1.2)';
+				rightHand.style.right = '-15%';
+				rightHand.style.transform = 'scaleX(-1) scale(1.2) rotate(110deg)';
+				if (current > current2) {
+					setTimeout(() => {
+						slider.style.left = index * -100 + '%';
+						rightHand.style.right = '10%';
+						rightHand.style.transform = 'scaleX(-1) scale(1.2) rotate(80deg)';
+						leftHand.style.transform = 'rotate(170deg) scale(1.2)';
+						eye.forEach(item => item.style.rotate = '22deg');
+						unq1.style = 'transform: rotate(-31deg); left: 11%; top: 48px;';
+						unq2.style = 'transform: rotate(31deg); right: 11%; top: 48px;';
+						setTimeout(() => {
+							leftHand.style = null;
+							leftHand.style = null;
+							leftHand.style = null;
+							rightHand.style = null;
+							rightHand.style = null;
+							setTimeout(() => {
+								unq1.style = null;
+								unq2.style = null;
+								eye.forEach(item => item.style= null);
+							}, 500);
+						}, 500);
+					}, 500);
+				} else {
+					setTimeout(() => {
+						slider.style.left = index * -100 + '%';
+						rightHand.style.right = '-17%';
+						rightHand.style.transform = 'scaleX(-1) scale(1.2) rotate(165deg)';
+						leftHand.style.left = '7%';
+						leftHand.style.transform = 'rotate(80deg) scale(1.2)';
+						eye.forEach(item => item.style.rotate = '-22deg');
+						unq1.style = 'transform: rotate(-31deg); left: 11%; top: 48px;';
+						unq2.style = 'transform: rotate(31deg); right: 11%; top: 48px;';
+						setTimeout(() => {
+							leftHand.style = null;
+							leftHand.style = null;
+							leftHand.style = null;
+							rightHand.style = null;
+							rightHand.style = null;
+							setTimeout(() => {
+								unq1.style = null;
+								unq2.style = null;
+								eye.forEach(item => item.style= null);
+							}, 500);
+						}, 500);
+					}, 500);
+				}
+				current2 = index;
+			};
+		});
+		console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
