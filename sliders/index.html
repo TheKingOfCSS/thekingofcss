@@ -4,8 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Collection of Sliders Senior Developer Hovo Vardanyan</title>
 	<link rel="stylesheet" href="style.css">
+	<style>
+		.backMega {
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: 5px 25px 5px 15px;
+			background: #f00;
+			color: #fff;
+			font: bold 22px sans-serif;
+			cursor: pointer;
+			border-bottom-right-radius: 30px;
+			transition: .2s;
+		}
+		.backMega:hover {
+			background: #0f0;
+			color: #000;
+		}
+	</style>
 </head>
 <body>
+	<div class="backMega">Menu</div>
 	<div class="AuthorAndCreator">
 		<h1 class="author" data-author="All These Sliders were Created and Coded by Hovo Vardanyan">All These Sliders were <b>Created</b> and <span>Coded</span> by Hovo Vardanyan</h1>
 		<div class="collection">
@@ -1532,5 +1551,8 @@
 	<div class="pack version85"></div>
 	
 	<script src="main.js"></script>
+	<script>
+		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
+	</script>
 </body>
 </html>
