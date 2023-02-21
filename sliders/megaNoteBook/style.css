@@ -1,0 +1,1297 @@
+*, ::before, ::after { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+body {
+	overflow: hidden;
+}
+.notebookBlock {
+	-webkit-perspective: 850px;
+	perspective: 850px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: 100vh;
+	background: repeating-linear-gradient(45deg, #cbcbcb 0%, transparent 4%);
+	position: relative;
+}
+.notebookBlock .noteBook {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	width: 500px;
+	height: 500px;
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-transform: translateZ(30em) translateY(0em) translateX(0em) rotateY(-360deg) rotateX(-20deg);
+	transform: translateZ(30em) translateY(0em) translateX(0em) rotateY(-360deg) rotateX(-20deg);
+}
+.notebookBlock .noteBook .keyboadCube {
+	position: relative;
+	width: 450px;
+	height: 0;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	top: 235px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+.notebookBlock .noteBook .keyboadCube .boardTop {
+	position: absolute;
+	width: 451px;
+	height: 270px;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(90deg);
+	transform: rotateX(90deg);
+	border-radius: 20px;
+}
+.notebookBlock .noteBook .keyboadCube .boardBottom {
+	position: absolute;
+	width: 451px;
+	height: 270px;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(90deg) translateZ(-7px);
+	transform: rotateX(90deg) translateZ(-7px);
+	border-radius: 20px;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.one {
+	position: absolute;
+	width: 415px;
+	height: 7px;
+	left: 18px;
+	bottom: -142px;
+	-webkit-transform: translateZ(135px);
+	transform: translateZ(135px);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 100%;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(1) {
+    -webkit-transform: translateX(-2px) rotateY(-9deg) translateZ(-.2px);
+    transform: translateX(-2px) rotateY(-9deg) translateZ(-.2px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(2) {
+    -webkit-transform: translateX(-4px) rotateY(-18deg) translateZ(-0.6px);
+    transform: translateX(-4px) rotateY(-18deg) translateZ(-0.6px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(3) {
+    -webkit-transform: translateX(-6.2px) rotateY(-22deg) translateZ(-1.3px);
+    transform: translateX(-6.2px) rotateY(-22deg) translateZ(-1.3px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(4) {
+    -webkit-transform: translateX(-8.5px) rotateY(-26deg) translateZ(-2.22px);
+    transform: translateX(-8.5px) rotateY(-26deg) translateZ(-2.22px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(5) {
+    -webkit-transform: translateX(-11.3px) rotateY(-35deg) translateZ(-3.63px);
+    transform: translateX(-11.3px) rotateY(-35deg) translateZ(-3.63px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(6) {
+    -webkit-transform: translateX(-14.1px) rotateY(-38deg) translateZ(-5.28px);
+    transform: translateX(-14.1px) rotateY(-38deg) translateZ(-5.28px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(7) {
+    -webkit-transform: translateX(-18.2px) rotateY(-47deg) translateZ(-8px);
+    transform: translateX(-18.2px) rotateY(-47deg) translateZ(-8px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(8) {
+    -webkit-transform: translateX(-21.92px) rotateY(-50deg) translateZ(-10.77px);
+    transform: translateX(-21.92px) rotateY(-50deg) translateZ(-10.77px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(9) {
+    -webkit-transform: translateX(-26.52px) rotateY(-54deg) translateZ(-14.4px);
+    transform: translateX(-26.52px) rotateY(-54deg) translateZ(-14.4px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(10) {
+    -webkit-transform: translateX(-31.9px) rotateY(-58deg) translateZ(-18.83px);
+    transform: translateX(-31.9px) rotateY(-58deg) translateZ(-18.83px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(11) {
+    -webkit-transform: translateX(-38px) rotateY(-61deg) translateZ(-24.1px);
+    transform: translateX(-38px) rotateY(-61deg) translateZ(-24.1px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(12) {
+    -webkit-transform: translateX(-47.8px) rotateY(-66deg) translateZ(-32.9px);
+    transform: translateX(-47.8px) rotateY(-66deg) translateZ(-32.9px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(13) {
+    -webkit-transform: translateX(-65.3px) rotateY(-72deg) translateZ(-49.3px);
+    transform: translateX(-65.3px) rotateY(-72deg) translateZ(-49.3px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item:nth-child(14) {
+    width: 1px;
+    -webkit-transform: translateX(-90px) rotateY(-77deg) translateZ(-73.6px);
+    transform: translateX(-90px) rotateY(-77deg) translateZ(-73.6px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2px;
+	height: 100%;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(15) {
+    -webkit-transform: translateX(2px) rotateY(9deg) translateZ(-.2px);
+    transform: translateX(2px) rotateY(9deg) translateZ(-.2px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(16) {
+    -webkit-transform: translateX(4px) rotateY(18deg) translateZ(-0.6px);
+    transform: translateX(4px) rotateY(18deg) translateZ(-0.6px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(17) {
+    -webkit-transform: translateX(6.2px) rotateY(22deg) translateZ(-1.3px);
+    transform: translateX(6.2px) rotateY(22deg) translateZ(-1.3px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(18) {
+    -webkit-transform: translateX(8.5px) rotateY(26deg) translateZ(-2.22px);
+    transform: translateX(8.5px) rotateY(26deg) translateZ(-2.22px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(19) {
+    -webkit-transform: translateX(11.3px) rotateY(35deg) translateZ(-3.63px);
+    transform: translateX(11.3px) rotateY(35deg) translateZ(-3.63px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(20) {
+    -webkit-transform: translateX(14.1px) rotateY(38deg) translateZ(-5.28px);
+    transform: translateX(14.1px) rotateY(38deg) translateZ(-5.28px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(21) {
+    -webkit-transform: translateX(18.2px) rotateY(47deg) translateZ(-8px);
+    transform: translateX(18.2px) rotateY(47deg) translateZ(-8px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(22) {
+    -webkit-transform: translateX(21.92px) rotateY(50deg) translateZ(-10.77px);
+    transform: translateX(21.92px) rotateY(50deg) translateZ(-10.77px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(23) {
+    -webkit-transform: translateX(26.52px) rotateY(54deg) translateZ(-14.4px);
+    transform: translateX(26.52px) rotateY(54deg) translateZ(-14.4px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(24) {
+    -webkit-transform: translateX(31.9px) rotateY(58deg) translateZ(-18.83px);
+    transform: translateX(31.9px) rotateY(58deg) translateZ(-18.83px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(25) {
+    -webkit-transform: translateX(38px) rotateY(61deg) translateZ(-24.1px);
+    transform: translateX(38px) rotateY(61deg) translateZ(-24.1px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(26) {
+    -webkit-transform: translateX(47.8px) rotateY(66deg) translateZ(-32.9px);
+    transform: translateX(47.8px) rotateY(66deg) translateZ(-32.9px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(27) {
+    -webkit-transform: translateX(65.3px) rotateY(72deg) translateZ(-49.3px);
+    transform: translateX(65.3px) rotateY(72deg) translateZ(-49.3px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder .item2:nth-child(28) {
+    width: 1px;
+    -webkit-transform: translateX(90px) rotateY(77deg) translateZ(-73.6px);
+    transform: translateX(90px) rotateY(77deg) translateZ(-73.6px);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.two {
+	position: absolute;
+	width: 234px;
+	height: 7px;
+	bottom: -142px;
+	-webkit-transform: rotateY(-90deg) translateZ(225px);
+	transform: rotateY(-90deg) translateZ(225px);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.tree {
+	position: absolute;
+	width: 234.6px;
+	height: 7px;
+	bottom: -142px;
+	-webkit-transform: rotateY(90deg) rotate(180deg) translateZ(225.6px);
+	transform: rotateY(90deg) rotate(180deg) translateZ(225.6px);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.back {
+	position: absolute;
+	width: 415px;
+	height: 7px;
+	bottom: -142px;
+	-webkit-transform: rotateY(-180deg) translateZ(135px);
+	transform: rotateY(-180deg) translateZ(135px);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube.screen {
+	position: absolute;
+	width: 450px;
+	height: 0;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	top: 235px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg);
+	transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg);
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardBottom {
+	background: -webkit-gradient(linear, left top, right top, from(#8A8B8F), to(#9fa0a1));
+	background: linear-gradient(to right, #8A8B8F, #9fa0a1);
+	-webkit-transform: rotateX(90deg) translateZ(-7px) rotate(180deg) rotateY(180deg);
+	transform: rotateX(90deg) translateZ(-7px) rotate(180deg) rotateY(180deg);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-shadow: inset 0px 0px 13px -3px #000000c2;
+	box-shadow: inset 0px 0px 13px -3px #000000c2;
+	overflow: hidden;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardBottom img {
+	height: 70px;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.one {
+	background: -webkit-gradient(linear, right top, left top, from(#8b8b8b), to(#9c9d9e));
+	background: linear-gradient(to left, #8b8b8b, #9c9d9e);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9c9d9e), color-stop(23%, transparent), color-stop(77%, #9b9b9b)) ,-webkit-gradient(linear, left top, right top, color-stop(0, #9c9d9e), color-stop(23%, #ff000000), color-stop(27%, #9c9d9e), color-stop(29.5%, #ff000000), color-stop(34%, #9c9d9e));
+	background: linear-gradient(to bottom, #9c9d9e 0 23%, transparent 23% 77%, #9b9b9b 77% 100%) ,linear-gradient(to right, #9c9d9e 0 23%, #ff000000 23% 27%, #9c9d9e 27% 29.5%, #ff000000 29.5% 34%, #9c9d9e 34% 100%);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.two .item {
+	background: #9f9f9f;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree {
+	background: -webkit-gradient(linear, right top, left top, color-stop(0, #8b8b8b), color-stop(45%, transparent), color-stop(80%, #9c9d9e)), -webkit-gradient(linear, left bottom, left top, color-stop(0, #999999), color-stop(22%, transparent), color-stop(78%, #939393));
+	background: linear-gradient(to left, #8b8b8b 0 45%, transparent 45% 80%, #9c9d9e 80% 100%), linear-gradient(to top, #999999 0 22%, transparent 22% 78%, #939393 78% 100%);
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.tree .item,
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.tree .item2 {
+	background: #9c9d9e;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.one .item,
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.two .item2 {
+	background: #9c9d9e;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.one .item2 {
+	background: #8b8b8b;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.back {
+	background: #9b9c9e;
+}
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.back .item,
+.notebookBlock .noteBook .keyboadCube .boardFrontBorder.back .item2 {
+	background: #9b9c9e;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardFrontBorder.two {
+	background: -webkit-gradient(linear, right top, left top, from(#9c9d9f), color-stop(#7c7c7c), to(#9d9e9f));
+	background: linear-gradient(to left, #9c9d9f, #7c7c7c, #9d9e9f);
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardFrontBorder.tree {
+	background: -webkit-gradient(linear, right top, left top, from(#9c9d9f), color-stop(#7c7c7c), to(#9d9e9f));
+	background: linear-gradient(to left, #9c9d9f, #7c7c7c, #9d9e9f);
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardFrontBorder.one {
+	background: -webkit-gradient(linear, right top, left top, from(#8b8b8b), color-stop(#a3a3a3), to(#9d9e9f));
+	background: linear-gradient(to left, #8b8b8b, #a3a3a3, #9d9e9f);
+}
+.notebookBlock .noteBook .keyboadCube .boardBottom {
+	background: linear-gradient(-151deg, #7c7c7c, #a3a3a3, #9f9f9f);
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop {
+	-webkit-transform: rotateX(90deg) rotate(-180deg);
+	transform: rotateX(90deg) rotate(-180deg);
+	background: -webkit-gradient(linear, left top, left bottom, from(#a1a1a1), to(#686868));
+	background: linear-gradient(to bottom, #a1a1a1, #686868);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop::before {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #222;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop::after {
+	content: 'MacBook Pro';
+	position: absolute;
+	bottom: 2px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	color: #f3f3f3;
+    font-size: 8px;
+    font-family: sans-serif;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop .monitor {
+	width: 430px;
+	height: 240px;
+	background: linear-gradient(125deg, #060606, #242424);
+	overflow: hidden;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop .monitor .big {
+	width: 600%;
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	left: -100%;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardTop .monitor .big .item {
+	width: 100%;
+	height: 100%;
+	background: no-repeat center / cover;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop {
+	background: -webkit-gradient(linear, left top, right top, from(#cdcdcd), to(#bdbdbd));
+	background: linear-gradient(to right, #cdcdcd, #bdbdbd);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	gap: 9px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(-37px);
+	transform: translateZ(-37px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rFront {
+	width: 84px;
+	height: 4.6px;
+	background: linear-gradient(-3deg, #242424, #000000);
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(37.87px);
+	transform: translateZ(37.87px);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rBack {
+	width: 84px;
+	height: 4.6px;
+	background: -webkit-gradient(linear, left top, right top, from(#464646), to(#3c3c3c));
+	background: linear-gradient(to right, #464646, #3c3c3c);
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(36.86px);
+	transform: translateZ(36.86px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rTop {
+	width: 84px;
+	height: 1.3px;
+	background: -webkit-gradient(linear, left top, right top, from(#464646), to(#3c3c3c));
+	background: linear-gradient(to right, #464646, #3c3c3c);
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(37.5px) rotateX(90deg) translateZ(-4.33px);
+	transform: translateZ(37.5px) rotateX(90deg) translateZ(-4.33px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rBottom {
+	width: 84px;
+	height: 1.3px;
+	background: -webkit-gradient(linear, left top, right top, from(#464646), to(#3c3c3c));
+	background: linear-gradient(to right, #464646, #3c3c3c);
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(37.5px) rotateX(90deg) translateZ(0.64px);
+	transform: translateZ(37.5px) rotateX(90deg) translateZ(0.64px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rLeft {
+	width: 5px;
+	height: 1.3px;
+	background: black;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(37.5px) rotateX(90deg) translateZ(-1.9px) translateX(81.5px) rotateY(90deg);
+	transform: translateZ(37.5px) rotateX(90deg) translateZ(-1.9px) translateX(81.5px) rotateY(90deg);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rRight {
+	width: 5px;
+	height: 1.3px;
+	background: black;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(37.5px) rotateX(90deg) translateZ(-1.9px) translateX(-2.5px) rotateY(90deg);
+	transform: translateZ(37.5px) rotateX(90deg) translateZ(-1.9px) translateX(-2.5px) rotateY(90deg);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rPanel1 {
+	width: 80px;
+	height: 1.5px;
+	background: #242424;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(-3.08px) rotateY(90deg) translateZ(38px) translateY(1.5px);
+	transform: translateZ(-3.08px) rotateY(90deg) translateZ(38px) translateY(1.5px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rPanel2 {
+	width: 80px;
+	height: 1.5px;
+	background: #242424;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(-3.08px) rotateY(90deg) translateZ(35px) translateY(1.5px);
+	transform: translateZ(-3.08px) rotateY(90deg) translateZ(35px) translateY(1.5px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rPanel3 {
+	width: 80px;
+	height: 1.5px;
+	background: #242424;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(-3.08px) rotateY(90deg) translateZ(-35px) translateY(1.5px);
+	transform: translateZ(-3.08px) rotateY(90deg) translateZ(-35px) translateY(1.5px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rPanel4 {
+	width: 80px;
+	height: 1.5px;
+	background: #242424;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(-3.08px) rotateY(90deg) translateZ(-32px) translateY(1.5px);
+	transform: translateZ(-3.08px) rotateY(90deg) translateZ(-32px) translateY(1.5px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rPanelFace {
+    width: 78px;
+	height: 72.5px;
+	background: radial-gradient(circle  at 48% 49%, transparent 0 13%, #3d3d3d 7% 28%, #b99b64 7% 30.5%, #424242 30% 38.5%, #4c4c4c 39% 55.5%, #616161 0 35%);
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(-2px) rotateY(90deg) translateZ(2.45px) translateY(-32.5px) rotateX(90deg);
+	transform: translateZ(-2px) rotateY(90deg) translateZ(2.45px) translateY(-32.5px) rotateX(90deg);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rDisc {
+    width: 78px;
+	height: 72.5px;
+	position: absolute;
+	left: 46px;
+	top: 1px;
+	-webkit-transform: translateZ(0px) rotateY(90deg) translateZ(4.45px) translateY(-30.5px) rotateX(90deg) rotateY(180deg);
+	transform: translateZ(0px) rotateY(90deg) translateZ(4.45px) translateY(-30.5px) rotateX(90deg) rotateY(180deg);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rDisc .dblock {
+	width: 90%;
+	height: 90%;
+	background: url(img/notebook/disc.png) no-repeat center / contain;
+	-webkit-transform: translateX(.1em) translateY(.7em);
+	transform: translateX(.1em) translateY(.7em);
+	opacity: 0;
+	-webkit-transition: 1s;
+	transition: 1s;
+	border-radius: 50%;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rFront h3 {
+	color: #fff;
+	font-size: 4px;
+	-webkit-transform: scale(-1, -1) translate(5px, -.9px);
+	transform: scale(-1, -1) translate(5px, -.9px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter .rFront button {
+	background: -webkit-gradient(linear, right top, left top, from(#707070), to(#b9b9b9));
+	background: linear-gradient(to left, #707070, #b9b9b9);
+	width: 10px;
+	height: 2px;
+	border: 0;
+	outline: 0;
+	-webkit-transform: translate(-30px, 1.5px);
+	transform: translate(-30px, 1.5px);
+	border: 1px inset #7e7e7e
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard {
+	width: 415px;
+	height: 144px;
+	border-radius: 2px;
+	border: 1px ridge #e3e3e3;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	gap: 1px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .touch {
+	width: 130px;
+	height: 70px;
+	border-radius: 3px;
+	border: 1px ridge #e3e3e3;
+	background: linear-gradient(31deg, #c1c1c1, #d1d1d1);
+	cursor: -webkit-grab;
+	cursor: grab;
+	-webkit-transition: .1s;
+	transition: .1s;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .touch:hover {
+	-webkit-box-shadow: inset 0 1px 3px #0000006b;
+	box-shadow: inset 0 1px 3px #0000006b;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .touch:active {
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .dynamic {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    position: absolute;
+    left: 2px;
+    top: 32px;
+    width: 14px;
+    height: 145px;
+	gap: 2px 1px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .dynamic span {
+	width: 1px;
+	height: 1px;
+	border-radius: 50%;
+	background: #7c7c7c;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .dynamic.two {
+	left: auto;
+	right: 2px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn {
+	width: 28px;
+	height: 23px;
+	position: relative;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kface:hover {
+	background: linear-gradient(308deg, #cf0000, #000000de);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kface {
+	background: linear-gradient(308deg, #0c0c0c, #000000de);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-transform: translateZ(1px);
+	transform: translateZ(1px);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: 1s;
+	transition: 1s;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kface h4 {
+	color: #fff;
+	font-size: 7px;
+    font-family: monospace;
+    font-weight: normal;
+	padding-top: 8px;
+	padding-left: 4px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kbottom {
+	width: 3px;
+	width: 100%;
+	height: 2px;
+	background: #222;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(-90deg) translateZ(22px);
+	transform: rotateX(-90deg) translateZ(22px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kleft {
+	width: 3px;
+	width: 23.4px;
+	height: 2px;
+	background: #222;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(-90deg) translateZ(10.67px) rotateY(-90deg) translateZ(11.7px);
+	transform: rotateX(-90deg) translateZ(10.67px) rotateY(-90deg) translateZ(11.7px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kright {
+	width: 3px;
+	width: 23.4px;
+	height: 2px;
+	background: #222;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-15.9px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-15.9px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .ktop {
+	width: 3px;
+	width: 100%;
+	height: 2px;
+	background: #222;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transform: rotateX(-90deg) translateZ(-1px);
+	transform: rotateX(-90deg) translateZ(-1px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.space {
+	width: 165px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.space .kleft {
+	width: 13.8%;
+	-webkit-transform: rotateX(-90deg) translateZ(10.3px) rotateY(-90deg) translateZ(11.3px);
+	transform: rotateX(-90deg) translateZ(10.3px) rotateY(-90deg) translateZ(11.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.space .kright {
+	width: 13.8%;
+	-webkit-transform: rotateX(-90deg) translateZ(10.35px) rotateY(-90deg) translateZ(-151.6px);
+	transform: rotateX(-90deg) translateZ(10.35px) rotateY(-90deg) translateZ(-151.6px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.space .ktop,
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.space .kbottom {
+	width: 101%;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.arrowL h4 {
+	font-size: 14px;
+    padding: 3px 0 0 10px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn {
+	height: 11.5px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn .kface {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn h4 {
+	font-size: 9px;
+	padding: 0;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn.one .ktop {
+	-webkit-transform: rotateX(-90deg) translateZ(10px);
+	transform: rotateX(-90deg) translateZ(10px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn .ktop {
+	-webkit-transform: rotateX(-90deg) translateZ(11px);
+	transform: rotateX(-90deg) translateZ(11px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.shift {
+	width: 56px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.shift .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-44.3px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-44.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.norm h4 {
+	padding: 0;
+	font-size: 8px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.norm .kface {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.shift2 {
+	width: 77px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.shift2 .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-65.3px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-65.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.shift2 .kface h4 {
+	padding: 8px 5px 0 0;
+	text-align: right;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .newarrow .keybtn .kbottom {
+	-webkit-transform: rotateX(-90deg) translateZ(-1px);
+	transform: rotateX(-90deg) translateZ(-1px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.capslock {
+	width: 43px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.norm.and h4 {
+	padding-top: 4px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.enter {
+	width: 62px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.enter h4 {
+	text-align: right;
+	padding-right: 5px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.enter .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-50.3px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-50.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.capslock .kright {
+    -webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-31.3px);
+    transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-31.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.symb h4 {
+	padding-top: 4px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.capslock.symb {
+	width: 30px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.capslock.symb .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-18px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-18px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.backspace {
+	width: 47px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.backspace .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-35.3px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-35.3px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.esc {
+	width: 21px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.esc .kright {
+	-webkit-transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-8.7px);
+	transform: rotateX(-90deg) translateZ(10.7px) rotateY(-90deg) translateZ(-8.7px);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn.insDel h4 {
+	padding: 7px 0 0 4px;
+	font-size: 6px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .NeonControl {
+	height: 11px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .NeonControl #neon {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 60px;
+	height: 15px;
+	border-radius: 5px;
+	outline: 0;
+	background: linear-gradient(308deg, #0c0c0c, #000000de);
+	cursor: -webkit-grab;
+	cursor: grab;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .NeonControl #neon:active {
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .NeonControl #neon::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 10px;
+	height: 15px;
+	background: -webkit-gradient(linear, left top, right top, from(#00ff14), color-stop(transparent), to(magenta));
+	background: linear-gradient(to right, #00ff14, transparent, magenta);
+	border-radius: 5px;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh {
+	width: 11px;
+    height: 5px;
+    border: 1px inset #b7b7b7;
+    position: absolute;
+    left: 53.2px;
+    top: 1px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fleft {
+	position: absolute;
+	width: 7px;
+	height: 3px;
+	-webkit-transform: rotateY(90deg) translateZ(-3.49px) translateX(3.5px);
+	transform: rotateY(90deg) translateZ(-3.49px) translateX(3.5px);
+	background: #222;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fright {
+	position: absolute;
+	width: 7px;
+	height: 3px;
+	-webkit-transform: rotateY(-90deg) translateZ(-5.49px) translateX(-3.5px);
+	transform: rotateY(-90deg) translateZ(-5.49px) translateX(-3.5px);
+	background: #979797;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fbottom {
+	position: absolute;
+	width: 9px;
+	height: 7px;
+	-webkit-transform: rotateY(0deg) translateZ(-3.49px) translateX(0px) rotateX(90deg) translateZ(0.5px);
+	transform: rotateY(0deg) translateZ(-3.49px) translateX(0px) rotateX(90deg) translateZ(0.5px);
+	background: #585858;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .ftop {
+	position: absolute;
+	width: 9px;
+	height: 7px;
+	-webkit-transform: rotateY(0deg) translateZ(-3.49px) translateX(0px) rotateX(90deg) translateZ(3.5px);
+	transform: rotateY(0deg) translateZ(-3.49px) translateX(0px) rotateX(90deg) translateZ(3.5px);
+	background: #585858;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fusb {
+	position: absolute;
+	width: 6px;
+	height: 1px;
+	-webkit-transform: rotateY(0deg) translateZ(-2.49px) translateX(1.5px) translateY(1.0px);
+	transform: rotateY(0deg) translateZ(-2.49px) translateX(1.5px) translateY(1.0px);
+	-webkit-box-shadow: 0 0 2px #000;
+	box-shadow: 0 0 2px #000;
+	background: -webkit-gradient(linear, right top, left top, from(#3e3e3e), to(#000000));
+	background: linear-gradient(to left, #3e3e3e, #000000);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fusbR {
+	position: absolute;
+	width: 6px;
+	height: 1px;
+	-webkit-transform: rotateY(0deg) translateZ(-5.49px) translateX(4.5px) translateY(1px) rotateY(90deg);
+	transform: rotateY(0deg) translateZ(-5.49px) translateX(4.5px) translateY(1px) rotateY(90deg);
+	background: -webkit-gradient(linear, right top, left top, from(#3e3e3e), to(#000000));
+	background: linear-gradient(to left, #3e3e3e, #000000);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fusbL {
+	position: absolute;
+	width: 6px;
+	height: 1px;
+	-webkit-transform: rotateY(0deg) translateZ(-5.49px) translateX(-1.5px) translateY(1px) rotateY(90deg);
+	transform: rotateY(0deg) translateZ(-5.49px) translateX(-1.5px) translateY(1px) rotateY(90deg);
+	background: -webkit-gradient(linear, right top, left top, from(#3e3e3e), to(#000000));
+	background: linear-gradient(to left, #3e3e3e, #000000);
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh .fusbtop {
+	position: absolute;
+    width: 6px;
+    height: 7px;
+    -webkit-transform: rotateY(0deg) translateZ(-5.9px) translateX(1.5px) rotateX(90deg) translateZ(2.5px);
+    transform: rotateY(0deg) translateZ(-5.9px) translateX(1.5px) rotateX(90deg) translateZ(2.5px);
+    background: #222;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.two .flesh.two {
+	width: 11px;
+    height: 5px;
+    border: 1px inset #b7b7b7;
+    position: absolute;
+    left: 69.4px;
+    top: 1px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.notebookBlock .control {
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	width: 22%;
+}
+.notebookBlock .control .mBtn,
+.notebookBlock .rotateBtn {
+	outline: 0;
+	padding: 10px 30px;
+	background: #222;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-box-shadow: inset 6px 0 0 #00ffad, inset -6px 0 0 #ff00eb;
+    box-shadow: inset 6px 0 0 #00ffad, inset -6px 0 0 #ff00eb;
+    border-radius: 25px;
+    border: 1px solid #000;
+	-webkit-transition: .4s;
+	transition: .4s;
+	z-index: 10;
+	margin: 5px 0;
+	white-space: nowrap;
+	position: relative;
+	translate: -50vw;
+	-webkit-animation: btnChange .6s calc(var(--t) * .5s + 13s) forwards;
+	animation: btnChange .6s calc(var(--t) * .5s + 13s) forwards;
+	display: inline-block;
+}
+.notebookBlock .control .mBtn:hover,
+.notebookBlock .rotateBtn:hover {
+	-webkit-box-shadow: inset 6px 0 0 #ffab00, inset -6px 0 0 #ff7800;
+	box-shadow: inset 6px 0 0 #ffab00, inset -6px 0 0 #ff7800;
+	background: #000;
+}
+.notebookBlock .rotateBtn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	translate: 50vw;
+	-webkit-animation: btnChange .8s 14s forwards;
+	animation: btnChange .8s 14s forwards;
+}
+@-webkit-keyframes btnChange {
+	to { translate: 0; }
+}
+@keyframes btnChange {
+	to { translate: 0; }
+}
+@-webkit-keyframes MegaWorkNoteBookY {
+	0% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	100% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(360deg) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(360deg) rotateX(0); }
+}
+@keyframes MegaWorkNoteBookY {
+	0% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	100% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(360deg) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(360deg) rotateX(0); }
+}
+@-webkit-keyframes MegaWorkNoteBookCloseScreen {
+	0% { -webkit-transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); }
+	40% { -webkit-transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); }
+	53% { -webkit-transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); }
+	60% { -webkit-transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); }
+	100% { -webkit-transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg); transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg); }
+}
+@keyframes MegaWorkNoteBookCloseScreen {
+	0% { -webkit-transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); }
+	40% { -webkit-transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); }
+	53% { -webkit-transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); }
+	60% { -webkit-transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); }
+	100% { -webkit-transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg); transform: translateY(270px) translateZ(0px) rotateX(-180deg) rotateY(180deg); }
+}
+@-webkit-keyframes MegaWorkNoteBookOpenScreen {
+	0% { -webkit-transform: translateY(270px) translateZ(0) rotateX(-180deg) rotateY(180deg); transform: translateY(270px) translateZ(0) rotateX(-180deg) rotateY(180deg); }
+	40% { -webkit-transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); }
+	47% { -webkit-transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); }
+	86% { -webkit-transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); }
+	100% { -webkit-transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); }
+}
+@keyframes MegaWorkNoteBookOpenScreen {
+	0% { -webkit-transform: translateY(270px) translateZ(0) rotateX(-180deg) rotateY(180deg); transform: translateY(270px) translateZ(0) rotateX(-180deg) rotateY(180deg); }
+	40% { -webkit-transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); transform: translateY(220px) translateZ(40px) rotateX(-160deg) rotateY(180deg); }
+	47% { -webkit-transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); transform: translateY(195px) translateZ(50px) rotateX(-150deg) rotateY(180deg); }
+	86% { -webkit-transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); transform: translateY(27px) translateZ(30px) rotateX(-100deg) rotateY(180deg); }
+	100% { -webkit-transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); transform: translateY(-44px) translateZ(-67px) rotateX(-65deg) rotateY(180deg); }
+}
+.notebookBlock .noteBook.rotate360 {
+	-webkit-animation: MegaWorkNoteBookY 5s cubic-bezier(0.54, 0.43, 0.15, 0.96) forwards;
+	animation: MegaWorkNoteBookY 5s cubic-bezier(0.54, 0.43, 0.15, 0.96) forwards;
+}
+.notebookBlock .noteBook .keyboadCube.screen.openScreen {
+	-webkit-animation: MegaWorkNoteBookOpenScreen 1s linear forwards;
+	animation: MegaWorkNoteBookOpenScreen 1s linear forwards;
+}
+.notebookBlock .noteBook .keyboadCube.screen.closeScreen {
+	-webkit-animation: MegaWorkNoteBookCloseScreen 1s linear forwards;
+	animation: MegaWorkNoteBookCloseScreen 1s linear forwards;
+}
+.notebookBlock .noteBook .keyboadCube.screen .boardBottom::after {
+	content: '';
+	position: absolute;
+	top: -24px;
+    left: -100px;
+    width: 54px;
+    height: 331px;
+    -webkit-transform: rotate(21deg);
+    transform: rotate(21deg);
+    background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(30%, #ffffff73), color-stop(83%, transparent));
+    background: linear-gradient(to right, transparent 0%, #ffffff73 30% 44%, transparent 83% 100%);
+    -webkit-transition: 1s;
+    transition: 1s;
+    -webkit-filter: blur(6px);
+    filter: blur(6px);
+    -webkit-animation: NoteBookTrailerShadow 3s;
+    animation: NoteBookTrailerShadow 3s;
+}
+@-webkit-keyframes NoteBookTrailerShadow {
+	to { left: 120%; }
+}
+@keyframes NoteBookTrailerShadow {
+	to { left: 120%; }
+}
+@-webkit-keyframes NoteBookTrailer {
+	0% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); }
+	13% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); }
+	20% { -webkit-transform: translateZ(10em) translateY(-5em) translateX(0) rotateY(90deg) rotateX(0); transform: translateZ(10em) translateY(-5em) translateX(0) rotateY(90deg) rotateX(0); }
+	30% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	33% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	39% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(5em) rotateY(74deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(5em) rotateY(74deg) rotateX(0); }
+	45% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	47% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }	
+	55% { -webkit-transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); }
+	58% { -webkit-transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); }
+	65% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	68% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	78% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); }
+	80% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); }
+	85% { -webkit-transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	87% { -webkit-transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	89% { -webkit-transform: translateZ(30em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(30em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@keyframes NoteBookTrailer {
+	0% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); }
+	13% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-90deg) rotateY(-180deg); }
+	20% { -webkit-transform: translateZ(10em) translateY(-5em) translateX(0) rotateY(90deg) rotateX(0); transform: translateZ(10em) translateY(-5em) translateX(0) rotateY(90deg) rotateX(0); }
+	30% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	33% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	39% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(5em) rotateY(74deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(5em) rotateY(74deg) rotateX(0); }
+	45% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }
+	47% { -webkit-transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); transform: translateZ(36em) translateY(-7.5em) translateX(3em) rotateY(90deg) rotateX(0); }	
+	55% { -webkit-transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); }
+	58% { -webkit-transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); transform: translateZ(31em) translateY(-7.5em) translateX(-1.5em) rotateY(270deg) rotateX(0); }
+	65% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	68% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(0) rotateX(0); }
+	78% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); }
+	80% { -webkit-transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); transform: translateZ(25em) translateY(0) translateX(0) rotateY(0) rotateX(-43deg); }
+	85% { -webkit-transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	87% { -webkit-transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(34em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	89% { -webkit-transform: translateZ(30em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); transform: translateZ(30em) translateY(-6em) translateX(0) rotateY(-90deg) rotateX(0); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@-webkit-keyframes NoteBookKeyboard {
+	0% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(-360deg) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(-360deg) rotateX(0); }
+	100% { -webkit-transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@keyframes NoteBookKeyboard {
+	0% { -webkit-transform: translateZ(10em) translateY(0) translateX(0) rotateY(-360deg) rotateX(0); transform: translateZ(10em) translateY(0) translateX(0) rotateY(-360deg) rotateX(0); }
+	100% { -webkit-transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@-webkit-keyframes NoteBookKeyboardClssic {
+	0% { -webkit-transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+}
+@keyframes NoteBookKeyboardClssic {
+	0% { -webkit-transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(39em) translateY(-5em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+}
+.notebookBlock .noteBook.keyboard3d {
+	-webkit-animation: NoteBookKeyboard 1.5s linear forwards;
+	animation: NoteBookKeyboard 1.5s linear forwards;
+}
+.notebookBlock .noteBook.keyboardClassic {
+	-webkit-animation: NoteBookKeyboardClssic 1.5s linear forwards;
+	animation: NoteBookKeyboardClssic 1.5s linear forwards;
+}
+@-webkit-keyframes NoteBookWriter {
+	0% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); }
+}
+@keyframes NoteBookWriter {
+	0% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); }
+}
+@-webkit-keyframes NoteBookWriterHide {
+	0% { -webkit-transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+}
+@keyframes NoteBookWriterHide {
+	0% { -webkit-transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(-14em) rotateY(-360deg) rotateX(-90deg); }
+	100% { -webkit-transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); transform: translateZ(42em) translateY(2em) translateX(0em) rotateY(-360deg) rotateX(-90deg); }
+}
+.notebookBlock .noteBook.writerShow {
+	-webkit-animation: NoteBookWriter 1.5s linear forwards;
+	animation: NoteBookWriter 1.5s linear forwards;
+}
+.notebookBlock .noteBook.writerHide {
+	-webkit-animation: NoteBookWriterHide 1.5s linear forwards;
+	animation: NoteBookWriterHide 1.5s linear forwards;
+}
+@-webkit-keyframes NoteBookWriterOpen {
+	0% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+	50% { -webkit-transform: translateZ(39px); transform: translateZ(39px); }
+	85% { -webkit-transform: translateZ(39px); transform: translateZ(39px); }
+	100% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+}
+@keyframes NoteBookWriterOpen {
+	0% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+	50% { -webkit-transform: translateZ(39px); transform: translateZ(39px); }
+	85% { -webkit-transform: translateZ(39px); transform: translateZ(39px); }
+	100% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardFrontBorder.tree .riter.open {
+	-webkit-animation: NoteBookWriterOpen 3s;
+	animation: NoteBookWriterOpen 3s;
+}
+.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kface.k8 h4 {
+	font-size: 13px;
+}
+@-webkit-keyframes noteBookOpenDisc {
+	0% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	100% { -webkit-transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); }
+}
+@keyframes noteBookOpenDisc {
+	0% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	100% { -webkit-transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); }
+}
+@-webkit-keyframes noteBookOpenDisc2 {
+	0% { -webkit-transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@keyframes noteBookOpenDisc2 {
+	0% { -webkit-transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); transform: translateZ(44em) translateY(-5.8em) translateX(-16rem) rotateY(-366deg) rotateX(2deg); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+}
+@-webkit-keyframes kingOfCSS {
+	0% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+	100% { -webkit-transform: translateZ(41px); transform: translateZ(41px); }
+}
+@keyframes kingOfCSS {
+	0% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+	100% { -webkit-transform: translateZ(41px); transform: translateZ(41px); }
+}
+@-webkit-keyframes kingOfCSS2 {
+	0% { -webkit-transform: translateZ(41px); transform: translateZ(41px); }
+	100% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+}
+@keyframes kingOfCSS2 {
+	0% { -webkit-transform: translateZ(41px); transform: translateZ(41px); }
+	100% { -webkit-transform: translateZ(-37px); transform: translateZ(-37px); }
+}
+@-webkit-keyframes kingOfCSS3 {
+	0% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	60% { -webkit-transform: translateZ(11em) translateY(-.8em) translateX(0) rotateY(-180deg) rotateX(0deg); transform: translateZ(11em) translateY(-.8em) translateX(0) rotateY(-180deg) rotateX(0deg); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(0) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(0) rotateX(-31deg); }
+}
+@keyframes kingOfCSS3 {
+	0% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(-360deg) rotateX(-31deg); }
+	60% { -webkit-transform: translateZ(11em) translateY(-.8em) translateX(0) rotateY(-180deg) rotateX(0deg); transform: translateZ(11em) translateY(-.8em) translateX(0) rotateY(-180deg) rotateX(0deg); }
+	100% { -webkit-transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(0) rotateX(-31deg); transform: translateZ(27em) translateY(-.8em) translateX(0) rotateY(0) rotateX(-31deg); }
+}
+#closePack {
+	position: fixed;
+	top: -100%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	font: 26px sans-serif;
+	cursor: pointer;
+	width: 50px;
+	height: 40px;
+	background: #000;
+	color: #fff;
+	border-radius: 0 0 30px 30px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding-top: 2px;
+	z-index: 10000;
+	border: 2px solid #fff;
+	border-top: 0;
+	-webkit-box-shadow: 0 3px 5px #000;
+	box-shadow: 0 3px 5px #000;
+	-webkit-transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+	transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+	transition: box-shadow .4s, border-color .4s, top 2s;
+	transition: box-shadow .4s, border-color .4s, top 2s, -webkit-box-shadow .4s;
+	-webkit-animation: toPackClose 1s 1s forwards;
+	animation: toPackClose 1s 1s forwards;
+}
+#closePack:hover {
+	border-color: #f00;
+	-webkit-box-shadow: 0 5px 8px #f00;
+	box-shadow: 0 5px 8px #f00;
+}
+#closePack:active {
+	border-color: #0f0;
+	-webkit-box-shadow: 0 5px 8px #0f0;
+	box-shadow: 0 5px 8px #0f0;
+}
+@-webkit-keyframes toPackClose {
+	to { top: 0; }
+}
+@keyframes toPackClose {
+	to { top: 0; }
+}
