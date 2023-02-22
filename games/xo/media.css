@@ -1,0 +1,133 @@
+@media screen and (max-width: 1100px) {
+	.game .winner .title {
+		font-size: 10vw;
+	}
+}
+@media screen and (max-width: 900px) {
+	.game .XO {
+		width: 500px;
+		height: 500px;
+		grid-template-columns: repeat(3, 166px);
+		grid-template-rows: repeat(3, 166px);
+	}
+}
+@media screen and (max-width: 800px) {
+	.game .account .winPoint {
+		font-size: 17px;
+	}
+	.game .account .XplayerPoint, .game .account .OplayerPoint {
+		font-size: 30px;
+		padding-left: 0;
+	}
+	.game .account .noOne {
+		font-size: 16px;
+	}
+	.game .account {
+		padding: 10px 10px 5px 5px;
+		height: 150px;
+	}
+	.game .XO .box {
+		font-size: 8em;
+	}
+}
+@media screen and (max-width: 720px) {
+	.game .winner .replayGame {
+		font-size: 25px;
+		width: 200px;
+		height: 75px;
+		white-space: nowrap;
+	}
+	.game .XO {
+		width: 400px;
+		height: 400px;
+		grid-template-columns: repeat(3, 133px);
+		grid-template-rows: repeat(3, 133px);
+	}
+	.game .XO .box {
+		font-size: 6em;
+	}
+}
+@media screen and (max-width: 640px) {
+	.game .account .winPoint {
+		font-size: 12px;
+		margin-bottom: 3px;
+	}
+	.game .account .noOne .noOneValue {
+		font-size: 20px;
+	}
+	.game .account .XplayerPoint, .game .account .OplayerPoint {
+		font-size: 30px;
+		padding-left: 0;
+	}
+	.game .account .noOne {
+		font-size: 13px;
+		margin-left: 0;
+	}
+	.game .account {
+		padding-left: 3px;
+		height: 140px;
+	}
+	.game .backSettings {
+		top: 85%;
+	}
+	.loading .Studio .developer {
+		white-space: nowrap;
+	}
+}
+@media screen and (max-width: 575px) {
+	.game .winner .replayGame {
+		font-size: 25px;
+		width: 200px;
+		height: 75px;
+		white-space: nowrap;
+	}
+	.game .XO {
+		width: 350px;
+		grid-template-columns: repeat(3, 116px);
+	}
+	.game .XO .box {
+		font-size: 6em;
+	}
+}
+@media screen and (max-width: 520px) {
+	.game .account .winPoint {
+		font-size: 10px;
+	}
+	.game .account .noOne .noOneValue {
+		font-size: 16px;
+	}
+	.game .account .XplayerPoint, .game .account .OplayerPoint {
+		font-size: 25px;
+		padding-left: 0;
+	}
+	.game .account .noOne {
+		font-size: 11px;
+	}
+	.game .account {
+		height: 120px;
+	}
+	.game .XO {
+		width: 315px;
+		height: 350px;
+		grid-template-columns: repeat(3, 105px);
+		grid-template-rows: repeat(3, 116px);
+	}
+	.game .XO .box {
+		font-size: 5em;
+	}
+	.loading .Studio .Present {
+		font-size: 24px;
+	}
+	.loading .Studio .name {
+		font-size: 50px;
+	}
+	.loading .Studio .developer {
+		font-size: 28px;
+		margin-top: 12px;
+	}
+	.loading .Studio img {
+		width: 260px;
+		height: 260px;
+	}
+}
+

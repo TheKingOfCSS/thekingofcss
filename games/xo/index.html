@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>XO Game</title>
+    <link rel="shortcut icon" href="bg.jpg">
+    <style>
+        * { margin: 0; padding: 0; outline: 0; user-select: none; border: 0; box-sizing: border-box; }
+		body { overflow: hidden; }
+        .game {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(tictac.jpg);
+            animation: XOBG 15s linear infinite alternate;
+			overflow: hidden;
+        }
+        @keyframes XOBG {
+            to { background-position-x: -300%; }
+        }
+        .game .XO {
+            width: 600px;
+            height: 600px;
+            border: 1px solid #000;
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            grid-template-rows: repeat(3, 200px);
+            box-shadow: 0 0 10px #fff, 0 0 30px #e10f70, 0 0 50px #e61372, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079, 0 0 10px #fff, 0 0 30px #e10f70, 0 0 50px #e61372, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079;
+            border-radius: 17px;
+            overflow: hidden;
+			position: relative;
+			right: -200%;
+			opacity: 0;
+			transition: 1s .4s;
+        }
+        .game .XO .box {
+            border: 1px solid #fff;
+            background: linear-gradient(63deg, #121212, rgba(0,0,0,.5));
+            cursor: pointer;
+            color: #fff;
+            font-size: 9em;
+            font-family: cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 15px #edb32f, inset 0 0 45px #edb32f, inset 0 0 13px #edb32f;
+            text-shadow: 0 0 15px #b70f5d, 0 0 33px #d100ff, 0 0 73px #b70f5d;
+            animation: xo .5s linear infinite alternate;
+			transition: .7s;
+        }
+		.game .XO .box:hover {
+			transition: .4s;
+			box-shadow: inset 0 0 5px #edb32f, inset 0 0 5px #edb32f, inset 0 0 3px #edb32f;
+		}
+        @keyframes xo {
+            0% { text-shadow: 0 0 15px #b70f5d, 0 0 33px #d100ff, 0 0 73px #b70f5d; }
+            20% { text-shadow: 0 0 15px #b70f5d, 0 0 33px #ffbb00, 0 0 73px #b70f5d; }
+            40% { text-shadow: 0 0 15px #b70f5d, 0 0 33px #003cff, 0 0 73px #b70f5d; }
+            60% { text-shadow: 0 0 15px #b70f5d, 0 0 33px #ff0037, 0 0 73px #b70f5d; }
+            80% { text-shadow: 0 0 15px #b70f5d, 0 0 33px rgb(21, 255, 0)7, 0 0 73px #b70f5d; }
+            100% { text-shadow: 0 0 15px #b70f5d, 0 0 33px rgb(255, 0, 157)7, 0 0 73px #b70f5d; }
+        }
+        .game .winner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            background: linear-gradient(transparent 0 38%, rgba(0,0,0,.7) 38% 62%, transparent 62% 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+			backdrop-filter: blur(5px) hue-rotate(220deg);
+            transition: 1.5s .4s;
+        }
+        .game .winner .title {
+            font-size: 8em;
+            text-shadow: 0 0 10px #000, 0 0 30px #ffa500, 0 0 50px #e6a513, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079;
+            color: #fff;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            animation: titleXO .5s ease infinite alternate;
+			transition: .7s;
+        }
+		.game .winner .title .players {
+			font-size: 1.2em;
+    		color: #00ff2b;
+		}
+		.game .winner .replayGame {
+			position: absolute;
+			bottom: -100%;
+			width: 270px;
+			height: 100px;
+			padding: 20px 35px;
+			font-size: 32px;
+			border-radius: 19% / 156%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #ffffff4f 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 5077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000;
+			transition: bottom 2s, background 1s, opacity .7s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+		}
+		.game .winner .replayGame:hover {
+			background-size: 50077%;
+		}
+        @keyframes titleXO {
+            0% { text-shadow: 0 0 10px #000, 0 0 30px #ffa500, 0 0 50px #e6a513, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079; }
+            30% { text-shadow: 0 0 10px #000, 0 0 30px #ff00b3, 0 0 50px #e6a513, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079; }
+            60% { text-shadow: 0 0 10px #000, 0 0 30px #ffd000, 0 0 50px #e6a513, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079; }
+            100% { text-shadow: 0 0 10px #000, 0 0 30px #ff0000, 0 0 50px #e6a513, 0 0 80px #ff0073, 0 0 120px #0072ff, 0 0 150px #ff0079; }
+        }
+		.game .menu {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			display: grid;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+			grid-row-gap: 30px;
+			transition: .7s;
+		}
+		.game .menu button {
+			padding: 20px 35px;
+			font-size: 32px;
+			border-radius: 19% / 156%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #ffffff4f 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 40077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000, 0 0 5px #000;
+			transition: 1s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+			animation: XOMenuBtn 2s ease infinite alternate;
+		}
+		.game .menu .continue { display: none; }
+		@keyframes XOMenuBtn {
+			0% { transform: rotate(0); }
+			50% { transform: rotate(-5deg); }
+			100% { transform: rotate(5deg); }
+		}
+		.game .menu button:hover {
+			background-size: 100%;
+			box-shadow: 0 0 5px #ebff00, 0 0 25px #0089ff, 0 0 55px #f500ff;
+		}
+		.game .exitQuestion {
+			position: absolute;
+			top: 50%;
+			left: -100%;
+			width: 400px;
+			height: 400px;
+			transform: translate(-50%, -50%);
+			background: linear-gradient(45deg, white, #ffffff00);
+			border-radius: 25px;
+			display: grid;
+			grid-template-rows: 45px 45px 45% 15%;
+			justify-items: center;
+			align-items: center;
+			padding: 15px 25px;
+			z-index: 2;
+			overflow: hidden;
+			transition: 1s;
+		}
+		.game .exitQuestion .question {
+			font-size: 34px;
+			color: #fff;
+			text-shadow: 0 0 3px #000, 0 0 23px #000, 0 0 33px #1dff00, 0 0 53px #0aff00;
+			text-align: center;
+			animation: titleXO 2s ease infinite alternate;
+			white-space: nowrap;
+			overflow: hidden;
+			opacity: 0;
+		}
+		@keyframes exitQuestion {
+			0% { width: 0; }
+			2% { opacity: 1; }
+			100% { width: 100%; opacity: 1; }
+		}
+		.game .exitQuestion button {
+			width: 250px;
+			height: 100px;
+			padding: 20px 35px;
+			font-size: 35px;
+			border-radius: 19% / 156%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #ffffff4f 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 4077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000;
+			transition: 1s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+			position: relative;
+		}
+		.game .exitQuestion button:nth-of-type(1) {
+			animation: XOMenuBtn 1s ease infinite alternate;
+		}
+		.game .exitQuestion button:nth-of-type(2) {
+			animation: XOMenuBtn 1s ease infinite alternate-reverse;
+		}
+		.game .exitQuestion .yes { left: -100%; }
+		.game .exitQuestion .no { right: -100%; }
+		.game .exitQuestion button:hover {
+			background-image: linear-gradient(to right, #d9176d 0 49.9%, rgba(0,0,0,.7) 49.9% 50%, #ecb13b 50% 100%);
+			background-size: 50077%;
+		}
+		.game .exitQuestion .emoji {
+			position: absolute;
+			top: 60px;
+			right: -100%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FFC83D;
+            border: 4px solid #000;
+			transition: 1s;
+		}
+        .game .exitQuestion .emoji::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            border-radius: 50%;
+            width: 10px;
+            height: 15px;
+            background: #000;
+            transition: .3s;
+        }
+        .game .exitQuestion .emoji::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            border-radius: 50%;
+            width: 10px;
+            height: 15px;
+            background: #000;
+            transition: .3s;
+        }
+        .game .exitQuestion .yes:hover ~ .emoji::before {
+            width: 15px;
+            box-shadow: inset 0 0 0 4px #fff;
+        }
+        .game .exitQuestion .yes:hover ~ .emoji::after {
+            width: 15px;
+            box-shadow: inset 0 0 0 4px #fff;
+        }
+        .game .exitQuestion .emoji .emojiFc {
+            position: absolute;
+            top: 43px;
+            left: 4px;
+            width: 65px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid;
+            border-color: #000 transparent transparent;
+            transform-origin: top;
+            transition: .2s linear;
+        }
+        .game .exitQuestion .emoji.active .emojiFc {
+            transform: translateY(10px) rotateX(180deg);
+            top: 48px;
+            left: -2px;
+            width: 77px;
+            height: 98px;
+        }
+		.game .currentPlyerParent {
+			position: absolute;
+			top: -100px;
+			left: 0;
+			padding: 3px 40px 7px;
+			border-bottom-right-radius: 40px;
+			background: #de176e;
+			box-shadow: inset -4px -3px 5px #0000009e, 0 0 5px #fff, 0 0 15px #fff, 0 0 45px #00ffdca1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 10;
+			transition: 1.5s 1s;
+		}
+		.game .currentPlyerParent .currentPlyer {
+			font-size: 20px;
+			color: #fff;
+			font-family: cursive;
+			display: flex;
+			align-items: center;
+		}
+		.game .currentPlyerParent .currentPlyer .PXY {
+			color: greenyellow;
+			font-size: 22px;
+			animation: CurrentPlayer .7s ease infinite alternate;
+			margin: 0 4px 0 10px;
+		}
+		@keyframes CurrentPlayer {
+			from { transform: scale(1); }
+			to { transform: scale(1.4); }
+		}
+		.loading {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: repeating-linear-gradient(45deg, #fff, #f0f0ff 100px);
+			z-index: 12;
+			transition: .7s;
+		}
+		.loading .xFace {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-80%, -100%);
+			width: 150px;
+			height: 150px;
+			filter: drop-shadow(-3px 21px 2px #0002) drop-shadow(-3px 21px 2px #0002);
+			transition: .5s;
+		}
+		.loading .xFace::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 8px;
+			height: 0;
+			border-radius: 10px;
+			transform: rotate(-45deg);
+			background: #E6B03D;
+			transform-origin: top;
+			animation: loadingX1 1s linear forwards, XfaceFoot .5s ease 8.2s forwards;
+		}
+		@keyframes XfaceFoot {
+			0% { transform: rotate(-45deg); }
+			50% { transform: rotate(-54deg); }
+			100% { transform: rotate(-45deg); }
+		}
+		.loading .xFace::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 8px;
+			height: 0;
+			border-radius: 10px;
+			transform: rotate(45deg);
+			background: #E6B03D;
+			transform-origin: bottom;
+			animation: loadingX2 1s linear 1s forwards;
+		}
+		@keyframes loadingX1 { from{ height: 0; } to{ height: 205px; } }
+		@keyframes loadingX2 { from{ height: 0; } to{ height: 205px; } }
+		.loading .xFace .eye {
+			width: 30px;
+			height: 40px;
+			border-radius: 50%;
+			border: 3px solid #000;
+			position: absolute;
+			top: 0px;
+			opacity: 0;
+			animation: Oeye 1s linear 5s forwards;
+		}
+		.loading .xFace .eye.left { left: 48px; }
+		.loading .xFace .eye.right { right: 35px; }
+		.loading .xFace .eye .glass {
+			width: 15px;
+			height: 20px;
+			border-radius: 50%;
+			background: #000;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			animation: XfaceGlass 3s ease 5.4s infinite alternate;
+		}
+		@keyframes XfaceGlass {
+			0% { left: 50%; top: 50%; width: 15px; height: 20px; }
+			20% { left: 70%; top: 63%; width: 15px; height: 20px; }
+			35% { left: 70%; top: 63%; width: 15px; height: 20px; }
+			40% { left: 52%; top: 50%; width: 15px; height: 20px; }
+			42% { left: 52%; top: 50%; width: 15px; height: 20px; }
+			45% { left: 52%; top: 50%; width: 15px; height: 3px; }
+			46% { left: 52%; top: 50%; width: 15px; height: 3px; }
+			47% { left: 52%; top: 50%; width: 15px; height: 20px; }
+			76% { left: 52%; top: 70%; width: 15px; height: 20px; }
+			78% { left: 52%; top: 70%; width: 15px; height: 20px; }
+			85% { left: 71%; top: 70%; width: 15px; height: 20px; }
+			100% { left: 68%; top: 25%; width: 15px; height: 20px; }
+		}
+		.loading .oFace {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(20%, -100%);
+			width: 150px;
+			height: 150px;
+			filter: drop-shadow(-3px 21px 2px #0002) drop-shadow(-3px 21px 2px #0002);
+			animation: OfaceFlight 3s ease 8.3s forwards;
+			transition: .5s;
+		}
+		@keyframes OfaceFlight {
+			0% { transform: translate(20%, -100%) rotate(0); left: 50%; }
+			50% { transform: translate(20%, -100%) rotate(360deg); left: 80%; }
+			60% { transform: translate(20%, -100%) rotate(360deg); left: 80%; }
+			100% { transform: translate(20%, -100%) rotate(0); left: 50%; }
+		}
+		.loading .oFace svg {
+			width: 100%;
+			height: 100%;
+			transform: rotate(220deg);
+		}
+		.loading .oFace svg circle {
+			cx: 75px;
+			cy: 73px;
+			stroke: #EC1173;
+			fill: transparent;
+			r: 67px;
+			stroke-width: 8px;
+			stroke-dasharray: 50px;
+			animation: loadingO 3s linear 2s forwards;
+			opacity: 0;
+		}
+		.loading .oFace .eye {
+			position: absolute;
+			width: 30px;
+			height: 40px;
+			border-radius: 50%;
+			border: 2px solid #ec1173;
+			opacity: 0;
+			transition: .5s;
+			animation: Oeye 1s linear 4.4s forwards;
+		}
+		.loading .oFace .eye .glass {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 15px;
+			height: 25px;
+			background: #000;
+			border-radius: 50%;
+			animation: OeyeGlass 3s ease 4.7s infinite;
+		}
+		.loading .oFace .eye.left {
+			top: 37px;
+			left: 35px;
+		}
+		.loading .oFace .eye.right {
+			top: 50px;
+			right: 39px;
+		}
+		@keyframes loadingO { from{ stroke-dasharray: 0; } 2%{ opacity: 1; } to{ stroke-dasharray: 600px; opacity: 1; } }
+		@keyframes Oeye { to{ opacity: 1; } }
+		@keyframes OeyeGlass {
+			0% { left: 50%; }
+			10% { left: 32%; }
+			18% { left: 32%; }
+			28% { left: 22%; }
+			35% { left: 22%; }
+			55% { left: 72%; }
+			65% { left: 72%; }
+			85% { left: 30%; }
+			100% { left: 50%; }
+		}
+		.loading .progress {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			text-align: center;
+			padding-bottom: 10px;
+			transition: .7s;
+		}
+		.loading .progress progress {
+			height: 30px;
+			width: 250px;
+			border-radius: 30px;
+			overflow: hidden;
+		}
+		.loading .progress progress::-webkit-progress-bar {
+			background: #E21370;
+			box-shadow: inset 0 -3px 10px #000;
+		}
+		.loading .progress progress::-webkit-progress-value {
+			background: #ECB13B;
+			border-radius: 30px;
+			box-shadow: inset 0 -3px 10px #000;
+		}
+		.loading .progress .value {
+			font-size: 25px;
+			margin-bottom: 3px;
+			font-family: sans-serif;
+		}
+		.loading .progress .author {
+			margin-top: 25px;
+			font-family: cursive;
+			font-size: 16px;
+			color: #0009;
+		}
+		.loading .Studio {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(.5);
+			text-align: center;
+			opacity: 0;
+			transition: 2s;
+		}
+		.loading .Studio img {
+			width: 300px;
+			height: 300px;
+			object-fit: contain;
+		}
+		.loading .Studio .Present {
+			font-size: 30px;
+			margin-top: 5px;
+		}
+		.loading .Studio .name {
+			font-size: 60px;
+			margin-top: 5px;
+			color: transparent;
+			background: linear-gradient(45deg, #ECB13B 0 50%, #E20A6B 50% 100%);
+			-webkit-background-clip: text;
+			opacity: 0;
+			transition: .7s;
+		}
+		.loading .Studio .developer {
+			font-size: 38px;
+			font-family: cursive;
+			margin-top: 33px;
+			opacity: 0;
+			transition: .7s;
+		}
+		.game .account {
+			position: absolute;
+			top: 50%;
+			left: -30%;
+			transform: translateY(-50%);
+			background: linear-gradient(45deg, #ffffff, #ffffff00);
+			height: 160px;
+			padding: 10px 16px 10px 10px;
+			box-shadow: inset 1px -7px 18px #000000c7, 1px 0px 38px #fff;
+			border-radius: 0 18% 50% 0;
+			z-index: 3;
+			transition: .7s .8s;
+		}
+		.game .account .winPoint {
+			color: #D9176D;
+			font-size: 20px;
+			text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+			text-transform: uppercase;
+		}
+		.game .account .XplayerPoint,
+		.game .account .OplayerPoint {
+			font-size: 35px;
+			font-family: cursive;
+			color: #000;
+			padding-left: 15px;
+			line-height: 1.2;
+		}
+        .game .account .noOne {
+			color: #D9176D;
+			font-size: 18px;
+			text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+			text-transform: uppercase;
+            margin: 1px 0 0 5px;
+            display: flex;
+            align-items: center;
+            position: relative;
+		}
+        .game .account .noOne .noOneValue {
+            margin-right: 5px;
+            font-size: 24px;
+        }
+        @keyframes accountNoOne {
+            0% { right: 0; transform: scale(1); }
+            5% { right: 0; transform: scale(1); }
+            35% { right: -185px; transform: scale(1); }
+            37% { right: -185px; transform: scale(1); }
+            55% { right: -185px; transform: scale(2); }
+            65% { right: -185px; transform: scale(1); }
+            67% { right: -185px; transform: scale(1); }
+            100% { right: 0; transform: scale(1); }
+        }
+		.game .backSettings {
+			position: absolute;
+			top: 70%;
+			left: -100%;
+			padding: 15px;
+			font-size: 20px;
+			border-radius: 19% / 156%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #ffffff4f 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 40077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000, 0 0 5px #000;
+			transition: 1s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+			transition: 1s;
+            z-index: 2;
+		}
+		.game .backSettings:hover {
+			background-size: 57%;
+		}
+        .game .gameAgain {
+            position: absolute;
+            left: 50%;
+            bottom: -80%;
+            transform: translateX(-50%);
+            padding: 20px 35px;
+			font-size: 32px;
+			border-radius: 19% / 156%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #00000094 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 80077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000, 0 0 5px #000;
+			transition: .6s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 30;
+        }
+        .game .gameAgain:hover {
+            background-size: 200%;
+        }
+		.game .settingsBlock {
+			position: absolute;
+			top: 50%;
+			left: -100%;
+			transform: translate(-50%, -50%);
+			background: linear-gradient(45deg, white, transparent);
+			width: 600px;
+			height: 380px;
+			z-index: 10;
+			display: grid;
+			align-content: flex-start;
+			justify-items: center;
+			padding: 50px 10px;
+			text-align: center;
+			border-radius: 75px / 50%;
+			box-shadow: inset 0 0 25px #30ecff, inset 0 0 65px #7630ff;
+			backdrop-filter: hue-rotate(175deg) brightness(2.5);
+			transition: .7s;
+		}
+		.game .settingsBlock .setName {
+			font-size: 38px;
+			color: #c00e63;
+    		text-shadow: 0 0 4px #fff, 0 0 5px #fff, 0 0 9px #fff, 0 0 20px #fff;
+		}
+		.game .settingsBlock .choice {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: flex-start;
+			align-content: flex-start;
+			margin-top: 30px;
+			gap: 25px 0;
+			width: 520px;
+			height: 82px;
+			transition: 1s;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			padding: 0 5px;
+		}
+		.game .settingsBlock .choice::-webkit-scrollbar {
+			width: 10px;
+			transition: 1s;
+		}
+		.game .settingsBlock .choice::-webkit-scrollbar-track {
+			background: #ECB13B;
+			border-radius: 30px;
+		}
+		.game .settingsBlock .choice::-webkit-scrollbar-thumb {
+			background: #F61A7C;
+			border-radius: 30px;
+		}
+		.game .settingsBlock .choice::-webkit-scrollbar-thumb:hover {
+			background: #cb1164;
+		}
+		.game .settingsBlock .choice .smileIconX,
+		.game .settingsBlock .choice .smileIconY {
+			font-size: 45px;
+			background: none;
+			cursor: pointer;
+			transition: .3s;
+			padding: 0 2px 7px;
+            position: relative;
+		}
+		.game .settingsBlock .choice .smileIconX.active,
+		.game .settingsBlock .choice .smileIconY.active {
+			background: #ef00ff59;
+            border-radius: 18px;
+            box-shadow: 0 2px 5px #000000b5;
+		}
+        .game .settingsBlock .choice .smileIconY:first-child::after {
+            content: none;
+        }
+        .game .settingsBlock .choice .smileIconX::after,
+        .game .settingsBlock .choice .smileIconY::after {
+            content: 'X';
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            font-size: 42px;
+            background: linear-gradient(to top, #fff7, transparent);
+            padding: 7px 15px;
+            color: #f00;
+            font-weight: bold;
+            border-radius: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: .5s;
+            text-shadow: 0 0 2px #000, 0 0 3px #000;
+        }
+        .game .settingsBlock .choice .smileIconX.error::after,
+        .game .settingsBlock .choice .smileIconY.error::after {
+            animation: errorSmile 1s ease;
+        }
+        @keyframes errorSmile {
+            0% { opacity: 0; visibility: hidden; transform: scale(1); }
+            10% { opacity: 1; visibility: visible; transform: scale(1); }
+            50% { opacity: 1; visibility: visible; transform: scale(1.5); }
+            100% { opacity: 0; visibility: hidden; transform: scale(1); }
+        }
+		.game .settingsBlock .choice .smileIconX:hover,
+		.game .settingsBlock .choice .smileIconY:hover {
+			transform: scale(1.2) translateY(5px);
+		}
+		.game .settingsBlock .development {
+			position: absolute;
+			bottom: 5px;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 18px;
+			white-space: nowrap;
+			animation: developmentName 1s ease infinite alternate;
+		}
+		@keyframes developmentName {
+			0% { letter-spacing: 0; }
+			100% { letter-spacing: 10px; }
+		}
+        .game .settingsBlock .choice button:first-child {
+            padding: 0 8px 0;
+        }
+		.game .settingsBlock .closeSet {
+			position: absolute;
+			top: -28px;
+			right: 42px;
+			font-size: 35px;
+			font-family: cursive;
+			border-radius: 50%;
+			padding: 0 12px 3px;
+			background: #e40e6e;
+			color: #fff;
+			cursor: pointer;
+			box-shadow: inset 0 0 5px #000, 0 0 7px rgb(0,0,0,.5);
+		}
+		.game .settingsBlock .choice .smileShowXAll,
+		.game .settingsBlock .choice .smileShowYAll {
+			background: none;
+			font-size: 3em;
+			cursor: pointer;
+			background: #e91172;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			animation: addSmileDown .7s linear infinite;
+			margin-top: 6px;
+		}
+		.game .settingsBlock .choice .smileShowYAll { animation-delay: .8s; }
+		.game .settingsBlock .choice .smileShowXAll .upDown,
+		.game .settingsBlock .choice .smileShowYAll .upDown {
+			transform: translateY(-24px);
+			display: block;
+			color: #fff;
+			transition: .7s;
+		}
+		@keyframes addSmileDown {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(7px); }
+		}
+        .game .backMenu {
+            position: absolute;
+            right: -100%;
+            top: 0;
+            padding: 10px 25px;
+			font-size: 24px;
+			border-bottom-left-radius: 50%;
+			background: linear-gradient(to right, #d9176d 0 49.9%, #00000094 49.9% 50%, #ecb13b 50% 100%) 49.95%;
+			background-size: 80077%;
+			color: #fff;
+			text-shadow: 0 0 5px #000, 0 0 5px #000;
+			transition: .6s;
+			border: 3px solid rgba(255,255,255);
+			cursor: pointer;
+            z-index: 30;
+        }
+        .game .backMenu:hover { background-size: 30%; }
+        .game .backMenu:active { opacity: .6; }
+		.game .audioPause {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 80px;
+			height: 60px;
+			background: #e1146d;
+			border-top-left-radius: 30px;
+			box-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 20px #fff;
+			z-index: 13;
+			cursor: pointer;
+			transition: .3s;
+		}
+		.game .audioPause .symbol {
+			content: '';
+			position: absolute;
+			top: 9px;
+			left: 28px;
+			width: 35px;
+			height: 45px;
+			clip-path: polygon(0 0, 100% 50%, 100% 50%, 0% 100%);
+			background: #fff;
+			transition: .3s;
+		}
+		.game .audioPause:hover { background: #bc0f5a; }
+		.game .audioPause:hover .symbol { transform: scale(1.1); }
+    </style>
+    <link rel="stylesheet" href="media.css">
+</head>
+<body>
+    <div class="game">
+        <button class="gameAgain">Սկսել նորից</button>
+      	<div class="currentPlyerParent">
+       		<h5 class="currentPlyer">Խաղում է <span class="PXY">X</span>-ը</h5>
+       	</div>
+       	<button class="backMenu">Մենյու</button>
+       	<div class="audioPause"><span class="symbol"></span></div>
+       	<div class="account">
+       		<h5 class="winPoint">Հաղթանակ</h5>
+       		<div class="XplayerPoint"><span class="countX">X</span> - <span class="countXvalue">0</span></div>
+       		<div class="OplayerPoint"><span class="countO">O</span> - <span class="countOvalue">0</span></div>
+       		<h5 class="noOne"><span class="noOneValue">0</span> - Ոչ ոքի</h5>
+       	</div>
+       	<button class="backSettings">Կարգավորումներ</button>
+        <div class="winner">
+            <h1 class="title">Հաղթել է <span class="players"></span>-ը</h1>
+            <button class="replayGame">Սկսել նորից</button>
+        </div>
+		<div class="menu">
+			<button class="continue">Շարունակել</button>
+			<button class="start">Խաղալ</button>
+			<button class="settings">Կարգավորումներ</button>
+			<button class="exit">Փակել</button>
+		</div>
+		<div class="settingsBlock">
+			<h5 class="setName">Ընտրիր խաղացողին</h5>
+			<button class="closeSet">X</button>
+			<div class="choice">
+				<button class="smileIconX active">X</button>
+				<button class="smileIconX">😃</button>
+				<button class="smileIconX">😄</button>
+				<button class="smileIconX">😁</button>
+				<button class="smileIconX">🤣</button>
+				<button class="smileIconX">😉</button>
+				<button class="smileIconX">😊</button>
+				<button class="smileShowXAll"><span class="upDown">⌄</span></button>
+				
+				<button class="smileIconX">😅</button>
+				<button class="smileIconX">🙂</button>
+				<button class="smileIconX">😂</button>
+				<button class="smileIconX">😇</button>
+				<button class="smileIconX">🥰</button>
+				<button class="smileIconX">😍</button>
+				<button class="smileIconX">🤩</button>
+				<button class="smileIconX">😘</button>
+				<button class="smileIconX">😚</button>
+				<button class="smileIconX">😜</button>
+				<button class="smileIconX">😗</button>
+				<button class="smileIconX">😛</button>
+				<button class="smileIconX">🤑</button>
+				<button class="smileIconX">😋</button>
+				<button class="smileIconX">🤭</button>
+				<button class="smileIconX">🤗</button>
+				<button class="smileIconX">🤔</button>
+				<button class="smileIconX">🤫</button>
+				<button class="smileIconX">🤐</button>
+				<button class="smileIconX">🤨</button>
+				<button class="smileIconX">😐</button>
+				<button class="smileIconX">😏</button>
+				<button class="smileIconX">😒</button>
+				<button class="smileIconX">🙄</button>
+				<button class="smileIconX">🤥</button>
+				<button class="smileIconX">😟</button>
+				<button class="smileIconX">😎</button>
+				<button class="smileIconX">🥳</button>
+				<button class="smileIconX">🥶</button>
+				<button class="smileIconX">🤕</button>
+				<button class="smileIconX">🤒</button>
+				<button class="smileIconX">🥺</button>
+				<button class="smileIconX">😥</button>
+				<button class="smileIconX">😭</button>
+				<button class="smileIconX">😫</button>
+				<button class="smileIconX">🥱</button>
+				<button class="smileIconX">😤</button>
+				<button class="smileIconX">😈</button>
+				<button class="smileIconX">👽</button>
+				<button class="smileIconX">🙉</button>
+				<button class="smileIconX">💗</button>
+				<button class="smileIconX">💔</button>
+				<button class="smileIconX">💚</button>
+				<button class="smileIconX">💜</button>
+				<button class="smileIconX">🖤</button>
+				<button class="smileIconX">💣</button>
+				<button class="smileIconX">👌</button>
+				<button class="smileIconX">👍</button>
+				<button class="smileIconX">💪</button>
+				<button class="smileIconX">👀</button>
+				<button class="smileIconX">🧑</button>
+				<button class="smileIconX">👩‍🦲</button>
+				<button class="smileIconX">👴</button>
+				<button class="smileIconX">👨‍🎓</button>
+				<button class="smileIconX">👩‍🏭</button>
+				<button class="smileIconX">🎅</button>
+			</div>
+			<div class="choice">
+				<button class="smileIconY active">O</button>
+				<button class="smileIconY">😃</button>
+				<button class="smileIconY">😄</button>
+				<button class="smileIconY">😁</button>
+				<button class="smileIconY">🤣</button>
+				<button class="smileIconY">😉</button>
+				<button class="smileIconY">😊</button>
+				<button class="smileShowYAll"><span class="upDown">⌄</span></button>
+				
+				<button class="smileIconY">😅</button>
+				<button class="smileIconY">🙂</button>
+				<button class="smileIconY">😂</button>
+				<button class="smileIconY">😇</button>
+				<button class="smileIconY">🥰</button>
+				<button class="smileIconY">😍</button>
+				<button class="smileIconY">🤩</button>
+				<button class="smileIconY">😘</button>
+				<button class="smileIconY">😚</button>
+				<button class="smileIconY">😜</button>
+				<button class="smileIconY">😗</button>
+				<button class="smileIconY">😛</button>
+				<button class="smileIconY">🤑</button>
+				<button class="smileIconY">😋</button>
+				<button class="smileIconY">🤭</button>
+				<button class="smileIconY">🤗</button>
+				<button class="smileIconY">🤔</button>
+				<button class="smileIconY">🤫</button>
+				<button class="smileIconY">🤐</button>
+				<button class="smileIconY">🤨</button>
+				<button class="smileIconY">😐</button>
+				<button class="smileIconY">😏</button>
+				<button class="smileIconY">😒</button>
+				<button class="smileIconY">🙄</button>
+				<button class="smileIconY">🤥</button>
+				<button class="smileIconY">😟</button>
+				<button class="smileIconY">😎</button>
+				<button class="smileIconY">🥳</button>
+				<button class="smileIconY">🥶</button>
+				<button class="smileIconY">🤕</button>
+				<button class="smileIconY">🤒</button>
+				<button class="smileIconY">🥺</button>
+				<button class="smileIconY">😥</button>
+				<button class="smileIconY">😭</button>
+				<button class="smileIconY">😫</button>
+				<button class="smileIconY">🥱</button>
+				<button class="smileIconY">😤</button>
+				<button class="smileIconY">😈</button>
+				<button class="smileIconY">👽</button>
+				<button class="smileIconY">🙉</button>
+				<button class="smileIconY">💗</button>
+				<button class="smileIconY">💔</button>
+				<button class="smileIconY">💚</button>
+				<button class="smileIconY">💜</button>
+				<button class="smileIconY">🖤</button>
+				<button class="smileIconY">💣</button>
+				<button class="smileIconY">👌</button>
+				<button class="smileIconY">👍</button>
+				<button class="smileIconY">💪</button>
+				<button class="smileIconY">👀</button>
+				<button class="smileIconY">🧑</button>
+				<button class="smileIconY">👩‍🦲</button>
+				<button class="smileIconY">👴</button>
+				<button class="smileIconY">👨‍🎓</button>
+				<button class="smileIconY">👩‍🏭</button>
+				<button class="smileIconY">🎅</button>
+			</div>
+			<p class="development">Developer Hovo Vardanyan</p>
+		</div>
+       	<div class="exitQuestion">
+			<h2 class="question">Իրոք ուզում ես</h2>
+			<h2 class="question">դուրս գալ ?</h2>
+			<button class="yes">Այո</button>
+			<div class="emoji">
+			    <span class="emojiFc"></span>
+			</div>
+			<button class="no">Արդեն Ոչ</button>
+		</div>
+        <div class="XO">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div class="loading">
+    	<div class="xFace">
+    		<div class="eye left">
+    			<div class="glass"></div>
+    		</div>
+    		<div class="eye right">
+    			<div class="glass"></div>
+    		</div>
+    	</div>
+    	<div class="oFace">
+    		<svg><circle></circle></svg>
+    		<div class="eye left">
+    			<div class="glass"></div>
+    		</div>
+    		<div class="eye right">
+    			<div class="glass"></div>
+    		</div>
+    	</div>
+    	<div class="progress">
+    		<h6 class="value">0%</h6>
+    		<progress min="0" max="100" value="0"></progress>
+    		<p class="author">Developer Hovo Vardanyan<br>Copyright © All Right Reserved 2022</p>
+    	</div>
+    	<div class="Studio">
+			<img src="logo.png" alt="Logo" title="Էլբակյան կրթահամալիր">
+			<h3 class="Present">Էլբակյան կրթահամալիրը<br>Ներկայացնում է</h3>
+			<h5 class="name">Իքս Նոլիկ</h5>
+			<p class="developer">Developer Hovo Vardanyan</p>
+		</div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
