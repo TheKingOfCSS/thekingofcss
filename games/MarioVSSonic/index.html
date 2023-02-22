@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mario Vs Sonic Battle</title>
+    <link rel="shortcut icon" href="img/ver2.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+		:root {
+			--shoot: 105px;
+			--shootX: 130%;
+			--Sonoshoot: 105px;
+			--SonoshootX: 130%;
+		}
+		body { overflow: hidden; }
+        .game {
+            height: 100vh;
+            position: relative;
+            user-select: none;
+            overflow: hidden;
+            background: #5C95FC;
+        }
+        .game .room {
+            height: 100vh;
+            position: relative;
+            left: 0;
+			perspective: 850px;
+        }
+        .game .room .mario {
+            position: absolute;
+            bottom: 128px;
+            left: 80px;
+            width: 43px;
+            height: 47px;
+            background: url(img/mario1.png) no-repeat -23px -45px / 85px 90px;
+			transition: bottom .3s;
+			transform-origin: bottom;
+			z-index: 1;
+        }
+		@keyframes marioBig {
+			30% {
+				transform: scale(.7);
+			}
+			60% {
+				transform: scale(1);
+			}
+			90% {
+				transform: scale(.5);
+			}
+		}
+		@keyframes shoot {
+			from {
+				left: var(--shoot);
+				bottom: 140px;
+			}
+			10% {
+				bottom: 127px;
+			}
+			15% {
+				bottom: 142px;
+			}
+			20% {
+				bottom: 127px;
+			}
+			25% {
+				bottom: 140px;
+			}
+			30% {
+				bottom: 127px;
+			}
+			35% {
+				bottom: 140px;
+			}
+			to {
+				left: var(--shootX);
+			}
+		}
+		
+		@keyframes sonicshoot {
+			from {
+				right: var(--Sonoshoot);
+				bottom: 140px;
+			}
+			10% {
+				bottom: 127px;
+			}
+			15% {
+				bottom: 142px;
+			}
+			20% {
+				bottom: 127px;
+			}
+			25% {
+				bottom: 140px;
+			}
+			30% {
+				bottom: 127px;
+			}
+			35% {
+				bottom: 140px;
+			}
+			to {
+				right: var(--SonoshootX);
+			}
+		}
+		.game .room .marioShield {
+			position: absolute;
+            bottom: 110px;
+            left: 55px;
+            width: 95px;
+            height: 95px;
+            box-shadow: inset 0 0 20px 9px rgb(255 255 255 / 74%);
+			transition: bottom .3s;
+			border-radius: 50%;
+			display: none;
+		}
+		.game .room .sonic {
+            position: absolute;
+            bottom: 130px;
+			right: 80px;
+			width: 45px;
+			height: 70px;
+			background: url(img/sonic.png) no-repeat -22px -9px / 85px 90px;
+			transition: bottom .3s;
+			transform: scaleX(-1);
+			animation: sonicJump 5s linear infinite;
+        }
+		.game .room .sonicstone {
+			--chord: 130%;
+            position: absolute;
+            bottom: 150px;
+			right: 110px;
+			width: 10px;
+			height: 10px;
+			background: #000;
+			border-radius: 50%;
+			animation: sonicstone 5s linear infinite;
+			box-shadow: inset -2px -2px 3px #b4b4b4;
+			opacity: 0;
+        }
+		.game .room .sonicstone.bumerang {
+			width: 45px;
+			height: 20px;
+			border-radius: 50%;
+			border: 5px solid #000;
+			border-top: 0;
+			background: none;
+			animation: sonicstone2 5s linear infinite;
+		}
+		@keyframes sonicstone {
+			40% { opacity: 1; }
+			50% {
+				right: 110px;
+				opacity: 1;
+			}
+			70% {
+				right: var(--chord);
+				opacity: 1;
+			}
+			80%, 100% {
+				right: var(--chord);
+			}
+		}
+		@keyframes sonicstone2 {
+			40% { opacity: 1; }
+			50% {
+				right: 110px;
+				opacity: 1;
+				transform: none;
+			}
+			70% {
+				right: var(--chord);
+				opacity: 1;
+				transform: rotateY(1250deg);
+			}
+			80% {
+				right: var(--chord);
+				opacity: 1;
+				transform: none;
+				transform: rotateY(950deg);
+			}
+		}
+        @keyframes jump {
+            50% { bottom: 200px; }
+        }
+		@keyframes sonicJump {
+			50% {
+				bottom: 130px;
+				background-image: url(img/sonic.png);
+			}
+			55% {
+				bottom: 230px;
+				background-image: url(img/sonic.gif);
+			}
+			60%, 100% {
+				bottom: 130px;
+				background-image: url(img/sonic.png);
+			}
+		}
+        .game .room .floor {
+            width: 100%;
+            height: 130px;
+            background: url(img/floor.png) 0 0 / 480px 42px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+		.game .room .stone {
+			position: absolute;
+			bottom: 230px;
+			left: 400px;
+			width: 50px;
+			height: 50px;
+			display: flex;
+			flex-wrap: wrap;
+			transition: .1s;
+		}
+		.game .room .stone.st2 {
+			left: 450px;
+			animation: question 1s linear infinite;
+			z-index: 1;
+		}
+		@keyframes question {
+			50% { filter: hue-rotate(-40deg) brightness(1.5); }
+		}
+		.game .room .mushroom {
+			position: absolute;
+			left: 450px;
+			bottom: 230px;
+			background: url(img/mushroom.png) no-repeat 1px -1px / 48px;
+			width: 50px;
+			height: 43px;
+			transition: .5s;
+		}
+		.game .room .stoneFalse {
+			position: absolute;
+			left: 450px;
+			bottom: 230px;
+			background: url(img/questionoff.png) no-repeat 0 0 / 48px;
+			width: 50px;
+			height: 50px;
+			transition: .5s;
+			z-index: 1;
+			display: none;
+		}
+		@keyframes mushroom {
+			0% {
+				bottom: 279px;
+				left: 450px;
+			}
+			40% {
+				bottom: 279px;
+				left: 480px;
+			}
+			100% {
+				bottom: 129px;
+				left: 520px;
+			}
+		}
+		.game .room .stone.st3 {
+			left: 650px;
+		}
+		.game .room .stone.st4 {
+			left: 700px;
+		}
+		.game .room .stone.st5 {
+			left: 750px;
+		}
+		.game .room .stone.st6 {
+			left: 1050px;
+		}
+		.game .room .stone.st7 {
+			left: 1100px;
+		}
+		.game .room .stone .sp {
+			width: 50%;
+			height: 50%;
+			background: url(img/stone.png) 0 0 / 50px 50px;
+			transform-origin: bottom;
+			transition: transform .2s;
+		}
+		.game .room .stone.st2 .sp {
+			background: url(img/question.png) 0 0 / 50px 50px;	
+		}
+		.game .room .stone .top {
+			background-position: 0 0 !important;
+		}
+		.game .room .stone .top2 {
+			background-position: 100% 0 !important;
+		}
+		.game .room .stone .bottom {
+			background-position: 0 100% !important;
+		}
+		.game .room .stone .bottom2 {
+			background-position: 100% 100% !important;
+		}
+		.game .sonicWeapons {
+			position: fixed;
+			top: 165px;
+			right: 30px;
+			display: grid;
+			justify-items: center;
+		}
+		.game .sonicWeapons h3,
+		.game .marioWeapons h3 {
+			width: 100%;
+			text-align: center;
+			font: bold 23px cursive;
+			color: #fff;
+			margin-bottom: 10px;
+		}
+		.game .sonicWeapons .stoneSon {
+			width: 50px;
+			height: 50px;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgb(255 255 255 / 78%);
+			border-radius: 20px;
+			border: 3px solid #fa0;
+			overflow: hidden;
+		}
+		.game .sonicWeapons .stoneSon.w1::after {
+			content: '';
+			width: 20px;
+			height: 20px;
+			background: #000;
+			border-radius: 50%;
+			border: 1.9px solid #000;
+			box-shadow: inset -2px -4px 6px #b4b4b4;
+		}
+		.game .sonicWeapons .stoneSon.w2 {
+			width: 100px;
+			opacity: .3;
+			margin-top: 10px;
+		}
+		.game .sonicWeapons .stoneSon.w2::after {
+			content: '';
+			width: 65px;
+			height: 20px;
+			border-radius: 50%;
+			border: 5px solid #000;
+			border-top: 0;
+		}
+		.game .marioWeapons {
+			position: fixed;
+			top: 165px;
+			left: 30px;
+			display: grid;
+			justify-items: center;
+		}
+		.game .marioWeapons .shield {
+			width: 95px;
+			height: 95px;
+			border-radius: 50%;
+			box-shadow: inset 0 0 20px 9px rgba(255,255,255,.74);
+			margin-top: 10px;
+			cursor: pointer;
+			transition: .4s;
+		}
+		.game .marioWeapons .shield:hover {
+			box-shadow: inset 0 0 20px 15px rgba(255,255,255,.74);
+			transform: scale(1.1);
+		}
+		.game .marioWeapons .shootView {
+			width: 50px;
+			height: 50px;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgb(255 255 255 / 78%);
+			border-radius: 20px;
+			border: 3px solid #fa0;
+			overflow: hidden;
+			margin-top: 20px;
+			cursor: pointer;
+			transition: .3s;
+			opacity: .4;
+			pointer-events: none;
+		}
+		.game .marioWeapons .shootView:hover {
+			background: rgba(255,255,255,.4);
+		}
+		.game .marioWeapons .shootView::after {
+			content: '';
+			width: 25px;
+			height: 25px;
+			background: radial-gradient(#ffa700, #ff4e00, #ff8000);
+			border-radius: 50%;
+			border: 2px solid #000000;
+		}
+		.game .life {
+			position: absolute;
+			top: 100px;
+			width: 300px;
+			height: 50px;
+			border-radius: 45px;
+			border: 3px solid #000;
+			box-shadow: inset 1px -7px 5px #0009;
+			overflow: hidden;
+			background: #5c95fc;
+		}
+		.game .life span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #fff;
+			font: bold 20px sans-serif;
+			text-shadow: 1px 2px 4px #000;
+		}
+		.game .life .width {
+			background: linear-gradient(25deg, #ff00ff, #ffe200) content-box;
+			width: 100%;
+			height: 100%;
+			box-shadow: inset 1px -7px 5px #0009;
+		}
+		.game .life.marioLife {
+			left: 50px;
+		}
+		.game .life.sonicLife {
+			right: 50px;
+			display: flex;
+			justify-content: flex-end;
+		}
+		.game .icon {
+			position: absolute;
+			top: 14px;
+			width: 100px;
+			height: 100px;
+			border: 2px solid;
+			border-radius: 50%;
+			padding: 5px;
+			transition: .1s;
+		}
+		.game .icon.marioIcon {
+			background: url(img/face1.png) no-repeat center / cover content-box;
+			left: 65px;
+		}
+		.game .icon.sonicIcon {
+			background: url(img/sonicface.png) no-repeat center / cover content-box;
+			right: 65px;
+			transform: scaleX(-1);
+		}
+		.menu {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(33deg, #0019ff 50%, #f00 50%);
+			user-select: none;
+			display: flex;
+			justify-content: center;
+			padding-top: 130px;
+			overflow: hidden;
+			transition: .5s;
+		}
+		@keyframes menuanim {
+			to { left: 130px; top: 46%; }
+		}
+		@keyframes menuanim2 {
+			to { right: 130px; top: 46%; }
+		}
+		.menu .marI {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 100px;
+			height: 70%;
+			-webkit-box-reflect: below -2px linear-gradient(transparent, #00000080);
+			url(img/menu.jpg) no-repeat 60% 20% / 70%;
+			animation: menuanim 1s linear infinite alternate;
+			pointer-events: none;
+		}
+		.menu .sonI {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 100px;
+			height: 60%;
+			-webkit-box-reflect: below -2px linear-gradient(transparent, #00000080);
+			animation: menuanim2 1s linear infinite alternate;
+			pointer-events: none;
+		}
+		.menu .title {
+			font: bold 4.5rem sans-serif;
+			width: 50%;
+			text-align: center;
+			color: #fff;
+			animation: titleanim 3s linear infinite;
+		}
+		@keyframes titleanim {
+			0% {
+				transform: rotate(0);
+			}
+			30% {
+				transform: rotate(15deg);
+			}
+			80% {
+				transform: rotate(-15deg);
+			}
+		}
+		.menu .play {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: linear-gradient(-148deg, #0019ff 50%, #f00 50%);
+			border: 10px solid #fff;
+			padding: 7px 30px;
+			cursor: pointer;
+			font: bold 50px sans-serif;
+			border-radius: 30px;
+			color: #fff;
+			box-shadow: inset 0 -8px 9px #000000ab;
+		}
+		.menu .play::before {
+			content: '';
+			position: absolute;
+			top: -55px;
+			left: 8px;
+			width: 28px;
+			height: 50px;
+			background: url(img/mario4.gif) no-repeat center / cover;
+			filter: drop-shadow(-1px -5px 1px rgba(0,0,0,.3)) drop-shadow(0px 3px 1px rgba(0,0,0,.7));
+			transition: .5s;
+			transition: left 3s, transform .1s 2s, opacity .3s 2.6s;
+			opacity: 0;
+		}
+		.menu .play::after {
+			content: '';
+			position: absolute;
+			top: -50px;
+			right: 9px;
+			width: 28px;
+			height: 50px;
+			background: url(img/sonic.gif) no-repeat center / cover;
+			filter: drop-shadow(4px 1px 1px rgba(255,255,255,.5)) drop-shadow(0px 3px 1px rgba(255,255,255,.7));
+			transform: scaleX(-1);
+			transition: right 3s, transform .1s 2s, opacity .3s 2.6s;
+			opacity: 0;
+		}
+		.menu .play:hover::before {
+			left: calc(100% - 39px);
+			transform: scaleX(-1);
+			opacity: 1;
+			transition: left 3s, transform .1s 2s, opacity .1s;
+		}
+		.menu .play:hover::after {
+			right: calc(100% - 39px);
+			transform: none;
+			opacity: 1;
+			transition: right 3s, transform .1s 2s, opacity .1s;
+		}
+		.menu .records {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			text-align: center;
+			color: #fff;
+			font: 25px cursive;
+		}
+		.menu .records .reset {
+			padding: 3px 10px 5px;
+    		font: 18px cursive;
+    		border-radius: 12px;
+			cursor: pointer;
+			transition: .4s;
+			opacity: 0;
+			visibility: hidden;
+		}
+		.menu .records .reset:hover {
+			background: #FB0000;
+			color: #fff;
+		}
+		.menu .records:hover .reset {
+			opacity: 1;
+			visibility: visible;
+		}
+		.menu .studio {
+			position: absolute;
+			bottom: 20px;
+			left: 30px;
+			pointer-events: none;
+			user-select: none;
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+			color: #fff;
+			font-size: 18px;
+			filter: drop-shadow(0 4px 0 #00000090);
+		}
+		.menu .studio img {
+			height: 50px;
+			border-radius: 8px;
+		}
+		.menu .developer {
+			position: absolute;
+			top: 5px;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #fff;
+			font: 18px cursive;
+			text-align: center;
+		}
+		.menu .developer span {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100%;
+			background: #222;
+			padding: 10px 0;
+			border-radius: 15px;
+			line-height: 1;
+			opacity: 0;
+			transition: 1s;
+			font-family: sans-serif;
+		}
+		.menu .developer:hover span {
+			opacity: 1;
+		}
+		.menu .version {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transition: 1s;
+		}
+		.menu .version .ver {
+			width: 100%;
+			height: 50%;
+			transition: .3s;
+			cursor: pointer;
+			filter: brightness(.5);
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			padding-right: 8%;
+			font: bold 5rem cursive;
+			color: #fff;
+			text-shadow: 0 8px 7px #ffffffcf, 1px 15px 7px #000;
+		}
+		.menu .version .ver:hover {
+			filter: brightness(1);
+		}
+		.menu .version :nth-of-type(1) {
+			background: url(img/ver1.jpg) no-repeat center / cover;
+			padding-right: 30.5%;
+		}
+		.menu .version :nth-of-type(2) {
+			background: url(img/ver2.png) no-repeat center / cover;
+			border-top: 5px solid #fff;
+		}
+    </style>
+</head>
+<body>
+    <div class="game">
+        <div class="room">
+           	<div class="stone">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="stone st2">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="mushroom"></div>
+           	<div class="stoneFalse"></div>
+           	<div class="stone st3">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="stone st4">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="stone st5">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="stone st6">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+           	<div class="stone st7">
+           		<div class="sp top"></div>
+           		<div class="sp top2"></div>
+           		<div class="sp bottom"></div>
+           		<div class="sp bottom2"></div>
+           	</div>
+            <div class="mario"></div>
+            <div class="marioShield"></div>
+            <div class="sonic"></div>
+            <div class="sonicstone"></div>
+            <div class="floor"></div>
+        </div>
+        <div class="marioWeapons">
+        	<h3>Mario Shield</h3>
+			<div class="shield"></div>
+			<div class="shootView"></div>
+		</div>
+        <div class="sonicWeapons">
+        	<h3>Sonic Weapons</h3>
+			<div class="stoneSon w1"></div>
+			<div class="stoneSon w2"></div>
+		</div>
+   		<div class="icon marioIcon"></div>
+   		<div class="icon sonicIcon"></div>
+   		<div class="life marioLife">
+   			<span>100%</span>
+   			<div class="width"></div>
+   		</div>
+   		<div class="life sonicLife">
+   			<span>100%</span>
+   			<div class="width"></div>
+   		</div>
+    </div>
+    <div class="menu">
+    	<h2 class="developer">
+    		The King Of CSS3
+    		<br>
+    		And Perfect JavaScript Writer
+    		<span>Developer<br>Hovo Vardanyan</span>
+    	</h2>
+    	<img src="img/menmen.png" alt="Img" class="marI">
+    	<img src="img/sonmen.webp" alt="Img" class="sonI">
+    	<h1 class="title">Mario VS Sonic Battle</h1>
+    	<div class="play">Play</div>
+    	<div class="studio">
+    		<img src="img/logo.png" alt="Logo">
+    		<p>Էլբակյան կրթահամալիր</p>
+    	</div>
+    	<div class="records">
+    		<h3>Records</h3>
+    		<table>
+    			<tr>
+    				<td>Mario</td>
+    				<td><button class="reset">Reset</button></td>
+    				<td>Sonic</td>
+    			</tr>
+    			<tr>
+    				<td class="recMario">0</td>
+    				<td>Victory</td>
+    				<td class="recSonic">0</td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div class="version">
+    		<div class="ver">1 VS 2</div>
+    		<div class="ver">Vs PC</div>
+    	</div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
