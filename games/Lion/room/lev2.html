@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lion Game</title>
+	<link rel="shortcut icon" href="../img/lion.webp">
+    
+    <style>
+        * { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+        .game {
+            width: 1400px;
+            height: 700px;
+            background: url(../img/back2.jpg) repeat-x 0 bottom / 100%;
+            margin: auto;
+            position: relative;
+            animation: bg 2.5s linear infinite;
+            overflow: hidden;
+        }
+        .game .hero {
+            width: 260px;
+            height: 145px;
+            background: url(../img/2.gif) no-repeat -49px -9px / 340px;
+            position: absolute;
+            bottom: 130px;
+            left: 200px;
+            transform: scaleX(-1);
+            transition: .4s;
+        }
+        @keyframes bg {
+            to { background-position-x: -1400px; }
+        }
+        .game .wrag {
+            position: absolute;
+            bottom: 130px;
+            right: -250px;
+            width: 204px;
+            height: 127px;
+            background: url(../img/wrag2.gif) no-repeat -8px -2px / 215px;
+            animation: wrag 3s linear infinite;
+			transform: scaleX(-1);
+        }
+        .game .laser {
+            position: absolute;
+            bottom: 210px;
+            left: 440px;
+            width: 0;
+            height: 1px;
+            background: #ff6500;
+            box-shadow: 7px 0px 6px #f00, 7px 0px 13px 6px #f00;
+            transform: rotate(8deg);
+            opacity: 0;       
+        }
+        @keyframes wrag {
+            50% { right: -250px; }
+            to { right: calc(100% + 205px); }
+        }
+        @keyframes jump {
+            50% { bottom: 400px; }
+        }
+        @keyframes laser {
+            50% { bottom: 500px; }
+        }
+        .game .coin {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font: bold 32px cursive;
+        }
+		.game h2 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -60%);
+			font: bold 5em cursive;
+			opacity: 0;
+			transition: .8s;
+		}
+		.game h3 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -20%);
+			font: bold 5em cursive;
+			opacity: 0;
+			transition: .8s;
+		}
+    </style>
+</head>
+<body>
+    <div class="game">
+        <h2>Winner</h2>
+        <h3>GameOver</h3>
+        <div class="coin">0 / 20</div>
+        <div class="hero"></div>
+        <div class="laser"></div>
+        <div class="wrag"></div>
+    </div>
+    
+    <script src="main2.js"></script>
+</body>
+</html>
