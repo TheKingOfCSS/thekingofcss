@@ -1,0 +1,223 @@
+article.menu.room2M {
+	display: none;
+}
+.fruit.room5 {
+	top: 30px;
+}
+
+section.game_room_5 {
+	background: url(../../image/room5/5.jpg) repeat-x;
+	background-size: cover;
+	background-position: 0% 0;
+	background-size: 100% 100%;
+}
+section.game_room_5 .room5Dog1 {
+	background: url(../../image/room5/dog1.gif) no-repeat;
+	background-size: contain;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	right: 9%;
+	bottom: 3%;
+	cursor: pointer;
+}
+section.game_room_5 .room5Dog1:hover {
+	filter: hue-rotate(150deg);
+}
+section.game_room_5 .room5Dog2 {
+	background: url(../../image/room5/dog2.gif) no-repeat;
+	background-size: contain;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	right: 20%;
+	bottom: 3%;
+	cursor: pointer;
+}
+section.game_room_5 .room5Dog2:hover {
+	filter: hue-rotate(250deg);
+}
+section.game_room_5 .room5Dog3 {
+	background: url(../../image/room5/dog3.gif) no-repeat;
+	background-size: contain;
+	width: 124px;
+	height: 108px;
+	position: absolute;
+	left: 20%;
+	bottom: 19%;
+	cursor: pointer;
+}
+section.game_room_5 .room5Dog3:hover {
+	filter: hue-rotate(250deg);
+}
+section.game_room_5 .room5Dog4 {
+	background: url(../../image/room5/dog4.gif) no-repeat;
+	background-size: contain;
+	width: 92px;
+    height: 108px;
+	position: absolute;
+	left: 27%;
+    bottom: 62%;
+	cursor: pointer;
+	transform: rotate(15deg);
+}
+section.game_room_5 .room5Dog4:hover {
+	filter: hue-rotate(550deg);
+}
+section.game_room_5 .room5Cat2 {
+	background: url(../../image/room5/cat2.gif) no-repeat;
+	background-size: contain;
+	width: 232px;
+    height: 108px;
+	position: absolute;
+	left: 21%;
+    bottom: -1%;
+	cursor: pointer;
+	z-index: 48;
+	animation: room5Cat 30s linear infinite;
+	animation-fill-mode: forwards;
+}
+section.game_room_5 .room5Cat2:hover {
+	filter: hue-rotate(50deg);
+}
+@keyframes room5Cat {
+	0% { left: 21%; bottom: -1%; }
+	20% { left: -21%; bottom: -1%; }
+	21% { left: -21%; bottom: -100%; }
+	22% { left: 120%; bottom: -100%; }
+	23% { left: 120%; bottom: -1%; }
+	24% { left: 100%; bottom: -1%; }
+	100% { left: 21%; bottom: -1%; }
+}
+.titles.room5 {
+	width: 60px;
+    height: 60px;
+}
+.titles.room5 h5 {
+	font-size: 35px;
+}
+.titles.room5.a {
+	position: absolute;
+	bottom: 35%;
+	left: 6%;
+}
+.titles.room5.r {
+	position: absolute;
+	bottom: 34%;
+	left: 15.4%;
+}
+.titles.room5.q {
+	position: absolute;
+	bottom: 37%;
+	right: 15.4%;
+}
+.titles.room5.a2 {
+	position: absolute;
+	bottom: 37.5%;
+	right: 34%;
+	visibility: hidden;
+}
+.titles.room5.y {
+	position: absolute;
+	bottom: 10%;
+	left: 44%;
+}
+.titles.room5.a3 {
+	position: absolute;
+	bottom: 10%;
+	left: 7%;
+	visibility: hidden;
+}
+.titles.room5.x {
+	position: absolute;
+	bottom: 7%;
+	right: 7%;
+}
+.titles.room5.n {
+	position: absolute;
+	bottom: 7%;
+	right: 33%;
+}
+.titles.room5.dz {
+	position: absolute;
+	bottom: 5%;
+	left: 35%;
+}
+.titles.room5.o {
+	position: absolute;
+	bottom: 4%;
+	left: 55%;
+}
+.titles.room5.r2 {
+	position: absolute;
+	bottom: 38.7%;
+	left: 27%;
+	visibility: hidden;
+}
+.gameEnd {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.9);
+	z-index: 100;
+	display: none;
+}
+.gameEnd .endInformacion {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 70px 0;
+}
+.gameEnd .endInformacion .endFruits p {
+	font-size: 24px;
+	color: #000;
+	background: #fff;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+.gameEnd .endInformacion .endFruits p b {
+	color: red;
+	font-size: 28px;
+}
+.gameEnd .endInformacion .endFruits p:first-letter {
+	color: red;
+}
+.gameEnd .endInformacion .endFruits img {
+	width: 150px;
+}
+.gameEnd .endInformacion .endLogo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.gameEnd .endInformacion .endLogo p img {
+	width: 300px;
+	filter: drop-shadow(2px 4px 25px #fff);
+}
+.gameEnd .endInformacion .endLogo p {
+	color: #fff;
+	font-size: 56px;
+	margin-left: 25px;
+}
+.gameEnd .endInformacion .endLogo p:first-letter {
+	color: red;
+	letter-spacing: 5px;
+}
+.gameEnd .endInformacion .endLogo p a {
+	display: flex;
+	margin-top: 25px;
+	margin-left: 25px;
+	width: 110px;
+	transition: .4s;
+}
+.gameEnd .endInformacion .endLogo p a img {
+	width: 110px;
+}
+.gameEnd .endInformacion .endLogo p a:hover {
+	filter: hue-rotate(150deg);
+}

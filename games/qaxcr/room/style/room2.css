@@ -1,0 +1,49 @@
+article.menu.room2M {
+	display: none;
+}
+
+section.game_room_2 {
+	background: url(../../image/room2/2.jpg) repeat-x;
+	background-size: contain;
+	background-position: 0% 0;
+	animation: room2Background 100s infinite;
+}
+@keyframes room2Background {
+	0% { background-position: 0% 0; }
+	100% { background-position: 2500% 0; }
+}
+.titles.room2.e {
+	position: absolute;
+	bottom: 12.4%;
+	right: 11%;
+}
+.titles.room2.l {
+	position: absolute;
+	bottom: 12.1%;
+	left: 11%;
+}
+.titles.room2.a {
+	position: absolute;
+	bottom: 11.7%;
+	left: 45%;
+}
+.titles.room2.k {
+	position: absolute;
+	bottom: 11.7%;
+	right: 36%;
+}
+section .gameMan_room2 {
+	position: absolute;
+	bottom: 8.5%;
+	right: 5%;
+	z-index: 50;
+	animation: gameManRoom2 20s linear infinite;
+	animation-fill-mode: forwards;
+}
+section .gameMan_room2 img {
+	width: 215px;
+}
+@keyframes gameManRoom2 {
+	0% { right: -10%; }
+	100% { right: 110%; }
+}

@@ -1,0 +1,106 @@
+article.menu.room2M {
+	display: none;
+}
+
+section.game_room_4 {
+	background: url(../../image/room4/4.png) repeat-x;
+	background-size: cover;
+	background-position: 0% 0;
+	animation: room4Background 120s infinite;
+}
+@keyframes room4Background {
+	0% { background-position: 0% 0; }
+	100% { background-position: 2500% 0; }
+}
+section .gameMan_room4 {
+	position: absolute;
+	bottom: 9%;
+	right: 5%;
+	z-index: 50;
+	animation: gameManRoom4 20s linear infinite;
+	animation-fill-mode: forwards;
+	cursor: pointer;
+	transition: .4s;
+	width: 127px;
+}
+section .gameMan_room4:hover {
+	filter: hue-rotate(400deg);
+}
+section .gameMan_room4 img {
+	width: 160px;
+}
+section .gameMan_room4 .teler {
+	position: relative;
+}
+section .gameMan_room4 .teler:before {
+	content: '';
+	position: absolute;
+	top: 210px;
+    left: -112px;
+	background: #fff;
+	width: 198px;
+    height: 1px;
+	transform: rotate(-17deg);
+    z-index: -1;
+}
+@keyframes gameManRoom4 {
+	0% { right: 5%; bottom: 9%; }
+	20% { right: -50%; bottom: 9%; }
+	21% { right: -50%; bottom: -150%; }
+	22% { right: 200%; bottom: -150%; }
+	23% { right: 200%; bottom: 9%; }
+	24% { right: 100%; bottom: 9%; }
+	100% { right: 5%; bottom: 9%; }	
+}
+section .gameCat_room4 {
+	position: absolute;
+	bottom: 9.2%;
+	left: 15%;
+}
+section .gameCat_room4 .room4Cat {
+    width: 270px;
+    height: 152px;
+	background: url(../../image/room4/cat.gif) no-repeat;
+	background-size: contain;	
+}
+section .gameCat_room4 {
+	animation: animeCatRoom4 15s linear infinite;
+	animation-fill-mode: forwards;
+}
+@keyframes animeCatRoom4 {
+	0% { left: 15%; }
+	20% { left: -20%; }
+}
+.titles.room4.n {
+	position: absolute;
+	bottom: 13.8%;
+	left: 36%;
+}
+.titles.room4.a {
+	position: absolute;
+	bottom: 13.8%;
+	left: 56%;
+}
+.titles.room4.r {
+	position: absolute;
+	bottom: 13.8%;
+	right: 8%;
+}
+.titles.room4.i {
+	position: absolute;
+	bottom: 13.8%;
+	left: -12.4%;
+}
+.titles.room4.n2 {
+	position: absolute;
+	bottom: 13.8%;
+	right: 50%;
+	visibility: hidden;
+}
+.titles.room4.j {
+	position: absolute;
+	bottom: 11.8%;
+	right: 183.6%;
+	animation: gameJRoom4 30s linear infinite;
+}
+

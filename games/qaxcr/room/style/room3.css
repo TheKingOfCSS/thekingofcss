@@ -1,0 +1,98 @@
+article.menu.room2M {
+	display: none;
+}
+
+section.game_room_3 {
+	background: url(../../image/room3/3.png) repeat-x;
+	background-size: contain;
+	background-position: 0% 0;
+	animation: room3Background 120s infinite;
+}
+@keyframes room3Background {
+	0% { background-position: 0% 0; }
+	100% { background-position: 2500% 0; }
+}
+.fruit .basicFruit.apricot {
+	width: 245px;
+	margin-left: -85px;
+}
+section .gameMan_room3 {
+	position: absolute;
+	bottom: 8.5%;
+	right: 5%;
+	z-index: 50;
+	animation: gameManRoom3 20s linear infinite;
+	animation-fill-mode: forwards;
+	cursor: pointer;
+	transition: .4s;
+}
+section .gameMan_room3 span {
+	position: absolute;
+	bottom: 27.5%;
+	right: 40%;
+	z-index: 50;
+	font-size: 24px;
+	color: #303;
+	animation: room3ManLetter 5s linear infinite;
+}
+@keyframes room3ManLetter {
+	0% { right: 40%; }
+	10% { right: 38%; }
+	20% { right: 40%; bottom: 27%; }
+	30% { right: 40%; }
+	40% { right: 38%; }
+	50% { right: 40%; }
+	60% { right: 40%; bottom: 27%; }
+	70% { right: 40%; }
+	80% { right: 38%; }
+	90% { right: 40%; }
+	100% { right: 40%; bottom: 27%; }
+}
+section .gameMan_room3:hover {
+	filter: invert(1);
+}
+section .gameMan_room3:hover span {
+	color: #fff;
+}
+section .gameMan_room3 img {
+	width: 215px;
+}
+@keyframes gameManRoom3 {
+	0% { right: 5%; bottom: 8.5%; }
+	80% { right: 120%; bottom: 8.5%; }
+	81% { right: 120%; bottom: -150%; }
+	82% { right: -20%; bottom: -150%; }
+	83% { right: -20%; bottom: 8.5%; }
+	100% { right: 5%; bottom: 8.5%; }
+}
+.titles.room3.ts {
+	position: absolute;
+	bottom: 11.2%;
+	right: 36%;
+}
+.titles.room3.i {
+	position: absolute;
+	bottom: 11.1%;
+	left: 36%;
+}
+.titles.room3.r {
+	position: absolute;
+	bottom: 11%;
+	left: 50%;
+	visibility: hidden;
+}
+.titles.room3.d {
+	position: absolute;
+	bottom: 11.8%;
+	left: 20%;
+}
+.titles.room3.a {
+	position: absolute;
+	bottom: 11.2%;
+	right: 6%;
+}
+.titles.room3.n {
+	position: absolute;
+	bottom: 11%;
+	left: 5%;
+}
