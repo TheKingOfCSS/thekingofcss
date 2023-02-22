@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mario Reach the Queen</title>
+	<link rel="shortcut icon" href="img/l1.jpg">
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			position: relative;
+			background: #90d7ff;
+			overflow: hidden;
+			opacity: 0;
+			transition: .4s .4s;
+		}
+		.game .mario {
+			position: absolute;
+			bottom: 100px;
+			left: 35%;
+			width: 100px;
+			height: 108px;
+			background: url(img/mario.gif) no-repeat -70px -68px / 235px;
+			z-index: 3;
+			transform-origin: 50% 95%;
+			transition: .3s;
+		}
+        .game .marFloor {
+            position: absolute;
+            bottom: 0;
+            left: 33.8%;
+            width: 100px;
+            height: 117px;
+            background: #5C676A;
+            z-index: 3;
+            clip-path: polygon(0 25%, 5% 26%, 10% 28%, 13% 29%, 18% 30%, 26% 31%, 34% 32%, 42% 33%, 52% 32%, 60% 32%, 67% 31%, 75% 30%, 81% 29%, 86% 27%, 92% 25%, 98% 22%, 100% 22%, 100% 100%, 0% 100%);
+            opacity: 0;
+        }
+		.game .wrag {
+			position: absolute;
+			bottom: 90px;
+			left: -200px;
+			width: 183px;
+			height: 145px;
+			background: url(img/wrag.gif) no-repeat -19px -59px / 215px;
+			z-index: 4;
+			transition: .3s;
+		}
+		@keyframes jump {
+			50% { bottom: 400px; height: 90px; }
+		}
+		@keyframes jumpdouble {
+			50% { bottom: 400px; height: 90px; }
+			100% { bottom: 100px; transform: rotate(360deg); }
+		}
+		@keyframes jumpdoubleleft {
+			50% { bottom: 400px; height: 90px; }
+			100% { bottom: 100px; transform: rotate(-360deg); }
+		}
+		@keyframes jumpbottom {
+			50% {  height: 95px; left: 43%; transform: rotate(50deg); }
+		}
+		.game .floor {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 190px;
+			background: #5C676A;
+   		 	box-shadow: inset 0px 11px 0px -5px #747474, inset 0px 19px 20px 1px #4a4e4f;
+		}
+		.game .path {
+			position: absolute;
+			bottom: 190px;
+			left: 100%;
+			width: 1456%;
+			display: flex;
+			align-items: flex-end;
+		}
+		.game .path img {
+			height: 615px;
+		}
+		.game .path :nth-child(1) {
+			transform: translateY(14px);
+		}
+		.game .path :nth-child(2) {
+			height: 1800px;
+    		transform: translateY(183px);
+		}
+		.game .path > :nth-child(3) {
+			height: 667px;
+		}
+        .game .path :nth-child(4) {
+            position: relative;
+        }
+		.game .path :nth-child(4) img {
+			height: 1095px;
+    		transform: translateY(80px);
+		}
+        .game .path :nth-child(4) h3 {
+            position: absolute;
+            bottom: 435px;
+            height: 27px;
+            left: 683px;
+            color: #ffffff;
+            text-shadow: -1px 2px 0px #000, -1px 2px 20px #fff;
+            font-size: 23px;
+        }
+        .game .path :nth-child(4) .log {
+            position: absolute;
+            bottom: 184px;
+            width: 50px;
+            height: 50px;
+            left: 672px;
+            background: url(img/log.png) no-repeat center / cover;
+            border-radius: 8px;
+            box-shadow: 0px 4px 3px 0px #000000b5;
+        }
+		.game .path :nth-child(5) {
+			height: 810px;
+    		transform: translateY(5px);
+		}
+		.game .path :nth-child(6) {
+			height: 960px;
+    		transform: translateY(5px);
+		}
+		.game .path :nth-child(7) {
+			height: 1095px;
+    		transform: translateY(95px);
+		}
+        .game .path :nth-child(8) {
+			height: 600px;
+		}
+        .game .path :nth-child(9) {
+			height: 630px;
+            margin-left: 30rem;
+            transform: translateY(15px);
+		}
+        .game .path :nth-child(10) {
+			height: 630px;
+            margin-left: 95rem;
+            transform: translateY(15px);
+		}
+        .game .path :nth-child(11) {
+			height: 1095px;
+            margin-left: 10rem;
+    		transform: translateY(80px);
+		}
+		@keyframes path {
+			from { left: 100%; }
+			to { left: -1456%; }
+		}
+		.rekvizit, .luks, .coins {
+			position: absolute;
+			bottom: 80px;
+			left: 50%;
+			width: 1500%;
+			height: 80%;
+			z-index: 3;
+		}
+		.coins img {
+			height: 60px;
+			position: absolute;
+			bottom: 20px;
+			filter: drop-shadow(2px 7px 4px #00000090);
+		}
+		.coins :nth-child(1) { left: 25%; }
+		.coins :nth-child(2) { left: 27%; }
+		.coins :nth-child(3) { left: 29%; }
+		.coins :nth-child(4) { left: 51.3%; }
+		.coins :nth-child(5) { left: 53%; }
+		.coins :nth-child(6) { left: 73%; }
+		.coins :nth-child(7) { left: 80%; }
+		.coins :nth-child(8) { left: 84%; }
+        .luks { z-index: 2; }
+		.luks .luk {
+			position: absolute;
+			bottom: 0;
+			left: 20%;
+			width: 105px;
+			height: 50px;
+			background: #000000;
+			border-radius: 50%;
+			box-shadow: inset 0px 9px 0px 0px #72727296;
+		}
+		.luks .luk.l2 { left: 60%; }
+		.luks .luk.l3 { left: 130%; }
+		.luks .luk.l4 { left: 230%; }
+		.luks .luk.l5 { left: 330%; }
+		@keyframes rekvizit {
+			to { left: -1500%; }
+		}
+		.rekvizit :nth-child(n):not(.luk) {
+			z-index: 1;
+		}
+		.rekvizit :nth-child(1) {
+			position: absolute;
+			left: 9%;
+			height: 75px;
+			bottom: 25px;
+			filter: drop-shadow(-1px 4px 2px #00000080) drop-shadow(-4px 5px 1px #00000040);
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(2) {
+			position: absolute;
+			left: 30%;
+			height: 121px;
+			bottom: 7px;
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(3) {
+			position: absolute;
+			left: 50%;
+			height: 121px;
+			bottom: 7px;
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(4) {
+			position: absolute;
+			left: 70%;
+			height: 121px;
+			bottom: 7px;
+		}
+		.rekvizit :nth-child(5) {
+			position: absolute;
+			left: 90%;
+			height: 75px;
+			bottom: 25px;
+			filter: drop-shadow(-1px 4px 2px #00000080) drop-shadow(-4px 5px 1px #00000040);
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(6) {
+			position: absolute;
+			left: 120%;
+			height: 121px;
+			bottom: 7px;
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(7) {
+			position: absolute;
+			left: 150%;
+			height: 121px;
+			bottom: 7px;
+			animation: wheel 1.5s linear infinite;
+		}
+		.rekvizit :nth-child(8) {
+			position: absolute;
+			left: 180%;
+			height: 75px;
+			bottom: 25px;
+			filter: drop-shadow(-1px 4px 2px #00000080) drop-shadow(-4px 5px 1px #00000040);
+		}
+		@keyframes wheel {
+			to { transform: rotate(-360deg); }
+		}
+		.game .toWin {
+			--toWin: 1%;
+			position: absolute;
+			top: 55px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80%;
+			height: 50px;
+			border-radius: 40px;
+			border: 2px solid #000;
+			box-shadow: inset -20px -7px 20px #000000bf;
+			display: flex;
+			align-items: center;
+		}
+		.game .toWin::after {
+			content: 'My Record';
+			position: absolute;
+			width: var(--toWin);
+			height: 14px;
+			background: #fffa00;
+			left: 0;
+			bottom: -16px;
+			border-radius: 15px;
+			text-align: center;
+			font: 12px sans-serif;
+			overflow: hidden;
+		}
+		.game .toWin .princess {
+			position: absolute;
+			right: -65px;
+			top: -50px;
+			width: 95px;
+			height: 105px;
+			background: url(img/princess.png) no-repeat center / contain;
+		}
+		.game .toWin .M {
+			color: #f00;
+			font: bold 45px cursive;
+			text-shadow: 1px 3px 3px #fff, 0px -2px 3px #fff;
+			margin-top: -6px;
+			margin-left: -3%;
+			z-index: 1;
+		}
+		.game .toWin .W {
+			position: absolute;
+			top: 6px;
+			left: -3%;
+			width: 30px;
+			height: 30px;
+			background: #9A694D;
+			border-radius: 50%;
+			box-shadow: inset 0 0 11px 4px #30321d, 0 0 9px #b9b9b9;
+		}
+		.game .power {
+			--pow: 5%;
+			position: absolute;
+			top: 40%;
+			left: 20px;
+			transform: translateY(-50%);
+			border-radius: 50%;
+			overflow: hidden;
+			height: 110px;
+			width: 110px;
+			animation: power 1s linear infinite;
+			box-shadow: inset -1px 2px 6px 6px #0009;
+    		background: url(img/power.jpg) no-repeat 51% 100% / 162% 102%;
+			transition: .5s;
+		}
+		.game .power::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: var(--pow);
+    		background: #3500ff99;
+		}
+		@keyframes power {
+			100% { filter: hue-rotate(360deg); }
+		}
+		.game h5 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 50%);
+			font: bold 4rem cursive;
+			color: #fff;
+			text-shadow: 3px 3px 10px #000;
+			opacity: 0;
+			visibility: hidden;
+			transition: 1s;
+		}
+		.loveScene {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: no-repeat center / contain #000;
+			z-index: 10;
+			opacity: 0;
+			visibility: hidden;
+		}
+		@keyframes love {
+			0%, 10% {
+				background-image: url(img/l1.jpg);
+			}
+			15%, 25% {
+				background-image: url(img/l2.png);
+			}
+			30%, 40% {
+				background-image: url(img/l3.png);
+			}
+			45%, 55% {
+				background-image: url(img/l4.jpg);
+			}
+			60%, 80% {
+				background-image: url(img/l5.jpg);
+			}
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 20;
+			background: url(img/menu.jpg) no-repeat center / 100% #000;
+			animation: menuMar 10s linear infinite alternate;
+			padding: 19% 4%;
+			transition: .7s;
+		}
+		@keyframes menuMar {
+			to { background-size: 120%; }
+		}
+		.menu h1 {
+			width: 34%;
+			text-align: center;
+			font: 5rem fantasy;
+			color: #fff;
+			text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, 1px 1px 40px #fff;
+    		-webkit-text-stroke: 1px #daff00;
+			animation: title 1s linear infinite;
+		}
+		@keyframes title {
+			0% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, 20px 20px 40px #fff; }
+			20% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, 20px 1px 40px #fff; }
+			40% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, 20px -20px 40px #fff; }
+			60% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, -20px -20px 40px #fff; }
+			80% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, -20px 20px 40px #fff; }
+			100% { text-shadow: 2px 0px 9px #000, 2px 0px 27px #fff, 20px 20px 40px #fff; }
+		}
+		@keyframes titlespan {
+			to { transform: scale(1.32); }
+		}
+		.menu h1 span {
+			color: #f00;
+			display: inline-block;
+			animation: titlespan 1s linear infinite alternate;
+		}
+		.menu h1 i {
+			color: #fffa00;
+			font-style: normal;
+			display: inline-block;
+			animation: titlespan 1s linear infinite alternate;
+		}
+		.menu .developer {
+			position: absolute;
+			top: 7px;
+			left: 50%;
+			transform: translateX(-50%);
+			text-align: center;
+			color: #fff;
+			font: 18px sans-serif;
+			line-height: 1.5;
+			letter-spacing: 2px;
+			text-shadow: 2px 2px 5px #000;
+		}
+		.menu .developer span {
+			position: absolute;
+			bottom: 5px;
+			left: 0%;
+			width: 100%;
+			font-size: 16px;
+			opacity: 0;
+			transition: .8s;
+		}
+		.menu .developer:hover span {
+			opacity: 1;
+			bottom: -20px;
+		}
+		.menu .play {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 15px 35px;
+			background: linear-gradient(27deg, white, transparent);
+			font: bold 50px sans-serif;
+			cursor: pointer;
+			border-radius: 25px;
+			box-shadow: 0px 0px 12px 10px #00ffe08f;
+			color: #fff;
+			text-shadow: 0px 2px 9px #000;
+			overflow: hidden;
+			transition: .5s;
+		}
+		.menu .play:hover {
+			transform: translate(-50%, -50%) scale(1.3);
+			box-shadow: 0px 0px 12px 10px #00000090;
+		}
+		.menu .play::after {
+			content: 'Play';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: grid;
+			place-items: center;
+			background: #fff;
+			color: #f00;
+			clip-path: inset(0 0 100% 0);
+			transition: 2s .3s;
+		}
+		.menu .play:hover::after {
+			clip-path: inset(0 0 0 0);
+		}
+		.menu .studio {
+			position: absolute;
+			bottom: 7px;
+			left: 50%;
+			transform: translateX(-50%);
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+			color: #fff;
+			font: bold 18px cursive;
+			text-shadow: 3px 3px 5px #000;
+		}
+		.menu .studio img {
+			height: 50px;
+			border-radius: 8px;
+			box-shadow: 3px 3px 3px #00000080;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="mario"></div>
+		<div class="marFloor"></div>
+		<div class="wrag"></div>
+		<div class="path">
+			<img src="img/building1.webp" alt="Img">
+			<img src="img/building2.png" alt="Img">
+			<img src="img/building3.png" alt="Img">
+			<div class="block">
+			    <img src="img/building5.png" alt="Img">
+			    <h3>Էլբակյան կրթահամալիր</h3>
+			    <div class="log"></div>
+			</div>
+			<img src="img/building6.png" alt="Img">
+			<img src="img/building7.png" alt="Img">
+			<img src="img/building4.png" alt="Img">
+			<img src="img/opera.png" alt="Img">
+			<img src="img/building8.png" alt="Img">
+			<img src="img/mat.png" alt="Img">
+			<img src="img/building5.png" alt="Img">
+		</div>
+		<div class="rekvizit">
+			<img src="img/shar.png" alt="Img">
+			<img src="img/wheel.png" alt="Img">
+			<img src="img/wheel2.png" alt="Img">
+			<img src="img/wheel3.png" alt="Img">
+			<img src="img/shar.png" alt="Img">
+			<img src="img/wheel.png" alt="Img">
+			<img src="img/wheel2.png" alt="Img">
+			<img src="img/wheel3.png" alt="Img">
+		</div>
+		<div class="luks">
+			<div class="luk"></div>
+			<div class="luk l2"></div>
+			<div class="luk l3"></div>
+			<div class="luk l4"></div>
+			<div class="luk l5"></div>
+		</div>
+		<div class="coins">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+			<img src="img/coin.gif" alt="Coin">
+		</div>
+		<div class="floor"></div>
+		<div class="toWin">
+			<h3 class="M">M</h3>
+			<h3 class="W"></h3>
+			<div class="princess"></div>
+		</div>
+		<div class="power"></div>
+		<h5>Game Over</h5>
+	</div>
+	<div class="loveScene"></div>
+	<div class="menu">
+		<h1><span>Mario</span> Reach the <i>Queen</i></h1>
+		<p class="developer">
+   			The King Of CSS3
+    		<br>
+    		And Perfect JavaScript Writer
+    		<span>Developer Hovo Vardanyan</span>
+    	</p>
+    	<div class="play">Play</div>
+    	<div class="studio">
+    		<img src="img/log.png" alt="Logo">
+    		<p>Էլբակյան կրթահամալիր</p>
+    	</div>
+	</div>
+	<script>
+		const playGame = document.querySelector('.menu .play');
+		const menu = document.querySelector('.menu');
+		const toWin = document.querySelector('.game .toWin');
+		window.onload = () => {
+			let marVal = localStorage.getItem('marioPrincess');
+			toWin.style.setProperty('--toWin', marVal + '%');
+		};
+		const theme = new Audio('sound/theme.mp3');
+		const menuSound = new Audio('sound/menu.mp3');
+		const coinSound = new Audio('sound/coin2.mp3');
+		let pXc = 27;
+		let playA = setInterval(() => {
+			playGame.style.background = `linear-gradient(${pXc += 10}deg, white, transparent)`;
+		}, 10);
+		playGame.onclick = () => {
+			clearInterval(playA);
+			menu.style.top = '100%';
+			document.querySelector('.game').style.opacity = 1;
+			startGame();
+			menuSound.pause();
+			theme.play();
+		};
+		menu.onmousedown = () => {
+			menuSound.play();
+			playGame.onmouseover = () => coinSound.play();
+		};
+		theme.ontimeupdate = () => theme.ended ? theme.play() : '';
+		
+		const startGame = () => {
+			const game = document.querySelector('.game');
+			const path = document.querySelector('.game .path');
+			const rekvizit = document.querySelector('.rekvizit');
+			const luks = document.querySelector('.luks');
+			const coinsBlock = document.querySelector('.coins');
+			const mario = document.querySelector('.game .mario');
+			const M = document.querySelector('.game .toWin .M');
+			const W = document.querySelector('.game .toWin .W');
+			const wrag = document.querySelector('.game .wrag');
+			const rekz = document.querySelectorAll('.rekvizit img');
+			const luk = document.querySelectorAll('.luks .luk');
+			const coins = document.querySelectorAll('.coins img');
+			const allStat = document.querySelectorAll('.rekvizit, .luks, .coins');
+			const marFloor = document.querySelector('.game .marFloor');
+			const power = document.querySelector('.game .power');
+			const gameOver = document.querySelector('.game h5');
+			const loveScene = document.querySelector('.loveScene');
+			path.style.animation = 'path 60s linear infinite';
+			rekvizit.style.animation = 'rekvizit 40s linear infinite';
+			luks.style.animation = 'rekvizit 40s linear infinite';
+			coinsBlock.style.animation = 'rekvizit 40s linear infinite';
+			const keys = {};
+			let jump = true;
+			let wragX = -3;
+			let WPath = -3;
+			let MPath = -3;
+			let death = true;
+			let powerH = 5;
+			let powerBool = false;
+			let toWinX = 1;
+			const deathSound = new Audio('sound/death.mp3');
+			const powerSound = new Audio('sound/power.mp3');
+			const jumpSound = new Audio('sound/jump.mp3');
+			const kickHead = new Audio('sound/kick.mp3');
+			const endGame = H => {
+				death = false;
+				gameOver.style.opacity = 1;
+				gameOver.style.visibility = 'visible';
+				gameOver.style.transform = 'translate(-50%, -50%)';
+				path.style.animationPlayState = 'paused';
+				rekvizit.style.animationPlayState = H;
+				luks.style.animationPlayState = 'paused';
+				coinsBlock.style.animationPlayState = 'paused';
+				wrag.style.left = '100%';
+				wrag.style.transition = '1.5s';
+				power.style.opacity = 0;
+				power.style.visibility = 'hidden';
+				powerBool = false;
+				setTimeout(() => window.location.reload(), 3000);
+			};
+			setTimeout(() => {
+				let set = setInterval(() => {
+					if (wrag.offsetLeft + wrag.offsetWidth > mario.offsetLeft) {
+						WPath += .05;
+					} else {
+						WPath += .005;
+					}
+					wragX += .2;
+					MPath += .005;
+					wrag.style.left = wragX + '%';
+					M.style.marginLeft = MPath + '%';
+					W.style.left = WPath + '%';
+					rekz.forEach(item => {
+						if (item.getBoundingClientRect().left + 30 < mario.offsetLeft + mario.offsetWidth && item.getBoundingClientRect().right - 100 > mario.offsetLeft && mario.offsetTop + mario.offsetHeight > item.getBoundingClientRect().top) {
+							mario.style.backgroundImage = 'url(img/death.png)';
+							mario.style.transform = 'rotate(-93deg) scale(.5, 1.4)';
+							clearInterval(set);
+							deathSound.play();
+							theme.pause();
+							endGame();
+						}
+					});
+					luk.forEach(item => {
+						if (item.getBoundingClientRect().left + 90 < mario.offsetLeft + mario.offsetWidth && item.getBoundingClientRect().right > mario.offsetLeft && mario.offsetTop + mario.offsetHeight > item.getBoundingClientRect().top) {
+							mario.style.bottom = '-100%';
+							jump = false;
+							clearInterval(set);
+							marFloor.style.left = item.getBoundingClientRect().left + 'px';
+							marFloor.style.opacity = 1;
+							deathSound.play();
+							theme.pause();
+							endGame('paused');
+						}
+					});
+					coins.forEach(item => {
+						if (item.getBoundingClientRect().left < mario.offsetLeft + mario.offsetWidth && item.getBoundingClientRect().right > mario.offsetLeft && mario.offsetTop + mario.offsetHeight > item.getBoundingClientRect().top) {
+							wragX -= 2;
+							wrag.style.left = wragX + '%';
+							WPath -= .4;
+							W.style.left = WPath + '%';
+							item.style.opacity = 0;
+							mario.style.filter = 'brightness(2)';
+							setTimeout(() => mario.style.filter = 'none', 500);
+							powerH += .5;
+							power.style.setProperty('--pow', powerH + '%');
+							coinSound.play();
+							if (powerH >= 100) {
+								power.style.boxShadow = 'inset -1px 2px 4px 12px #0009, 1px 0px 17px 9px #fff, 1px 0px 12px 5px #fff';
+							}
+						}
+						if (item.getBoundingClientRect().right < game.offsetLeft) {
+							item.style.opacity = 1;
+						}
+					});
+					if (MPath >= 20) {
+						allStat.forEach(item => item.style.animationDuration = '30s');
+					}
+					if (MPath >= 50) {
+						allStat.forEach(item => item.style.animationDuration = '25s');
+					}
+					if (WPath >= 100) {
+						deathSound.play();
+						theme.pause();
+						clearInterval(set);
+						endGame('paused');
+					}
+					if (MPath >= 100) {
+						clearInterval(set);
+						loveScene.style.opacity = 1;
+						loveScene.style.visibility = 'visible';
+						loveScene.style.animation = 'love 20s linear';
+						loveScene.onanimationend = () => window.location.reload();
+						powerSound.play();
+					}
+					if (powerBool) {
+						wragX -= 1;
+						wrag.style.left = wragX + '%';
+						WPath -= .2;
+						W.style.left = WPath + '%';
+						mario.style.filter = 'brightness(3)';
+					}
+					if (MPath > toWinX) {
+						toWinX = MPath;
+						toWin.style.setProperty('--toWin', toWinX + '%');
+						localStorage.setItem('marioPrincess', toWinX);
+					}
+				}, 50);
+			}, 1000);
+			document.onkeydown = e => {
+				keys[e.which] = true;
+				if (jump && death) {
+					if (keys[38]) {
+						jump = false;
+						mario.style.animation = 'jump .9s';
+						jumpSound.play();
+						mario.onanimationend = () => {
+							mario.style.animation = '';
+							jump = true;
+						};
+					}
+					if (keys[38] && keys[39]) {
+						jump = false;
+						mario.style.animation = 'jumpdouble .9s';
+						mario.onanimationend = () => {
+							mario.style.animation = '';
+							jump = true;
+						};
+					}
+					if (keys[38] && keys[37]) {
+						jump = false;
+						mario.style.animation = 'jumpdoubleleft .9s';
+						mario.onanimationend = () => {
+							mario.style.animation = '';
+							jump = true;
+						};
+					}
+					if (keys[40]) {
+						jump = false;
+						mario.style.animation = 'jumpbottom .5s';
+						kickHead.play();
+						if (wrag.offsetLeft + wrag.offsetWidth > mario.offsetLeft + mario.offsetWidth + 50 && wrag.offsetLeft < mario.offsetLeft + mario.offsetWidth) {
+							wragX -= 10;
+							wrag.style.left = wragX + '%';
+							WPath -= 2;
+							W.style.left = WPath + '%';
+							wrag.style.filter = 'brightness(2)';
+							setTimeout(() => wrag.style.filter = 'none', 500);
+						}
+						mario.onanimationend = () => {
+							mario.style.animation = '';
+							jump = true;
+						};
+					}
+				}
+				if (death && keys[32] && powerH >= 100) {
+					powerBool = true;
+					powerH = 0;
+					power.style.setProperty('--pow', powerH + '%');
+					power.style.boxShadow = 'inset -1px 2px 6px 6px #0009';
+					powerSound.play();
+					setTimeout(() => {
+						powerBool = false;
+						mario.style.filter = 'none';
+					}, 5000);
+				}
+			};
+			document.onkeyup = e => {
+				delete keys[e.which];	
+			};	
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+	</script>
+</body>
+</html>
