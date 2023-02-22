@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flappy Bird 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/bird.gif">
+</head>
+<body>
+    <div class="HomeMenu">
+        <img src="img/bird.gif" alt="Img" class="menuBird" title="Flappy Bird 2">
+        <img src="img/bird.gif" alt="Img" class="menuAngry" title="Flappy Bird 2">
+        <img src="img/bullet.png" alt="Img" class="menuBullet">
+        <img src="img/pipe.png" alt="Img" class="menuPipe">
+        <button class="play">Play</button>
+        <div class="record">
+            <h3 class="myP">My Point 0</h3>
+            <h3 class="myT">My Record Time 0</h3>
+        </div>
+        <h1>Flappy Bird 2</h1>
+        <h2 class="developer">Developers</h2>
+        <h2 class="developer">Grigor Hakobyan</h2>
+        <h2 class="developer">Artyom Nikoyan</h2>
+        <h2 class="developer">Nelli Mkrtchyan</h2>
+        <h2 class="developer">Hayk Harutyunyan</h2>
+        <h2 class="developer">Ararat Qeleshyan</h2>
+        <h2 class="developer">Anna Sargsyan</h2>
+        <h2 class="developer">Hovo Vardanyan</h2>
+        <a href="https://www.facebook.com/elbakyankrtahamalir" target="_blank" class="Studio">
+            <img src="img/logo.png" alt="Logo">
+        </a>
+        <p class="info">&copy; Copyright All Right Reserved 2022<br>Instructor Hovo Vardanyan</p>
+    </div>
+    <script>
+        document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+        document.querySelector('.HomeMenu .play').onclick = () => window.location.replace('game.html');
+        document.querySelector('.HomeMenu .record .myP').innerText = 'My Point ' + (localStorage.getItem('flappyPoint') || 0);
+        document.querySelector('.HomeMenu .record .myT').innerText = 'My Record Time ' + (localStorage.getItem('flappyTime') || 0);
+    </script>
+</body>
+</html>

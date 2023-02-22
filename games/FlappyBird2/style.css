@@ -1,0 +1,368 @@
+* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+@font-face {
+    font-family: myFont;
+    src: url(esp.ttf);
+}
+.game {
+    height: 100vh;
+    position: relative;
+    background: url(img/bg.webp) repeat-x 0 90% / cover;
+    animation: bg 12s linear infinite;
+    overflow: hidden;
+    transition: 7s;
+}
+.game .view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    transition: 1s;
+    white-space: nowrap;
+}
+.game.night {
+    filter: hue-rotate(215deg) invert(1) brightness(.7);
+}
+@keyframes bg {
+    to { background-position-x: -100vw; }
+}
+.game .bird {
+    width: 86px;
+    height: 56px;
+    background: url(img/bird.gif) no-repeat -7px -12px / 100px 80px;
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    border-radius: 29px 32px 17px 23px;
+    transition: top .1s, filter 7s;
+}
+.game.night .bird {
+    filter: hue-rotate(122deg) invert(1);
+}
+.game .pipe {
+    position: absolute;
+    right: -150px;
+    width: 150px;
+    height: 28%;
+    background: url(img/pipe.png) no-repeat 0 0 / 100% 100%;
+    animation: pipe 7s linear infinite;
+    transition: .5s 2s;
+    z-index: 1;
+}
+.game .pipe.top {
+    top: 0;
+    scale: 1 -1;
+}
+.game .pipe.bottom {
+    bottom: 119px;
+}
+@keyframes pipe {
+    to { right: 100%; }
+}
+.game :is(:nth-child(4), :nth-child(5)) {
+    animation-delay: 2s;
+}
+.game :is(:nth-child(6), :nth-child(7)) {
+    animation-delay: 3.5s;
+}
+.game .floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: url(img/floor.png) repeat-x 0 0 / cover;
+    animation: bg 7s linear infinite;
+}
+.game .gameOver {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    translate: -50%;
+    font: bold 8rem cursive;
+    text-shadow: 0 5px 3px #fff, -5px 12px 6px #0009;
+    transition: .8s;
+    opacity: 0;
+	z-index: 5;
+}
+.game :is(.time, .point) {
+    font: bold 2rem cursive;
+    z-index: 2;
+    text-shadow: 0 3px 1px #fff, -1px 3px 3px #0009;
+}
+.game .enemy {
+    position: absolute;
+    top: 150px;
+    right: -150px;
+    z-index: 1;
+    width: 86px;
+    height: 56px;
+    background: url(img/bird.gif) no-repeat -7px -12px / 100px 80px;
+    border-radius: 29px 32px 17px 23px;
+    scale: -1 1;
+    filter: hue-rotate(215deg) invert(1);
+    transition: 7s;
+    animation: pipe linear infinite paused;
+}
+.game.night .enemy {
+    filter: hue-rotate(55deg);
+}
+.game .bullet {
+    position: absolute;
+    top: 300px;
+    right: -700px;
+    width: 100px;
+    height: 60px;
+    background: url(img/bullet.png) no-repeat 0 0 / 100px 60px;
+    border-radius: 40px 0 0 40px;
+    animation: bullet linear infinite paused;
+    z-index: 1;
+}
+@keyframes bullet {
+    to { right: 150%; }
+}
+.game .control {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    translate: -50%;
+    transition: .5s;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+.game .rain {
+    position: absolute;
+    inset: 0;
+    background: url(img/rain.gif) center / 50%;
+    opacity: 0;
+    transition: 2s;
+}
+.game .control button {
+    font: bold 2rem cursive;
+    padding: 10px 35px;
+    border-radius: 40px;
+    margin: 0 10px;
+    transition: .2s;
+    box-shadow: inset 0 0 60px 20px #21ad00;
+    cursor: pointer;
+}
+.game .control button:hover {
+    box-shadow: inset 0 0 5px #21ad00;
+}
+.game .control button:active {
+    box-shadow: inset 0 -50px 2px #0053ef;
+    color: #fff;
+}
+.game .control button.menu {
+    background: #ffc400;
+}
+.game .control button.replay {
+    background: #f83a7c;
+}
+.HomeMenu {
+    height: 100vh;
+    background: url(img/menu.jpg) repeat-x center / 300px 100%;
+    animation: menu 2.5s infinite;
+    overflow: hidden;
+    position: relative;
+}
+@keyframes menu {
+    50% { background-size: 900px 200%; background-position-y: 80%; }
+}
+.HomeMenu .menuBird {
+    position: absolute;
+    height: 180px;
+    top: 200px;
+    left: -500px;
+    animation: toRight 2s forwards;
+	z-index: 3;
+}
+.HomeMenu .menuAngry {
+    position: absolute;
+    height: 180px;
+    top: 200px;
+    right: -500px;
+    filter: hue-rotate(215deg) invert(1);
+    scale: -1 1;
+    animation: toLeft 2s forwards;
+	z-index: 3;
+}
+.HomeMenu .menuPipe {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    translate: -50%;
+    height: 400px;
+    z-index: 2;
+}
+.HomeMenu .developer {
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    translate: -50%;
+    color: #fff;
+    text-shadow: 0 2px 3px #000;
+    font: bold 3rem cursive;
+    letter-spacing: -25px;
+    animation: developers 1.5s 2.5s forwards, toHide .5s 4.5s forwards;
+}
+.HomeMenu .developer:nth-of-type(2) {
+    animation-delay: 5s, 6.5s
+}
+.HomeMenu .developer:nth-of-type(3) {
+    animation-delay: 7s, 8.5s
+}
+.HomeMenu .developer:nth-of-type(4) {
+    animation-delay: 9s, 10.5s
+}
+.HomeMenu .developer:nth-of-type(5) {
+    animation-delay: 11s, 12.5s
+}
+.HomeMenu .developer:nth-of-type(6) {
+    animation-delay: 13s, 14.5s
+}
+.HomeMenu .developer:nth-of-type(7) {
+    animation-delay: 15s, 16.5s
+}
+.HomeMenu .developer:nth-of-type(8) {
+    animation-delay: 17s, 18.5s
+}
+@keyframes developers {
+    50% { bottom: 650px; }
+    to { bottom: 550px; letter-spacing: 0; }
+}
+@keyframes toHide {
+    to { opacity: 0; }
+}
+.HomeMenu .menuBullet {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    translate: -50%;
+    rotate: 90deg;
+    height: 100px;
+    animation: MenuBullet 3s 1.5s forwards;
+    z-index: 1;
+}
+.HomeMenu h1 {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    translate: -50%;
+    font: 7rem myFont;
+    white-space: nowrap;
+    -webkit-text-stroke: 5px #fff;
+    color: transparent;
+    background: linear-gradient(#009500 50%, #ffac00 50%) no-repeat 0 -10rem;
+    -webkit-background-clip: text;
+    animation: title 2s 1s infinite, toBottom 1s forwards;
+}
+@keyframes title {
+    40%, 60% { background-position-y: 0; scale: 1.1; }
+    100% { background-position-y: 10rem; }
+}
+@keyframes toBottom {
+    to { top: 100px; }
+}
+@keyframes toRight {
+    to { left: calc(50% - 400px); top: 40%; }
+}
+@keyframes toLeft {
+    to { right: calc(50% - 400px); top: 40%; }
+}
+@keyframes MenuBullet {
+    to { bottom: 150%; }
+}
+.HomeMenu .Studio {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    transition: .3s;
+}
+.HomeMenu .Studio:hover {
+    scale: 1.1;
+    transform-origin: bottom;
+}
+.HomeMenu .Studio img {
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #fff, 0 0 10px #fff;
+}
+.HomeMenu .info {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    translate: -50%;
+    color: #fff;
+    z-index: 2;
+    text-align: center;
+    font: .8rem/1.7 cursive;
+    text-shadow: 0 2px 3px #000, 0 2px 3px #000;
+}
+.HomeMenu .play {
+    width: 270px;
+    height: 100px;
+    position: absolute;
+    bottom: 299px;
+    left: 50%;
+    translate: -50%;
+    z-index: 2;
+    font: 4rem myFont;
+    outline: 0;
+    border: 0;
+    background: url(img/pipe.png) no-repeat center 0 / cover;
+    transition: .5s;
+    cursor: pointer;
+}
+.HomeMenu .play:hover {
+    background-position-y: 32%;
+    color: #fff;
+}
+.HomeMenu .play:active {
+    background-position-y: -32%;
+    color: #ff0;
+    text-shadow: 0 3px 4px #000, 0 3px 8px #000;
+}
+.HomeMenu .record {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    translate: -50%;
+    z-index: 2;
+    text-align: center;
+    font: bold 1rem/2 cursive;
+    color: #fff;
+    text-shadow: 0 3px 5px #000, 0 3px 5px #000;
+}
+.game .powerBlock {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    left: 30px;
+    filter: hue-rotate(0) invert(0) drop-shadow(2px 4px 3px #fff) drop-shadow(0 4px 6px #fff) drop-shadow(0 4px 10px #fff);
+    transition: 7s;
+    z-index: 5;
+}
+.game.night .powerBlock {
+    filter: hue-rotate(120deg) invert(1) drop-shadow(2px 4px 3px #000) drop-shadow(0 4px 6px #000) drop-shadow(0 4px 10px #000);
+}
+.game .powerBlock .power {
+    width: 100px;
+    height: 100px;
+    background: #0002;
+    clip-path: polygon(45% 0, 68% 2%, 51% 39%, 82% 40%, 37% 99%, 50% 55%, 28% 55%);
+    display: flex;
+    align-items: flex-end;
+}
+@keyframes power {
+    50% { scale: 1.2; }
+}
+.game .powerBlock .power .on {
+    width: 100%;
+    height: 0;
+    background: #ffe200;
+    transition: .4s;
+}
