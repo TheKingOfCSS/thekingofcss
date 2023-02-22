@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Mario</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/mario.gif">
+</head>
+<body>
+    <div class="game">
+        <div class="yoshi">
+        	<div class="umbrella"></div>
+        </div>
+        <div class="mario"></div>
+        <div class="car car1 left"></div>
+        <div class="car car2 right"></div>
+        <div class="car car3 left"></div>
+        <div class="car car4 right"></div>
+        <div class="bullet"></div>
+        <div class="bullet two"></div>
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <img src="img/ice.webp" alt="Img" class="ice">
+        <div class="umbrellaBtn">
+        	<img src="img/umbrella.webp" alt="Img">
+        </div>
+        <div class="nextGame">
+        	<a href="https://game10.elbakyan.am" target="_blank">
+        		<img src="img/next1.jpg" alt="Img">
+        		<h3>Mario Vs Sonic</h3>
+        	</a>
+        	<a href="https://game18.elbakyan.am" target="_blank">
+        		<img src="img/next3.webp" alt="Img">
+        		<h3>Mario's Wedding</h3>
+        	</a>
+        	<a href="https://game9.elbakyan.am" target="_blank">
+        		<img src="img/next2.jpg" alt="Img">
+        		<h3>Mario Reach the Queen</h3>
+        	</a>
+        </div>
+        <div class="mobileControl mLeft">&#10092;</div>
+        <div class="mobileControl mRight">&#10093;</div>
+        <div class="mobileControl mJump">Jump</div>
+    </div>
+	<div class="years">
+		<div class="path">
+			<div class="prog"></div>
+			<h3>Years</h3>
+			<img src="img/bullet.png" alt="Img" class="bul">
+			<img src="img/ice.webp" alt="Img" class="ic">
+		</div>
+		<img src="img/person.png" alt="Img">
+		<div class="life">
+			<div class="step"></div>
+		</div>
+	</div>
+	<h3 class="endGame">GameOver</h3>
+   	<div class="menu">
+   		<h1><span>B</span><span>a</span><span>b</span><span>y</span><span>&nbsp;</span><span>M</span><span>a</span><span>r</span><span>i</span><span>o</span><img src="img/mario.gif" alt="Mario"></h1>
+   		<p class="author">&copy; Copyright All Right Reserved 2023<br>Instructor Hovo Vardanyan</p>
+   		<br>
+   		<div class="play">Play</div>
+   		<h5 class="record">My Record 0%</h5>
+   	</div>
+    <script>
+        const menu = document.querySelector('.menu');
+        const menuPlay = document.querySelector('.menu .play');
+        const menuMario = document.querySelector('.menu h1 img');
+        const menuRecord = document.querySelector('.menu .record');
+		menu.onmousemove = e => e.x < menuMario.getBoundingClientRect().left ? menuMario.style = null : e.x > menuMario.getBoundingClientRect().right ? menuMario.style.scale = '-1 1' : '';
+		let myRecord = Math.floor(localStorage.getItem('babyMario')) || 0;
+		menuRecord.innerText = 'My Record ' + myRecord + '%';
+		menuPlay.onclick = () => {
+			menuPlay.style.pointerEvents = 'none';
+			menu.style.clipPath = 'circle(0 at 50% 200%)';
+			const themeSound = new Audio('img/theme.mp3');
+			themeSound.volume = .9;
+			const MarioSound = new Audio('img/mario.mp3');
+			themeSound.volume = .7;
+			const deathSound = new Audio('img/death.mp3');
+			const car1Sound = new Audio('img/car1.mp3');
+			const car2Sound = new Audio('img/car2.mp3');
+			const bulletSound = new Audio('img/bullet.mp3');
+			bulletSound.volume = .5;
+			const accidentSound = new Audio('img/accident.mp3');
+			accidentSound.currentTime = 2;
+			const winSound = new Audio('img/win.mp3');
+			const powerSound = new Audio('img/power.mp3');
+			const downUmbrellaSound = new Audio('img/downUmbrella.mp3');
+			const yoshiJumpSound = new Audio('img/yoshijump.mp3');
+			themeSound.play();
+			car1Sound.play();
+			car2Sound.play();
+			car1Sound.onended = e => car1Sound.play();
+			car2Sound.onended = e => car2Sound.play();
+			themeSound.onended = e => gameBool ? themeSound.play() : '';
+			const game = document.querySelector('.game');
+			const yoshi = document.querySelector('.game .yoshi');
+			const mario = document.querySelector('.game .mario');
+			const carLeft = document.querySelectorAll('.game .car.left');
+			const carRight = document.querySelectorAll('.game .car.right');
+			const carAll = document.querySelectorAll('.game .car');
+			const prog = document.querySelector('.years .path .prog');
+			const gameOver = document.querySelector('.endGame');
+			const bullets = document.querySelectorAll('.game .bullet');
+			const ice = document.querySelectorAll('.game .ice');
+			const umbrella = document.querySelector('.game .yoshi .umbrella');
+			const marioLife = document.querySelector('.years .life .step');
+			const umbrellaBtn = document.querySelector('.game .umbrellaBtn');
+			const nextGameBlock = document.querySelector('.game .nextGame');
+			const mobileControl = document.querySelectorAll('.game .mobileControl');
+			mario.style.left = game.offsetWidth / 2 - mario.offsetWidth / 2 + 'px';
+			const cars = ['carLeft 8s linear, leftStop 2s paused forwards', 'carLeft2 8s linear, rightStop 2s paused forwards', 'carLeft 8s linear, leftStop 2s paused forwards', 'carLeft2 8s linear, rightStop 2s paused forwards'];
+			let curCar = Math.floor(Math.random() * cars.length);
+			const key = {};
+			let yoshiX = 100;
+			let gameBool = true;
+			let years = 0;
+			let night = true;
+			let life = 100;
+			let umbrellaBool = true;
+			carAll[curCar].style.animation = cars[curCar];
+			let a = Math.random() * innerWidth + 55;
+			let b = Math.random() * innerWidth + 55;
+			let yoshiSoundBool = true;
+			let nightLight = setInterval(() => (night ? (game.style.filter = 'brightness(.2)', game.style.setProperty('--light', '#fff')) : (game.style.filter = 'none', game.style.setProperty('--light', 'transparent')), night = !night), 15e3);
+			const randBullet = x => {
+				while(a == b) {
+					b = Math.random() * game.offsetWidth;
+				}
+				a = b;
+				bullets[x].style.left = b + 'px';
+			};
+			ice.forEach((item, index) => item.style = `left: ${Math.random() * game.offsetWidth}px; animation-delay: ${index * .3}s;`);
+			const allCars = () => {
+				setTimeout(() => {
+					let curCar2 = Math.floor(Math.random() * cars.length);
+					while (curCar2 == curCar) {
+						curCar2 = Math.floor(Math.random() * cars.length);
+					}
+					curCar = curCar2;
+					carAll.forEach(item => item.style.animation = '');
+					carAll[curCar2].style.animation = cars[curCar2];
+					accidentSound.pause();
+					accidentSound.currentTime = 1.9;
+				}, 2e3);
+			};
+			const globalGameOver = () => (gameOver.style.clipPath = 'inset(0)', gameBool = false, marioLife.style.height = life = 0, years > myRecord ? localStorage.setItem('babyMario', years) : '', document.onkeydown = null, umbrellaBtn.onclick = null, deathSound.play(), themeSound.pause(), bulletSound.pause(), clearInterval(nightLight), game.style.filter = null, game.style.setProperty('--light', 'transparent'), setTimeout(() => (clearInterval(setGame), clearInterval(upLife), window.location.reload()), 5e3));
+			let setGame = setInterval(() => (key[39] ? (yoshiX > 0 ? yoshiX -= 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = 1, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft > mario.offsetLeft && gameBool ? mario.style.scale = '-1 1' : '') : '', key[37] ? (yoshiX < game.offsetWidth - yoshi.offsetWidth ? yoshiX += 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = null, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft + yoshi.offsetWidth < mario.offsetLeft + mario.offsetWidth && gameBool ? mario.style.scale = 1 : '') : '', key[38] ? (yoshi.style.animation = 'jump .7s', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.onanimationend = () => (yoshi.style.animation = '', yoshiSoundBool = true), yoshiSoundBool ? yoshiJumpSound.play() : '', yoshiSoundBool = false) : '', yoshi.style.right = yoshiX + 'px', gameBool ? (carLeft.forEach(item => (item.offsetLeft + item.offsetWidth - 70 >= yoshi.offsetLeft && yoshi.offsetTop + yoshi.offsetHeight >= item.offsetTop ? (item.style.animationPlayState = 'paused, running', allCars(), accidentSound.play()) : item.offsetLeft + item.offsetWidth - 10 >= mario.offsetLeft ? (mario.style = 'bottom: 50%; left: 150%; rotate: 720deg;', gameBool = false, globalGameOver()) : '', item.offsetLeft > 0 ? MarioSound.play() : '')), carRight.forEach(item => (item.offsetLeft + 70 <= yoshi.offsetLeft + yoshi.offsetWidth && yoshi.offsetTop + yoshi.offsetHeight >= item.offsetTop ? (item.style.animationPlayState = 'paused, running', allCars(), accidentSound.play()) : item.offsetLeft - 10 <= mario.offsetLeft + mario.offsetWidth ? (mario.style = 'bottom: 50%; left: -50%; rotate: -720deg;', gameBool = false, globalGameOver()) : '', item.offsetLeft + item.offsetWidth < game.offsetWidth ? MarioSound.play() : ''))) : '', gameBool ? years += .001 : '', years >= 10 ? (bullets[0].style.animation = 'bullet 3s linear infinite', bullets[1].style.animation = 'bullet 3s linear 2s infinite', gameBool ? bulletSound.play() : '') : '', years >= 30 ? ice.forEach(item => item.style.animationName = 'ice') : '', years >= 1e2 ? (gameBool = false, mario.style.background = 'url(img/big.gif) no-repeat -30px -30px / 200px 305px', mario.style.width = '150px', mario.style.height = '275px', mario.style.transition = '1s', mario.style.zIndex = 11, nextGameBlock.style.top = '20%', clearInterval(nightLight), game.style.filter = null, game.style.setProperty('--light', '#ffff'), localStorage.setItem('babyMario', 1e2), winSound.play(), bulletSound.pause(), car1Sound.pause(), car2Sound.pause(), setTimeout(() => (clearInterval(setGame), clearInterval(upLife)), 5e3)) : '', prog.style.width = years + '%', bullets.forEach((item, index) => (item.offsetTop > game.offsetHeight + 20 ? randBullet(index) : '', item.offsetTop + item.offsetHeight >= mario.offsetTop && item.offsetLeft <= mario.offsetLeft + mario.offsetWidth - 25 && item.offsetLeft + item.offsetWidth >= mario.offsetLeft + 25 && item.offsetTop <= mario.offsetTop + mario.offsetHeight && gameBool ? (globalGameOver(), mario.style.transform = 'scaleY(.2)') : '', item.offsetTop + item.offsetHeight >= yoshi.offsetTop && item.offsetLeft <= yoshi.offsetLeft + yoshi.offsetWidth - 60 && item.offsetLeft + item.offsetWidth >= yoshi.offsetLeft + 60 && item.offsetTop <= yoshi.offsetTop + 100 && gameBool ? (item.style.animationPlayState = 'paused', item.style.translate = '0 -100vh', setTimeout(() => (item.style.animation = 'none', item.style.translate = null, randBullet(index), setTimeout(() => item.style.animation = 'bullet 3s linear infinite', 10)), 3e2)) : '')), ice.forEach(item => (item.offsetTop > game.offsetHeight ? item.style.left = Math.random() * game.offsetWidth + 'px' : '', item.offsetTop + item.offsetHeight >= mario.offsetTop && item.offsetLeft <= mario.offsetLeft + mario.offsetWidth && item.offsetLeft + item.offsetWidth >= mario.offsetLeft && item.offsetTop <= mario.offsetTop + 20 && gameBool ? (life -= .5, life <= 0 ? (globalGameOver(), mario.style.transform = 'scaleY(.2)') : '', marioLife.style.height = life + '%') : '', item.offsetTop + item.offsetHeight >= umbrella.getBoundingClientRect().top + 50 && item.offsetLeft <= umbrella.getBoundingClientRect().right && item.offsetLeft + item.offsetWidth >= umbrella.getBoundingClientRect().left && item.offsetTop <= umbrella.getBoundingClientRect().top + 100 && gameBool ? (item.style.animation = 'none', item.style.left = Math.random() * game.offsetWidth + 'px', setTimeout(() => item.style.animation = null, 3e2)) : ''))), 1);
+			const umbrellaChange = () => (umbrellaBool ? (umbrella.style = 'opacity: 1; scale: 1;', umbrellaBtn.style.background = '#0804', umbrellaBtn.firstElementChild.style.filter = 'drop-shadow(0 3px 2px #fff) drop-shadow(0 -2px 2px #0008)', powerSound.currentTime = 0, powerSound.play()) : (umbrella.style = 'scale: .3 .05; transition: scale .2s, opacity .4s;', umbrellaBtn.style = null, downUmbrellaSound.currentTime = 0, downUmbrellaSound.play()), umbrellaBool = !umbrellaBool);
+			document.onkeydown = e => (key[e.which] = true, e.which == 13 ? umbrellaChange() : '');
+			umbrellaBtn.onclick = () => umbrellaChange();
+			document.onkeyup = e => (delete key[e.which], yoshi.style.backgroundImage = 'url(img/1.png)', umbrella.style.animation = '');
+			let upLife = setInterval(() => (life < 100 && gameBool ? life += 1 : '', marioLife.style.height = life + '%'), 500);
+			let mobSet1;
+			let mobSet2;
+			mobileControl[1].ontouchstart = e => (e.preventDefault(), mobSet1 = setInterval(() => (yoshiX > 0 ? yoshiX -= 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = 1, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft > mario.offsetLeft && gameBool ? mario.style.scale = '-1 1' : ''), 1));
+			mobileControl[0].ontouchstart = e => (e.preventDefault(), mobSet2 = setInterval(() => (yoshiX < game.offsetWidth - yoshi.offsetWidth ? yoshiX += 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = null, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft + yoshi.offsetWidth < mario.offsetLeft + mario.offsetWidth && gameBool ? mario.style.scale = 1 : ''), 1));
+			mobileControl[2].ontouchstart = e => (e.preventDefault(), yoshi.style.animation = 'jump .7s', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.onanimationend = () => (yoshi.style.animation = '', yoshi.style.backgroundImage = 'url(img/1.png)'));
+			mobileControl[1].ontouchend = () => (clearInterval(mobSet1), yoshi.style.backgroundImage = 'url(img/1.png)');
+			mobileControl[0].ontouchend = () => (clearInterval(mobSet2), yoshi.style.backgroundImage = 'url(img/1.png)');
+		};
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS and Perfect JavaScript Writer', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+    </script>
+</body>
+</html>

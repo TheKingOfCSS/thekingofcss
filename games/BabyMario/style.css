@@ -1,0 +1,583 @@
+* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.game {
+    height: 100vh;
+    position: relative;
+    background: url(img/bg.jpg) repeat 0 100% / 50% 100%;
+    overflow: hidden;
+	-webkit-transition: -webkit-filter 5s;
+	transition: -webkit-filter 5s;
+	transition: filter 5s;
+	transition: filter 5s, -webkit-filter 5s;
+	--light: transparent;
+}
+.game .floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 230px;
+}
+.game .yoshi {
+    position: absolute;
+    bottom: 13%;
+    right: 100px;
+    width: 171px;
+    height: 304px;
+    background: url(img/1.png) no-repeat -42px -11px / 261px 308px;
+    scale: -1 1;
+    border-radius: 128% 111px 152px 90px;
+    z-index: 10;
+}
+@-webkit-keyframes jump {
+	50% { bottom: 60%; }
+}
+@keyframes jump {
+	50% { bottom: 60%; }
+}
+.game .yoshi .umbrella {
+	position: absolute;
+	top: -188px;
+    left: -44px;
+    width: 230px;
+    height: 250px;
+    background: url(img/umbrella.webp) no-repeat 0 0 / 228px 329px;
+	border-radius: 50%;
+	rotate: -3deg;
+	scale: .3 .05;
+	opacity: 0;
+	-webkit-transform-origin: bottom;
+	transform-origin: bottom;
+	-webkit-transition: scale .2s;
+	transition: scale .2s;
+}
+@-webkit-keyframes umbrella {
+	50% { rotate: 1deg; top: -170px; left: -50px; }
+}
+@keyframes umbrella {
+	50% { rotate: 1deg; top: -170px; left: -50px; }
+}
+.game .mario {
+    position: absolute;
+    bottom: 17%;
+    width: 90px;
+    height: 140px;
+    background: url(img/mario.gif) no-repeat 0px 1px / 90px 140px;
+    border-radius: 99% 194% 108px 70px;
+    scale: -1 1;
+	-webkit-transition: bottom .2s, left .7s linear, rotate .7s linear, -webkit-transform .4s linear;
+	transition: bottom .2s, left .7s linear, rotate .7s linear, -webkit-transform .4s linear;
+	transition: bottom .2s, left .7s linear, rotate .7s linear, transform .4s linear;
+	transition: bottom .2s, left .7s linear, rotate .7s linear, transform .4s linear, -webkit-transform .4s linear;
+	-webkit-transform-origin: bottom;
+	transform-origin: bottom;
+}
+.game .car {
+	position: absolute;
+	bottom: 12%;
+	z-index: 2;
+}
+.game .car1 {
+	left: -1040px;
+	width: 339px;
+    height: 178px;
+    background: url(img/car1.gif) no-repeat -13px -39px / 355px 256px;
+    border-radius: 45% 62% 30px 32px;
+	z-index: 3;
+}
+.game .car::after,
+.game .car::before {
+	content: '';
+	background: var(--light);
+	position: absolute;
+	-webkit-transition: 2s;
+	transition: 2s;
+}
+.game .car1::after {
+	right: -210px;
+	top: 115px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(9px);
+	filter: blur(9px);
+	border-radius: 0 100% 100% 0;
+}
+.game .car1::before {
+	right: -210px;
+	top: 90px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(9px);
+	filter: blur(9px);
+	border-radius: 0 100% 100% 0;
+}
+.game .car2 {
+	right: -1040px;
+    width: 332px;
+    height: 126px;
+	bottom: 16%;
+    background: url(img/car2.gif) no-repeat -8px -52px / 340px 270px;
+    border-radius: 52% 35% 58px 32px;
+}
+.game .car2::after {
+	left: -130px;
+	top: 58px;
+	width: 150px;
+	height: 25px;
+	-webkit-filter: blur(5px);
+	filter: blur(5px);
+	border-radius: 100% 0 0 100%;
+}
+.game .car3 {
+	left: -1000px;
+	width: 304px;
+    height: 178px;
+	background: url(img/car3.gif) no-repeat -25px -21px / 355px 231px;
+    border-radius: 32% 62% 30px 32px;
+	z-index: 3;
+}
+.game .car3::after {
+	right: -220px;
+	top: 72px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(8px);
+	filter: blur(8px);
+	border-radius: 0 100% 100% 0;
+}
+.game .car3::before {
+	right: -220px;
+	top: 98px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(8px);
+	filter: blur(8px);
+	border-radius: 0 100% 100% 0;
+}
+.game .car4 {
+	right: -1500px;
+    width: 307px;
+    height: 187px;
+    bottom: 16%;
+    background: url(img/car4.gif) no-repeat -16px -46px / 340px 270px;
+    border-radius: 50% 35% 40px 32px;
+}
+.game .car4::before {
+	left: -220px;
+	top: 98px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(8px);
+	filter: blur(8px);
+	border-radius: 0 100% 100% 0;
+}
+.game .car4::after {
+	left: -190px;
+	top: 110px;
+	width: 250px;
+	height: 25px;
+	-webkit-filter: blur(8px);
+	filter: blur(8px);
+	border-radius: 0 100% 100% 0;
+}
+.game .ice {
+	position: absolute;
+	top: -100px;
+	left: 100px;
+	height: 30px;
+	-webkit-animation: 1.5s linear infinite;
+	animation: 1.5s linear infinite;
+}
+@-webkit-keyframes ice {
+	to { top: 110%; rotate: 720deg; }
+}
+@keyframes ice {
+	to { top: 110%; rotate: 720deg; }
+}
+@-webkit-keyframes carLeft {
+	to { left: 100%; }
+}
+@keyframes carLeft {
+	to { left: 100%; }
+}
+@-webkit-keyframes carLeft2 {
+	to { right: 100%; }
+}
+@keyframes carLeft2 {
+	to { right: 100%; }
+}
+@-webkit-keyframes leftStop {
+	10% { scale: .4 1; rotate: 20deg; translate: 0 -120px; }
+	30% { scale: 1 1; }
+	to { translate: -150vw; }
+}
+@keyframes leftStop {
+	10% { scale: .4 1; rotate: 20deg; translate: 0 -120px; }
+	30% { scale: 1 1; }
+	to { translate: -150vw; }
+}
+@-webkit-keyframes rightStop {
+	10% { scale: .4 1; rotate: -20deg; translate: 0 -120px; }
+	30% { scale: 1 1; }
+	to { translate: 150vw; }
+}
+@keyframes rightStop {
+	10% { scale: .4 1; rotate: -20deg; translate: 0 -120px; }
+	30% { scale: 1 1; }
+	to { translate: 150vw; }
+}
+.game .umbrellaBtn {
+	position: absolute;
+	top: 25%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	right: 20px;
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	border: 3px solid #fff;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-box-shadow: 0 3px 5px #0008;
+	box-shadow: 0 3px 5px #0008;
+	cursor: pointer;
+	-webkit-transition: .1s;
+	transition: .1s;
+}
+.game .umbrellaBtn:hover {
+	background: #fff8;
+}
+.game .umbrellaBtn img {
+	height: 50px;
+	pointer-events: none;
+}
+.years {
+	width: 80%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: fixed;
+	left: 50%;
+	z-index: 2;
+	top: 0;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-column-gap: 15px;
+	column-gap: 15px;
+}
+.years .path {
+	width: calc(100% - 120px);
+	height: 80px;
+	-webkit-box-shadow: inset 0 0 30px 20px #fff, 0 0 30px #0003;
+	box-shadow: inset 0 0 30px 20px #fff, 0 0 30px #0003;
+	border-radius: 40px;
+	overflow: hidden;
+	position: relative;
+}
+.years .path .prog {
+	height: 100%;
+	background: #10ff00;
+	-webkit-box-shadow: inset 0 0 30px #fff;
+	box-shadow: inset 0 0 30px #fff;
+}
+.years .path .bul {
+	height: 30px;
+	rotate: -90deg;
+	position: absolute;
+	bottom: 20px;
+	left: 10%;
+	pointer-events: none;
+}
+.years .path .ic {
+	height: 40px;
+	position: absolute;
+	bottom: 20px;
+	left: 30%;
+	pointer-events: none;
+	-webkit-filter: drop-shadow(0 3px 3px #0009);
+	filter: drop-shadow(0 3px 3px #0009);
+}
+.years > img {
+	height: 150px;
+	-webkit-transform: translateY(-20px);
+	transform: translateY(-20px);
+	pointer-events: none;
+	-webkit-animation: person 1.5s infinite;
+	animation: person 1.5s infinite;
+}
+@-webkit-keyframes person {
+	50% { -webkit-transform: translateY(-15px) scale(1.06); transform: translateY(-15px) scale(1.06); }
+}
+@keyframes person {
+	50% { -webkit-transform: translateY(-15px) scale(1.06); transform: translateY(-15px) scale(1.06); }
+}
+.years .life {
+	width: 15px;
+	height: 80px;
+	background: #f00;
+	border-radius: 40px;
+	overflow: hidden;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+}
+.years .life .step {
+	width: 100%;
+	height: 100%;
+	background: #21ba10;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+.years .path h3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 35px monospace;
+    color: #f00;
+    -webkit-text-stroke: 1px #ff00e0;
+}
+.endGame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -80%);
+	transform: translate(-50%, -80%);
+	font: bold 7rem sans-serif;
+	text-shadow: -4px 5px 3px #fff, -5px 8px 6px #000;
+	-webkit-clip-path: inset(0 50%);
+	clip-path: inset(0 50%);
+	-webkit-transition: 1s;
+	transition: 1s;
+	pointer-events: none;
+	color: #f00;
+}
+.game .bullet {
+	position: absolute;
+	top: -500px;
+	left: 10%;
+	width: 90px;
+	height: 55px;
+	background: url(img/bullet.png) no-repeat center / cover;
+	border-radius: 30px 0 0 30px;
+	rotate: -90deg;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.game .bullet.two {
+	left: 80%;
+}
+@-webkit-keyframes bullet {
+	to { top: 110%; }
+}
+@keyframes bullet {
+	to { top: 110%; }
+}
+.game .nextGame {
+	position: absolute;
+	top: -100%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-column-gap: 25px;
+	column-gap: 25px;
+	-webkit-transition: .8s;
+	transition: .8s;
+	z-index: 10;
+}
+.game .nextGame a {
+	color: #15ff30;
+	text-align: center;
+	font: bold 32px cursive;
+	text-shadow: 0 4px 5px #000;
+	text-decoration: none;
+	width: 230px;
+	-webkit-text-stroke: 1.5px #000;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.game .nextGame a:hover {
+	scale: 1.1;
+}
+.game .nextGame a img {
+	width: 220px;
+	height: 220px;
+	-o-object-fit: cover;
+	object-fit: cover;
+	border: 10px solid #fff;
+	-webkit-box-shadow: 0 4px 10px #000;
+	box-shadow: 0 4px 10px #000;
+}
+.game .nextGame a:first-child img {
+	-o-object-position: 15%;
+	object-position: 15%;
+}
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/bg.jpg) repeat center / 20% 100%;
+	z-index: 12;
+	-webkit-animation: menu 5s linear infinite;
+	animation: menu 5s linear infinite;
+	text-align: center;
+	padding-top: 25vh;
+	-webkit-transition: 2s;
+	transition: 2s;
+	-webkit-clip-path: circle(100%);
+	clip-path: circle(100%);
+}
+@-webkit-keyframes menu {
+	50% { background-size: 30% 100%; }
+}
+@keyframes menu {
+	50% { background-size: 30% 100%; }
+}
+.menu h1 {
+	font: bold 8rem sans-serif;
+	-webkit-text-stroke: 2px #000;
+	color: #f00;
+	position: relative;
+	display: inline-block;
+	-webkit-animation: menuTitle 1s infinite;
+	animation: menuTitle 1s infinite;
+	text-shadow: 0 7px 8px #fff, 0 14px 12px #fff, 0 -20px 20px #fff;
+}
+.menu h1 span {
+	-webkit-transition: color .3s 1s, text-shadow .3s 1s;
+	transition: color .3s 1s, text-shadow .3s 1s;
+	
+}
+.menu h1 span:hover {
+	color: #5cff44;
+	text-shadow: 0 7px 8px #000, 0 14px 12px #5cff44, 0 -20px 20px #5cff44;
+	-webkit-transition: none;
+	transition: none;
+}
+.menu h1 img {
+	position: absolute;
+	top: -95px;
+	right: 22.15%;
+	height: 150px;
+	-webkit-transition: .05s;
+	transition: .05s;
+	pointer-events: none;
+}
+@-webkit-keyframes menuTitle {
+	50% { letter-spacing: 10px; }
+}
+@keyframes menuTitle {
+	50% { letter-spacing: 10px; }
+}
+.menu .author {
+	position: absolute;
+	bottom: 1%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	font: 20px cursive;
+	color: #fff;
+}
+.menu .play {
+	margin-top: 5vh;
+	font: bold 5rem cursive;
+	cursor: pointer;
+	display: inline-block;
+	padding: 5px 50px 25px;
+    color: #fff;
+    border-radius: 60px;
+    -webkit-box-shadow: inset -1px -8px 10px #00ffae, 0 -5px 60px 14px #00ffae;
+    box-shadow: inset -1px -8px 10px #00ffae, 0 -5px 60px 14px #00ffae;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+.menu .play::before {
+	content: '';
+	position: absolute;
+	inset: -100px;
+	background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fff), color-stop(50%, #f00));
+	background: linear-gradient(to right, #fff 50%, #f00 50%);
+    border-radius: 60px;
+	z-index: -1;
+	-webkit-animation: playBtn 1s steps(30) infinite;
+	animation: playBtn 1s steps(30) infinite;
+}
+.menu .play::after {
+	content: '';
+	position: absolute;
+	inset: 5px;
+	background: #f00;
+    border-radius: 60px;
+	z-index: -1;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.menu .play:hover::after {
+	-webkit-box-shadow: 0 5px 10px #fff, 0 -5px 10px #fff, inset 0 0 30px #000;
+	box-shadow: 0 5px 10px #fff, 0 -5px 10px #fff, inset 0 0 30px #000;
+}
+.menu .play:active::after {
+	background: #080;
+}
+.menu .record {
+	font: bold 2rem cursive;
+	color: #fff;
+	margin-top: 5vh;
+	text-shadow: -1px -3px 2px #fff, -1px 3px 9px #fff;
+	color: #f00;
+}
+@-webkit-keyframes playBtn {
+	to { rotate: 360deg; }
+}
+@keyframes playBtn {
+	to { rotate: 360deg; }
+}
+.game .mobileControl {
+	position: absolute;
+	bottom: 25%;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 4px solid #fff9;
+	box-shadow: inset 0 0 20px #fff9, 0 3px 5px #0009;
+	z-index: 10;
+	place-items: center;
+	font: bold 40px sans-serif;
+	text-shadow: 0 3px 3px #fff;
+	cursor: pointer;
+	transition: .3s;
+	display: none;
+}
+.game .mobileControl:hover {
+	box-shadow: inset 0 0 40px #fff, 0 3px 5px #0009;
+}
+.game .mobileControl.mLeft {
+	left: 3%;
+}
+.game .mobileControl.mRight {
+	right: 3%;
+}
+.game .mobileControl.mJump {
+	bottom: 40%;
+	right: 3%;
+	font-size: 22px;
+}
+@media screen and (max-width: 768px) {
+	.game .mobileControl {
+		display: grid;
+	}
+}
