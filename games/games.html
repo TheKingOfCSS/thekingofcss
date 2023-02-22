@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Instructor Hovo Vardanyan</title>
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		body {
+			background: #111;
+			text-align: center;
+			color: #fff;
+			padding-top: 5vh;
+			font-family: system-ui, sans-serif;
+		}
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 235px;
+			height: 70px;
+			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			clip-path: polygon(0 0, 100% 0, 0 100%);
+		}
+		body::after {
+			content: '';
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			width: 285px;
+			height: 95px;
+			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			clip-path: polygon(0 100%, 100% 0, 100% 100%);
+		}
+		.backMega {
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: 5px 25px 5px 15px;
+			background: #f00;
+			color: #fff;
+			font: bold 22px sans-serif;
+			cursor: pointer;
+			border-bottom-right-radius: 30px;
+			transition: .2s;
+			z-index: 1;
+		}
+		.backMega:hover {
+			background: #0f0;
+			color: #000;
+		}
+		.authorAndCreator {
+			z-index: 1;
+			position: relative;
+		}
+		.menu {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 7%;
+			justify-content: center;
+			gap: 4vh;
+		}
+		.menu .section {
+			width: 300px;
+			cursor: pointer;
+			transition: .3s;
+			font: bold 2.5rem system-ui, sans-serif;
+			will-change: transform;
+			position: relative;
+			z-index: 1;
+			color: #fff;
+			text-decoration: none;
+		}
+		.menu .section .example {
+			width: 300px;
+			height: 200px;
+			border: 5px solid #fff;
+			background: url(BabyMario/img/mario.gif) no-repeat center / contain, url(BabyMario/img/bg.jpg) no-repeat center / cover;
+			box-shadow: inset 0 0 15px #0009;
+		}
+		.menu .section.mar2 .example {
+			background: url(MarioVSSonic/img/ver1.jpg) no-repeat center / cover;
+		}
+		.menu .section.mar3 .example {
+			background: url(MariosWedding/img/mario.gif) no-repeat center / 30%, url(MariosWedding/img/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section.mar4 .example {
+			background: url(MarioReachtheQueen/img/menu.jpg) no-repeat center / cover;
+		}
+		.menu .section.flap1 .example {
+			background: url(FlappyBird/img/2.png) no-repeat center / 40%, url(FlappyBird/img/bg.webp) no-repeat center bottom / 200%;
+		}
+		.menu .section.flap2 .example {
+			background: url(FlappyBird2/img/bird.gif) no-repeat center / 50%, url(FlappyBird2/img/bg.webp) no-repeat center bottom / 200%;
+		}
+		.menu .section.battle .example {
+			background: url(BattleGame/img/menu.jpg) no-repeat center bottom / cover;
+		}
+		.menu .section.rebbit .example {
+			background: url(RebbitGame/img/rebbit.gif) no-repeat center / contain, url(RebbitGame/img/bg.webp) no-repeat center bottom / 200%;
+		}
+		.menu .section.findLet .example {
+			background: url(letter/bg.jpg) no-repeat center / 120%;
+		}
+		.menu .section.XO .example {
+			background: url(xo/bg.jpg) no-repeat center / 150%;
+		}
+		.menu .section.puzzle .example {
+			background: url(PuzzleGame/img/theme.jpg) no-repeat center / cover;
+		}
+		.menu .section.writeIf .example {
+			background: url(grir/bg.jpg) no-repeat center / contain;
+		}
+		.menu .section.dino .example {
+			background: url(GameDino/img/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section.col .example {
+			background: url(ColorGame/back.jpg) no-repeat center / cover;
+		}
+		.menu .section.lion .example {
+			background: url(Lion/img/2.gif) no-repeat center / 90%, url(Lion/img/back.jpg) no-repeat center / cover;
+		}
+		.menu .section.qaxcr .example {
+			background: url(qaxcr/bg.jpg) no-repeat center / 110%;
+		}
+		.menu .section:hover {
+			scale: 1.05;
+			rotate: 2deg;
+		}
+		.menu .section:active {
+			scale: 1.1;
+			rotate: -2deg;
+		}
+	</style>
+</head>
+<body>
+	<div class="backMega">Menu</div>
+	<h1 class="authorAndCreator">All These Games were Created and Coded by Hovo Vardanyan</h1>
+	<div class="menu">
+		<a class="section" href="BabyMario/index.html">
+			<div class="example"></div>
+			<p>Baby Mario</p>
+		</a>
+		<a class="section mar2" href="MarioVSSonic/index.html">
+			<div class="example"></div>
+			<p>Mario vs Sonic Battle</p>
+		</a>
+		<a class="section mar3" href="MariosWedding/index.html">
+			<div class="example"></div>
+			<p>Mario's Wedding</p>
+		</a>
+		<a class="section mar4" href="MarioReachtheQueen/index.html">
+			<div class="example"></div>
+			<p>Mario Reach The Queen</p>
+		</a>
+		<a class="section flap1" href="FlappyBird/index.html">
+			<div class="example"></div>
+			<p>Flappy Bird 1</p>
+		</a>
+		<a class="section flap2" href="FlappyBird2/index.html">
+			<div class="example"></div>
+			<p>Flappy Bird 2</p>
+		</a>
+		<a class="section battle" href="BattleGame/index.html">
+			<div class="example"></div>
+			<p>Battle Game</p>
+		</a>
+		<a class="section rebbit" href="RebbitGame/index.html">
+			<div class="example"></div>
+			<p>Rabbit Target</p>
+		</a>
+		<a class="section findLet" href="letter/index.html">
+			<div class="example"></div>
+			<p>Find The Letter</p>
+		</a>
+		<a class="section XO" href="xo/index.html">
+			<div class="example"></div>
+			<p>XO Game</p>
+		</a>
+		<a class="section puzzle" href="PuzzleGame/index.html">
+			<div class="example"></div>
+			<p>Puzzle Game</p>
+		</a>
+		<a class="section writeIf" href="grir/index.html">
+			<div class="example"></div>
+			<p>Write if You Can</p>
+		</a>
+		<a class="section dino" href="GameDino/index.html">
+			<div class="example"></div>
+			<p>Browser Dino</p>
+		</a>
+		<a class="section col" href="ColorGame/index.html">
+			<div class="example"></div>
+			<p>Color Game</p>
+		</a>
+		<a class="section lion" href="Lion/index.html">
+			<div class="example"></div>
+			<p>Lion</p>
+		</a>
+		<a class="section qaxcr" href="qaxcr/index.html">
+			<div class="example"></div>
+			<p>Qaxcr Mankutyun</p>
+		</a>
+	</div>
+	<script>
+		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
+
+
