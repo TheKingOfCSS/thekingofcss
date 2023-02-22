@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lion Game</title>
+	<link rel="shortcut icon" href="img/lion.webp">
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+		.levels {
+			background: #000;
+			display: flex;
+			justify-content: space-around;
+			align-content: space-around;
+			flex-wrap: wrap;
+			height: 100vh;
+		}
+		.levels .room {
+			width: 32%;
+			height: 44%;
+			border: 5px solid #fff;
+			transition: .4s;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+		.levels .room:hover {
+			transform: scale(.95);
+		}
+		.levels .room .view {
+			display: flex;
+			align-items: center;
+			column-gap: 30px;
+		}
+		.levels .room .view img {
+			height: 130px;
+		}
+		.levels .room:not(:first-of-type) .view img {
+			transform: scaleX(-1);
+		}
+		.levels .room .view h3 {
+			font: bold 28px cursive;
+			color: #fff;
+			background: #000;
+			padding: 25px;
+			border-radius: 35px;
+		}
+		.levels .room::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,.6);
+		}
+		.levels .room.open::after {
+			content: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="levels">
+		<div class="room open">
+			<div class="view">
+				<img src="img/wrag.gif" alt="Img">
+				<h3>0 / 10</h3>
+			</div>
+		</div>
+		<div class="room">
+			<div class="view">
+				<img src="img/wrag2.gif" alt="Img">
+				<h3>0 / 20</h3>
+			</div>
+		</div>
+		<div class="room">
+			<div class="view">
+				<img src="img/wrag3.gif" alt="Img">
+				<h3>0 / 30</h3>
+			</div>
+		</div>
+		<div class="room">
+			<div class="view">
+				<img src="img/wrag4.gif" alt="Img">
+				<h3>0 / 50</h3>
+			</div>
+		</div>
+		<div class="room">
+			<div class="view">
+				<img src="img/wrag5.gif" alt="Img">
+				<h3>0 / 70</h3>
+			</div>
+		</div>
+		<div class="room">
+			<div class="view">
+				<img src="img/wrag6.gif" alt="Img">
+				<h3>0 / 100</h3>
+			</div>
+		</div>
+	</div>
+	<script>
+		const image = ['img/back.jpg', 'img/back2.jpg', 'img/back3.webp', 'img/back4.png', 'img/back5.webp', 'img/back6.png'];
+		const rooms = document.querySelectorAll('.levels .room');
+		let trueNext = 1;
+		rooms[0].children[0].children[1].innerText = '0 / 10';
+		rooms[1].children[0].children[1].innerText = '0 / 20';
+		rooms[2].children[0].children[1].innerText = '0 / 30';
+		rooms[3].children[0].children[1].innerText = '0 / 50';
+		rooms[4].children[0].children[1].innerText = '0 / 70';
+		rooms[5].children[0].children[1].innerText = '0 / 100';
+		window.onload = () => {
+			if (localStorage.getItem('lionGame') != null) {
+				trueNext = localStorage.getItem('lionGame');
+				rooms.forEach(item => item.classList.remove('open'));
+				rooms[0].children[0].children[1].innerText = localStorage.getItem('lev1') + ' / 10';
+				if (trueNext < 7) {
+					rooms[trueNext-1].classList.add('open');
+				}
+			}
+			if (localStorage.getItem('lev2') != null) {
+				rooms[1].children[0].children[1].innerText = localStorage.getItem('lev2') + ' / 20';
+			}
+			if (localStorage.getItem('lev3') != null) {
+				rooms[2].children[0].children[1].innerText = localStorage.getItem('lev3') + ' / 30';
+			}
+			if (localStorage.getItem('lev4') != null) {
+				rooms[3].children[0].children[1].innerText = localStorage.getItem('lev4') + ' / 50';
+			}
+			if (localStorage.getItem('lev5') != null) {
+				rooms[4].children[0].children[1].innerText = localStorage.getItem('lev5') + ' / 70';
+			}
+			if (localStorage.getItem('lev6') != null) {
+				rooms[5].children[0].children[1].innerText = localStorage.getItem('lev6') + ' / 100';
+				setTimeout(() => {
+					localStorage.clear();
+					location.reload();
+				}, 3000);
+			}
+		};
+		rooms.forEach((item, i) => {
+			item.style.background = `url(${image[i]}) no-repeat center / cover`;
+			item.onclick = () => {
+				if (item.classList.contains('open')) {
+					location.href = `room/lev${trueNext}.html`;
+				}	
+			};
+		});
+		const theme = new Audio('sound/music.mp3');
+		document.onclick = () => theme.play();
+	</script>
+</body>
+</html>
+
+
+
+

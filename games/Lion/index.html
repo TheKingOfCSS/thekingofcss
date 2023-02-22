@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lion Game</title>
+	<link rel="shortcut icon" href="img/lion.webp">
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+		.menu {
+			background: #2A1616;
+			height: 100vh;
+			position: relative;
+			display: grid;
+			place-items: center;
+			overflow: hidden;
+			animation: light 1s infinite;
+		}
+		@keyframes light {
+			to { filter: hue-rotate(360deg); }
+		}
+		.menu img {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 400px;
+			right: -50%;
+			animation: lion 1s linear forwards;
+		}
+		@keyframes lion {
+			to { right: 0; }
+		}
+		.menu .controls {
+			display: grid;
+			width: 300px;
+			grid-row-gap: 10px;
+			position: relative;
+			left: -100%;
+			animation: ctrl 1s linear forwards;
+		}
+		@keyframes ctrl {
+			to { left: 0; }
+		}
+		.menu .controls button {
+			height: 90px;
+			cursor: pointer;
+			font: bold 30px cursive;
+			text-transform: uppercase;
+			border-radius: 125px 174% / 274%;
+			border: 3px solid #fff;
+			background: #2aff7c;
+			transition: .5s;
+			position: relative;
+			left: -100%;
+			animation: ctrl .8s linear forwards;
+		}
+		.menu .controls button:nth-of-type(2) {
+			animation-delay: .4s;
+		}
+		.menu .controls button:hover {
+			border-radius: 274%  125px / 174%;
+			height: 110px;
+		}
+		.menu .info {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #fff;
+			border-radius: 15px;
+			width: 350px;
+			height: 350px;
+			display: grid;
+			align-content: space-around;
+			text-align: center;
+			justify-items: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: 1s;
+		}
+		.menu .info img {
+			height: 130px;
+			position: static;
+			transform: none;
+			border-radius: 8px;
+		}
+		.menu .info h2 {
+			font: bold 22px cursive;
+		}
+		.menu .info #clos {
+			position: absolute;
+			right: -5px;
+			top: -5px;
+			border-radius: 50%;
+			background: #f00;
+			color: #fff;
+			width: 40px;
+			height: 40px;
+			font-size: 22px;
+			cursor: pointer;
+			border: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="menu">
+		<img src="img/lion.webp" alt="Game">
+		<div class="controls">
+			<button id="play">Play</button>
+			<button id="inf">Info</button>
+		</div>
+		<div class="info">
+			<img src="img/logo.png" alt="Img" title="Էլբակյան կրթահամալիր">
+			<h1>Էլբակյան կրթահամալիր</h1>
+			<h2>Developer Hovo Vardanyan</h2>
+			<button id="clos">x</button>
+		</div>
+	</div>
+	<script>
+		const info = document.querySelector('.menu .info');
+		const theme = new Audio('sound/music.mp3');
+		play.onclick = () => location.href = 'menu.html';
+		document.onclick = () => theme.play();
+		inf.onclick = () => {
+			info.style.opacity = 1;	
+			info.style.visibility = 'visible';	
+		};
+		clos.onclick = () => {
+			info.style.opacity = 0;	
+			info.style.visibility = 'hidden';	
+		};
+	</script>
+</body>
+</html>
+
+
