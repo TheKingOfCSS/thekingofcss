@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Puzzle Game</title>
+	<link rel="shortcut icon" href="img/theme2.jpg">
+	<link rel="shortcut icon" href="img/bg.jpg">
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body { overflow: hidden; }
+		.puzzleGame {
+			height: 100vh;
+			display: grid;
+			place-items: center;
+			background: url(img/bg.jpg) 0 0;
+			opacity: 0;
+			transition: 2s .2s;
+			animation: bgGame 5s linear infinite alternate;
+			user-select: none;
+		}
+		@keyframes bgGame {
+			to { background-position-y: 3000%; }
+		}
+		.puzzleGame .example {
+			width: 1000px;
+			height: 650px;
+			border: 3px solid #676767;
+			display: flex;
+			flex-wrap: wrap;
+			border-radius: 66px;
+    		overflow: hidden;
+			box-shadow: 9px 35px 21px 0px #000000c2, -50px -35px 66px 3px #dadadac2;
+			position: relative;
+		}
+		.puzzleGame .example::after {
+			content: 'The King Of CSS3';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 22px;
+			background: #ffd900;
+			display: flex;
+			justify-content: center;
+			font: 12px sans-serif;
+			box-sizing: border-box;
+			padding-top: 4px;
+			letter-spacing: 2px;
+			animation: afterAnim 5s linear infinite alternate;
+		}
+		@keyframes afterAnim {
+			0%, 65% {
+				background: #ffd900;
+				color: #000;
+			}
+			70%, 100% {
+				background: #000;
+				color: #fff;
+			}
+		}
+		.puzzleGame .example .winner {
+			position: absolute;
+			top: 38%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			font: bold 4.8rem cursive;
+			color: #fff;
+			width: 100%;
+			text-shadow: 3px 5px 10px #000, -1px -5px 0px #b7b7b7c9;
+			line-height: 0;
+			opacity: 0;
+			visibility: hidden;
+			transition: .8s .5s;
+		}
+		.puzzleGame .example .cell {
+			width: 25%;
+			height: calc(100% / 3);
+			transition: .5s;
+			background: #ffffff9e;
+    		box-shadow: inset 2px 1px 34px 2px #1a1a1a;
+		}
+		.puzzleGame .example .cell .card {
+			width: 100%;
+			height: 100%;
+			transition: .3s;
+			color: transparent;
+			outline: 3px solid #ffafaf5c;
+			cursor: pointer;
+		}
+		@keyframes win {
+			0% {
+				outline: 3px solid #ffafaf5c;
+				outline-offset: -350px;
+			}
+			50% {
+				outline: 320px solid #ffafaf5c;
+				outline-offset: -90px;
+			}
+			100% {
+				outline: 920px solid #ff0808;
+			}
+		}
+		@keyframes win2 {
+			0% {
+				outline: 920px solid #ff0808;
+			}
+			50% {
+				outline: 320px solid #ffafaf5c;
+				outline-offset: -90px;
+			}
+			100% {
+				outline: 3px solid #ffafaf5c;
+				outline-offset: 0;
+			}
+			
+		}
+		.puzzleGame .example .cell .card.c1 {
+			background: url(2.jpg) no-repeat 0 0 / 1000px;
+		}
+		.puzzleGame .example .cell .card.c2 {
+			background: url(2.jpg) no-repeat -250px 0 / 1000px;
+		}
+		.puzzleGame .example .cell .card.c3 {
+			background: url(2.jpg) no-repeat -500px 0 / 1000px;
+		}
+		.puzzleGame .example .cell .card.c4 {
+			background: url(2.jpg) no-repeat -750px 0 / 1000px;
+		}
+		.puzzleGame .example .cell .card.c5 {
+			background: url(2.jpg) no-repeat 0 -216px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c6 {
+			background: url(2.jpg) no-repeat -250px -216px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c7 {
+			background: url(2.jpg) no-repeat -500px -216px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c8 {
+			background: url(2.jpg) no-repeat -750px -216px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c9 {
+			background: url(2.jpg) no-repeat 0 -432px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c10 {
+			background: url(2.jpg) no-repeat -250px -432px / 1000px;
+		}
+		.puzzleGame .example .cell .card.c11 {
+			background: url(2.jpg) no-repeat -500px -432px / 1000px;
+		}
+		.menu {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(img/theme.jpg) no-repeat center / 100%;
+			animation: menu 3s linear infinite alternate;
+			display: grid;
+			place-content: center;
+			user-select: none;
+			transition: .5s;
+		}
+		@keyframes menu {
+			to { background-size: 120%; }
+		}
+		.menu .play {
+			background: #fff;
+			padding: 10px 35px 17px;
+			font: bold 2.5rem sans-serif;
+			cursor: pointer;
+			box-shadow: 1px 2px 12px 3px #ffffffb8, 1px 2px 12px 3px #ffffffb8, 1px 2px 12px 3px #000000ba, inset 0px 0px 0px 3px #bcbc55ba;
+			border-radius: 35px;
+			transition: .5s;	
+		}
+		.menu .play span {
+			display: inline-block;
+		}
+		.menu .play:hover span {
+			animation: play .2s;
+		}
+		.menu .play:hover :nth-child(1) { animation-delay: .1s; }
+		.menu .play:hover :nth-child(2) { animation-delay: .25s; }
+		.menu .play:hover :nth-child(3) { animation-delay: .4s; }
+		.menu .play:hover :nth-child(4) { animation-delay: .55s; }
+		.menu .play:hover :nth-child(5) { animation-delay: .7s; }
+		@keyframes play {
+			50% { transform: translateY(-10px); }
+		}
+		.menu h1 {
+			position: absolute;
+			top: 15%;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			font: 6rem fantasy;
+			background: radial-gradient(circle, #ffdb00 2%, #855816 16%);
+			-webkit-background-clip: text;
+			color: transparent;
+			-webkit-text-stroke: 3px #000;
+			letter-spacing: 6px;
+			text-shadow: 0px -102px 16px #fff;
+			animation: title 2s linear forwards;
+		}
+		@keyframes title {
+			0% { opacity: 0; }
+			20% { opacity: 1; }
+			95% { -webkit-text-stroke: 3px #000; }
+			to { text-shadow: 0px -5px 16px #fff; opacity: 1; -webkit-text-stroke: 3px #008291; }
+		}
+		.menu .studio {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			text-align: center;
+		}
+		.menu .studio img {
+			border-radius: 8px;
+			height: 90px;
+		}
+		.menu .studio p {
+			font: 20px sans-serif;
+		}
+		.menu .developer {
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+			font: bold 20px cursive;
+			text-align: center;
+			text-shadow: 0 -3px 1px #fff, 0 0 16px #fff;
+		}
+		.puzzleGame .time {
+			position: absolute;
+			right: 32px;
+			top: 10px;
+		}
+		.puzzleGame .time span {
+			font: bold 45px cursive;
+		}
+		.puzzleGame .time sub {
+			font-size: 32px;
+		}
+		.puzzleGame .check {
+			position: absolute;
+			left: 20px;
+			top: 10px;
+			text-align: center;
+			text-shadow: -4px 1px 6px #000;
+			color: #fff;
+			width: 13%;
+		}
+		.puzzleGame .check h3 {
+			font: bold 32px cursive;
+		}
+		.puzzleGame .check span {
+			font: bold 45px cursive;
+		}
+		.puzzleGame .check sub {
+			font-size: 40px;
+    		vertical-align: bottom;
+		}
+		.puzzleGame .end {
+			position: absolute;
+			top: 150%;
+			left: 0;
+			width: 100%;
+			padding: 40px;
+			background: #ff5e00;
+			transform: translateY(-50%);
+			color: #fff;
+			text-align: center;
+			font-size: 50px;
+			text-shadow: 3px 6px 5px #000000c4;
+			transition: .5s;
+		}
+	</style>
+</head>
+<body>
+	<div class="puzzleGame">
+		<div class="time">
+			<span>80</span><sub>/վ</sub>
+		</div>
+		<div class="check">
+			<h3>Քայլերի քանակը</h3>
+			<span>0</span><sub>/50</sub>
+		</div>
+		<div class="example">
+			<div class="cell">
+				<div class="card c2" draggable="true">1</div>
+			</div>
+			<div class="cell">
+				<div class="card c1" draggable="true">0</div>
+			</div>
+			<div class="cell">
+				<div class="card c5" draggable="true">4</div>
+			</div>
+			<div class="cell">
+				<div class="card c6" draggable="true">5</div>
+			</div>
+			<div class="cell">
+				<div class="card c3" draggable="true">2</div>
+			</div>
+			<div class="cell">
+				<div class="card c4" draggable="true">3</div>
+			</div>
+			<div class="cell">
+				<div class="card c8" draggable="true">7</div>
+			</div>
+			<div class="cell">
+				<div class="card c7" draggable="true">6</div>
+			</div>
+			<div class="cell">
+				<div class="card c10" draggable="true">9</div>
+			</div>
+			<div class="cell">
+				<div class="card c9" draggable="true">8</div>
+			</div>
+			<div class="cell">
+				
+			</div>
+			<div class="cell">
+				<div class="card c11" draggable="true">10</div>
+			</div>
+			<h2 class="winner">Հաղթանակ<br>անցում հաջորդին</h2>
+		</div>
+		<h3 class="end">Հաղթանակ</h3>
+	</div>
+	<div class="menu">
+		<h1>Puzzle</h1>
+		<div class="play"><span>Խ</span><span>ա</span><span>ղ</span><span>ա</span><span>լ</span></div>
+		<div class="studio">
+			<img src="img/logo.png" alt="Logo">
+			<p>Էլբակյան կրթահամալիր</p>
+		</div>
+		<p class="developer">Developer<br>Hovo Vardanyan</p>
+	</div>
+	<script>
+		const game = document.querySelector('.puzzleGame');
+		const menu = document.querySelector('.menu');
+		const play = document.querySelector('.menu .play');
+		const winner = document.querySelector('.puzzleGame .example .winner');
+		const endWin = document.querySelector('.puzzleGame .end');
+		const timeIn = document.querySelector('.puzzleGame .time span ');
+		const cell = document.querySelectorAll('.puzzleGame .example .cell');
+		const card = document.querySelectorAll('.puzzleGame .example .cell .card');
+		let current = 0;
+		let cordinate = [false, false, false, false, false, false, false, false, false, false, false];
+		const gameImage = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg', 'img/10.jpg'];
+		let gameCur = 0;
+		let time = 80;
+		let CheckTrue = document.querySelector('.puzzleGame .check span');
+		let account = document.querySelector('.puzzleGame .check sub');
+		let checkPoint = 0;
+		let timeBool = false;
+		let pointMinus = 50;
+		const theme = new Audio('sound/theme.mp3');
+		const win1 = new Audio('sound/win.mp3');
+		const win2 = new Audio('sound/win2.mp3');
+		document.onmousedown = () => theme.play();
+		theme.ontimeupdate = () => theme.ended ? theme.play() : '';
+		cell.forEach((item, index) => {
+			item.ondragover = e => {
+				item.style.background = '#ff0000';
+				e.preventDefault();
+			};
+			item.ondragleave = () => item.style.background = '#ffffff9e';
+			item.ondrop = () => {
+				item.style.background = '#fff';
+				win1.currentTime = 0;
+				win1.play();
+				if (item.innerText == '') {
+					checkPoint++;
+					CheckTrue.innerText = checkPoint;
+					if (checkPoint > pointMinus) {
+						endWin.style.top = '50%';
+						endWin.innerText = 'Պարտություն';
+						setTimeout(() => window.location.reload(), 3000);
+					}
+					item.appendChild(card[current]);
+					if (card[current].innerText == index) {
+						cordinate[index] = true;
+						if (cordinate.every(item => item === true)) {
+							win2.play();
+							timeBool = false;
+							gameCur++;
+							if (gameCur == gameImage.length) {
+								time = false;
+								endWin.style.top = '50%';
+								setTimeout(() => window.location.reload(), 4000);
+								winner.style.display = 'none';
+							}
+						card.forEach(item => {
+							item.style.animation = 'win 2s linear forwards';
+							item.style.pointerEvents = 'none';
+							setTimeout(() => {
+								item.style.animation = 'win2 2s linear forwards';
+								for (let i = 0; i < cell.length; i++) {
+									if (i == 10) continue;
+									if (i == 11) {
+										cell[i].append(card[i-1]);
+									} else {
+										cell[i].append(card[i]);
+									}
+								}
+								checkPoint = 0;
+								CheckTrue.innerText = checkPoint;
+								item.onanimationend = () => {
+									item.style.animation = '';
+								};
+								item.style.pointerEvents = 'auto';
+								winner.style.visibility = 'hidden';
+								winner.style.opacity = 0;
+								winner.style.lineHeight = '0';
+							}, 3000);
+						});
+						winner.style.visibility = 'visible';
+						winner.style.opacity = 1;
+						winner.style.lineHeight = '1.4';
+						cordinate.fill(false);
+						setTimeout(() => {
+							time = 80;
+							timeBool = true;
+							pointMinus-=2;
+							account.innerText = '/' + pointMinus;
+							card.forEach(item => {
+								item.style.backgroundImage = `url(${gameImage[gameCur]})`;
+							});
+						}, 2000);
+					}
+					}
+				}
+			};
+		});
+		card.forEach((item, index) => {
+			item.style.backgroundImage = `url(${gameImage[gameCur]})`;
+			item.ondragstart = () => {
+				item.style.opacity = 0;
+				current = index;
+				cordinate[item.innerText] = false;
+			};
+			item.ondragend = () => item.style.opacity = 1;
+		});
+		play.onclick = () => {
+			game.style.opacity = 1;	
+			menu.style.top = '100%';
+			timeBool = true;
+		};
+		let timeInt = setInterval(() => {
+			if (timeBool) {
+				if (time == 0) {
+					clearInterval(timeInt);
+					endWin.style.top = '50%';
+					endWin.innerText = 'Պարտություն';
+					setTimeout(() => window.location.reload(), 3000);
+				}
+				timeIn.innerText = time;
+				time > 0 ? time-- : '';
+			}
+		}, 1000);
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+	</script>
+</body>
+</html>
+
+
+
+
