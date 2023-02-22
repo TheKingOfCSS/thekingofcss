@@ -1,0 +1,176 @@
+* { padding: 0; margin: 0; user-select: none; box-sizing: border-box; }
+.gameDino {
+	height: 70vh;
+	border-bottom: 1px solid;
+	position: relative;
+	background: url(img/floor.png) repeat-x 0 97% / 36%, linear-gradient(#fff -1% 11%) repeat-x 50% 100% / 4% 30px, #c0e2ff;
+	overflow: hidden;
+}
+.gameDino::before {
+	content: '';
+	position: absolute;
+	top: 50px;
+	left: 200px;
+	width: 150px;
+	height: 150px;
+	box-shadow: inset 25px 0 0 #ffff00;
+	border-radius: 50%;
+	opacity: 0;
+}
+.gameDino.start::before {
+	animation: moon 10s linear infinite alternate;
+}
+.gameDino::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.gameDino.start::after {
+	animation: exanak 100s linear infinite;
+}
+.gameDino img {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	height: 60px;
+	border-radius: 10px;
+	z-index: 2;
+}
+.gameDino .developer {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	font: 22px monospace;
+	animation: author 10s linear infinite alternate;
+	z-index: 2;
+}
+@keyframes exanak {
+	0% { background: transparent; }
+	30% { background: transparent; }
+	34% { background: url(img/shnow.gif) center / 30%; }
+	70% { background: url(img/shnow.gif) center / 30%; }
+	75% { background: url(img/rain.gif) center / 30%; }
+	100% { background: url(img/rain.gif) center / 30%; }
+}
+@keyframes moon {
+	0% { opacity: 0; }
+	50% { opacity: 0; }
+	80% { opacity: 1; }
+	100% { opacity: 1; }
+}
+@keyframes author {
+	0% { color: #000; }
+	50% { color: #000; }
+	80% { color: #fff; }
+	100% { color: #fff; }
+}
+@keyframes bg {
+	to { background-position-x: -520px; }
+}
+@keyframes nightSun {
+	0% { background-color: #c0e2ff; }
+	50% { background-color: #c0e2ff; }
+	80% { background-color: #1c1c1c; }
+	100% { background-color: #1c1c1c; }
+}
+.gameDino .dino {
+	width: 80px;
+    height: 73px;
+    background: url(img/gameover.png) no-repeat 50% -13px / 130%;
+	position: absolute;
+	bottom: 0;
+	left: 100px;
+	z-index: 1;
+}
+.gameDino .cactus {
+	width: 75px;
+    height: 64px;
+    background: url(img/cac.webp) no-repeat 50% 3px / 85%;
+	position: absolute;
+	bottom: 0;
+	right: -75px;
+}
+.gameDino .coin {
+	position: absolute;
+	top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font: 30px cursive;
+    color: #fff;
+    background: #439b00;
+    padding: 10px 25px;
+    border-radius: 49px;
+	z-index: 1;
+}
+.gameDino .gameOver {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font: 40px cursive;
+	opacity: 0;
+	visibility: hidden;
+	transition: .3s;
+}
+.gameDino .gameOver.lost {
+	opacity: 1;
+	visibility: visible;
+}
+@keyframes cactus {
+	to { right: 100%; }
+}
+@keyframes dino {
+	from, to { bottom: 0; }
+	50% { bottom: 170px; }
+}
+.gameDino .start {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 10px 30px 13px;
+	font-size: 40px;
+	border-radius: 50px;
+	background: linear-gradient(24deg, #000000d9 30%, #4c4c4c 40% 65%, #000000d9 77%);
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	color: #fff;
+	overflow: hidden;
+	z-index: 1;
+	transition: .5s;
+}
+.gameDino .start::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg, transparent, transparent 45%, #14ff00 47% 49%, transparent 72%, transparent);
+	z-index: -1;
+	animation: start 2s infinite;
+}
+.gameDino .start:hover {
+	padding: 10px 70px 13px;
+}
+.gameDino .start.stop {
+	opacity: 0;
+	visibility: hidden;
+}
+.gameDino .start.stop::after {
+	content: none;
+}
+@keyframes start {
+	to { left: -100%; }
+}
+
+
+
+
+
