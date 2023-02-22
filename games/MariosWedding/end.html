@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mario Yoshi</title>
+	<link rel="shortcut icon" href="img/mario.gif">
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body {
+			overflow: hidden;
+			background: #000;
+		}
+		video {
+			width: 100%;
+			height: 100vh;
+			object-fit: cover;
+		}
+		#backM {
+			position: absolute;
+			bottom: 5%;
+			left: 50%;
+			translate: -50%;
+			font: bold 3.2rem sans-serif;
+			padding: 12px 45px;
+			border-radius: 50px;
+			cursor: pointer;
+			transition: .3s;
+			box-shadow: 0 4px 5px #0f0;
+		}
+		#backM:hover {
+			background: #f00;
+			color: #fff;
+			box-shadow: 0 4px 5px #fff;
+		}
+	</style>
+</head>
+<body>
+	<video src="movie/movie.mp4" autoplay muted id="mov"></video>
+	<button id="backM">Menu</button>
+	<script>
+		backM.onclick = () => location.replace('index.html');
+		document.onclick = () => mov.muted = false;
+		const movie = setInterval(() => {
+			if (mov.currentTime >= 91.5) {
+				mov.pause();
+				clearInterval(movie);
+			}
+		}, 1);
+	</script>
+</body>
+</html>

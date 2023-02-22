@@ -1,0 +1,417 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+	cursor: none;
+}
+.game {
+    height: 100vh;
+    position: relative;
+	-webkit-animation: bg 7s linear infinite;
+	animation: bg 7s linear infinite;
+	overflow: hidden;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.game .dino {
+	--option: rotate(-360deg);
+    --down: 70%;
+	--jump: 0;
+    position: absolute;
+    left: 150px;
+    width: 90px;
+    height: 122px;
+	-webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 43%, 60% 33%, 100% 50%, 100% 0);
+	clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 43%, 60% 33%, 100% 50%, 100% 0);
+	-webkit-transition: -webkit-clip-path .2s;
+	transition: -webkit-clip-path .2s;
+	transition: clip-path .2s;
+	transition: clip-path .2s, -webkit-clip-path .2s;
+	background-repeat: no-repeat;
+	z-index: 1;
+	border-radius: 52px 80px 82px 42px;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+.game .hint {
+    width: 100px;
+    height: 120px;
+    position: absolute;
+    bottom: 310px;
+    left: 220px;
+    display: grid;
+    -ms-flex-line-pack: end;
+    align-content: end;
+}
+@-webkit-keyframes hint {
+    80% {-webkit-transform: none;transform: none;}
+    to {-webkit-transform: rotateY(360deg);transform: rotateY(360deg)}
+}
+@keyframes hint {
+    80% {-webkit-transform: none;transform: none;}
+    to {-webkit-transform: rotateY(360deg);transform: rotateY(360deg)}
+}
+.game .hint .it {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    -webkit-box-shadow: 0 2px 5px #0008;
+    box-shadow: 0 2px 5px #0008;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.game .hint .medium {
+    width: 25px;
+    height: 25px;
+    margin-left: 7px;
+    -webkit-transition-delay: .3s;
+    transition-delay: .3s;
+}
+.game .hint .big {
+    width: 55px;
+    height: 55px;
+    margin-left: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition-delay: .6s;
+    transition-delay: .6s;
+}
+.game .hint .big h5 {
+    font: 30px fantasy;
+    margin-left: -10px;
+    -webkit-animation: hint 2s infinite;
+    animation: hint 2s infinite;
+}
+.game .hint .big img:first-child{
+    height: 50px;
+    margin-left: -18px 
+}
+.game .hint .big img:last-child{
+    height: 70px;
+    margin: -126px 0 0 -75px;
+    -webkit-animation: missMario 1s linear infinite;
+    animation: missMario 1s linear infinite
+}
+@-webkit-keyframes missMario{
+    20%, 30%, 40%, 80% {
+        opacity: 1
+    }
+    25%, 35%, 60% {
+        opacity: 0
+    }
+}
+@keyframes missMario{
+    20%, 30%, 40%, 80% {
+        opacity: 1
+    }
+    25%, 35%, 60% {
+        opacity: 0
+    }
+}
+@-webkit-keyframes bg {
+	to { background-position-x: -100vw; }
+}
+@keyframes bg {
+	to { background-position-x: -100vw; }
+}
+.game .cactus {
+	position: absolute;
+	right: -500px;
+	width: 92px;
+	height: 130px;
+	border-radius: 80px 20px 80px 80px;
+	z-index: 1;
+}
+@-webkit-keyframes enemy {
+	to { right: 200%; }
+}
+@keyframes enemy {
+	to { right: 200%; }
+}
+@-webkit-keyframes dinoJump {
+	50% { top: var(--jump); -webkit-transform: var(--option); transform: var(--option); }
+	to { -webkit-transform: var(--option); transform: var(--option); }
+}
+@keyframes dinoJump {
+	50% { top: var(--jump); -webkit-transform: var(--option); transform: var(--option); }
+	to { -webkit-transform: var(--option); transform: var(--option); }
+}
+@-webkit-keyframes slide {
+    30%, 70% {height: 80px; width: 60px; background-size: 90px 80px;}
+    50%{top:var(--down); -webkit-transform: rotate(-88deg); transform: rotate(-88deg);left: 400px;}
+}
+@keyframes slide {
+    30%, 70% {height: 80px; width: 60px; background-size: 90px 80px;}
+    50%{top:var(--down); -webkit-transform: rotate(-88deg); transform: rotate(-88deg);left: 400px;}
+}
+@-webkit-keyframes slide2 {
+    30%, 70% {height: 80px; width: 60px; background-size: 90px 80px; background-position-y: 255px;}
+    50%{top:var(--down);}
+}
+@keyframes slide2 {
+    30%, 70% {height: 80px; width: 60px; background-size: 90px 80px; background-position-y: 255px;}
+    50%{top:var(--down);}
+}
+.game .floor {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 235px;
+	background: url(img/floor.jpg) repeat-x 0 / 100% 100%;
+	-webkit-animation: bg 4s linear infinite;
+	animation: bg 4s linear infinite;
+}
+.game .gameOver {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50%;
+	font: bold 6vw cursive;
+	text-shadow: 0 4px 3px #fff, 0 6px 5px #000;
+	-webkit-transition: .5s;
+	transition: .5s;
+	opacity: 0;
+    z-index: 10;
+}
+.game .coin {
+	position: absolute;
+	bottom: 233px;
+	right: -3500px;
+	width: 37px;
+	height: 41px;
+	background: url(img/coin.webp) no-repeat -11px -4px / 60px 50px;
+	border-radius: 25px;
+	z-index: 3;
+}
+@-webkit-keyframes coin {
+	to { right: 100%; }
+}
+@keyframes coin {
+	to { right: 100%; }
+}
+.game .pointBlock {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	z-index: 2;
+}
+.game .pointBlock .mission {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.game .pointBlock .mission img {
+	height: 100px;
+	translate: 0 -15px;
+	-webkit-animation: missionPrincess 3s infinite;
+	animation: missionPrincess 3s infinite;
+}
+.game .pointBlock .mission strong {
+	translate: 0 -20px;
+	font: bold 1.5rem sans-serif;
+	text-shadow: 1px 3px 2px #fc0, 0 -2px 2px #ff0037;
+	-webkit-animation: missionKm 2s infinite;
+	animation: missionKm 2s infinite;
+}
+@-webkit-keyframes missionKm {
+	50% { letter-spacing: 5px; }
+}
+@keyframes missionKm {
+	50% { letter-spacing: 5px; }
+}
+@-webkit-keyframes missionPrincess {
+	50% { translate: -15px -15px; }
+}
+@keyframes missionPrincess {
+	50% { translate: -15px -15px; }
+}
+.game .pointBlock img {
+	height: 45px;
+}
+.game .pointBlock b {
+	font: 35px cursive;
+	text-shadow: 1px 3px 2px #fc0, 1px -2px 2px #ff0037;
+}
+.game .batEnemy {
+	position: absolute;
+	bottom: 300px;
+	right: -700px;
+	width: 125px;
+	height: 105px;
+	background: url(img/flyingDinosaur.gif) no-repeat -25px -27px / 160px 143px;
+	border-radius: 84px 48px 188px 24px;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+    -webkit-transition: rotate .7s, bottom 2.3s;
+    transition: rotate .7s, bottom 2.3s
+}
+.game .dinoEnemy {
+    position: absolute;
+	bottom: 225px;
+	right: -900px;
+	width: 135px;
+	height: 116px;
+	background: url(img/dino.gif) no-repeat -10px -10px / 160px 143px;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	-webkit-animation: enemy 8s linear 10s infinite;
+	animation: enemy 8s linear 10s infinite;
+    -webkit-transition: 2s;
+    transition: 2s
+}
+@-webkit-keyframes jumpBat {
+	50% {
+		bottom: 500px;
+	}
+}
+@keyframes jumpBat {
+	50% {
+		bottom: 500px;
+	}
+}
+.game .cursor {
+	width: 17px;
+	height: 17px;
+	background: #f00;
+	border-radius: 50%;
+	-webkit-box-shadow: inset 0 0 12px #ffb721, 0 0 8px #f00, 0 0 8px #f00;
+	box-shadow: inset 0 0 12px #ffb721, 0 0 8px #f00, 0 0 8px #f00;
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	z-index: 100;
+	-webkit-transition: background .3s, -webkit-box-shadow .3s;
+	transition: background .3s, -webkit-box-shadow .3s;
+	transition: background .3s, box-shadow .3s;
+	transition: background .3s, box-shadow .3s, -webkit-box-shadow .3s;
+	pointer-events: none;
+}
+.game .path {
+	position: absolute;
+	top: 20px;
+	left: 25px;
+	font: bold 1.5rem sans-serif;
+	text-shadow: 1px 3px 2px #fc0, 0 -2px 2px #ff0037;
+}
+.game .castle {
+	position: absolute;
+	right: -700px;
+    bottom: 195px;
+    height: 700px;
+	-webkit-transition: 4s linear;
+	transition: 4s linear;
+	z-index: 1;
+}
+.menu {
+	position: fixed;
+	inset: 0;
+	background: -webkit-gradient(linear, right top, left top, color-stop(10%, #10c5ee), color-stop(40%, transparent)) no-repeat center / cover, -webkit-gradient(linear, left top, right top, color-stop(10%, #10c5ee), color-stop(40%, transparent)) no-repeat center / cover, url(img/menu.webp) repeat 50% 50% / 75% 100%;
+	background: linear-gradient(to left, #10c5ee 10%, transparent 40%) no-repeat center / cover, linear-gradient(to right, #10c5ee 10%, transparent 40%) no-repeat center / cover, url(img/menu.webp) repeat 50% 50% / 75% 100%;
+	height: 100vh;
+	-webkit-animation: menu 8.2s infinite;
+	animation: menu 8.2s infinite;
+	z-index: 10;
+	text-align: center;
+	padding-top: 10vh;
+	-webkit-transition: .4s;
+	transition: .4s;
+	-webkit-clip-path: circle(100%);
+	clip-path: circle(100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+@-webkit-keyframes menu {
+	50%, 55% { background-size: cover, cover, 100% 140%; }
+}
+@keyframes menu {
+	50%, 55% { background-size: cover, cover, 100% 140%; }
+}
+.menu h1 {
+	font: bold 6.5rem sans-serif;
+	background: linear-gradient(50deg, #f00 42%, #49ff6d 42% 61%, #ff93e3 61%);
+	color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-stroke: 3px #000;
+    -webkit-animation: titleGame 1s infinite;
+    animation: titleGame 1s infinite;
+}
+@-webkit-keyframes titleGame {
+    50% { letter-spacing: 10px; }
+}
+@keyframes titleGame {
+    50% { letter-spacing: 10px; }
+}
+.menu .play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 4rem cursive;
+	background: transparent;
+	padding: 5px 40px 18px;
+	border-radius: 80px;
+	border: 4px solid #000;
+	-webkit-box-shadow: 0 1px 20px #dcff69, 0 1px 35px #fff044, inset 0 -6px 1px #ffb3f0, inset 0 -12px 0px #f00;
+	box-shadow: 0 1px 20px #dcff69, 0 1px 35px #fff044, inset 0 -6px 1px #ffb3f0, inset 0 -12px 0px #f00;
+	-webkit-animation: playGame .7s  infinite;
+	animation: playGame .7s  infinite;
+	-webkit-transition: .4s;
+	transition: .4s;
+    color: #fff;
+    text-shadow: 0 0 8px #000;
+}
+@-webkit-keyframes playGame {
+	50% { -webkit-box-shadow: 0 1px 90px #dcff69, 0 1px 155px #fff044, inset 0 6px 1px #ffb3f0, inset 0 -12px 0px #f00; box-shadow: 0 1px 90px #dcff69, 0 1px 155px #fff044, inset 0 6px 1px #ffb3f0, inset 0 -12px 0px #f00; }
+}
+@keyframes playGame {
+	50% { -webkit-box-shadow: 0 1px 90px #dcff69, 0 1px 155px #fff044, inset 0 6px 1px #ffb3f0, inset 0 -12px 0px #f00; box-shadow: 0 1px 90px #dcff69, 0 1px 155px #fff044, inset 0 6px 1px #ffb3f0, inset 0 -12px 0px #f00; }
+}
+.menu .play:hover {
+	background: #000;
+    color: #fff;
+    translate: 0 -10px;
+}
+.menu .play:active {
+	background: #fa0;
+    color: #fff;
+    translate: 0 -20px;
+}
+.menu h3 {
+	font: bold 3.4rem cursive;
+	background: linear-gradient(-10deg, #f00 42%, #49ff6d 42%);
+	color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-stroke: 2px #000;
+}
+.menu .authorsAndCreators {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font: bold 1.3rem/1.4 sans-serif;
+    color: #fff;
+    text-shadow: 0 2px 5px #000, 0 4px 5px #000;
+}
