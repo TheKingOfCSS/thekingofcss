@@ -1,0 +1,383 @@
+@media (max-width: 1090px) {
+	article.menu .topMenuBlock .gameName {
+		width: 727px;
+		height: 152px;
+	}
+	article.menu .topMenuBlock .gameName h1 {
+		font-size: 40px;
+	}
+	article.menu .buttonMenuStyle .gamePlay {
+		width: 248px;
+		height: 148px;
+	}
+	article.menu .buttonMenuStyle .gamePlay {
+		font-size: 42px;
+	}
+	article.menu .buttonMenuStyle .gamePlay:nth-child(2) {
+		font-size: 37px;
+	}
+	article.menu .topMenuBlock .gameLogoHome img {
+		width: 128px;
+	}
+	article.menu .infoGame {
+		align-items: flex-start;
+	}
+	article.menu .infoGame aside {
+		margin-top: 65px;
+	}
+	article.menu .infoGame .infoClose {
+		margin-top: 60px;
+	}
+	section .home_menu button {
+		font-size: 28px;
+		width: 140px;
+		height: 60px;
+	}
+	section.game_room_2 {
+		background-size: 132% 100%;
+	}
+	section.game_room_3 {
+		background-size: 109% 100%;
+	}
+	.fruit .gameInformacion {
+		font-size: 22px;
+	}
+	section .victory .firework:nth-child(1) {
+		left: 19%;
+	}
+	section .victory .firework:nth-child(2) {
+		left: 57%;
+	}
+}
+@media (max-width: 950px) {
+	article.menu .topMenuBlock .gameLogoHome {
+		top: 19.7%;
+	}
+	.fruit .basicFruit {
+		width: 172px;
+	}
+	section .coinsBlock .coins {
+		background-size: 70px;
+		width: 70px;
+		height: 70px;
+	}
+	.fruit .banner img {
+		width: 468px;
+	}
+	.fruit .gameInformacion b i {
+		font-size: 29px;
+	}
+	.titles {
+		width: 60px;
+		height: 60px;
+	}
+	.titles h5 {
+		font-size: 38px;
+		line-height: 1.2;
+	}
+	.fruit .label label {
+		font-size: 40px;
+	}
+	.fruit .nextLevel img {
+		width: 143px;
+	}
+	.fruit .basicFruit.apricot {
+		width: 225px;
+	}
+	section .gameMan_room3 img {
+		width: 200px;
+	}
+	.fruit .label {
+		margin-top: -37px;
+	}
+	section .gameMan_room4 img {
+		width: 151px;
+	}
+	.titles.room4.j {
+		bottom: 8.8%;
+	}
+	section.game_room_4 {
+		background-size: 125% 100%;
+	}
+	.titles.room5.dz {
+		left: 15%;
+	}
+	.titles.room5.n {
+		right: 63%;
+	}
+	.gameEnd .endInformacion .endLogo p img {
+		width: 265px;
+	}
+}
+@media (max-width: 867px) {
+	section.game_room_1 {
+		background-size: 110% 175%;
+	}
+	.fruit {
+		top: 47px;
+	}
+	article.menu .topMenuBlock .gameName {
+		width: 705px;
+		height: 138px;
+	}
+	section.game_room_3 {
+		background-size: 118% 100%;
+	}
+	.titles.room3.r {
+		left: 48%;
+	}
+	.titles.room5.r2 {
+		left: 15%;
+	}
+	.endFruits {
+		width: 73%;
+	}
+	.gameEnd .endInformacion .endFruits img {
+		width: 122px;
+	}
+	.gameEnd .endInformacion .endLogo p img {
+		width: 211px;
+	}
+	.gameEnd .endInformacion .endLogo p {
+		font-size: 51px;
+		margin-left: 16px;
+	}
+	.gameEnd .endInformacion .endLogo p a img {
+		width: 95px;
+	}
+	section.game_room_5 .room5Dog2 {
+		width: 162px;
+		right: 24%;
+	}
+	section .gameMan_room3 img {
+		width: 176px;
+	}
+	section .victory .firework:nth-child(1) {
+		left: 11%;
+		top: 15px;
+	}
+	section .victory .firework:nth-child(2) {
+		left: 57%;
+		top: 19px;
+	}
+	.gameEnd .endInformacion .endFruits p {
+		text-align: center;
+	}
+}
+@media (max-width: 759px) {
+	article.menu .topMenuBlock .gameName {
+		width: 538px;
+	}
+	article.menu .topMenuBlock .gameName h1 {
+		font-size: 30px;
+	}
+	article.menu .buttonMenuStyle .gamePlay {
+		width: 216px;
+		height: 127px;
+		font-size: 37px;
+	}
+	article.menu .buttonMenuStyle .gamePlay:nth-child(2) {
+		font-size: 32px;
+	}
+	article.menu .buttonMenuStyle .gamePlay:nth-child(3) {
+		line-height: 1;
+	}
+	section .gameMan_room2 img {
+		width: 184px;
+	}
+	section .gameMan_room3 img {
+		width: 165px;
+	}
+	section .home_menu button {
+		width: 130px;
+		height: 55px;
+		font-size: 25px;
+	}
+	article.menu .topMenuBlock .gameLogoHome img {
+		width: 108px;
+	}
+	article.menu .topMenuBlock .gameName {
+		margin-top: 25px;
+	}
+	section .coinsBlock .coins {
+		width: 54px;
+		height: 54px;
+		background-size: 54px;
+	}
+	section .coinsBlock .coins b {
+		font-size: 35px;
+	}
+	.fruit .basicFruit {
+		width: 162px;
+	}
+	.fruit .banner img {
+		width: 420px;
+	}
+	.fruit .gameInformacion b {
+		font-size: 21px;
+		bottom: -23px;
+	}
+	section .home_menu {
+		top: 2%;
+	}
+	section .gameMan_room4 img {
+		width: 142px;
+	}
+	section .gameMan_room4 .teler::before {
+		top: 185px;
+	}
+	section .gameCat_room4 .room4Cat {
+		width: 238px;
+	}
+	.fruit .label label {
+		font-size: 33px;
+	}
+	.fruit .label {
+		margin-top: -34px;
+	}
+	section.game_room_5 .room5Dog2 {
+		width: 148px;
+		height: 176px;
+		right: 30%;
+	}
+	.titles.room5.dz {
+		left: 5%;
+	}
+	.titles.room5.n {
+		right: 70%;
+	}
+	.titles.room5.y {
+		bottom: 7%;
+		left: 34%;
+	}
+	.titles.room5.o {
+		left: 44%;
+	}
+	section.game_room_5 .room5Dog1 {
+		width: 146px;
+		height: 174px;
+		right: 14%;
+		bottom: 5%;
+	}
+	.titles.room5.a {
+		bottom: 39%;
+		left: 4%;
+	}
+	.titles.room5.r {
+		bottom: 37%;
+	}
+	.titles.room5.a2 {
+		bottom: 36.5%;
+	}
+	.titles.room5.a3 {
+		bottom: 12%;
+		left: 13%;
+	}
+	section.game_room_5 .room5Dog4 {
+		bottom: 60%;
+	}
+	.gameEnd .endInformacion .endFruits img {
+		width: 107px;
+	}
+	.gameEnd .endInformacion .endFruits img {
+		width: 104px;
+	}
+	.gameEnd .endInformacion .endLogo p img {
+		width: 171px;
+	}
+	.gameEnd .endInformacion .endLogo p {
+		font-size: 49px;
+	}
+	.gameEnd .endInformacion .endLogo p a img {
+		width: 76px;
+	}
+	article.menu .topMenuBlock .gameName {
+		height: 105px;
+	}
+	.fruit .gameInformacion {
+		width: 80%;
+	}
+}
+@media (max-width: 630px) {
+	article.menu .buttonMenuStyle .gamePlay {
+		width: 184px;
+		height: 108px;
+	}
+	article.menu .buttonMenuStyle .gamePlay {
+		font-size: 32px;
+	}
+	article.menu .buttonMenuStyle .gamePlay:nth-child(2) {
+		font-size: 27px;
+	}
+	article.menu .buttonMenuStyle .gamePlay:nth-child(3) {
+		padding-top: 17px;
+	}
+	.fruit {
+		top: 25px;
+	}
+	.titles,
+	.titles.room1.o,
+	.titles.room1.r,
+	.titles.room5{
+		width: 55px;
+		height: 55px;
+	}
+	.titles h5,
+	.titles.room1.o h5,
+	.titles.room5 h5{
+		font-size: 32px;
+	}
+	section .gameMan_room2 img {
+		width: 155px;
+	}
+	.fruit .banner span {
+		top: -8px;
+	}
+	section .gameMan_room3 img {
+		width: 136px;
+	}
+	.titles.room5.a2 {
+		bottom: 36.5%;
+		right: 15%;
+	}
+	section.game_room_5 .room5Dog4 {
+		bottom: 58%;
+	}
+	.titles.room5.r2 {
+		left: 2%;
+		bottom: 32.7%;
+	}
+	.gameEnd .endInformacion .endFruits img {
+		width: 19%;
+	}
+	.gameEnd .endInformacion .endLogo p img {
+		width: 140px;
+	}
+	.gameEnd .endInformacion .endLogo p {
+		font-size: 41px;
+	}
+	.gameEnd .endInformacion .endLogo p a img {
+		width: 70px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

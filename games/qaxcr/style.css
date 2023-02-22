@@ -1,0 +1,465 @@
+*, ::after, ::before { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+body { background: #111; overflow: hidden;}
+article {
+	position: relative;
+}
+article.menu {
+	background: url(image/coins/menu.png) repeat center;
+	background-size: 70%;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 55;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	animation: pic 2s linear infinite alternate;
+}
+@keyframes pic {
+	to { background-size: 150%; }
+}
+.inf {
+	position: fixed;
+	bottom: 15px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+.logo {
+	border-radius: 8px;
+	width: 60px;
+	height: 60px;
+	pointer-events: none;
+}
+.author {
+	font: 20px cursive;
+	text-shadow: 0 0 4px white, -1px 2px 2px white;
+}
+article.menu .topMenuBlock .gameName {
+	background: url(image/coins/banner.png) no-repeat;
+	width: 856px;
+    height: 170px;
+    background-size: contain;
+	margin-top: 40px;
+	animation: GameName 1s linear;
+}
+article.menu .topMenuBlock .gameName h1 {
+	font-size: 50px;
+	color: #fff;
+	text-align: center;
+    line-height: 2.2;
+	text-shadow: 1px 1px 5px #000;
+	letter-spacing: 2px;
+	animation: GameNameColor 5s 1.5s;
+}
+article.menu .topMenuBlock .gameLogoHome {
+	position: absolute;
+	top: 3.7%;
+	left: -20%;
+	transition: .5s;
+	animation: gameLogoGame 1s ease-in-out 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes gameLogoGame {
+	0% { left: -20%; }
+	40% { left: 100%; }
+	90% { left: 5%; }
+	100% { left: 10%; }
+}
+article.menu .topMenuBlock .gameLogoHome img {
+	width: 160px;
+}
+article.menu .topMenuBlock .gameLogoHome:hover {
+	filter: hue-rotate(400deg);
+}
+article.menu .buttonMenuStyle .gamePlay {
+	background: url(image/coins/title.png) repeat;
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 285px;
+    height: 180px;
+	text-align: center;
+	font-size: 50px;
+	color: #fff;
+	line-height: 3.4;
+	cursor: pointer;
+	transition: .5s;
+	text-shadow: 1px 1px 4px #000;
+}
+article.menu .buttonMenuStyle {
+	margin-left: 130%;
+	animation: gameButton 1s 1.8s ease-out;
+	animation-fill-mode: forwards;
+}
+@keyframes gameButton {
+	0% { margin-left: 130%; }
+	50% { margin-left: -30%; }
+	100% { margin-left: 0; }
+}
+article.menu .buttonMenuStyle .gamePlay:nth-child(2) {
+	font-size: 41px;
+	line-height: 4;
+}
+article.menu .buttonMenuStyle .gamePlay:nth-child(3) {
+	line-height: 1.1;
+	padding-top: 30px;
+}
+article.menu .buttonMenuStyle .gamePlay:hover {
+	filter: hue-rotate(-100deg);
+	transform: scale(1.04);
+}
+article.menu .infoGame {
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.9);
+	position: fixed;
+	z-index: 56;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+article.menu .infoGame aside {
+	width: 500px;
+	height: 500px;
+	background: #fff;
+	margin-top: 20px;
+	border: 2px dashed #222;
+	outline: 2px dashed #fff;
+	outline-offset: 3px;
+	padding: 30px 35px;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 1px;
+	text-align-last: right;
+}
+article.menu .infoGame aside:first-letter {
+	color: red;
+}
+article.menu .infoGame aside img {
+	width: 125px;
+    float: left;
+	margin-top: 7px;
+}
+article.menu .infoGame aside img:last-of-type {
+	margin-top: 110px;
+	margin-left: -51px;
+}
+article.menu .infoGame aside .author {
+	font-size: 22px;
+	font-family: cursive;
+	width: 100%;
+	height: 170px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+    justify-content: center;
+	padding-top: 25px;
+}
+article.menu .infoGame .infoClose {
+	background: #ECC023;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	cursor: pointer;
+	transition: .2s;
+	align-self: flex-start;
+	margin-top: 90px;
+	margin-right: 5px;
+	border: 2px dashed #fff;
+}
+article.menu .infoGame .infoClose span {
+	font-size: 78px;
+	color: #fff;
+	text-shadow: 1px 1px 3px #000;
+	line-height: 0.7;
+}
+article.menu .infoGame .infoClose:hover {
+	background: #FF0000;
+}
+@keyframes GameName {
+	0% { transform: scale(0.1) translateY(700px); }
+	100% { transform: scale(1) translateY(0px); }
+}
+@keyframes GameNameColor {
+	0% { color: #fff; }
+	50% { color: #EEC801; }
+	100% { color: #fff; }
+}
+section {
+	background-repeat: repeat-x;
+	width: 100%;
+	height: 100vh;
+	position: relative;
+}
+section.game_room_1 {
+	background: url(image/room1/1.jpg);
+	background-repeat: repeat-x;
+	background-position: 22% 78%;
+	background-size: 102% 175%;
+	animation: room1 130s linear;
+}
+@keyframes room1 {
+	0% { background-position: 22% 78%; }
+	100% { background-position: 9002% 78%; }
+}
+section .home_menu {
+	position: fixed;
+	top: 1%;
+	left: 0.5%;
+}
+section .home_menu button {
+	width: 150px;
+	height: 70px;
+	background: linear-gradient(to bottom, #F22F48 38%, #ff6893 90%);
+	box-shadow: inset 1px -5px 3px 0px #f02234, inset 0px 2px 2px 5px #f9597c;
+	border: 6px solid #fff;
+	border-radius: 28px;
+	font-size: 28px;
+	color: #fff;
+	cursor: pointer;
+	transition: .4s;
+	outline: none;
+}
+section .home_menu button:hover {
+	background: #F0C600;
+	color: #222;
+}
+section .home_menu button:active {
+	border-left-color: #000;
+	transition: .2s;
+}
+section .rightCoins {
+	float: right;
+	padding: 15px 20px 0 0;
+}
+section .coinsBlock {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 5px;
+}
+section .coinsBlock .coins {
+	background: url(image/coins/coin.png) no-repeat;
+	background-size: 80px;
+	width: 80px;
+	height: 80px;
+	position: relative;
+	transition: .5s;
+}
+section .coinsBlock .coins:hover {
+	transform: scale(1.1);
+}
+section .coinsBlock .coins.victoryPlus {
+	animation: victoryPlus .5s linear 1.5s;
+}
+@keyframes victoryPlus {
+	0% { transform: scale(1.1); }
+	50% { transform: scale(2.1); }
+	100% { transform: scale(1.1); }
+}
+section .coinsBlock .coins b {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	font-size: 47px;
+}
+section .rightCoins .coinsBlock span {
+	font-size: 20px;
+}
+section .victory {
+	display: none;
+}
+section .victory .firework:nth-child(1) {
+	position: absolute;
+	left: 27%;
+	top: 40px;
+}
+section .victory .firework:nth-child(2) {
+	position: absolute;
+	left: 51%;
+	top: 40px;
+}
+.fruit {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	top: 60px;
+	transform: translateX(-50%);
+}
+.fruit .gameInformacion {
+	font-size: 28px;
+	color: #222;
+	text-align: center;
+	margin-bottom: 20px;
+	position: relative;
+	padding: 0 15px;
+}
+.fruit .gameInformacion:first-letter {
+	color: red;
+}
+.fruit .gameInformacion:first-line {
+	background: #fff;
+}
+.fruit .gameInformacion b {
+	position: absolute;
+	bottom: -45px;
+    right: -88px;
+    font-size: 24px;
+	color: red;
+}
+.fruit .gameInformacion b i {
+	font-style: normal;
+	font-family: sans-serif;
+	font-size: 33px;
+	background: #ff0000;
+	padding: 0 4px;
+	color: #fff;
+}
+.fruit .basicFruit {
+	width: 200px;
+	z-index: 5;
+	transition: .5s;
+}
+.fruit .basicFruit:hover {
+	transform: scale(1.05);
+}
+.fruit .banner {
+	position: relative;
+}
+.fruit .banner span {
+	position: absolute;
+	top: -4px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 25px;
+	color: #fff;
+	text-transform: uppercase;
+}
+.fruit .banner img  {
+	width: 505px;
+	margin-top: -25px;
+}
+.fruit .label {
+	margin-top: -40px;
+}
+.fruit .label label {
+	font-size: 45px;
+	letter-spacing: 10px;
+	background: url(image/coins/back.png);
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	padding: 4px 45px 7px;
+	display: inline-block;
+	text-transform: uppercase;
+	transition: .2s;
+	transform-origin: top;
+	transform: scaleY(0);
+}
+.fruit .label label.labelEffect {
+	transform: scaleY(1);
+}
+.fruit .nextLevel {
+	display: none;
+	cursor: pointer;
+}
+.fruit .nextLevel:hover {
+	opacity: .4;
+}
+.fruit .nextLevel.arrowRight {
+	animation: nextLevel 5s infinite;
+	display: block;
+}
+.fruit .nextLevel img {
+	width: 150px;	
+}
+@keyframes nextLevel {
+	0% { transform: scale(1); filter: hue-rotate(10deg);}
+	10% { transform: scale(1.3); filter: hue-rotate(800deg);}
+	20% { transform: scale(1); filter: hue-rotate(800deg);}
+	30% { transform: scale(1.5); filter: hue-rotate(1500deg);}
+	40% { transform: scale(1.1); filter: hue-rotate(800deg);}
+	50% { transform: scale(1.4); filter: hue-rotate(800deg);}
+	60% { transform: scale(1); filter: hue-rotate(0deg);}
+	70% { transform: scale(1.3); filter: hue-rotate(0deg);}
+	80% { transform: scale(1); filter: hue-rotate(800deg);}
+	90% { transform: scale(1.3); filter: hue-rotate(800deg);}
+	100% { transform: scale(1); filter: hue-rotate(0deg);}
+}
+.titles {
+	width: 70px;
+	height: 70px;
+	border-radius: 61px 98px / 34px;
+	text-align: center;
+	padding-top: 8px;
+	background: linear-gradient(9deg, #9c9c9c, white);
+	cursor: pointer;
+	box-shadow: 0px 3px 5px #333;
+}
+.titles:hover {
+	background: linear-gradient(9deg, #ff0000, #ffeb00);
+}
+.titles:active {
+	background: linear-gradient(9deg, #ff0000, #fff);
+}
+.titles:hover h5 {
+	background: linear-gradient(45deg, #fff, #fff);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	transition: .1s;
+}
+.titles:active h5 {
+	filter: drop-shadow(0 0 3px #000);
+}
+.titles.room1.x {
+	position: absolute;
+	bottom: 6%;
+	left: 3%;
+}
+.titles.room1.dz {
+	position: absolute;
+	bottom: 5.2%;
+	right: 3.5%;
+}
+.titles.room1.n {
+	position: absolute;
+	bottom: 21.2%;
+	left: 15%;
+}
+.titles.room1.o {
+	position: absolute;
+	bottom: 21.1%;
+    left: 44%;
+	width: 60px;
+	height: 60px;
+}
+.titles.room1.o h5 {
+	font-size: 36px;
+}
+.titles.room1.r {
+	position: absolute;
+	bottom: 21%;
+	right: 19%;
+	width: 65px;
+	height: 65px;
+}
+.titles h5 {
+	font-size: 40px;
+	background: linear-gradient(45deg, #ff1616, #585800);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	filter: drop-shadow(0 0 3px #fff);
+}
