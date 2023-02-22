@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Քաղցր Մանկություն</title>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style/room2.css">
+	<link rel="stylesheet" href="../media.css">
+	<link rel="shortcut icon" href="../image/coins/Gamelogo.png">
+</head>
+<body>
+	<div class="inf">
+		<img class="logo" src="../image/logo.png" alt="Logo">
+		<p class="author">Developer Hovo Vardanyan</p>
+	</div>
+	<article class="menu room2M">
+		<div class="topMenuBlock">
+			<div class="gameLogoHome"><img src="../image/coins/Gamelogo.png" title="Խաղի հեղինակ` Հովո Վարդանյան"></div>
+			<div class="gameName" title="Քաղցր Մանկություն"><h1>Քաղցր Մանկություն</h1></div>
+		</div>
+		<div class="buttonMenuStyle">
+			<div class="gamePlay start" title="Start">Խաղալ</div>
+			<div class="gamePlay descr" title="Developer Hovo Vardanyan">Բնութագիր</div>
+		</div>
+		<div class="infoGame">
+			<div class="infoClose">
+				<span>&times;</span>
+			</div>
+			<aside>Խաղալով հիշիր Քաղցր Մանկությունդ, Ժպտա այսօր այնպես, ինչպես երեխա ժամանակ:
+				<img src="../image/coins/GameLogo.png">
+				<img src="../image/coins/always.png">
+				<div class="author">Developer Hovo Vardanyan<br>All Right Reserved &#169; 2021</div>
+			</aside>
+		</div>
+	</article>
+	<section class="game_room_2">
+		<div class="home_menu">
+			<button>Մենյու</button>
+		</div>
+		<div class="rightCoins">
+			<h3>դու հավաքել ես</h3>
+			<div class="coinsBlock">
+				<div class="coins"><b>1</b></div>
+				<span>միավոր</span>
+			</div>
+		</div>
+		<div class="victory">
+			<div class="firework"><img src="../image/coins/victory.gif"></div>
+			<div class="firework"><img src="../image/coins/victory2.gif"></div>
+		</div>
+		<div class="fruit">
+			<div class="gameInformacion">Տառերով հավաքիր պատկերված մրգի անվանումը <b>և կստանաս <i>1</i> - միավոր</b></div>
+			<img class="basicFruit" src="../image/room2/strawberry.png">
+			<div class="banner"><span></span><img src="../image/coins/banner.png"></div>
+			<div class="label rom2"><label></label></div>
+			<a href="room3.html"><div class="nextLevel"><img src="../image/coins/arrowRight.png"></div></a>
+		</div>
+		<div class="gameMan_room2">
+			<img src="../image/room2/man.gif">
+		</div>
+		<div class="titles room2 e">
+			<h5>Ե</h5>
+		</div>
+		<div class="titles room2 l">
+			<h5>Լ</h5>
+		</div>
+		<div class="titles room2 a">
+			<h5>Ա</h5>
+		</div>
+		<div class="titles room2 k">
+			<h5>Կ</h5>
+		</div>
+	</section>
+	
+	<script>
+		const GameMenu = document.querySelector('article.menu');
+		const startGame = document.querySelector('.menu .gamePlay.start');
+		startGame.onclick = function() { GameMenu.style.display = 'none'; };
+		const descrOpen = document.querySelector('.menu .gamePlay.descr');
+		const descrCloseOpen = document.querySelector('.menu .infoGame');
+		const CloseX = document.querySelector('.infoGame .infoClose');
+		descrOpen.onclick = function() {
+			descrCloseOpen.style.display = 'flex';
+		};
+		
+		const theme = new Audio();
+		theme.src = '../music/theme.mp3';
+		document.onmousedown = () => theme.play();
+		theme.ontimeupdate = () => theme.ended ? theme.play() : '';
+		
+		CloseX.onclick = function() {
+			descrCloseOpen.style.display = 'none';
+		};
+		
+		const homeMenu = document.querySelector('.home_menu button');
+		homeMenu.onclick = function() { GameMenu.style.display = 'flex'; };
+		
+		let buttonE = document.querySelector('.titles.room2.e');
+		let buttonL = document.querySelector('.titles.room2.l');
+		let buttonA = document.querySelector('.titles.room2.a');
+		let buttonK = document.querySelector('.titles.room2.k');
+		let room2Label = document.querySelector('.label.rom2 label');
+		
+		buttonE.addEventListener('click', function() {
+			if (room2Label.innerHTML === '') {
+				room2Label.innerHTML = 'Ե';
+				room2Label.classList.add('labelEffect');
+				this.style.display = 'none';
+			}
+		});
+		buttonL.addEventListener('click', function() {
+			if (room2Label.innerHTML === 'Ե') {
+				room2Label.innerHTML = 'ԵԼ';
+				this.style.display = 'none';
+			}
+		});
+		buttonA.addEventListener('click', function() {
+			if (room2Label.innerHTML === 'ԵԼ') {
+				room2Label.innerHTML = 'ԵԼԱ';
+				this.style.display = 'none';
+			}
+		});
+		let nextLevel = document.querySelector('.fruit .nextLevel');
+		let goodJob = document.querySelector('.fruit .banner span');
+		let firework = document.querySelector('section .victory');
+		let coins = document.querySelector('.coins b');
+		let coinsBlock = document.querySelector('.coins');
+		buttonK.addEventListener('click', function() {
+			if (room2Label.innerHTML === 'ԵԼԱ') {
+				room2Label.innerHTML = 'ԵԼԱԿ';
+				this.style.display = 'none';
+				coins.innerHTML = '2';
+				coinsBlock.classList.add('victoryPlus');
+				firework.style = 'display: block;';
+				goodJob.innerHTML = 'Ապրես դու';
+				nextLevel.classList.add('arrowRight');
+				document.querySelector('.gameInformacion').style.display = 'none';
+			}
+		});
+	</script>
+</body>
+</html>
