@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flappy Bird Developer H. Vardanyan</title>
+	<link rel="shortcut icon" href="img/2.png">
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		.game {
+			width: 1400px;
+			height: 700px;
+			background: url(img/bg.webp) repeat-x bottom / cover;
+			position: relative;
+			margin: auto;
+			overflow: hidden;
+		}
+		.game::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: #6e8500;
+			mix-blend-mode: difference;
+			z-index: 2;
+			opacity: 0;
+			transition: 6s;
+		}
+		.game.night::after {
+			opacity: 1;
+		}
+		@keyframes bg {
+			to { background-position-x: -1400px; }
+		}
+		.game .bird {
+			position: absolute;
+			top: 50px;
+			left: 100px;
+			width: 73px;
+			height: 56px;
+			background: url(img/2.png) no-repeat center / 73px 56px;
+			transition: .1s;
+			z-index: 4;
+		}
+		.game .bird .eye {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			width: 23px;
+			height: 19px;
+			border-radius: 72% 74% 0;
+			overflow: hidden;
+		}
+		.game .bird .eye::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			background: #000;
+			animation: eye 6s linear infinite;
+		}
+		@keyframes eye {50%{height:0;}51%{height:0;}53%{height:100%;}56.1%{height:0;}100%{height:0;}
+		}
+		@keyframes gameOver1 {
+			to { top: calc(100% - 130px); transform: rotate(180deg); }
+		}
+		@keyframes gameOver2 {
+			to { transform: rotate(180deg); top: calc(100% - 130px); }
+		}
+		.game .truba {
+			position: absolute;
+			right: -150px;
+			width: 90px;
+			height: 208px;
+			background: url(img/1.png) no-repeat -3px -13px / 100px 265px;
+			transition: .5s 1s;
+			z-index: 1;
+			perspective: 850px;
+			transform-style: preserve-3d;
+		}
+		.game :nth-of-type(6) .flower,
+		.game :nth-of-type(7) .flower {
+			display: none;
+		}
+		.game .truba.top {
+			top: 0;
+			transform: scaleY(-1);
+		}
+		.game .truba.bottom {
+			bottom: 86px;
+		}
+		@keyframes truba {
+			to { right: 101%; }
+		}
+		.game .truba .flower {
+			position: absolute;
+			top: 15px;
+			left: 13px;
+			width: 65px;
+			height: 75px;
+			background: url(img/flower.png) no-repeat -1px 0 / 65px 75px;
+			transform: translateZ(-2px);
+			animation: 6s linear infinite;
+		}
+		@keyframes flower {
+			30% { top: -75px; }
+			40% { top: -75px; }
+			60% { top: 15px; }
+			100% { top: 15px; }
+		}
+		.game .coin {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			width: 70px;
+			height: 70px;
+			background: url(img/coin.png) no-repeat center / cover;
+			z-index: 3;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font: bold 40px sans-serif;
+			filter: drop-shadow(2px 2px 2px #00000080);
+		}
+		.game .time {
+			position: absolute;
+			top: 10px;
+			right: 40px;
+			font: bold 30px sans-serif;
+		}
+		.game .menu {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #9CE759;
+			z-index: 5;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-direction: column;
+			padding-top: 5%;
+			transition: .5s;
+		}
+		.game .menu img {
+			height: 300px;
+			transform: translate(-30%, 0);
+			animation: logo 1s linear infinite alternate;
+			pointer-events: none;
+		}
+		@keyframes logo {
+			100% {
+				transform: translate(30%);
+			}
+		}
+		.game .menu .play {
+			padding: 14px 15px 14px 45px;
+			border-radius: 20px 0 0 20px;
+			background: #fff;
+			font: bold 40px sans-serif;
+			cursor: pointer;
+			border: 4px solid #000;
+			border-right: 0;
+			position: relative;
+			transition: .5s;
+			filter: drop-shadow(2px 2px 2px #fff);
+			transform: translateX(-20px);
+		}
+		.game .menu .play::after {
+			content: '';
+			position: absolute;
+			top: -4px;
+			right: -35px;
+			width: 35px;
+			height: 100%;
+			background: #fff;
+			border: 4px solid #000;
+			border-left: 0;
+			border-radius: 0 20px 20px 0;
+			transition: .5s;
+			transform-origin: 0 100%;
+			pointer-events: none;
+		}
+		.game .menu .play:hover {
+			background: #af004a;
+			color: #fff;
+		}
+		.game .menu .play:active {
+			background: #ffff00;
+			color: #000;
+		}
+		.game .menu .play:hover::after {
+			transform: rotate(30deg);
+			background: #af004a;
+		}
+		.game .menu .play:active::after {
+			background: #ffff00;
+		}
+		.game .menu .point {
+			margin-top: 4rem;
+			font: bold 32px cursive;
+		}
+		.game .menu .timePoint {
+			margin-top: 10px;
+			font: bold 25px cursive;
+		}
+		.info {
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			pointer-events: none;
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+			z-index: 10;
+			transform: translateX(-50%);
+		}
+		.info .studio {
+			height: 50px;
+			border-radius: 8px;
+		}
+		.info .author {
+			font: 18px cursive;
+			text-align: center;
+		}
+		.menu .gameTitle {
+			position: absolute;
+			top: 13%;
+			left: 7%;
+			transform: rotate(-15deg);
+			font: bold 5rem cursive;
+			color: #ff5c00;
+			text-shadow: 0px 4px 3px #fff, -4px 6px 12px #000;
+			-webkit-text-stroke: 2px #fff;
+			z-index: 10;
+			animation: menuTitle 2s infinite;
+		}
+		@keyframes menuTitle {
+			50% { letter-spacing: 3px; word-spacing: 15px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="info">
+		<img class="studio" src="img/logo.png" alt="Img">
+		<p class="author">Developer Hovo Vardanyan<br>All Right Reserved 2022</p>
+	</div>
+	<div class="game">
+		<div class="bird">
+			<div class="eye"></div>
+		</div>
+		<div class="truba top">
+			<div class="flower"></div>
+		</div>
+		<div class="truba top">
+			<div class="flower two"></div>
+		</div>
+		<div class="truba bottom">
+			<div class="flower"></div>
+		</div>
+		<div class="truba bottom">
+			<div class="flower two"></div>
+		</div>
+		<div class="truba top">
+			<div class="flower"></div>
+		</div>
+		<div class="truba bottom">
+			<div class="flower"></div>
+		</div>
+		<div class="coin">0</div>
+		<div class="time">Time 0</div>
+		<div class="menu">
+			<h1 class="gameTitle">Flappy Bird 1</h1>
+			<img src="img/logo.jpg" alt="Logo">
+			<div class="play">Play</div>
+			<h2 class="point">My Point <span>0</span></h2>
+			<h2 class="timePoint">My Record Time <span>0</span></h2>
+		</div>
+	</div>
+	<script>
+		const menuMyPoint = document.querySelector('.game .menu .point span');
+		const menuMyTimeRecord = document.querySelector('.game .menu .timePoint span');
+		window.onload = () => {
+			menuMyPoint.innerText = localStorage.getItem('BirdPoint') || 0;
+			menuMyTimeRecord.innerText = localStorage.getItem('BirdMyTime') || 0;
+		};
+		const play = document.querySelector('.game .menu .play');
+		const menu = document.querySelector('.game .menu');
+		const startGame = () => {
+			const game = document.querySelector('.game');
+			const bird = document.querySelector('.game .bird');
+			const coin = document.querySelector('.game .coin');
+			const gameTime = document.querySelector('.game .time');
+			const trubaTop = document.querySelectorAll('.game .truba.top');
+			const trubaBottom = document.querySelectorAll('.game .truba.bottom');
+			const flowerTop = document.querySelectorAll('.game .truba.top .flower');
+			const flowerBottom = document.querySelectorAll('.game .truba.bottom .flower');
+			const truba = document.querySelectorAll('.game .truba');
+			game.style.animation = 'bg 6s linear infinite';
+			truba.forEach((item, index) => {
+				item.style.animation = 'truba 6s 1s linear infinite';
+			});
+			truba[1].style.animationDelay = '4s';
+			truba[3].style.animationDelay = '4s';
+			truba[4].style.animationDelay = '8s';
+			truba[5].style.animationDelay = '8s';
+			const theme = new Audio('img/theme.mp3');
+			const soundCoin = new Audio('img/coin.mp3');
+			theme.play();
+			theme.ontimeupdate = () => theme.ended ? theme.play() : '';
+			const dataGame = {
+				topY: 50,
+				point: 0,
+				time: 6,
+				timeGame: 0,
+				myPoint: +localStorage.getItem('BirdPoint') || 0,
+				myRecordTime: +localStorage.getItem('BirdMyTime') || 0,
+				bool: true
+			};
+			const randomHeight = () => Math.round(Math.random() * (250 - 100) + 100);
+			const endGame = () => {
+				game.style.animationPlayState = 'paused';
+				truba.forEach(item => {
+					item.style.animationPlayState = 'paused';
+				});
+			};
+			const checkRecord = (individual) => {
+				if (dataGame.point > dataGame.myPoint) {
+					dataGame.myPoint = dataGame.point;
+					localStorage.setItem('BirdPoint', parseInt(dataGame.myPoint));
+				}
+				if (dataGame.timeGame > dataGame.myRecordTime) {
+					dataGame.myRecordTime = dataGame.timeGame;
+					localStorage.setItem('BirdMyTime', dataGame.myRecordTime);
+				}
+				setTimeout(() => window.location.reload(), individual);
+			};
+			let timeInt = setInterval(() => {
+				dataGame.timeGame++;
+				dataGame.timeGame % 100 == 0 ? soundCoin.play() : '';
+				gameTime.innerText = 'Time ' + dataGame.timeGame;
+			}, 1000);
+			let set = setInterval(() => {
+				dataGame.time -= .00001;
+				game.style.animationDuration = dataGame.time + 's';
+				trubaTop.forEach((item, index) => {
+					item.style.animationDuration = dataGame.time + 's';
+					if (item.offsetLeft + 5 <= bird.offsetLeft + bird.offsetWidth && bird.offsetTop < item.offsetTop + item.offsetHeight && item.offsetLeft + item.offsetWidth > bird.offsetLeft + 20) {
+						bird.style.animation = 'gameOver1 1s forwards';
+						clearInterval(set);
+						clearInterval(timeInt);
+						endGame();
+						bird.style.backgroundImage = 'url(img/3.png)';
+						bird.style.transition = '.8s 1.2s';
+						checkRecord(2200);
+					}
+					if (flowerTop[index].getBoundingClientRect().left + 5 <= bird.offsetLeft + bird.offsetWidth && bird.offsetTop < flowerTop[index].getBoundingClientRect().bottom - 10 && flowerTop[index].getBoundingClientRect().right > bird.offsetLeft + 20) {
+						bird.style.animation = 'gameOver1 1s forwards';
+						clearInterval(set);
+						clearInterval(timeInt);
+						endGame();
+						bird.style.backgroundImage = 'url(img/3.png)';
+						bird.style.transition = '.8s 1.2s';
+						checkRecord(2200);
+					}
+					if (item.offsetLeft + 100 <= bird.offsetLeft + bird.offsetWidth && bird.offsetTop > item.offsetTop + item.offsetHeight && item.offsetLeft + item.offsetWidth > bird.offsetLeft + 53 && dataGame.bool) {
+						dataGame.bool = false;
+						dataGame.point++;
+						coin.innerText = parseInt(dataGame.point);
+					}
+					if (bird.offsetLeft > item.offsetLeft + item.offsetWidth) {
+						dataGame.bool = true;
+					}
+					if (item.offsetLeft + item.offsetWidth < game.offsetLeft - 20) {
+						item.style.height = randomHeight() + 'px';
+					}
+				});
+				trubaBottom.forEach((item, index) => {
+					item.style.animationDuration = dataGame.time + 's';
+					if (item.offsetLeft + 5 <= bird.offsetLeft + bird.offsetWidth && bird.offsetTop + bird.offsetHeight > item.offsetTop + 5 && item.offsetLeft + item.offsetWidth > bird.offsetLeft + 20) {
+						bird.style.animation = 'gameOver1 .5s forwards';
+						clearInterval(set);
+						clearInterval(timeInt);
+						endGame();
+						bird.style.backgroundImage = 'url(img/3.png)';
+						bird.style.transition = '.8s .8s';
+						checkRecord(1800);
+					}
+					if (flowerBottom[index].getBoundingClientRect().left + 5 <= bird.offsetLeft + bird.offsetWidth && bird.offsetTop + bird.offsetHeight > flowerBottom[index].getBoundingClientRect().top + 10 && flowerBottom[index].getBoundingClientRect().right > bird.offsetLeft + 20) {
+						bird.style.animation = 'gameOver1 .5s forwards';
+						clearInterval(set);
+						clearInterval(timeInt);
+						endGame();
+						bird.style.backgroundImage = 'url(img/3.png)';
+						bird.style.transition = '.8s .8s';
+						checkRecord(1800);
+					}
+					if (item.offsetLeft + item.offsetWidth < game.offsetLeft - 20) {
+						item.style.height = randomHeight() + 'px';
+					}
+				});
+				if (bird.offsetTop + bird.offsetHeight >= game.offsetHeight - 87) {
+					bird.style.animation = 'gameOver2 .4s forwards';
+					clearInterval(set);
+					clearInterval(timeInt);
+					endGame();
+					bird.style.backgroundImage = 'url(img/3.png)';
+					bird.style.transition = '.8s .4s';
+					checkRecord(1400);
+				}
+				if (dataGame.point >= 80) {
+					flowerTop.forEach((item, index) => {
+						item.style.animationName = 'flower';
+						flowerBottom[index].style.animationName = 'flower';
+					});
+					flowerTop[1].style.animationDelay = '3s';
+					flowerBottom[0].style.animationDelay = '3s';
+				}
+			}, 1);
+			setInterval($ => game.classList.toggle('night'), 20000);
+			setInterval(() => {
+				dataGame.topY += 10;
+				bird.style.top = dataGame.topY + 'px';
+			}, 50);
+			game.onclick = () => {
+				dataGame.topY -= 80;
+				bird.style.top = dataGame.topY + 'px';	
+			};
+			document.onkeydown = e => {
+				if (e.which == 32 || e.which == 38) {
+					dataGame.topY -= 80;
+					bird.style.top = dataGame.topY + 'px';
+				}	
+			};	
+		};
+		play.onclick = () => {
+			menu.style.top = '100%';
+			startGame();
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+	</script>
+</body>
+</html>
+
+
+
+
+
+
