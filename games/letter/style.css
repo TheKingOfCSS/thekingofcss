@@ -1,0 +1,422 @@
+*{margin: 0; padding: 0; outline: 0; user-select: none; box-sizing: border-box;}
+.game{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+.game .displey{
+    height: 100px;
+    background: rgb(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 850px;
+    perspective-origin: 10%;
+    background: linear-gradient(180deg, #437d00, #008d95cc);
+    box-shadow: inset 0 -10px 0 #0009;
+}
+.game .displey .backMenu{
+    padding: 7px 25px;
+    font:bold 20px sans-serif;
+    border-radius: 40px;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(45deg, #f00, #dc00ff);
+    position: absolute;
+    left: 2%;
+    transition: .4s;
+}
+.game .displey .backMenu:hover{
+    transform: rotateX(25deg);
+    box-shadow: 0 6px 2px #000;
+}
+.game .displey .backMenu:active{
+    transform: translateY(3px) rotateX(25deg);
+    box-shadow: 0 3px 2px #ffc400;
+}
+.game .displey .time{
+    color: white;
+    font: bold 2.5rem sans-serif;
+}
+.game .displey .starBlock {
+    position: fixed;
+    right: 2%;
+    display: flex;
+    column-gap: 15px;
+    filter: drop-shadow(2px 2px 2px #0009);
+    align-items: center;
+    top: 25px;
+}
+@keyframes stars{
+    to {
+        right: 50%;
+        top: 50vh;
+        transform: translate(50% , -50%);
+        
+    }
+}
+.game .displey .starBlock .star{
+    width: 50px;
+    height: 50px;
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: .4s;
+}
+.game .displey .info {
+	position: absolute;
+	right: 17%;
+    top: 12px;
+    background: #0078a5;
+    padding: 6px 20px 8px;
+    border-radius: 50px;
+    border: 3px solid #fff;
+    color: #fff;
+    font: bold 2rem cursive;
+    text-shadow: -1px 2px 4px #000, -1px 3px 2px #fff;
+    box-shadow: 0 3px 2px #ffffff9e, -1px 5px 7px #000000e8;
+}
+.game .letterBlock{
+    height: calc(100% - 100px);
+    background: linear-gradient(0, #002837, #fff);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+}
+.game .letterBlock .letters{
+    display: flex;
+    transition: .5s;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 170PX;
+}
+.game .letterBlock .letters h3{
+    font: bold 3rem/.9 cursive;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+.game .letterBlock .letters.lv5 h3{
+    font: bold 1.9rem/.9 cursive;
+}
+.game .letterBlock .letters.lv6 h3{
+    font: bold 1.7rem/.9 cursive;
+}
+.game .letterBlock .letters.lv7 h3{
+    font: bold 1.7rem/.9 cursive;
+}
+.game .letterBlock .letters.lv8 h3{
+    font: bold 1.4rem/.9 cursive;
+}
+.game .letterBlock .letters.lv9 h3{
+    font: bold 1.7rem/.9 cursive;
+}
+.game .letterBlock .letters.lv10 h3{
+    font: bold 1.2rem/.9 cursive;
+}
+.game .letterBlock .letters .column {
+	margin: 0 5px;
+	opacity: 0;
+}
+.game .letterBlock .letters.lv11 h3{
+    font: bold 2rem/.9 cursive;
+}
+.game .letterBlock .letters.lv12 h3{
+    font: bold 1.7rem/.9 cursive;
+}
+.game .letterBlock .letters.lv13 h3{
+    font: bold 1.2rem/.9 cursive;
+	text-shadow: 0 2px 2px #000;
+}
+.game .letterBlock .letters.lv14 h3{
+    font: bold 1.65rem/.9 cursive;
+	text-shadow: 0 2px 2px #000;
+}
+.game .letterBlock .letters.lv15 h3{
+    font: bold 1.65rem/.9 cursive;
+}
+.game .letterBlock .letters.lv16 h3{
+    font: bold 1.15rem/.9 cursive;
+	text-shadow: 0 2px 2px #000;
+}
+.game .letterBlock .letters.lv17 h3{
+    font: bold 1.15rem/.9 cursive;
+	text-shadow: 0 2px 2px #000;
+}
+.game .letterBlock .letters.lv18 h3{
+    font: bold 1.15rem/.9 cursive;
+}
+.game .letterBlock .letters.lv19 h3{
+    font: bold 1.15rem/.9 cursive;
+}
+.game .letterBlock .letters h3#win {
+	color: #0f0 !important;
+	text-shadow: 0 2px 2px #000 !important;
+	opacity: 1 !important;
+}
+.game .letterBlock .letters .column#winColumn {
+	opacity: 1 !important;
+}
+.game .letterBlock .letters h3:hover{
+    opacity: .5;
+    text-shadow: 0 2px 2px #0009;
+}
+.game .GameOver{
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, .7);
+    z-index: 10;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    color: #fff;
+    transition: .5s;
+}
+.game .GameOver h3{
+    font: bold 5rem cursive;
+}
+.game .GameOver button{
+    padding: 10px 35px 13px;
+    border-radius:30px ;
+    font: bold 1.7rem cursive;
+    cursor: pointer;
+    margin-top: 25px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+}
+.game .GameOver button::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: #ff1b1b;
+	z-index: -1;
+	transition: .4s;
+	clip-path: circle(0 at 3% 98%);
+	transition-delay: .2s;
+}
+.game .GameOver button::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: #0aff00;
+	z-index: -1;
+	transition: .4s;
+	clip-path: circle(0 at 97% 98%);
+}
+.game .GameOver button:hover::before {
+	clip-path: circle(100%);
+	transition-delay: 0s;
+}
+.game .GameOver button:hover::after {
+	clip-path: circle(100%);
+	transition-delay: .2s;
+}
+.game .room{
+    display: flex;
+    justify-content: center;
+    transform: translatex(-50%);
+    transition: .7s .4s;
+    opacity: 0;
+    visibility: hidden;
+    perspective: 850px;
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+
+}
+.game .room button{
+    border: 1px solid #000;
+    background: #fff;
+    padding: 10px 25px 12px;
+    border-radius: 40px;
+    font: bold 22px cursive;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin: 0 15px;
+    transition: .5s;
+}
+.game .room button span{
+    font-size: 35px;
+}  
+.game .room button:hover{
+    background: var(--bg);
+    color: #fff;
+    text-shadow: 1px 2px 5px #000;
+    transform: rotateX(35deg);
+    box-shadow: 0 10px 2px #000;   
+}
+.game .room button:active{
+    box-shadow: 0 5px 2px gold;
+    transform:  translateY(5px) rotateX(35deg);
+}
+.game .room .back span{
+    transform: scaleX(-1);
+}
+.game .effect,
+.menu .effect{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+	clip-path: circle(100%);
+    z-index: 10;
+    transition: .4s;
+}
+.menu .effect {
+    clip-path: circle(0);
+}
+
+.menu {
+	position: relative;
+	background: linear-gradient(0, #002837, #fff);
+	height: 100vh;
+	display: grid;
+	justify-items: center;
+	padding-top: 10%;
+	grid-auto-rows: 35%;
+	overflow: hidden;
+}
+.menu h1 {
+	font: bold 5rem sans-serif;
+	color: #fff;
+	text-shadow: -9px 0 3px #0c00ff, -16px 0 4px #00000096;
+	animation: titleMenu 1s linear infinite alternate;
+	transition: .8s;
+}
+@keyframes titleMenu {
+	from {
+		text-shadow: -9px 0 3px #0c00ff, -16px 0 4px #00000096;
+	}
+	to {
+		text-shadow: 9px 0 3px #0c00ff, 16px 0 4px #00000096;
+	}
+}
+.menu .play {
+	align-self: start;
+	padding: 17px 55px;
+	border-radius: 40px;
+	font: bold 3rem sans-serif;
+	display: flex;
+	cursor: pointer;
+	box-shadow: -1px 6px 2px #a5a5a5, -1px 14px 5px #0052ffde;
+	border: 0;
+	animation: playColor 1s infinite;
+	transition: .8s;
+}
+.menu .play:hover span {
+	animation: playSpan 2s;
+}
+@keyframes playSpan {
+	50% {
+		transform: translateX(calc(var(--a) * 15px));
+	}
+}
+@keyframes playColor {
+	50% {
+		box-shadow: -1px 6px 2px #a5a5a5, -1px 14px 5px #00ffe7de;
+	}
+}
+.menu .studio {
+	position: absolute;
+	bottom: 3%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	color: #fff;
+	transition: .8s;
+}
+.menu .studio h3 {
+	font: 18px sans-serif;
+	text-shadow: 0 2px 2px #000;
+}
+.menu .logo {
+	position: absolute;
+	bottom: 3%;
+	left: 1.5%;
+}
+.menu .logo img {
+	height: 90px;
+	border-radius: 10px;
+	box-shadow: -3px 4px 3px #0007;
+}
+.menu .rooms {
+	position: absolute;
+	top: -100%;
+	left: 50%;
+	transform: translateX(-50%);
+	font: bold 2rem cursive;
+	height: 65%;
+	overflow: auto;
+	color: #fff;
+	text-shadow: 0 3px 2px #000, -4px 5px 5px #0009;
+	padding: 0 35px;
+	transition: .8s;
+}
+.menu .rooms .row {
+	display: flex;
+	margin-bottom: 10px;
+	cursor: pointer;
+	padding: 7px 15px;
+    border-radius: 15px;
+	transition: .5s;
+}
+.menu .rooms .row:hover {
+	background: #006608;
+}
+.menu .rooms .row.noactive {
+	filter: brightness(.5) blur(2px);
+	pointer-events: none;
+}
+.menu .rooms .starBlock {
+	display: flex;
+	align-items: center;
+	margin-left: 15px;
+	filter: drop-shadow(0 3px 3px #000);
+}
+.menu .rooms .starBlock .star {
+	width: 40px;
+    height: 40px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.menu .rooms::-webkit-scrollbar {
+	width: 4px;
+}
+.menu .rooms::-webkit-scrollbar-thumb {
+	background: #fff;
+	border-radius: 20px;
+}
+.game .emoji {
+	position: absolute;
+	top: -150px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 120px;
+	height: 120px;
+	background: url(levels/smile.gif) no-repeat center / contain;
+	animation: emoji 10s linear infinite;
+}
+@keyframes emoji {
+	10%, 40%  { top: -12px; }
+	45%  { top: -150px; }
+}
+.game .winner {
+	position: absolute;
+	top: -150%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font: bold 6rem sans-serif;
+	white-space: nowrap;
+	text-shadow: 0 6px 3px #fff, -7px 12px 5px #000;
+	color: #ff8900;
+	transition: .5s;
+}
+
+
+
