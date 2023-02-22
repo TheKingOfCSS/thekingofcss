@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rabbit Target Game</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="img/rebbit.gif">
+</head>
+<body>
+	<div class="game">
+		<div class="closet">
+			<div class="backMenu">Menu</div>
+			<div class="time">60s</div>
+			<div class="point">0</div>
+			<div class="start">Start</div>
+			<div class="example">
+				<div class="hero"></div>
+				<h3>0 / 10</h3>
+			</div>
+		</div>
+		<div class="roomBlock">
+			<div class="big">
+				<div class="room">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r2">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r3">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-2">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff7a2750;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-3">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #2759ff50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-3 p23">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27d550;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-2 pr">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27ff5150;"></div>
+					</div>
+					<div class="path p1 pe">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="point" style="--c: #24ddff50;"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r4">
+					<div class="path p1" style="--i: 0;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr2" style="--i: 1;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr3" style="--i: 2;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr4" style="--i: 3;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr5" style="--i: 4;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #001dff50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr6" style="--i: 5;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr7" style="--i: 6;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr8" style="--i: 7;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p1 pr9" style="--i: 8;">
+						<div class="gameOver top"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r5">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #dd24ff50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 ps">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffff2480;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 ps pt">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #2457ff80;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 ps pe">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff00ff80;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r4 pe">
+					<div class="path p1" style="--i: 0;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr2" style="--i: 1;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr3" style="--i: 2;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr4" style="--i: 3;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr5" style="--i: 4;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #001dff50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr6" style="--i: 5;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr7" style="--i: 6;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr8" style="--i: 7;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr9" style="--i: 8;">
+						<div class="gameOver top"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r3 seven">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-2">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff7a2750;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 p2-3">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #2759ff50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 p2-3 p23">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27d550;"></div>
+						<div class="gameOver bottom"></div>
+					</div>
+					<div class="path p2 p2-2 pr">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27ff5150;"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pe">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffee2480;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 p2-2 pr pn">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff6c0080;"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 p2-3 pn">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #2759ff50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p2 p2-2 pn pb">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff00ff80;"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pe pw">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff2c80;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+						<div class="point winner"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r4 pe eight">
+					<div class="path p1" style="--i: 0;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr2" style="--i: 1;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff27cd50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr3" style="--i: 2;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr4" style="--i: 3;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr5" style="--i: 4;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #001dff50;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr6" style="--i: 5;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffc600ab;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr7" style="--i: 6;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #27e4ff94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr8" style="--i: 7;">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pr9" style="--i: 8;">
+						<div class="gameOver top"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r5 nine">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pri">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff24cc80;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="path p1 pwin">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffd52480;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+				<div class="room r5 nine ten">
+					<div class="path p1">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #24ff3d94;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+						<div class="bomb last"></div>
+					</div>
+					<div class="path p1 pri">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ff24cc80;"></div>
+						<div class="gameOver bottom"></div>
+						<div class="bomb first"></div>
+						<div class="bomb"></div>
+						<div class="bomb last fast"></div>
+					</div>
+					<div class="path p1 pwin">
+						<div class="gameOver top"></div>
+						<div class="point" style="--c: #ffd52480;"></div>
+						<div class="point winner"></div>
+						<div class="gameOver bottom"></div>
+						<div class="gameOver end"></div>
+						<div class="bomb first"></div>
+					</div>
+					<div class="target"></div>
+				</div>
+			</div>
+		</div>
+		<div class="endGame">
+			<div class="topBar"></div>
+			<h2>GameOver</h2>
+			<button>Replay</button>
+		</div>
+	</div>
+	<div class="menuGame">
+		<div class="playGame" style="z-index: 1;">Play</div>
+		<div class="playGame">Play</div>
+		<h1>Rabbit Target</h1>
+		<img src="img/rebbit.gif" alt="Img" class="her">
+		<img src="img/log.png" alt="Img" class="studio">
+		<p class="author">
+			&copy; Copyright All Right Reserved 2023
+			<br>
+			Instructor Hovo Vardanyan
+		</p>
+	</div>
+	<script>
+		const rebbit = document.querySelectorAll('.game .room .target');
+		const startGame = document.querySelector('.game .closet .start');
+		const gameOver = document.querySelectorAll('.game .room .path .gameOver, .game .room .path .bomb');
+		const endGame = document.querySelector('.game .endGame');
+		const endGameTitle = document.querySelector('.game .endGame h2');
+		const endGameReplay = document.querySelector('.game .endGame button');
+		const points = document.querySelectorAll('.game .room .path .point:not(.winner)');
+		const pointText = document.querySelector('.game .closet .point');
+		const time = document.querySelector('.game .closet .time');
+		const myHero = document.querySelector('.game .closet .example .hero');
+		const myHeroQuantity = document.querySelector('.game .closet .example h3');
+		const rooms = document.querySelector('.game .roomBlock .big');
+		const playGameMenu = document.querySelectorAll('.menuGame .playGame');
+		const backMenu = document.querySelector('.game .closet .backMenu');
+		let myPoint = 0;
+		let myTime = 60;
+		let myTarget = 0;
+		let currentRoom = 0;
+		let currentRoomX = 0;
+		let set;
+		let timeBool = true;
+		const themeMusic = new Audio('sound/theme.mp3');
+		const pointSound = new Audio('sound/point.mp3');
+		const overSound = new Audio('sound/over.mp3');
+		const timeSound = new Audio('sound/time.mp3');
+		const pathSound = new Audio('sound/path.mp3');
+		const rabbitSound = new Audio('sound/rabbit.mp3');
+		const buttonSound = new Audio('sound/button.mp3');
+		const SoundPath = () => (pathSound.currentTime = 0, pathSound.play());
+		playGameMenu[0].onclick = () => {
+			buttonSound.play();
+			setTimeout(() => (themeMusic.play(), themeMusic.ontimeupdate = () => themeMusic.ended ? themeMusic.play() : ''), 5e2);
+			playGameMenu[0].style.display = 'none';
+			playGameMenu[0].parentElement.style.clipPath = 'circle(0)';
+			const anim = (time, t, l, r) => new Promise((resolve, rej) => setTimeout(() => resolve([t, l, r]), time));
+			const change = data => rebbit[currentRoomX].style = `top: ${data[0]}; left: ${data[1]}; rotate: ${data[2]};`;
+			const closet = [
+				() => {
+					SoundPath();
+					anim(1000, '50%', 'calc(100% - 125px)')
+					.then(r => change(r)).then(r => {
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '50%', 'calc(100% - 125px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .8;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '62%', '15%')
+					.then(r => (change(r), anim(1500, '22%', '15%'))).then(r => (change(r), anim(2000, '22%', '25%'))).then(r => (change(r), anim(2000, '62%', '25%'))).then(r => (change(r), anim(2000, '62%', 'calc(100% - 125px)'))).then(r => change(r)).then(r => {
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '51%', 'calc(100% - 125px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .45;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '50%', '35%')
+					.then(r => (change(r), anim(1500, '38%', '35%'))).then(r => (change(r), anim(2000, '37%', 'calc(100% - 125px)'))).then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .55;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '51%', 'calc(100% - 125px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .45;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '62%', '15%')
+					.then(r => (change(r), anim(1500, '22%', '15%'))).then(r => (change(r), anim(2000, '22%', '25%'))).then(r => (change(r), anim(2000, '62%', '25%'))).then(r => (change(r), anim(2000, '62%', '35%'))).then(r => (change(r), anim(2000, '22%', '35%'))).then(r => (change(r), anim(2000, '22%', '45%'))).then(r => (change(r), anim(2000, '62%', '45%'))).then(r => (change(r), anim(2000, '62%', 'calc(100% - 115px)'))).then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .7;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '50%', 'calc(100% - 105px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .4;
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '50%', 'calc(100% - 130px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .5;
+						rebbit[currentRoomX].style.translate = '0 -25%';
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+				() => {
+					SoundPath();
+					anim(1000, '50%', 'calc(100% - 215px)')
+					.then(r => change(r)).then(r => {
+						rebbit[currentRoomX].style.scale = .5;
+						rebbit[currentRoomX].style.translate = '0 -25%';
+						setTimeout(() => startGame.style = 'opacity: 1; visibility: visible;', 3e3);
+					});
+				},
+			];
+			closet[currentRoomX]();
+			const GlobalGameOver = () => (endGame.style.clipPath = 'circle(100%)', endGameTitle.style.scale = 1, endGameReplay.style.scale = 1, overSound.play(), themeMusic.pause(), clearInterval(set));
+			const GlobalWinner = () => {
+				timeSound.pause();
+				timeSound.currentTime = 0;
+				rabbitSound.currentTime = 0;
+				rabbitSound.play();
+				clearInterval(set);
+				myHeroQuantity.innerText = ++myTarget + ' / 10';
+				rebbit[currentRoomX].style.display = 'none';
+				currentRoom -= 1e2;
+				rooms.style.left = currentRoom + '%';
+				gameOver.forEach(item => item.onmouseover = null);
+				points.forEach(item => item.onmouseover = null);
+				rebbit[currentRoomX].onmouseover = null;
+				setTimeout(() => {
+					time.style.opacity = 0;
+					pointText.style.opacity = 0;
+					setTimeout(() => {
+						currentRoomX < 9 ? currentRoomX++ : '';
+						myTime = 60;
+						time.innerText = myTime + 's';
+						pointText.innerText = myPoint = 0;
+						time.style.opacity = 1;
+						pointText.style.opacity = 1;
+						myHero.style = null;
+						closet[currentRoomX]();
+					}, 1e3);
+				}, 1e3);
+			};
+			const GlobalStart = () => {
+				timeSound.play();
+				startGame.style = 'transition: none;';
+				gameOver.forEach(item => item.onmouseover = GlobalGameOver);
+				points.forEach(item => item.onmouseover = () => (pointText.innerText = ++myPoint, item.style.visibility = 'hidden', pointSound.play(), pointSound.currentTime = .2));
+				set = setInterval(() => timeBool ? (time.innerText = --myTime + 's', myTime == 0 ? (clearInterval(set), GlobalGameOver()) : '') : '', 1e3);
+				rebbit[currentRoomX].onmouseover = () => myHero.style.filter = 'drop-shadow(0 5px 6px #0f0)';
+				rebbit[currentRoomX].onmouseleave = () => myHero.style = null;
+				rebbit[currentRoomX].onclick = GlobalWinner;
+			};
+			startGame.onclick = GlobalStart;
+			endGameReplay.onclick = () => location['reload']();
+			backMenu.onclick = () => (playGameMenu[0].parentElement.style = null, timeBool = false, buttonSound.play(), buttonSound.currentTime = 0);
+			playGameMenu[1].onclick = e => (e.target.parentElement.style.clipPath = 'circle(0)', timeBool = true, buttonSound.play());
+		};
+		
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cby The King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+	</script>
+</body>
+</html>

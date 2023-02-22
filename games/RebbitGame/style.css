@@ -1,0 +1,913 @@
+* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.game {
+	height: 100vh;
+	position: relative;
+	background: url(img/bg.webp) center / 600px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	overflow: hidden;
+	-webkit-animation: bg 30s linear infinite;
+	animation: bg 30s linear infinite;
+}
+@-webkit-keyframes bg {
+	50% { background-size: 800px; }
+}
+@keyframes bg {
+	50% { background-size: 800px; }
+}
+.game .roomBlock {
+	width: 85%;
+	height: 100%;
+	position: relative;
+	background: linear-gradient(45deg, #00a6ff75, #1d00ff6b);
+	overflow: hidden;
+}
+.game .roomBlock .big {
+	width: 1000%;
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-transition: 1.3s;
+	transition: 1.3s;
+	position: relative;
+	left: 0;
+}
+.game .room {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.game .room .path {
+	position: absolute;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-line-pack: justify;
+	align-content: space-between;
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+.game .room .path .gameOver {
+	width: 100%;
+	height: 20px;
+	background: #fff;
+	cursor: not-allowed;
+}
+.game .room .path .end {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 25px;
+	height: 100%;
+}
+.game .room .path.p1 {
+	top: 50%;
+	width: 100%;
+	height: 200px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.game .room .target {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width: 75px;
+    height: 112px;
+    background: url(img/rebbit.gif) no-repeat -22px -15px / 120px 150px;
+	border-radius: 35px;
+	-webkit-transition: left 3s, top 3s, scale 1s;
+	transition: left 3s, top 3s, scale 1s;
+	-webkit-filter: drop-shadow(0 0 5px #fff) drop-shadow(0 10px 4px #fff);
+	filter: drop-shadow(0 0 5px #fff) drop-shadow(0 10px 4px #fff);
+	cursor: pointer;
+	z-index: 1;
+}
+.game .room .path .point {
+	width: calc((100% - 150px) / 4);
+	height: calc(100% - 40px);
+	background: var(--c);
+}
+.game .room .path .point.winner {
+	width: 150px;
+	background: conic-gradient(#000 25%, #fff 25% 50%, #000 50%, 75%, #fff 75%) 0 0 / 50px 53px;
+}
+.game .closet .start {
+	position: absolute;
+	bottom: 180px;
+	left: 45%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: #fff;
+	display: grid;
+	place-items: center;
+	font: bold 32px sans-serif;
+	-webkit-box-shadow: 0 0 12px 4px #fff;
+	box-shadow: 0 0 12px 4px #fff;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: .4s;
+	transition: .4s;
+	z-index: 10;
+}
+.game .closet .start:hover {
+	background: #de006f;
+    color: #fff;
+    -webkit-box-shadow: 0 0 12px 4px #00de04;
+    box-shadow: 0 0 12px 4px #00de04;
+}
+.game .closet {
+	width: 15%;
+	height: 100%;
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.game .closet .point {
+	width: 125px;
+	height: 125px;
+	background: conic-gradient(#24ff3d94 25%, #ff27cd50 25% 50%, #27e4ff94 50% 75%, #ffc600ab 75%);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	color: #fff;
+	font: bold 4rem sans-serif;
+	text-shadow: 0px 3px 7px #000;
+	border-radius: 50%;
+	margin-left: 12px;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.game .closet .example {
+	width: 175px;
+    height: 200px;
+    background: #000000ad;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 0 100% 0 0;
+    color: #fff;
+    font: bold 17px cursive;
+    white-space: nowrap;
+	z-index: 2;
+}
+.game .closet .example .hero {
+	width: 75px;
+    height: 112px;
+    background: url(img/example.png) no-repeat -22px -15px / 120px 150px;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+.game .closet .time {
+	width: 110px;
+	height: 110px;
+	background: #0009;
+	color: #fff;
+	font: bold 2.5rem sans-serif;
+	display: grid;
+	place-items: center;
+	border-radius: 30%;
+	-webkit-box-shadow: 0 0 10px #fff;
+	box-shadow: 0 0 10px #fff;
+	margin-left: 12px;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.game .closet .backMenu {
+	padding: 8px 20px;
+	background: #ff0079b5;
+	color: #fff;
+	font: bold 25px sans-serif;
+	-webkit-box-shadow: 5px 2px 9px #03e7cd;
+	box-shadow: 5px 2px 9px #03e7cd;
+	cursor: pointer;
+	-webkit-transition: .3s;
+	transition: .3s;
+	border-radius: 0 0 30px 0;
+}
+.game .closet .backMenu:hover {
+	-webkit-box-shadow: 5px 2px 9px #c4ff00;
+	box-shadow: 5px 2px 9px #c4ff00;
+}
+.game .endGame {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 45px);
+	background: #000000ed;
+	z-index: 100;
+	display: grid;
+	place-content: center;
+	justify-items: center;
+	-webkit-clip-path: circle(0 at center);
+	clip-path: circle(0 at center);
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.game .endGame .topBar {
+	position: absolute;
+	top: -45px;
+	right: 0;
+	height: 45px;
+	width: calc(100% - 105px);
+	background: #000000ed;
+}
+.game .endGame .topBar::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+    left: -33px;
+    width: 33px;
+    height: 35px;
+    border-radius: 0 0 32px 0;
+    -webkit-box-shadow: 10px 8px 0 6px #000000ed;
+    box-shadow: 10px 8px 0 6px #000000ed;
+	pointer-events: none;
+}
+.game .endGame h2 {
+	color: #fff;
+	font: bold 7rem cursive;
+	text-shadow: -5px 5px 0px #000, -6px 8px 6px #fff;
+	-webkit-transition: .4s .2s;
+	transition: .4s .2s;
+	margin-bottom: 45px;
+	scale: 0;
+}
+.game .endGame button {
+	font: bold 3.5rem cursive;
+	padding: 5px 35px 16px;
+	border-radius: 50px;
+	-webkit-box-shadow: 0 5px 0 #ffb200;
+	box-shadow: 0 5px 0 #ffb200;
+	background: conic-gradient(#24ff3d 25%, #000 25% 50%, #27e4ff 50% 75%, #000 75%);;
+	color: #fff;
+	text-shadow: -2px 5px 7px #000, -2px 5px 14px #f00;
+	outline: 0;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	-webkit-transition: letter-spacing .4s, scale .4s .4s;
+	transition: letter-spacing .4s, scale .4s .4s;
+	scale: 0;
+}
+.game .endGame button::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 50%;
+	background: #ffc600;
+	border-radius: 50px 0 0 0;
+	z-index: -1;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.game .endGame button::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 50%;
+	height: 50%;
+	background: #ff27cd;
+	border-radius: 0 0 50px 0;
+	z-index: -1;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.game .endGame button:hover::before {
+	top: 50%;
+	left: 50%;
+	border-radius: 0 0 50px 0;
+}
+.game .endGame button:hover::after {
+	bottom: 50%;
+	right: 50%;
+	border-radius: 50px 0 0 0;
+}
+.game .endGame button:hover {
+	letter-spacing: 2px;
+}
+.game .room.r2 .path.p1 {
+	height: 100px;
+}
+.game .room.r2 .path .gameOver {
+	height: 35px;
+}
+.game .room.r2 .path .gameOver.end,
+.game .room.r3 .path .gameOver.end {
+	height: 100%;
+}
+.game .room.r2 .path .point.winner {
+	background: conic-gradient(#000 25%, #fff 25% 50%, #000 50%, 75%, #fff 75%) 0 0 / 25px 30px;
+}
+.game .room.r3 .path {
+	width: 150px;
+	height: 100px;
+	display: block;
+	top: 62%;
+}
+.game .room.r3 .path .point {
+	width: auto;
+	height: 100%;
+}
+.game .room.r3 .path.p2 {
+	left: 150px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.game .room.r3 .path.p2.p2-2 {
+	left: 115px;
+	width: 185px;
+	height: 200px;
+	-webkit-transform: translateY(calc(-100% - 50px));
+	transform: translateY(calc(-100% - 50px));
+}
+.game .room.r3 .path.p2.p2-2 .bottom {
+	left: 0;
+	top: 0;
+	width: 35px;
+	height: 100%;
+}
+.game .room.r3 .path .gameOver {
+	height: 35px;
+	position: absolute;
+}
+.game .room.r3 .path.p2 .top {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 35px;
+	height: 100%;
+}
+.game .room.r3 .path.p2.p2-3 {
+	left: 115px;
+	width: 185px;
+	height: 120px;
+	-webkit-transform: translateY(calc(-200% - 130px));
+	transform: translateY(calc(-200% - 130px));
+}
+.game .room.r3 .path.p2.p2-3 .top {
+	top: 0;
+	left: 0;
+}
+.game .room.r3 .path.p2.p2-3 .bottom {
+	top: 0;
+	left: 0;
+}
+.game .room.r3 .path.p2.p2-3.p23 {
+	left: 300px;
+	width: 120px;
+}
+.game .room.r3 .path.p2.p2-3.p23 .top {
+	right: 0;
+	left: auto;
+}
+.game .room.r3 .path.p2.pr {
+	left: 300px;
+	width: 120px;
+}
+.game .room.r3 .path.p1.pe {
+	left: 300px;
+	width: calc(100% - 300px);
+	height: 170px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+}
+.game .room.r3 .path.p1.pe .top {
+	left: 85px;
+}
+.game .room.r3 .path.p1.pe .point {
+	width: calc(100% / 6);
+}
+.game .room.r3 .path.p1.pe .bottom {
+	bottom: 0;
+}
+.game .room.r3 .target {
+	top: 62%;
+}
+.game .room.r4 .path {
+	height: 150px;
+}
+.game .room.r4 .path .point {
+	width: 100%;
+}
+.game .room.r4 .path {
+	width: calc(100% / 9);
+	left: calc(100% / 9 * var(--i));
+	-webkit-transform: none;
+	transform: none;
+}
+.game .room.r4 .path.p1.pr2 {
+	height: 140px;
+}
+.game .room.r4 .path.p1.pr3 {
+	height: 130px;
+}
+.game .room.r4 .path.p1.pr4 {
+	height: 120px;
+}
+.game .room.r4 .path.p1.pr5 {
+	height: 110px;
+}
+.game .room.r4 .path.p1.pr6 {
+	height: 100px;
+}
+.game .room.r4 .path.p1.pr7 {
+	height: 90px;
+}
+.game .room.r4 .path.p1.pr8 {
+	height: 80px;
+}
+.game .room.r4 .path.p1.pr9 {
+	height: 80px;
+}
+.game .room.r4 .path.p1.pr9 .winner {
+	background-size: 10px 15px;
+}
+.game .room.r5 .p1 {
+	width: 35%;
+	height: 100px;
+}
+.game .room.r5 .point {
+	width: 100%;
+	height: 100%;
+	background: var(--c);
+}
+.game .room.r5 .gameOver {
+	position: absolute;
+	height: 35px;
+}
+.game .room.r5 .bottom {
+	bottom: 0;
+	left: 0;
+}
+.game .room.r5 .p1 .top {
+	top: 0;
+	left: 0;
+}
+.game .room.r5 .p2 {
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width: 8%;
+	left: 35%;
+	height: 100px;
+}
+.game .room.r5 .p2 .top {
+	right: 0;
+	width: 35px;
+	height: 100%;
+}
+.game .room.r5 .p2.ps {
+	-webkit-transform: translateY(-161%) translateX(-26.8%);
+	transform: translateY(-161%) translateX(-26.8%);
+	width: 11%;
+	height: 80px;
+}
+.game .room.r5 .p2.ps .bottom {
+	width: 35px;
+	height: 100%;
+}
+.game .room.r5 .p2.ps .top {
+	top: 0;
+	width: 100%;
+	height: 35px;
+}
+.game .room.r5 .p2.ps.pt {
+	left: 43%;
+	width: 22%;
+	height: 115px;
+	-webkit-transform: translateY(-112%);
+	transform: translateY(-112%);
+}
+.game .room.r5 .p2.ps.pt .bottom {
+	height: 35px;
+	width: 100%;
+}
+.game .room.r5 .p2.ps.pe {
+	left: 65%;
+	width: 35%;
+	height: 115px;
+	-webkit-transform: translateY(-112%);
+	transform: translateY(-112%);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.game .room.r5 .p2.ps.pe .point {
+	width: 70%;
+}
+.game .room.r5 .p2.ps.pe .winner {
+	width: 30%;
+	background-position: 0 2px;
+	background-size: 20px 20px;
+}
+.game .room.r5 .p2.ps.pe .bottom {
+	width: 100%;
+	height: 35px;
+}
+.game .room.r5 .p2.ps.pe .gameOver.end {
+	height: 100%;
+	width: 35px;
+	right: 0;
+}
+.game .room .path .bomb {
+	width: 30px;
+	height: 40px;
+	background: url(img/bomb.webp) no-repeat center / cover;
+	position: absolute;
+	left: 50%;
+	top: -25px;
+	-webkit-animation: bomb 2s linear infinite;
+	animation: bomb 2s linear infinite;
+	border-radius: 15px;
+	cursor: not-allowed;
+}
+@-webkit-keyframes bomb {
+	50% { top: 100%; }
+}
+@keyframes bomb {
+	50% { top: 100%; }
+}
+@-webkit-keyframes bomb2 {
+	50% { top: -25%; }
+}
+@keyframes bomb2 {
+	50% { top: -25%; }
+}
+@-webkit-keyframes bomb3 {
+	50% { left: -25%; }
+}
+@keyframes bomb3 {
+	50% { left: -25%; }
+}
+@-webkit-keyframes bomb4 {
+	50% { left: 100%; }
+}
+@keyframes bomb4 {
+	50% { left: 100%; }
+}
+.game .room .pe .bomb {
+	top: 100%;
+	-webkit-animation: bomb2 2s linear infinite;
+	animation: bomb2 2s linear infinite;
+}
+.game .room.r4.pe .target {
+	top: 60%;
+}
+.game .room.r4 .path:nth-child(odd) .bomb {
+	-webkit-animation: bomb2 2s linear infinite;
+	animation: bomb2 2s linear infinite;
+	top: 100%;
+}
+.game .room.r3.seven .path.p1.pe {
+	width: 240px;
+	height: 135px;
+	-webkit-transform: translateY(-37%);
+	transform: translateY(-37%);
+}
+.game .room.r3.seven .path.p1.pe .point {
+	width: 100%;
+}
+.game .room.r3.seven .path.p1.pe .top {
+	right: 0;
+	left: auto;
+	width: 35px;
+	height: 100%;
+}
+.game .room.r3 .path.p2.pr.pn {
+	left: 420px;
+}
+.game .room.r3 .path.p2.p2-3.pn {
+	left: 420px;
+	width: 225px;
+}
+.game .room.r3 .path.p2.p2-3.pn .top {
+	right: 0;
+	left: auto;
+}
+.game .room.r3 .path.p2.p2-2.pn.pb {
+	left: 540px;
+    width: 105px;
+}
+.game .room.r3 .path.p1.pe.pw {
+	width: calc(100% - 540px);
+	left: 540px;
+}
+.game .room.r3 .path.p1.pe.pw .top {
+	width: calc(100% - 70px);
+	height: 35px;
+	right: 0;
+}
+.game .room.r3 .path.p1.pe.pw .winner {
+	width: 30%;
+	background-position: 0 2px;
+	background-size: 20px 20px;
+}
+.game .room.seven .path.p2-2 .bomb {
+	left: 100%;
+	top: 40%;
+	-webkit-animation: bomb3 2s linear infinite;
+	animation: bomb3 2s linear infinite;
+} 
+.game .room.seven .path.p2.pr .bomb {
+	-webkit-animation-duration: 1.2s;
+	animation-duration: 1.2s;
+}
+.game .room.seven .path.p2-2.pr.pn .bomb {
+	left: -25px;
+	top: 40%;
+	-webkit-animation: bomb4 1.5s linear infinite;
+	animation: bomb4 1.5s linear infinite;
+} 
+.game .room.r3 .path.p2.p2-3.pn .bomb {
+	-webkit-animation: bomb2 1.8s linear infinite;
+	animation: bomb2 1.8s linear infinite;
+	top: 100%;
+}
+.game .room.pe.eight .path,
+.game .room.pe.eight .path.p1.pr2 {
+	height: 130px;
+}
+.game .room.pe.eight .path.p1.pr3 {
+	height: 120px;
+}
+.game .room.pe.eight .path.p1.pr4 {
+	height: 110px;
+}
+.game .room.pe.eight .path.p1.pr5 {
+	height: 100px;
+}
+.game .room.pe.eight .path.p1.pr6 {
+	height: 90px;
+}
+.game .room.pe.eight .path.p1.pr7 {
+	height: 80px;
+}
+.game .room.pe.eight .path.p1.pr8,
+.game .room.pe.eight .path.p1.pr9 {
+	height: 70px;
+}
+.game .room.pe.eight .path .bomb {
+	left: 70%;
+}
+.game .room.pe.eight .path .first {
+	left: 15%;
+	top: 100%;
+	-webkit-animation: bomb2 1.4s linear infinite;
+	animation: bomb2 1.4s linear infinite;
+}
+.game .room.r5.nine .path {
+	height: 25px;
+}
+.game .room.r5.nine .path .gameOver.top {
+	height: 200px;
+	top: -200px
+}
+.game .room.r5.nine .path .gameOver.bottom {
+	height: 200px;
+	bottom: -200px
+}
+.game .room.r5.nine .path.pri {
+	left: 35%;
+}
+.game .room.r5.nine .path.pwin {
+	left: 70%;
+	width: 30%;
+}
+.game .room.r5.nine .path.pwin .point {
+	width: 65%;
+}
+.game .room.r5.nine .path.pwin .winner {
+	width: 35%;
+	background-position: 0 2px;
+	background-size: 20px 20px;
+}
+.game .room.r5.nine .path.pwin .end {
+	width: 50px;
+	height: 40px;
+	top: -2px;
+}
+.game .room.r5.nine .path .bomb {
+	top: -70px;
+	-webkit-animation: bomb5 .8s infinite;
+	animation: bomb5 .8s infinite;
+}
+.game .room.r5.nine .path .first {
+	left: 20%;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+@-webkit-keyframes bomb5 {
+	50% { top: 250%; }
+}
+@keyframes bomb5 {
+	50% { top: 250%; }
+}
+.game .room.r5.nine.ten .path {
+	height: 2px;
+}
+.game .room.r5.nine.ten .path .gameOver.top {
+	height: 900px;
+	top: -900px
+}
+.game .room.r5.nine.ten .path .gameOver.bottom {
+	height: 900px;
+	bottom: -900px
+}
+.game .room.r5.nine.ten .path .gameOver.end {
+	width: 150px;
+}
+.game .room.r5.nine.ten .path.pwin .point {
+	width: 35%;
+}
+.game .room.r5.nine.ten .path.pwin .winner {
+	width: 65%;
+	background-position: 0 2px;
+	background-size: 10px 10px;
+}
+.game .room.r5.nine.ten .path .bomb {
+	top: -100px;
+	-webkit-animation: bomb6 1s linear infinite;
+	animation: bomb6 1s linear infinite;
+}
+.game .room.r5.nine.ten .path .bomb.first {
+	-webkit-animation-timing-function: ease;
+	animation-timing-function: ease;
+}
+.game .room.r5.nine.ten .path .bomb.last {
+	left: 80%;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+}
+.game .room.r5.nine.ten .path .bomb.last.fast {
+	-webkit-animation-duration: .5s;
+	animation-duration: .5s;
+}
+@-webkit-keyframes bomb6 {
+	50% { top: 100px; }
+}
+@keyframes bomb6 {
+	50% { top: 100px; }
+}
+.menuGame {
+	position: fixed;
+	inset: 0;
+	-webkit-transition: .8s;
+	transition: .8s;
+	background: url(img/menu.jpg) repeat center / 100%;
+	z-index: 100;
+	text-align: center;
+	padding-top: 5%;
+	-webkit-animation: menu 10s infinite;
+	animation: menu 10s infinite;
+	-webkit-clip-path: circle(100%);
+	clip-path: circle(100%);
+}
+@-webkit-keyframes menu {
+	50% { background-size: 20%; }
+}
+@keyframes menu {
+	50% { background-size: 20%; }
+}
+.menuGame h1 {
+	color: #fff;
+	font: bold 8vw cursive;
+	text-shadow: -5px 5px 0px #000, -6px 8px 6px #fff;
+	z-index: 10;
+	position: relative;
+	-webkit-transition: .5s;
+	transition: .5s;
+	-webkit-animation: titleMenu 1s infinite;
+	animation: titleMenu 1s infinite;
+}
+@-webkit-keyframes titleMenu {
+	50% { letter-spacing: 2px; }
+}
+@keyframes titleMenu {
+	50% { letter-spacing: 2px; }
+}
+.menuGame .her {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-100%, -40%);
+	transform: translate(-100%, -40%);
+	height: 70%;
+	-webkit-transition: .5s;
+	transition: .5s;
+	pointer-events: none;
+	z-index: 2;
+}
+.menuGame .playGame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	padding: 20px 50px;
+	font: bold 4rem sans-serif;
+	background: #fff;
+	border-radius: 60px;
+	cursor: pointer;
+	-webkit-transition: .4s;
+	transition: .4s;
+	background: url(img/menu.jpg) repeat center / cover;
+	color: #fff;
+	text-shadow: 0 3px 10px #000;
+	-webkit-box-shadow: 0 5px 8px #fff, 0 8px 20px #45ff00;
+	box-shadow: 0 5px 8px #fff, 0 8px 20px #45ff00;
+	will-change: transform;
+}
+.menuGame .playGame:hover {
+	-webkit-transform: translate(-50%, -50%) scale(1.1);
+	transform: translate(-50%, -50%) scale(1.1);
+	background-position: 0 140px;
+	-webkit-box-shadow: 0 5px 8px #000, 0 8px 20px #fff;
+	box-shadow: 0 5px 8px #000, 0 8px 20px #fff;
+}
+.menuGame .playGame:active {
+	background-position: 0 280px;
+	-webkit-box-shadow: 0 5px 8px #000, 0 8px 20px #fff;
+	box-shadow: 0 5px 8px #000, 0 8px 20px #fff;
+}
+.menuGame .playGame:hover ~ .her {
+	-webkit-transform: translate(0, -40%);
+	transform: translate(0, -40%);
+}
+.menuGame .playGame:active ~ .her {
+	-webkit-transform: translate(-50%, -10%) scale(.7);
+	transform: translate(-50%, -10%) scale(.7);
+}
+.menuGame .playGame:hover ~ h1 {
+	color: transparent;
+	text-shadow: none;
+	-webkit-text-stroke: 2px #fff;
+}
+.menuGame .playGame:active ~ h1 {
+	color: transparent;
+	text-shadow: none;
+	-webkit-text-stroke: 2px #fff;
+	background: url(img/rebbit.gif) center / 20px;
+	-webkit-background-clip: text;
+}
+.menuGame .author {
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	color: #fff;
+	font: 17px sans-serif;
+	letter-spacing: 2px;
+	text-shadow: 0 2px 3px #000;
+}
+.menuGame .studio {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	height: 70px;
+	border-radius: 6px;
+	pointer-events: none;
+}
