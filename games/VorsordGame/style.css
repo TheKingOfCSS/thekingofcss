@@ -57,6 +57,7 @@
     color: #fff;
     transform: translate(-50%, -50%);
     transition: .3s;
+	mix-blend-mode: difference;
 }
 .menu #loading {
     appearance: none;
@@ -71,7 +72,7 @@
     background: linear-gradient(#D7002C, #6f0017);
 }
 .menu #loading::-webkit-progress-value {
-    background: url(levels/images/backgroundMenu.jpg) no-repeat 35% 98% / 400% 400%;
+    background: #fff;
 }
 .menu .controls {
     position: absolute;
