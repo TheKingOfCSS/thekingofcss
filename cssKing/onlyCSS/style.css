@@ -1,0 +1,739 @@
+* { margin: 0; padding: 0; user-select: none; outline: 0; box-sizing: border-box; }
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	pointer-events: none;
+	transition: .3s;
+}
+body:hover .info {
+	opacity: 0;
+	visibility: hidden;
+}
+.info {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #022;
+	z-index: 20;
+	transition: 2s;
+}
+.info::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #143939;
+	clip-path: inset(0 100% 0 0);
+	animation: afterbody 4s .5s linear;
+}
+.info::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #212e43;
+	clip-path: inset(0 0 0 100%);
+	animation: afterbody 4s 4s linear;
+}
+@keyframes afterbody {
+	40% {
+		clip-path: inset(0 0 0 0);
+	}
+}
+.titl {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 100%;
+	z-index: 20;
+	font: bold 8vw sans-serif;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+}
+.titl2 {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 100%;
+	z-index: 20;
+	font: bold 8vw sans-serif;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+}
+.titl3 {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 100%;
+	z-index: 20;
+	font: bold 8vw sans-serif;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	pointer-events: none;
+}
+.titl span {
+	transform: translateY(290px);
+	opacity: 0;
+	animation: titlAnim .8s forwards, toOpac 6s forwards;
+}
+.titl2 span {
+	transform: translateY(-290px);
+	opacity: 0;
+	animation: titlAnim .8s forwards, toOpac 6s forwards;
+}
+.titl3 span {
+	transform: translateX(-490px);
+	opacity: 0;
+	animation: titlAnim .8s forwards;
+	transition-delay: 12s;
+}
+@keyframes titlAnim {
+	to { transform: none; opacity: 1; }
+}
+@keyframes toOpac {
+	to { opacity: 0; }
+}
+.titl span:nth-child(1) { animation-delay: .02s; }
+.titl span:nth-child(2) { animation-delay: .04s; }
+.titl span:nth-child(3) { animation-delay: .06s; }
+.titl span:nth-child(4) { animation-delay: .08s; }
+.titl span:nth-child(5) { animation-delay: .1s; }
+.titl span:nth-child(6) { animation-delay: .12s; }
+.titl span:nth-child(7) { animation-delay: .14s; }
+.titl span:nth-child(8) { animation-delay: .16s; }
+.titl span:nth-child(9) { animation-delay: .18s; }
+.titl span:nth-child(10) { animation-delay: .2s; }
+.titl span:nth-child(11) { animation-delay: .22s; }
+.titl span:nth-child(12) { animation-delay: .24s; }
+.titl span:nth-child(13) { animation-delay: .26s; }
+.titl span:nth-child(14) { animation-delay: .28s; }
+.titl span:nth-child(15) { animation-delay: .3s; }
+.titl span:nth-child(16) { animation-delay: .32s; }
+.titl span:nth-child(17) { animation-delay: .34s; }
+.titl span:nth-child(18) { animation-delay: .36s; }
+.titl span:nth-child(19) { animation-delay: .38s; }
+.titl span:nth-child(20) { animation-delay: .4s; }
+.titl span:nth-child(21) { animation-delay: .42s; }
+.titl span:nth-child(22) { animation-delay: .44s; }
+.titl span:nth-child(23) { animation-delay: .46s; }
+.titl span:nth-child(24) { animation-delay: .48s; }
+
+.titl2 span:nth-child(1) { animation-delay: 5.02s; }
+.titl2 span:nth-child(2) { animation-delay: 5.04s; }
+.titl2 span:nth-child(3) { animation-delay: 5.06s; }
+.titl2 span:nth-child(4) { animation-delay: 5.08s; }
+.titl2 span:nth-child(5) { animation-delay: 5.1s; }
+.titl2 span:nth-child(6) { animation-delay: 5.12s; }
+.titl2 span:nth-child(7) { animation-delay: 5.14s; }
+.titl2 span:nth-child(8) { animation-delay: 5.16s; }
+.titl2 span:nth-child(9) { animation-delay: 5.18s; }
+.titl2 span:nth-child(10) { animation-delay: 5.2s; }
+.titl2 span:nth-child(11) { animation-delay: 5.22s; }
+.titl2 span:nth-child(12) { animation-delay: 5.24s; }
+.titl2 span:nth-child(13) { animation-delay: 5.26s; }
+.titl2 span:nth-child(14) { animation-delay: 5.28s; }
+.titl2 span:nth-child(15) { animation-delay: 5.3s; }
+.titl2 span:nth-child(16) { animation-delay: 5.32s; }
+.titl2 span:nth-child(17) { animation-delay: 5.34s; }
+.titl2 span:nth-child(18) { animation-delay: 5.36s; }
+.titl2 span:nth-child(19) { animation-delay: 5.38s; }
+.titl2 span:nth-child(20) { animation-delay: 5.4s; }
+
+.titl3 span:nth-child(1) { animation-delay: 8.02s; }
+.titl3 span:nth-child(2) { animation-delay: 8.04s; }
+.titl3 span:nth-child(3) { animation-delay: 8.06s; }
+.titl3 span:nth-child(4) { animation-delay: 8.08s; }
+.titl3 span:nth-child(5) { animation-delay: 8.1s; }
+.titl3 span:nth-child(6) { animation-delay: 8.12s; }
+.titl3 span:nth-child(7) { animation-delay: 8.14s; }
+.titl3 span:nth-child(8) { animation-delay: 8.16s; }
+.titl3 span:nth-child(9) { animation-delay: 8.18s; }
+.titl3 span:nth-child(10) { animation-delay: 8.2s; }
+.titl3 span:nth-child(11) { animation-delay: 8.22s; }
+.titl3 span:nth-child(12) { animation-delay: 8.24s; }
+.titl3 span:nth-child(13) { animation-delay: 8.26s; }
+.titl3 span:nth-child(14) { animation-delay: 8.28s; }
+.titl3 span:nth-child(15) { animation-delay: 8.3s; }
+.titl3 span:nth-child(16) { animation-delay: 8.32s; }
+.part1 {
+	position: fixed;
+	top: -100%;
+	left: -100%;
+	width: 100%;
+	height: 100vh;
+	z-index: 11;
+	scroll-snap-type: y mandatory;
+	transition: 2s;
+	animation: scrollAnim 1s infinite;
+}
+.part1 .over {
+	position: absolute;
+	top: calc((100% / 8) * var(--t));
+	left: 0;
+	width: 100%;
+	height: calc(100% / 8);
+}
+.part1 .scroll {
+	width: 100%;
+	height: 100%;
+	transition: 1s ease-out;
+}
+@keyframes scrollAnim {
+	50% { filter: saturate(2) brightness(1.4); }
+}
+.part1 .scroll .item {
+	width: 100%;
+	height: 100%;
+	background: url(img/part1/1.jpg) no-repeat center / cover fixed;
+	scroll-snap-align: center;
+}
+.part1 .over:nth-of-type(2):hover ~ .scroll {
+	margin-top: -100vh;
+}
+.part1 .over:nth-of-type(3):hover ~ .scroll {
+	margin-top: -200vh;
+}
+.part1 .over:nth-of-type(4):hover ~ .scroll {
+	margin-top: -300vh;
+}
+.part1 .over:nth-of-type(5):hover ~ .scroll {
+	margin-top: -400vh;
+}
+.part1 .over:nth-of-type(6):hover ~ .scroll {
+	margin-top: -500vh;
+}
+.part1 .over:nth-of-type(7):hover ~ .scroll {
+	margin-top: -600vh;
+}
+.part1 .over:nth-of-type(8):hover ~ .scroll {
+	margin-top: -700vh;
+}
+.part1 .item:nth-of-type(2) {
+	background-image: url(img/part1/2.jpg);
+}
+.part1 .item:nth-of-type(3) {
+	background-image: url(img/part1/3.jpg);
+}
+.part1 .item:nth-of-type(4) {
+	background-image: url(img/part1/3.webp);
+}
+.part1 .item:nth-of-type(5) {
+	background-image: url(img/part1/4.jpg);
+}
+.part1 .item:nth-of-type(6) {
+	background-image: url(img/part1/5.jpg);
+}
+.part1 .item:nth-of-type(7) {
+	background-image: url(img/part1/6.jpg);
+}
+.part1 .item:nth-of-type(8) {
+	background-image: url(img/part1/7.jpeg);
+}
+.part2 {
+	position: fixed;
+	top: -100%;
+	left: 100%;
+	width: 100%;
+	height: 100vh;
+	transition: 2s;
+	display: flex;
+	background: url(img/part2/1.jpg) no-repeat center / 100% 100% fixed;
+	z-index: 10;
+}
+.part2 h2 {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font: bold 15vw sans-serif;
+	width: 100%;
+	text-align: center;
+	color: transparent;
+	z-index: 0;
+	-webkit-text-stroke: 4px #000;
+	background: linear-gradient(#f00, #fa0, #fff);
+	-webkit-background-clip: text;
+	animation: part2 4s linear infinite alternate;
+}
+@keyframes part2 {
+	to { transform: translateY(40%); }
+}
+.part2 .item {
+	width: 10%;
+	height: 100%;
+	background: url(img/part2/4.jpg) no-repeat center / 100% 100% fixed;
+	transition: .5s .1s;
+	z-index: 1;
+}
+.part2 .item:hover {
+	background-size: 140% 100%;
+	opacity: 0;
+	transition: none;
+}
+.part3 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	transition: 1s;
+	clip-path: circle(0);
+}
+.slider {
+	height: 100vh;
+	display: grid;
+	place-content: center;
+	perspective: 850px;
+	transition: .5s;
+	box-shadow: inset 2px 1px 215px -29px #1673c6;
+}
+.slider h4 {
+	position: absolute;
+	bottom: -30rem;
+	left: 50%;
+	font-size: 12rem;
+	white-space: nowrap;
+	transform: translateX(-50%) translateZ(-1600px);
+	opacity: 0;
+	transition: .3s;
+	color: transparent;
+	background: linear-gradient(#2c2c2c 60%, transparent);
+	-webkit-background-clip: text;
+	-webkit-box-reflect: below -60px linear-gradient(transparent, #0005);
+}
+.slider .over {
+	position: absolute;
+	top: 0;
+	left: calc((100% / 36) * var(--o));
+    width: calc(100% / 36);
+	height: calc(100% - 65px);
+	z-index: 1;
+}
+.car:nth-child(1):checked ~ .slider .over:nth-child(1):hover ~ h4 { opacity: 1; bottom: -30rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(2):hover ~ h4 { opacity: 1; bottom: -29rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(3):hover ~ h4 { opacity: 1; bottom: -28rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(4):hover ~ h4 { opacity: 1; bottom: -27rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(5):hover ~ h4 { opacity: 1; bottom: -26rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(6):hover ~ h4 { opacity: 1; bottom: -25rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(7):hover ~ h4 { opacity: 1; bottom: -24rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(8):hover ~ h4 { opacity: 1; bottom: -23rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(9):hover ~ h4 { opacity: 1; bottom: -22rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(10):hover ~ h4 { opacity: 1; bottom: -21rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(11):hover ~ h4 { opacity: 1; bottom: -20rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(12):hover ~ h4 { opacity: 1; bottom: -19rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(13):hover ~ h4 { opacity: 1; bottom: -18rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(14):hover ~ h4 { opacity: 1; bottom: -17rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(15):hover ~ h4 { opacity: 1; bottom: -16rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(16):hover ~ h4 { opacity: 1; bottom: -15rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(17):hover ~ h4 { opacity: 1; bottom: -14rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(18):hover ~ h4 { opacity: 1; bottom: -13rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(19):hover ~ h4 { opacity: 1; bottom: -12rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(20):hover ~ h4 { opacity: 1; bottom: -11rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(21):hover ~ h4 { opacity: 1; bottom: -10rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(22):hover ~ h4 { opacity: 1; bottom: -9rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(23):hover ~ h4 { opacity: 1; bottom: -8rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(24):hover ~ h4 { opacity: 1; bottom: -7rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(25):hover ~ h4 { opacity: 1; bottom: -6rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(26):hover ~ h4 { opacity: 1; bottom: -5rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(27):hover ~ h4 { opacity: 1; bottom: -4rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(28):hover ~ h4 { opacity: 1; bottom: -3rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(29):hover ~ h4 { opacity: 1; bottom: -2rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(30):hover ~ h4 { opacity: 1; bottom: -3rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(31):hover ~ h4 { opacity: 1; bottom: -4rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(32):hover ~ h4 { opacity: 1; bottom: -5rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(33):hover ~ h4 { opacity: 1; bottom: -6rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(34):hover ~ h4 { opacity: 1; bottom: -7rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(35):hover ~ h4 { opacity: 1; bottom: -8rem; }
+.car:nth-child(1):checked ~ .slider .over:nth-child(36):hover ~ h4 { opacity: 1; bottom: -9rem; }
+.slider .over:nth-child(1):hover ~ .carousel { transform: rotateY(10deg); }
+.slider .over:nth-child(2):hover ~ .carousel { transform: rotateY(20deg); }
+.slider .over:nth-child(3):hover ~ .carousel { transform: rotateY(30deg); }
+.slider .over:nth-child(4):hover ~ .carousel { transform: rotateY(40deg); }
+.slider .over:nth-child(5):hover ~ .carousel { transform: rotateY(50deg); }
+.slider .over:nth-child(6):hover ~ .carousel { transform: rotateY(60deg); }
+.slider .over:nth-child(7):hover ~ .carousel { transform: rotateY(70deg); }
+.slider .over:nth-child(8):hover ~ .carousel { transform: rotateY(80deg); }
+.slider .over:nth-child(9):hover ~ .carousel { transform: rotateY(90deg); }
+.slider .over:nth-child(10):hover ~ .carousel { transform: rotateY(100deg); }
+.slider .over:nth-child(11):hover ~ .carousel { transform: rotateY(110deg); }
+.slider .over:nth-child(12):hover ~ .carousel { transform: rotateY(120deg); }
+.slider .over:nth-child(13):hover ~ .carousel { transform: rotateY(130deg); }
+.slider .over:nth-child(14):hover ~ .carousel { transform: rotateY(140deg); }
+.slider .over:nth-child(15):hover ~ .carousel { transform: rotateY(150deg); }
+.slider .over:nth-child(16):hover ~ .carousel { transform: rotateY(160deg); }
+.slider .over:nth-child(17):hover ~ .carousel { transform: rotateY(170deg); }
+.slider .over:nth-child(18):hover ~ .carousel { transform: rotateY(180deg); }
+.slider .over:nth-child(19):hover ~ .carousel { transform: rotateY(190deg); }
+.slider .over:nth-child(20):hover ~ .carousel { transform: rotateY(200deg); }
+.slider .over:nth-child(21):hover ~ .carousel { transform: rotateY(210deg); }
+.slider .over:nth-child(22):hover ~ .carousel { transform: rotateY(220deg); }
+.slider .over:nth-child(23):hover ~ .carousel { transform: rotateY(230deg); }
+.slider .over:nth-child(24):hover ~ .carousel { transform: rotateY(240deg); }
+.slider .over:nth-child(25):hover ~ .carousel { transform: rotateY(250deg); }
+.slider .over:nth-child(26):hover ~ .carousel { transform: rotateY(260deg); }
+.slider .over:nth-child(27):hover ~ .carousel { transform: rotateY(270deg); }
+.slider .over:nth-child(28):hover ~ .carousel { transform: rotateY(280deg); }
+.slider .over:nth-child(29):hover ~ .carousel { transform: rotateY(290deg); }
+.slider .over:nth-child(30):hover ~ .carousel { transform: rotateY(300deg); }
+.slider .over:nth-child(31):hover ~ .carousel { transform: rotateY(310deg); }
+.slider .over:nth-child(32):hover ~ .carousel { transform: rotateY(320deg); }
+.slider .over:nth-child(33):hover ~ .carousel { transform: rotateY(330deg); }
+.slider .over:nth-child(34):hover ~ .carousel { transform: rotateY(340deg); }
+.slider .over:nth-child(35):hover ~ .carousel { transform: rotateY(350deg); }
+.slider .over:nth-child(36):hover ~ .carousel { transform: rotateY(360deg); }
+.slider .over:nth-child(1):hover ~ .carousel .item img { transform: translateY(-1px); }
+.slider .over:nth-child(2):hover ~ .carousel .item img { transform: translateY(-2px); }
+.slider .over:nth-child(3):hover ~ .carousel .item img { transform: translateY(-3px); }
+.slider .over:nth-child(4):hover ~ .carousel .item img { transform: translateY(-4px); }
+.slider .over:nth-child(5):hover ~ .carousel .item img { transform: translateY(-5px); }
+.slider .over:nth-child(6):hover ~ .carousel .item img { transform: translateY(-6px); }
+.slider .over:nth-child(7):hover ~ .carousel .item img { transform: translateY(-7px); }
+.slider .over:nth-child(8):hover ~ .carousel .item img { transform: translateY(-8px); }
+.slider .over:nth-child(15):hover ~ .carousel .item img { transform: translateY(-1px); }
+.slider .over:nth-child(16):hover ~ .carousel .item img { transform: translateY(-2px); }
+.slider .over:nth-child(17):hover ~ .carousel .item img { transform: translateY(-3px); }
+.slider .over:nth-child(18):hover ~ .carousel .item img { transform: translateY(-4px); }
+.slider .over:nth-child(19):hover ~ .carousel .item img { transform: translateY(-5px); }
+.slider .over:nth-child(20):hover ~ .carousel .item img { transform: translateY(-6px); }
+.slider .over:nth-child(21):hover ~ .carousel .item img { transform: translateY(-7px); }
+.slider .over:nth-child(22):hover ~ .carousel .item img { transform: translateY(-8px); }
+.slider .over:nth-child(29):hover ~ .carousel .item img { transform: translateY(-1px); }
+.slider .over:nth-child(30):hover ~ .carousel .item img { transform: translateY(-2px); }
+.slider .over:nth-child(31):hover ~ .carousel .item img { transform: translateY(-3px); }
+.slider .over:nth-child(32):hover ~ .carousel .item img { transform: translateY(-4px); }
+.slider .over:nth-child(33):hover ~ .carousel .item img { transform: translateY(-5px); }
+.slider .over:nth-child(34):hover ~ .carousel .item img { transform: translateY(-6px); }
+.slider .over:nth-child(35):hover ~ .carousel .item img { transform: translateY(-7px); }
+.slider .over:nth-child(36):hover ~ .carousel .item img { transform: translateY(-8px); }
+.slider .carousel {
+	width: 300px;
+	height: 200px;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: .3s;
+}
+.slider .carousel .item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: rotateY(calc(var(--i) * 45deg)) translateZ(420px);
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #000000);
+	transition: calc(var(--i) * .3s);
+}
+.car {
+	position: absolute;
+	bottom: 3%;
+	left: 45%;
+	transform: translateX(calc(var(--c) * 70px));
+	z-index: 2;
+	appearance: none;
+	width: 60px;
+	height: 25px;
+	background: linear-gradient(356deg, #fd00ff, #fff500);
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: inset 0px -4px 0px 3px #000;
+	transition: .2s;
+}
+.car:hover {
+	box-shadow: inset 0px -1px 0px 1px #000;
+}
+.car:checked {
+	background: linear-gradient(356deg, #0aff00, #fff500);
+}
+.car:nth-child(2):checked ~ .slider {
+	box-shadow: inset 2px 1px 215px -29px #c522eb;
+}
+.car:nth-child(3):checked ~ .slider {
+	box-shadow: inset 2px 1px 215px -29px #00ff6c;
+}
+.car:nth-child(2):checked ~ .slider .carousel {
+	width: 250px;
+	height: 200px;
+	transition: .6s;
+}
+.car:nth-child(2):checked ~ .slider .carousel .item {
+	transform: rotateX(calc(var(--i) * 45deg)) translateZ(300px);
+	-webkit-box-reflect: unset;
+}
+.car:nth-child(3):checked ~ .slider .carousel .item {
+	transform: rotate(calc(var(--i) * 45deg)) translateX(300px);
+	-webkit-box-reflect: unset;
+}
+.car:nth-child(4):checked ~ .slider .carousel {
+	width: 250px;
+	height: 200px;
+	transition: .6s;
+	transform: rotateX(-15deg);
+}
+.car:nth-child(2):checked ~ .slider .over:nth-child(1):hover ~ .carousel { transform: rotateX(10deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(1):hover ~ .carousel { transform: rotateX(10deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(2):hover ~ .carousel { transform: rotateX(20deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(3):hover ~ .carousel { transform: rotateX(30deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(4):hover ~ .carousel { transform: rotateX(40deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(5):hover ~ .carousel { transform: rotateX(50deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(6):hover ~ .carousel { transform: rotateX(60deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(7):hover ~ .carousel { transform: rotateX(70deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(8):hover ~ .carousel { transform: rotateX(80deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(9):hover ~ .carousel { transform: rotateX(90deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(10):hover ~ .carousel { transform: rotateX(100deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(11):hover ~ .carousel { transform: rotateX(110deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(12):hover ~ .carousel { transform: rotateX(120deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(13):hover ~ .carousel { transform: rotateX(130deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(14):hover ~ .carousel { transform: rotateX(140deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(15):hover ~ .carousel { transform: rotateX(150deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(16):hover ~ .carousel { transform: rotateX(160deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(17):hover ~ .carousel { transform: rotateX(170deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(18):hover ~ .carousel { transform: rotateX(180deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(19):hover ~ .carousel { transform: rotateX(190deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(20):hover ~ .carousel { transform: rotateX(200deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(21):hover ~ .carousel { transform: rotateX(210deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(22):hover ~ .carousel { transform: rotateX(220deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(23):hover ~ .carousel { transform: rotateX(230deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(24):hover ~ .carousel { transform: rotateX(240deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(25):hover ~ .carousel { transform: rotateX(250deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(26):hover ~ .carousel { transform: rotateX(260deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(27):hover ~ .carousel { transform: rotateX(270deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(28):hover ~ .carousel { transform: rotateX(280deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(29):hover ~ .carousel { transform: rotateX(290deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(30):hover ~ .carousel { transform: rotateX(300deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(31):hover ~ .carousel { transform: rotateX(310deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(32):hover ~ .carousel { transform: rotateX(320deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(33):hover ~ .carousel { transform: rotateX(330deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(34):hover ~ .carousel { transform: rotateX(340deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(35):hover ~ .carousel { transform: rotateX(350deg); }
+.car:nth-child(2):checked ~ .slider .over:nth-child(36):hover ~ .carousel { transform: rotateX(360deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(1):hover ~ .carousel { transform: rotate(10deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(2):hover ~ .carousel { transform: rotate(20deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(3):hover ~ .carousel { transform: rotate(30deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(4):hover ~ .carousel { transform: rotate(40deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(5):hover ~ .carousel { transform: rotate(50deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(6):hover ~ .carousel { transform: rotate(60deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(7):hover ~ .carousel { transform: rotate(70deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(8):hover ~ .carousel { transform: rotate(80deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(9):hover ~ .carousel { transform: rotate(90deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(10):hover ~ .carousel { transform: rotate(100deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(11):hover ~ .carousel { transform: rotate(110deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(12):hover ~ .carousel { transform: rotate(120deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(13):hover ~ .carousel { transform: rotate(130deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(14):hover ~ .carousel { transform: rotate(140deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(15):hover ~ .carousel { transform: rotate(150deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(16):hover ~ .carousel { transform: rotate(160deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(17):hover ~ .carousel { transform: rotate(170deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(18):hover ~ .carousel { transform: rotate(180deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(19):hover ~ .carousel { transform: rotate(190deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(20):hover ~ .carousel { transform: rotate(200deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(21):hover ~ .carousel { transform: rotate(210deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(22):hover ~ .carousel { transform: rotate(220deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(23):hover ~ .carousel { transform: rotate(230deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(24):hover ~ .carousel { transform: rotate(240deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(25):hover ~ .carousel { transform: rotate(250deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(26):hover ~ .carousel { transform: rotate(260deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(27):hover ~ .carousel { transform: rotate(270deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(28):hover ~ .carousel { transform: rotate(280deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(29):hover ~ .carousel { transform: rotate(290deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(30):hover ~ .carousel { transform: rotate(300deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(31):hover ~ .carousel { transform: rotate(310deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(32):hover ~ .carousel { transform: rotate(320deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(33):hover ~ .carousel { transform: rotate(330deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(34):hover ~ .carousel { transform: rotate(340deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(35):hover ~ .carousel { transform: rotate(350deg); }
+.car:nth-child(3):checked ~ .slider .over:nth-child(36):hover ~ .carousel { transform: rotate(360deg); }
+
+.car:nth-child(4):checked ~ .slider .over:nth-child(1):hover ~ .carousel { transform: rotateX(-15deg) rotateY(0); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(2):hover ~ .carousel { transform: rotateX(-15deg) rotateY(10deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(3):hover ~ .carousel { transform: rotateX(-17deg) rotateY(20deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(4):hover ~ .carousel { transform: rotateX(-19deg) rotateY(30deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(5):hover ~ .carousel { transform: rotateX(-21deg) rotateY(40deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(6):hover ~ .carousel { transform: rotateX(-25deg) rotateY(50deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(7):hover ~ .carousel { transform: rotateX(-30deg) rotateY(60deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(8):hover ~ .carousel { transform: rotateX(-27deg) rotateY(70deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(9):hover ~ .carousel { transform: rotateX(-23deg) rotateY(80deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(10):hover ~ .carousel { transform: rotateX(-20deg) rotateY(90deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(11):hover ~ .carousel { transform: rotateX(-18deg) rotateY(100deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(12):hover ~ .carousel { transform: rotateX(-15deg) rotateY(110deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(13):hover ~ .carousel { transform: rotateX(-15deg) rotateY(120deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(14):hover ~ .carousel { transform: rotateX(-15deg) rotateY(130deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(15):hover ~ .carousel { transform: rotateX(-15deg) rotateY(140deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(16):hover ~ .carousel { transform: rotateX(-15deg) rotateY(150deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(17):hover ~ .carousel { transform: rotateX(-17deg) rotateY(160deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(18):hover ~ .carousel { transform: rotateX(-20deg) rotateY(170deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(19):hover ~ .carousel { transform: rotateX(-25deg) rotateY(180deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(20):hover ~ .carousel { transform: rotateX(-30deg) rotateY(190deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(21):hover ~ .carousel { transform: rotateX(-35deg) rotateY(200deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(22):hover ~ .carousel { transform: rotateX(-40deg) rotateY(210deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(23):hover ~ .carousel { transform: rotateX(-36deg) rotateY(220deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(24):hover ~ .carousel { transform: rotateX(-33deg) rotateY(230deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(25):hover ~ .carousel { transform: rotateX(-29deg) rotateY(240deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(25):hover ~ .carousel { transform: rotateX(-25deg) rotateY(250deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(26):hover ~ .carousel { transform: rotateX(-21deg) rotateY(260deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(27):hover ~ .carousel { transform: rotateX(-18deg) rotateY(270deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(28):hover ~ .carousel { transform: rotateX(-15deg) rotateY(280deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(29):hover ~ .carousel { transform: rotateX(-18deg) rotateY(290deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(30):hover ~ .carousel { transform: rotateX(-20deg) rotateY(300deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(31):hover ~ .carousel { transform: rotateX(-23deg) rotateY(310deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(32):hover ~ .carousel { transform: rotateX(-27deg) rotateY(320deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(33):hover ~ .carousel { transform: rotateX(-30deg) rotateY(330deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(34):hover ~ .carousel { transform: rotateX(-28deg) rotateY(340deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(35):hover ~ .carousel { transform: rotateX(-25deg) rotateY(350deg); }
+.car:nth-child(4):checked ~ .slider .over:nth-child(36):hover ~ .carousel { transform: rotateX(-15deg) rotateY(360deg); }
+
+.part4 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg, #f00, #fffc00);
+	transition: .8s;
+	clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+.part4 img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: .8s ease-out;
+}
+.part4 .circle {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	z-index: 1;
+	border-radius: 50%;
+	box-shadow: 0 3px 50px #0000002b;
+	cursor: grab;
+}
+.part4 :first-child {
+	top: 8%;
+	left: 5%;
+}
+.part4 img:first-of-type {
+	clip-path: circle(0 at 15% 25%);
+}
+.part4 img:nth-of-type(2) {
+	clip-path: circle(0 at 50% 25%);
+}
+.part4 img:nth-of-type(3) {
+	clip-path: circle(0 at 85% 25%);
+}
+.part4 img:nth-of-type(4) {
+	clip-path: circle(0 at 15% 75%);
+}
+.part4 img:nth-of-type(5) {
+	clip-path: circle(0 at 85% 75%);
+}
+.part4 :first-child:hover ~ img:first-of-type {
+	clip-path: circle(100%);
+}
+.part4 :nth-child(2):hover ~ img:nth-of-type(2) {
+	clip-path: circle(100%);
+}
+.part4 :nth-child(3):hover ~ img:nth-of-type(3) {
+	clip-path: circle(100%);
+}
+.part4 :nth-child(4):hover ~ img:nth-of-type(4) {
+	clip-path: circle(100%);
+}
+.part4 :nth-child(5):hover ~ img:nth-of-type(5) {
+	clip-path: circle(100%);
+}
+.part4 :nth-child(2) {
+	top: 8%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.part4 :nth-child(3) {
+	top: 8%;
+	right: 5%;
+}
+.part4 :nth-child(4) {
+	bottom: 5%;
+	left: 5%;
+	box-shadow: 0 3px 50px #fbff0066;
+}
+.part4 :nth-child(5) {
+	bottom: 5%;
+	right: 5%;
+	box-shadow: 0 3px 50px #fbff0066;
+}
+.part5 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	z-index: 20;
+	background: #000;
+	clip-path: inset(100% 0 0 0);
+	transition: 1s 1s;
+}
+.part5 span {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	transition: .4s .8s;
+}
+.part5 span:hover {
+	background: #f00;
+	transition: none;
+	box-shadow: 0 0 10px #f00, 0 0 20px #f00, 0 0 30px #f00, 0 0 50px #f00;
+}
+
+.King {
+	position: fixed;
+	top: 10px;
+	left: 20px;
+	z-index: 100;
+	transform: translateX(calc(var(--i) * 60px));
+	appearance: none;
+	width: 50px;
+	height: 25px;
+	background: #fff;
+	cursor: pointer;
+	border-radius: 8px;
+	box-shadow: 0 4px 3px #d98200, 0px 8px 6px #000;
+	transition: .5s;
+}
+.King:checked {
+	background: linear-gradient(57deg, #fffe00, #fff);
+	transform: translate(calc(var(--i) * 60px), 10px);
+}
+.King:nth-of-type(1):checked ~ .part1 {
+	top: 0;
+	left: 0;
+}
+.King:nth-of-type(2):checked ~ .part2 {
+	top: 0;
+	left: 0;
+	transition: 1s linear;
+}
+.King:nth-of-type(3):checked ~ .part3 {
+	clip-path: circle(100%);
+	transition-delay: .7s;
+}
+.King:nth-of-type(4):checked ~ .part4 {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.King:nth-of-type(5):checked ~ .part5 {
+	clip-path: inset(0);
+}
+
