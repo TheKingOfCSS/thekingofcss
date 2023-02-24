@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Instructor Hovo Vardanyan</title>
+	<link rel="shortcut icon" href="../king.png">
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		body {
+			background: #111;
+			text-align: center;
+			color: #fff;
+			padding-top: 5vh;
+			font-family: system-ui, sans-serif;
+		}
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 235px;
+			height: 70px;
+			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			clip-path: polygon(0 0, 100% 0, 0 100%);
+		}
+		body::after {
+			content: '';
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			width: 285px;
+			height: 95px;
+			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			clip-path: polygon(0 100%, 100% 0, 100% 100%);
+		}
+		.backMega {
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: 5px 25px 5px 15px;
+			background: #f00;
+			color: #fff;
+			font: bold 22px sans-serif;
+			cursor: pointer;
+			border-bottom-right-radius: 30px;
+			transition: .2s;
+			z-index: 2;
+		}
+		.backMega:hover {
+			background: #0f0;
+			color: #000;
+		}
+		.authorAndCreator {
+			z-index: 1;
+			position: relative;
+			font-size: 6.8vh;
+			letter-spacing: 2px;
+			color: transparent;
+			background: linear-gradient(to right, #fff 5%, #222 5% 6%, #fff 6%);
+			-webkit-background-clip: text;
+			margin-bottom: 10vh;
+		}
+		.menu {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 7% 3%;
+			justify-content: center;
+			gap: 20vh 4vh;
+		}
+		.menu .section {
+			width: 400px;
+			transition: .3s;
+			font: bold 1.5rem system-ui, sans-serif;
+			will-change: transform;
+			position: relative;
+			z-index: 1;
+		}
+		.menu .section .king {
+			position: absolute;
+			bottom: calc(100% - 5px);
+			left: 50%;
+			transform: translateX(-50%);
+			height: 130px;
+		}
+		.menu .section .example {
+			display: block;
+			width: 380px;
+			height: 250px;
+			border: 3px solid #fff;
+			background: url(BabyMario/img/bg.jpg) no-repeat center / cover;
+			box-shadow: inset 0 0 15px #0009;
+			z-index: 1;
+			position: relative;
+			margin: 0 auto;
+		}
+		.menu .section .example.N1 {
+			background: url(N1Work/bg.jpg) no-repeat center 20% / 140%;
+		}
+		.menu .section .example.roboto {
+			background: url(MegaNoteBookRobot/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.onlyCSS {
+			background: url(onlyCSS/bg.jpg) no-repeat center / 100% #133A39;
+		}
+		.menu .section .example.Mansuryan {
+			background: url(Piano/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.power {
+			background: url(PowerWork/bg.jpg) no-repeat center / 130%;
+		}
+		.menu .section .example.grad {
+			background: url(FlagGradient/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.classWork {
+			background: url(WorldClassWork/bg.jpg) no-repeat center 60% / 200%;
+		}
+		.menu .section .example.isEmpty {
+			background: url(theBodyisEmpty/bg.jpg) no-repeat center 60% / cover;
+		}
+		.menu .section .example.MyLogo {
+			background: url(myLogo/bg.jpg) no-repeat center 60% / cover;
+		}
+		.menu .section .example.noCanvas {
+			background: url(noCanvas/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.logPwd {
+			background: url(parolloginCreative/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.webCSS {
+			background: url(webCSS/bg.jpg) no-repeat center / cover;
+		}
+		.menu .section .example.userUp {
+			background: url(UserUploadDrag/img/CristianoRonaldo.jpg) no-repeat center / cover;
+		}
+		.menu .section p {
+			margin-top: 10px;
+		}
+		.menu .section span {
+			font-size: 22px;
+		}
+		.menu .section span i {
+			font-size: 18px;
+			text-decoration: underline;
+			text-underline-offset: -25px;
+			margin-top: 15px;
+			display: block;
+		}
+		.menu .section:not(:first-child) p {
+			font-size: 2rem;
+		}
+		.menu .section:hover {
+/*			scale: 1.05;*/
+/*			rotate: 2deg;*/
+		}
+		.menu .section:active {
+/*			scale: 1.1;*/
+/*			rotate: -2deg;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="backMega">Menu</div>
+	<h1 class="authorAndCreator">World Class Mega Works</h1>
+	<div class="menu">
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example N1" href="N1Work/n1.html"></a>
+			<p>Հայաստանի N1 աշխատանքը</p>
+			<span>CSS3 լեզվով, որը կրկնել ոչ ոքի չի հաջողվել<br><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;50 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example roboto" href="MegaNoteBookRobot/index.html"></a>
+			<p>Notebook Roboto</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;30 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example onlyCSS" href="onlyCSS/index.html"></a>
+			<p>This Is Only CSS</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;5 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example webCSS" href="webCSS/index.html"></a>
+			<p>Merry Christmas Site</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;35 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example Mansuryan" href="Piano/index.html"></a>
+			<p>MANSURYAN Piano</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;20 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example power" href="PowerWork/index.html"></a>
+			<p>Google</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;10 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example grad" href="FlagGradient/index.html"></a>
+			<p>Only Gradient</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;6 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example isEmpty" href="theBodyisEmpty/index.html"></a>
+			<p>The Body Is Empty</p>
+			<span>Առաջին մարդը Հայաստանում, որը body Tag-ը թողնելով դատարկ ստացել է Content</span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example MyLogo" href="myLogo/logo.html"></a>
+			<p>Famous Logo</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;12 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example noCanvas" href="noCanvas/index.html"></a>
+			<p>This Is Not A Canvas</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;3 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example logPwd" href="parolloginCreative/index.html"></a>
+			<p>Login Password Creative</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;4 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example userUp" href="UserUploadDrag/index.html"></a>
+			<p>User Upload</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;2 ժամ</i></span>
+		</div>
+		<div class="section">
+			<img src="king.png" alt="Img" title="Senior Developer Hovo Vardanyan" class="king">
+			<a class="example classWork" href="WorldClassWork/index.html"></a>
+			<p>Deep CSS</p>
+			<span><i>Աշխատանքի տեվողությունը՝ &nbsp;&nbsp;8 ժամ</i></span>
+		</div>
+		
+	</div>
+	<script>
+		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
+		const title = document.querySelector('.authorAndCreator');
+		let x = -50;
+		setInterval(() => {
+			x += .1;
+			x >= 150 ? x = -50 : '';
+			title.style.backgroundImage = `linear-gradient(to right, #fff ${x}%, #777 ${x + 5}% ${x + 10}%, #fff ${x + 20}%)`;
+		}, 1);
+	</script>
+</body>
+</html>
+
+
