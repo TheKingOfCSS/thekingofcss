@@ -1,0 +1,612 @@
+*, ::before, ::after { margin: 0; padding: 0; box-sizing: border-box; }
+.WorkName {
+	text-align: center;
+	font-family: cursive;
+	font-size: 30px;
+	margin: 25px 0;
+}
+
+.ParentBlockAllControls {
+	position: relative;
+}
+.newClassSlid {
+	perspective: 850px;
+	height: 785px;
+	overflow: hidden;
+}
+.ParentBlockAllControls {
+    position: relative;
+}
+.ParentBlockAllControls.bef::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, #fff 0 52%, transparent 100%);
+    z-index: 1;
+}
+.newClassSlid .toggleCarus {
+	transform: translateZ(-15em) translateY(0em) rotateX(-89deg);
+	transform-style: preserve-3d;
+	transition: 1s linear;
+	
+}
+.newClassSlid .toggleCarus.author {
+	animation: WorldClassWorkMode 10s linear 2 alternate forwards;
+}
+.newClassSlid .toggleCarus.SecretMode {
+	animation: WorldClassWorkSecretMODE 3s linear forwards;
+}
+.newClassSlid .toggleCarus.SecretModeOpen {
+	animation: WorldClassWorkSecretMODEOpen 1.5s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode {
+	animation: newTunelOne 20s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode2 {
+	animation: newTunelOne2 15s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode3 {
+	animation: newTunelOne3 10s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode4 {
+	animation: newTunelOne4 15s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode5 {
+	animation: newTunelOne5 10s linear forwards;
+}
+.newClassSlid .toggleCarus.skyMode6 {
+	animation: newTunelOneEnd 10s ease-in forwards;
+}
+.newClassSlid .toggleCarus .carClass {
+	transform-style: preserve-3d;
+	width: 170px;
+	height: 830px;
+	position: relative;
+	margin: 0em auto;
+	animation: WorldClassWork 10s linear infinite;
+}
+.newClassSlid .toggleCarus .carClass .item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 830px;
+	transform: rotateY(calc(var(--i) * 22.5deg)) translateZ(-17px);
+	background: url(worldClass/3.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/6.jpg) repeat 0 0 / cover;
+	transition: transform 1s, background 1.5s linear;
+}
+.newClassSlid .toggleCarus .carClass .item.mode2 {
+	transform: rotateY(calc(var(--i) * 22.5deg)) translateZ(425px);
+	background: url(worldClass/3.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+	cursor: pointer;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(1) {
+	background: url(worldClass/1.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(2) {
+	background: url(worldClass/2.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(3) {
+	background: url(worldClass/3.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(4) {
+	background: url(worldClass/4.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(5) {
+	background: url(worldClass/5.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(6) {
+	background: url(worldClass/6.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(7) {
+	background: url(worldClass/7.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(8) {
+	background: url(worldClass/8.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(9) {
+	background: url(worldClass/9.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(10) {
+	background: url(worldClass/10.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(11) {
+	background: url(worldClass/11.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(12) {
+	background: url(worldClass/12.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(13) {
+	background: url(worldClass/13.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(14) {
+	background: url(worldClass/14.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(15) {
+	background: url(worldClass/15.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .carClass .item.changeImg:nth-child(16) {
+	background: url(worldClass/16.jpg) no-repeat 0 0 / 100% 150px, url(worldClass/wall1.jpg) repeat 0 0 / 150%;
+}
+.newClassSlid .toggleCarus .include {
+	position: absolute;
+	top: -153px;
+	top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 250px;
+	object-fit: cover;
+	box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+	display: none;
+}
+.newClassSlid .toggleCarus .include.flat {
+	animation: worldClassImageFlat .5s ease;
+	display: block;
+}
+.newClassSlid .toggleCarus .carClass .street {
+	position: absolute;
+	top: 0;
+    left: 0;
+    width: 880px;
+    height: 880px;
+    background: url(worldClass/street.png) repeat center / cover;
+    transform: translateZ(0em) translateY(24.3em) translateX(-22em) rotateX(-90deg);
+    border-radius: 50%;
+	transition: 1s;
+}
+.newClassSlid .toggleCarus .carClass .street .hatch {
+	width: 135px;
+    height: 135px;
+    background: url(worldClass/hatchBorder.png) no-repeat center / contain;
+    position: absolute;
+    left: 12em;
+    top: 22.2em;
+	padding: 4px;
+	cursor: pointer;
+	transition: 1s;
+}
+.newClassSlid .toggleCarus .carClass .street .hatch.open img {
+	transform: translateY(8em);
+}
+.newClassSlid .toggleCarus .carClass .street .hatch img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	transition: 1s;
+}
+@keyframes worldClassImageFlat {
+	0% { top: 0; }
+	50% { top: -450px; }
+	100% { top: 0; }
+}
+@keyframes WorldClassWork {
+	to {
+		transform: rotateY(360deg);
+	}
+}
+@keyframes WorldClassWorkMode {
+	0% {
+		transform: translateZ(-15em) translateY(0em) rotateX(-89deg);
+	}
+	30% {
+		transform: translateZ(15em) translateY(-1em) rotateX(-89deg);
+	}
+	60% {
+		transform: translateZ(52em) translateY(-1em) rotateX(-89deg);
+	}
+	100% {
+		transform: translateZ(76em) translateY(-2em) rotateX(-89deg);
+	}
+}
+@keyframes WorldClassWorkSecretMODE {
+	0% {
+		transform: translateZ(200em) translateY(-2em) rotateX(90deg);
+	}
+	70% {
+		transform: translateZ(77em) translateY(-2em) rotateX(90deg);
+	}
+    90% {
+        transform: translateZ(54em) translateY(-2em) rotateX(0deg);
+    }
+	100% {
+		transform: translateZ(38em) translateY(2em) rotateX(-84deg);
+	}
+}
+@keyframes WorldClassWorkSecretMODEOpen {
+	0% {
+		transform: translateZ(38em) translateY(2em) rotateX(-84deg);
+	}
+	50% {
+		transform: translateZ(63em) translateY(-11em) translateX(9.5em) rotateX(-69deg);
+	}
+	80% {
+		transform: translateZ(100em) translateY(-11em) translateX(9.5em) rotateX(-69deg);
+	}
+	100% {
+		transform: translateZ(40em) translateY(-35em) translateX(1.5em) rotateX(0deg);
+	}
+}
+@keyframes WorldClassWorkUnderNewWorld {
+	0% {
+		transform: translateZ(40em) translateY(-35em) translateX(1.5em) rotateX(0deg);
+	}
+	2% {
+		transform: translateZ(40em) translateY(-85em) translateX(1.5em) rotateX(-33deg);
+	}
+	5% {
+		transform: translateZ(127em) translateY(-2em) translateX(0em) rotateX(-90deg);
+	}
+	100% {
+		transform: translateZ(655em) translateY(-5em) translateX(0em) rotateX(-90deg);
+	}
+}
+.newClassSlid .toggleCarus .carClass .starsBlock {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 880px;
+    height: 880px;
+    transform: translateZ(-48em) translateY(87.3em) translateX(-33em) rotateX(-90deg);
+    transform-style: preserve-3d;
+}
+.newClassSlid .toggleCarus .carClass .starsBlock .stars {
+	width: 40px;
+    height: 40px;
+    background: #ffff00;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+.newClassSlid .toggleCarus .carClass .starsBlock.start .stars {
+	animation: starsOpenWondering 5s linear forwards, starsOpenWonderingOpac .7s calc(var(--i) * .5s) infinite;
+	opacity: 1;
+}
+@keyframes starsOpenWondering {
+	0% {
+		transform: rotateX(-170deg) translateX(-50%) rotateY(calc(var(--i) * 0deg)) translateZ(156px);
+	}
+	100% {
+		transform: rotateX(-170deg) translateX(-50%) rotateY(calc(var(--i) * 48deg)) translateZ(156px);
+	}
+}
+@keyframes starsOpenWonderingOpac {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.newClassSlid .toggleCarus .carClass .starsBlock.start h5 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+	font-size: 40px;
+    text-align: center;
+    width: 100%;
+	transform: rotateX(-170deg) translateX(-50%);
+    font-family: cursive;
+    text-shadow: -1px -1px 7px #e4ff00, 3px -1px 27px #e4ff00, 0px 5px 1px #c52020;
+	opacity: 0;
+	animation: starsOpenWonderingOpac 1s 6s infinite;
+}
+.newClassSlid .toggleCarus .carClass h4 {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    text-align: center;
+    width: 67%;
+    transform: translateY(32em) translateX(-49%) translateZ(-10px) rotateX(90deg);
+    font-family: cursive;
+    text-shadow: -1px -1px 7px #e4ff00, 3px -1px 27px #e4ff00, 0px 3px 1px #c52020;
+}
+.ParentBlockAllControls .wordClassBtn {
+	position: absolute;
+	top: 0;
+	left: calc(var(--i) * 3%);
+	padding: 2px 10px;
+	cursor: pointer;
+	z-index: 1;
+	font-family: cursive;
+	font-size: 18px;
+	background: linear-gradient(to right, red 0 50%, black 50% 100%);
+	color: #fff;
+	outline: 0;
+	transition: 1s;
+}
+.newClassSlid .toggleCarus .underSlider {
+	position: absolute;
+    top: 0;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translateZ(0) translateY(51.8em) translateX(-50%);
+    transform-style: preserve-3d;
+	transition: .5s;
+/*	display: none;*/
+}
+.newClassSlid .toggleCarus .underSlider .UItem {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: rotateY(calc(var(--i) * 45deg)) translateZ(415px);
+	transition: .8s;
+	cursor: pointer;
+}
+.newClassSlid .toggleCarus .underSlider .UItem img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.newClassSlid .toggleCarus .prentTunel {
+	position: absolute;
+	top: 0;
+    left: 50%;
+	width: 300px;
+	transform: translateX(-50%) translateY(-549em);
+	transform-style: preserve-3d;
+}
+@keyframes newTunelOne {
+	0% {
+		transform: translateZ(0em) translateY(20em) rotateX(0deg);
+	}
+	5% {
+		transform: translateZ(0em) translateY(50em) rotateX(0deg);
+	}
+	10% {
+		transform: translateZ(0em) translateY(50em) rotateX(73deg);
+	}
+	20% {
+		transform: translateZ(92em) translateY(-2em) rotateX(90deg);
+	}
+	100% {
+		transform: translateZ(620em) translateY(-2em) rotateX(90deg);
+	}
+}
+@keyframes newTunelOne2 {
+	0% {
+		transform: translateZ(600em) translateY(-2em) rotateX(90deg);
+	}
+	100% {
+		transform: translateZ(1152em) translateY(-2em) rotateX(90deg);
+	}
+}
+@keyframes newTunelOne3 {
+	0% {
+		transform: translateZ(1152em) translateY(-2em) rotateX(90deg);
+	}
+	100% {
+		transform: translateZ(1352em) translateY(-2em) rotateX(90deg);
+	}
+}
+@keyframes newTunelOne4 {
+	0% {
+		transform: translateZ(1352em) translateY(-2em) rotateX(90deg);
+	}
+	100% {
+		transform: translateZ(1680em) translateY(-2em) rotateX(90deg);
+	}
+}
+@keyframes newTunelOne5 {
+	0% {
+		transform: translateZ(1680em) translateY(-2em) rotateX(90deg);
+	}
+    5% {
+		transform: translateZ(1682em) translateY(-2em) rotateX(90deg);
+	}
+    45% {
+		transform: translateZ(1705em) translateY(-2em) rotateX(90deg);
+	}
+    85% {
+		transform: translateZ(1690em) translateY(-2em) rotateX(90deg);
+	}
+    100% {
+		transform: translateZ(1710em) translateY(-2em) rotateX(90deg);
+	}
+}
+@keyframes newTunelOneEnd {
+    0% {
+		transform: translateZ(1710em) translateY(-2em) rotateX(90deg);
+	}
+    100% {
+		transform: translateZ(200em) translateY(-2em) rotateX(90deg);
+	}
+}
+.newClassSlid .toggleCarus .prentTunel .newTunel {
+	position: absolute;
+	top: 0;
+    left: 0;
+    width: 100%;
+    height: 8047px;
+    transform: rotateY(calc(var(--j) * 22.5deg)) translateZ(100px);
+    background: url(worldClass/heaven.jpg);
+	opacity: .5;
+}
+.newClassSlid .toggleCarus .prentTunel .newTunel2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 8047px;
+	transform: rotateY(calc(var(--j) * 22.5deg)) translateZ(100px) translateY(-520em);
+	background: url(worldClass/4.jpg);
+}
+.newClassSlid .toggleCarus .prentTunel .newTunel3 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4047px;
+	transform: rotateY(calc(var(--j) * 22.5deg)) translateZ(100px) translateY(-790em);
+	background: url(worldClass/8.jpg);
+}
+.newClassSlid .toggleCarus .prentTunel .newTunel4 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4047px;
+	transform: rotateY(calc(var(--j) * 22.5deg)) translateZ(100px) translateY(-1060em);
+	background: url(worldClass/10.jpg);
+}
+.newClassSlid .toggleCarus .prentTunel .heavenBlock {
+    position: absolute;
+	top: 0;
+    left: 50%;
+    width: 1000px;
+    height: 1500px;
+    transform: translateY(-1297em) translateX(-50%) translateZ(15em) rotateX(-90deg);
+}
+.newClassSlid .toggleCarus .prentTunel .heaven {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #fff 0 0, transparent 26% 74%, #fff 99%), linear-gradient(to bottom, #fff 0 0%, transparent, #fff),url(worldClass/heaven3.jpg) no-repeat center top / cover;
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .heavenBlockup1 {
+    position: absolute;
+	top: 0;
+    left: 50%;
+    width: 2092px;
+    height: 2599px;
+    transform: translateY(-1414em) translateX(-136%) translateZ(-19em) rotateX(-90deg) rotateY(44deg);
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .heavenBlockup1 .up1 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #fffffff2 0 0, transparent 26% 74%, #fff 99%), linear-gradient(to bottom, #fff 0 0%, transparent, #fff),url(worldClass/up1.png) no-repeat center top / cover;
+}
+.newClassSlid .toggleCarus .prentTunel .heavenBlockup2 {
+    position: absolute;
+	top: 0;
+    right: 50%;
+    width: 2092px;
+    height: 2599px;
+    transform: translateY(-1414em) translateX(136%) translateZ(-19em) rotateX(-90deg) rotateY(-44deg) scaleX(-1);
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .heavenBlockup2 .up2 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #fffffff2 0 0, transparent 26% 74%, #fff 99%), linear-gradient(to bottom, #fff 0 0%, transparent, #fff),url(worldClass/up1.png) no-repeat center top / cover;
+}
+.newClassSlid .toggleCarus .prentTunel .column1 {
+    position: absolute;
+	top: 0;
+    left: 50%;
+    width: 348px;
+    height: 880px;
+    transform: translateY(-1181em) translateX(-338%) translateZ(-36em) rotateX(-90deg);
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .column1 img {
+    width: 100%;
+    height: 100%;
+}
+.newClassSlid .toggleCarus .prentTunel .column1 .angel {
+    position: absolute;
+    top: -348px;
+    left: 30px;
+    width: 300px;
+    height: 400px;
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .column2 {
+    position: absolute;
+	top: 0;
+    right: 50%;
+    width: 348px;
+    height: 880px;
+    transform: translateY(-1181em) translateX(338%) translateZ(-36em) rotateX(-90deg);
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .column2 img {
+    width: 100%;
+    height: 100%;
+}
+.newClassSlid .toggleCarus .prentTunel .column2 .angel {
+    position: absolute;
+    top: -336px;
+    left: 5px;
+    width: 375px;
+    height: 400px;
+	display: none;
+}
+.newClassSlid .toggleCarus .prentTunel .Jesus {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 570px;
+    height: 810px;
+    transform: translateY(-1245em) translateX(-50%) translateZ(95em) rotateX(-90deg);
+    filter: drop-shadow(1px 0px 32px #fff) drop-shadow(1px 0px 28px #fff);
+    cursor: none;
+    user-select: none;
+	opacity: 0;
+	transition: 1s 5s;
+}
+.newClassSlid .toggleCarus.skyMode5 .prentTunel .Jesus {
+    animation: God 10s ease-out forwards;
+}
+.newClassSlid .toggleCarus.stat .prentTunel .Jesus {
+	transform: translateY(-1245em) translateX(-50%) translateZ(1em) rotateX(-90deg);
+}
+@keyframes God {
+    0% {
+        transform: translateY(-1245em) translateX(-50%) translateZ(95em) rotateX(-90deg);
+    }
+    100% {
+        transform: translateY(-1245em) translateX(-50%) translateZ(1em) rotateX(-90deg);
+    }
+}
+.newClassSlid .toggleCarus .prentTunel .Jesus img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    
+}
+.newClassSlid .toggleCarus .underAll {
+	width: 200px;
+	height: 200px;
+	background: url(worldClass/1.jpg);
+	position: absolute;
+	top: 0;
+    left: 50%;
+    width: 200px;
+    height: 120px;
+    transform: translateZ(-78px) translateY(57.8em) translateX(-55%);
+    transition: 1s;
+    background-size: 130%;
+	border-radius: 67% 105% 70% 70%;
+	box-shadow: 0 0 4px 4px #fff;
+	opacity: 0;
+	visibility: hidden;
+	animation: animUnderAll .9s linear infinite;
+}
+@keyframes animUnderAll {
+	0% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: -330% 50%;
+	}
+}
+
+.ParentBlockAllControls .wordClassBtn:nth-child(2),
+.ParentBlockAllControls .wordClassBtn:nth-child(3) {
+	opacity: 0;
+	visibility: hidden;
+}
+.ParentBlockAllControls .wordClassBtn:active {
+	background: linear-gradient(to left, red 0 50%, black 50% 100%);
+}
