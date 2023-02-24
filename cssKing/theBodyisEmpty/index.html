@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Body Is Empty</title>
+	<style>
+		html {
+			height: 100vh;
+			background: url(galaxy.jpg) repeat 0 / 90%;
+			animation: galaxy 5s linear infinite;
+			position: relative;
+			overflow: hidden;
+		}
+		html::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 120px;
+			background: url(floor.jpg) repeat-x 0 50% / 50% 100%;
+			animation: galaxy 10s linear infinite;
+			z-index: 1;
+		}
+		html::after {
+			content: '';
+			position: absolute;
+			bottom: 103px;
+			right: -155px;
+			width: 155px;
+    		height: 280px;
+			background: url(1.gif) no-repeat center / contain;
+			animation: girl 10s linear infinite;
+		}
+		@keyframes galaxy {
+			to { background-position: 900% -1165%; }
+		}
+		@keyframes girl {
+			to { right: 100%; }
+		}
+		head, meta, title, style {
+			display: block;
+		}
+		title {
+			display: flex;
+			justify-content: center;
+			padding: 100px 0 50px;
+			color: #fff;
+			font: normal 60px cursive;
+			animation: title 20s linear infinite alternate;
+		}
+		@keyframes title {
+			0% { font-size: 100px; }
+			49% { font-size: 100px; }
+			100% { font-size: 12px; }
+		}
+		meta::before {
+			content: '';
+			position: absolute;
+			bottom: 273px;
+			right: -168px;
+			width: 80px;
+			height: 80px;
+			background: url(2.gif) no-repeat center / contain;
+			animation: girl 9.5s linear 1s infinite, titer 3s linear infinite;
+			z-index: 1;
+		}
+		meta::after {
+			content: '';
+			position: absolute;
+			bottom: 80px;
+			right: -550px;
+			width: 545px;
+			height: 240px;
+			background: url(3.gif) no-repeat center / contain;
+			transform: scaleX(-1);
+			animation: car 15s linear infinite;
+			z-index: 3;
+		}
+		title::before {
+			content: '';
+			position: absolute;
+			bottom: 350px;
+			right: -550px;
+			width: 545px;
+			height: 240px;
+			background: url(4.gif) no-repeat center / contain;
+			transform: scaleX(-1);
+			animation: eagle 15s linear infinite;
+			z-index: 3;
+		}
+		title::after {
+			content: '';
+			position: absolute;
+			bottom: 100px;
+			right: -550px;
+			width: 265px;
+			height: 165px;
+			background: url(5.gif) no-repeat center / contain;
+			transform: scaleX(-1);
+			animation: horse 10s linear infinite;
+			z-index: 3;
+		}
+		style {
+			user-select: none;
+			width: 500px;
+			animation: code 20s linear infinite alternate;
+			text-align: center;
+    		margin: 0 auto;
+		}
+		@keyframes code {
+			0% {
+				color: transparent;
+			}
+			49% {
+				color: transparent;
+				width: 500px;
+			}
+			50% {
+				color: #fff;
+			}
+			90% {
+				color: #fff;
+				width: 100%;
+			}
+			100% {
+				color: #fff;
+				width: 100%;
+			}
+		}
+		style::before {
+			content: '';
+			position: absolute;
+			bottom: 110px;
+			right: -550px;
+			width: 90px;
+			height: 90px;
+			background: url(6.gif) no-repeat center / contain;
+			transform: scaleX(-1);
+			animation: jerry 20s linear infinite;
+			z-index: 3;
+		}
+		style::after {
+			content: '';
+			position: absolute;
+			bottom: 110px;
+			right: -550px;
+			width: 105px;
+			height: 105px;
+			background: url(8.gif) no-repeat center / contain;
+			animation: jerry 19.5s linear 1s infinite;
+			z-index: 2;
+		}
+		head::before {
+			content: '';
+			position: absolute;
+			bottom: 70px;
+			right: -550px;
+			width: 200px;
+			height: 200px;
+			background: url(9.gif) no-repeat center / contain;
+			animation: jerry 20s 2s linear infinite;
+			z-index: 3;
+		}
+		head::after {
+			content: '';
+			position: absolute;
+			bottom: 100px;
+			right: -550px;
+			width: 280px;
+			height: 280px;
+			background: url(7.gif) no-repeat center / contain;
+			transform: scaleX(-1);
+			animation: jerry 20s 4s linear infinite;
+			z-index: 3;
+		}
+		@keyframes titer {
+			0% { transform: rotate(30deg); }
+			40% { transform: rotate(60deg); }
+			100% { transform: rotate(30deg); }
+		}
+		@keyframes car {
+			to { right: 500%; }
+		}
+		@keyframes eagle {
+			to { right: 400%; }
+		}
+		@keyframes horse {
+			to { right: 200%; }
+		}
+		@keyframes jerry {
+			to { right: 300%; }
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+</html>
