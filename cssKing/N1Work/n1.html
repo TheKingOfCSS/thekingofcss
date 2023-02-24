@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Instructor Hovo Vardanyan</title>
+	<link rel="shortcut icon" href="../king.png">
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		body {
+			background: #111;
+			text-align: center;
+			color: #fff;
+			padding-top: 1vh;
+			font-family: system-ui, sans-serif;
+		}
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 235px;
+			height: 70px;
+			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			clip-path: polygon(0 0, 100% 0, 0 100%);
+		}
+		body::after {
+			content: '';
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			width: 285px;
+			height: 95px;
+			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			clip-path: polygon(0 100%, 100% 0, 100% 100%);
+		}
+		.backMega {
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: 5px 25px 5px 15px;
+			background: #f00;
+			color: #fff;
+			font: bold 22px sans-serif;
+			cursor: pointer;
+			border-bottom-right-radius: 30px;
+			transition: .2s;
+			z-index: 2;
+			text-decoration: none;
+		}
+		.backMega:hover {
+			background: #0f0;
+			color: #000;
+		}
+		.authorAndCreator {
+			z-index: 1;
+			position: relative;
+			font-size: 5vh;
+			letter-spacing: 2px;
+			color: transparent;
+			background: linear-gradient(to right, #fff 5%, #222 5% 6%, #fff 6%);
+			-webkit-background-clip: text;
+		}
+		.menu {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 1% 3%;
+			justify-content: center;
+			gap: 20vh 4vh;
+		}
+		.menu .display {
+			width: 95%;
+			display: flex;
+			z-index: 1;
+			height: 85vh;
+		}
+		.menu .display .view {
+			width: calc(100% - 120px);
+		}
+		.menu .display .view video {
+			width: 100%;
+			height: 100%;
+			border: 2px solid #fff;
+			object-fit: cover;
+		}
+		.menu .display .list {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			margin-left: 15px;
+		}
+		.menu .display .list video {
+			width: 120px;
+			height: calc(100% / 7.5);
+			object-fit: cover;
+			cursor: pointer;
+			border: 2px solid #fff;
+			transition: .2s;
+		}
+		.menu .display .list video.active {
+			translate: -17px;
+		}
+	</style>
+</head>
+<body>
+	<a href="../cssKing.html" class="backMega">Menu</a>
+	<h1 class="authorAndCreator">HUSHAHAMALIR</h1>
+	<div class="menu">
+		<div class="display">
+			<div class="view">
+				<video src="vid7.mp4" controls loop></video>
+			</div>
+			<div class="list">
+				<video src="vid3.mp4"></video>
+				<video src="vid5.mp4"></video>
+				<video src="vid4.mp4"></video>
+				<video src="vid6.mp4"></video>
+				<video src="vid2.mp4"></video>
+				<video src="vid7.mp4" class="active"></video>
+				<video src="vid1.mp4"></video>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		const display = document.querySelector('.menu .display .view video');
+		const list = document.querySelectorAll('.menu .display .list video');
+		list.forEach(item => {
+			item.onclick = () => {
+				display.src = item.src;
+				display.play();
+				list.forEach(item => item.classList.remove('active'));
+				item.classList.add('active');
+			};
+		});
+	</script>
+</body>
+</html>
