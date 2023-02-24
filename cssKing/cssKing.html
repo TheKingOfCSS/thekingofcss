@@ -81,6 +81,8 @@
 			left: 50%;
 			transform: translateX(-50%);
 			height: 130px;
+			transition: .3s;
+			transform-origin: bottom;
 		}
 		.menu .section .example {
 			display: block;
@@ -148,13 +150,12 @@
 		.menu .section:not(:first-child) p {
 			font-size: 2rem;
 		}
-		.menu .section:hover {
-/*			scale: 1.05;*/
-/*			rotate: 2deg;*/
+		.menu .section:hover .king {
+			transform: translateX(-50%) scale(1.05);
+			filter: saturate(2.5);
 		}
-		.menu .section:active {
-/*			scale: 1.1;*/
-/*			rotate: -2deg;*/
+		.menu .section:active .king {
+			transform: translate(-50%, 3px) scale(1.05);
 		}
 	</style>
 </head>
@@ -240,7 +241,6 @@
 			<p>Deep CSS</p>
 			<span><i>Աշխատանքի տևողությունը՝ &nbsp;&nbsp;8 ժամ</i></span>
 		</div>
-		
 	</div>
 	<script>
 		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
