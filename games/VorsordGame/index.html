@@ -36,12 +36,9 @@
             }
         };
         setInterval(() => {
-            let rand = Math.round(Math.random() * 1);
+            let rand = Math.round(Math.random() * 8);
             loading.value += rand;
             loadingValue.innerText = Math.floor(loading.value / 8) + '%';
-            if (loading.value > 400) {
-                loadingValue.style.color = '#000';
-            }
             if (loading.value == 800) {
                 loadingBlock.style.display = 'none';
                 controls.style = 'opacity: 1; visibility: visible;';
