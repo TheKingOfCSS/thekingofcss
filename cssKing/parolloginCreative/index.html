@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Password Creative</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Developer<br>Hovo Vardanyan</h1>
+	<div class="logPwd">
+		<div class="display">
+			<img src="logo.png" alt="Logo">
+			<div class="unq unq1"></div>
+			<div class="unq unq2"></div>
+			<div class="hand">
+				<div class="mat mat1"></div>
+				<div class="mat mat2"></div>
+				<div class="mat mat3"></div>
+				<div class="mat mat4"></div>
+				<div class="mat tat"></div>
+				<div class="mat but"></div>
+			</div>
+			<div class="hand right">
+				<div class="mat mat1"></div>
+				<div class="mat mat2"></div>
+				<div class="mat mat3"></div>
+				<div class="mat mat4"></div>
+				<div class="mat tat"></div>
+				<div class="mat but"></div>
+			</div>
+			<div class="eyBlock">
+				<div class="eye">
+					<div class="glass">
+						<div class="bib"></div>
+					</div>
+				</div>
+			</div>
+			<div class="eyBlock">
+				<div class="eye">
+					<div class="glass">
+						<div class="bib"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form action="#" method="post" autocomplete="off">
+			<input type="text" placeholder="Login" name="login" maxlength="40">
+			<input type="password" placeholder="Password" name="pwd" maxlength="60">
+			<input type="submit" value="Send">
+		</form>
+	</div>
+	<script>
+		const parLogBlock = document.querySelector('.logPwd');
+		const eyBlock = document.querySelectorAll('.logPwd .display .eyBlock');
+		const unq = document.querySelectorAll('.logPwd .display .unq');
+		const eye = document.querySelectorAll('.logPwd .display .eye');
+		const logPwd = document.querySelectorAll('.logPwd form input');
+		const hand = document.querySelectorAll('.logPwd .display .hand');
+		let bool = true;
+		logPwd.forEach(item => {
+			item.oninput = () => {
+				if (logPwd[0].value.length > 0 || logPwd[1].value.length > 0) {
+					unq[0].style = 'transform: rotate(-31deg); left: 11%; top: 48px;';
+					unq[1].style = 'transform: rotate(31deg); right: 11%; top: 48px;';
+				} else {
+					unq[0].style = 'transform: rotate(-2deg); left: 18%; top: 28px;';
+					unq[1].style = 'transform: rotate(-2deg); right: 18%; top: 28px;';
+				}
+				
+				if (bool) {
+					if (logPwd[1].value.length > 0) {
+						hand[0].style = 'left: 6%; bottom: 13%; transform: scale(1.2)';
+						hand[1].style = 'right: 11%; bottom: 13%; transform: scaleX(-1) scale(1.2)';
+					} else {
+						hand[0].style = 'left: -39%; bottom: -40%; transform: rotate(70deg) scale(1.2)';
+						hand[1].style = 'right: -39%; bottom: -40%; transform: scaleX(-1) scale(1.2)';
+						eye[1].firstElementChild.style.transform = 'rotate(30deg)';
+					}
+					
+					if(logPwd[1].value.length > 6 && logPwd[1].value.length < 20) {
+						hand[0].classList.add('move');
+						eye[1].firstElementChild.style.transform = 'rotate(65deg)';
+						hand[0].style.left = 5 + logPwd[1].value.length / 5 + '%';
+					} else {
+						hand[0].classList.remove('move');
+					}
+					if(logPwd[1].value.length > 21 && logPwd[1].value.length < 50) {
+						hand[1].classList.add('move');
+						hand[1].style.right = (11 - logPwd[1].value.length / 4) + '%';
+					} else {
+						hand[1].classList.remove('move');
+					}
+				}
+				eye.forEach(ey => ey.style.transform = `rotate(-${item.value.length}deg)`);
+			};
+		});
+		logPwd[1].onblur = e => {
+			hand[0].style = 'left: -39%; bottom: -40%; transform: rotate(70deg) scale(1.2)';
+			hand[1].style = 'right: -39%; bottom: -40%; transform: scaleX(-1) scale(1.2)';
+			hand[0].classList.remove('move');
+			hand[1].classList.remove('move');
+		};
+		logPwd[0].onclick = () => bool = false;
+		logPwd[1].onclick = () => bool = true;
+		let c = 1;
+		logPwd.forEach(item => {
+			item.addEventListener('focus', () => {
+				let set = setInterval(() => {
+					c += .5;
+					item.style.borderImage = `linear-gradient(${c}deg, black 30%, #00000000 30% 60%, #15f78e 60%) 1`;
+				}, 10);
+				item.addEventListener('blur', () => {
+					item.style.border = '4px solid #000';
+					logPwd[2].style.border = '1px solid #000';
+					clearInterval(set);
+				});
+			});
+		});
+		
+		setInterval(() => {
+			eyBlock.forEach(item => item.classList.add('tart'));
+			setTimeout(() => {
+				eyBlock.forEach(item => item.classList.remove('tart'));
+			}, 300);
+		}, 4000);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

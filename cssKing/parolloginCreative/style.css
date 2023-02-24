@@ -1,0 +1,253 @@
+* { margin: 0; padding: 0; outline: 0; box-sizing: border-box; }
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: repeating-linear-gradient(90deg, #bfe2ff54, transparent 100px);
+}
+h1 {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	font: 20px cursive;
+	line-height: 1.1;
+}
+.logPwd {
+	width: 600px;
+	height: 600px;
+	border-radius: 40px;
+    border-width: 15px 3px 15px;
+    border-style: double solid double;
+	background: linear-gradient(-28deg, #4fff07 0% 6%, #00a859 6% 47.4%, #ff0000 47.4% 55%, #000000 55%);
+}
+.logPwd .display {
+	display: flex;
+	justify-content: center;
+	gap: 0 10px;
+	height: 350px;
+	align-items: center;
+	border-bottom: 1px solid #000;
+	position: relative;
+	background: linear-gradient(186deg, #00a859, #ffffff);
+    border-radius: 28px 28px 0 0;
+}
+.logPwd .display img {
+	position: absolute;
+	bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 75px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+	user-select: none;
+	pointer-events: none;
+}
+.logPwd .display .unq {
+	position: absolute;
+	width: 150px;
+    height: 55px;
+    border-radius: 87%;
+    border-top: 5px solid #000;
+	transition: .3s;
+}
+.logPwd .display .unq.unq1 {
+	transform: rotate(-2deg);
+	top: 28px;
+	left: 18%;
+}
+.logPwd .display .unq.unq2 {
+	transform: rotate(-2deg);
+	top: 28px;
+	right: 18%;
+}
+.logPwd .display .eyBlock {
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 2px solid #000;
+	background: #fff;
+}
+.logPwd .display .eyBlock::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background: radial-gradient(#505050, #343434);
+	transition: .1s;
+}
+.logPwd .display .eyBlock.tart::after {
+	animation: tart .2s linear;
+}
+.logPwd .display .eyBlock .eye {
+	width: 200px;
+	height: 200px;
+	position: relative;
+	transition: .2s;
+}
+.logPwd .display .eyBlock .eye .glass {
+	width: 80px;
+	height: 80px;
+	background: #000;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 12px;
+	left: 25px;
+	transform: rotate(30deg);
+	transition: .2s;
+}
+.logPwd .display .eyBlock .eye .glass .bib {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #fff;
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+@keyframes tart {
+	from, to { height: 0; }
+	50% { height: 100%; }
+	90% { height: 100%; }
+}
+.logPwd form {
+	display: grid;
+	align-content: center;
+	justify-content: center;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	grid-row-gap: 20px;
+	height: calc(100% - 350px);
+	position: relative;
+}
+.logPwd form input {
+	width: 90%;
+	height: 60px;
+	border-radius: 5px;
+	text-indent: 15px;
+	border: 4px solid #000;
+	font: 18px sans-serif;
+}
+.logPwd form input[type="submit"] {
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: auto;
+	height: auto;
+	text-indent: 0;
+	cursor: pointer;
+	padding: 5px 20px 3px;
+	border: 1px solid #000;
+	background: #ffbc00;
+	transition: .5s;
+}
+.logPwd form input[type="submit"]:hover {
+	background: #000;
+	color: #fff;
+}
+.logPwd .display .hand {
+	position: absolute;
+	bottom: -40%;
+	left: -39%;
+	width: 200px;
+	height: 200px;
+	z-index: 1;
+	transform: rotate(70deg) scale(1.2);
+	transition: .4s;
+}
+.logPwd .display .hand.move:not(.right) {
+	bottom: -2% !important;
+}
+.logPwd .display .hand.move:not(.right) .mat1 {
+	transform: rotate(0);
+	left: 75px;
+}
+.logPwd .display .hand.move:not(.right) .mat2 {
+	transform: rotate(38deg);
+	top: 26px;
+    left: 144px;
+}
+.logPwd .display .hand.right {
+	right: -39%;
+	left: auto;
+	transform: scaleX(-1) scale(1.2);
+}
+.logPwd .display .hand.right.move {
+	bottom: 2% !important;
+}
+.logPwd .display .hand.right.move .mat3 {
+	transform: rotate(44deg);
+	top: 57px;
+    left: 179px;
+}
+.logPwd .display .hand.right.move .mat4 {
+	transform: rotate(68deg);
+	top: 82px;
+    left: 184px;
+}
+.logPwd .display .hand.right.move .mat2 {
+	transform: rotate(9deg);
+    left: 114px;
+}
+.logPwd .display .hand .mat {
+	position: absolute;
+	background: #ff0000;
+	transform: rotate(30deg);
+	border-radius: 35px / 50%;
+	z-index: 1;
+	transition: .3s;
+}
+.logPwd .display .hand .mat1 {
+	top: 0;
+    left: 100px;
+    width: 30px;
+    height: 156px;
+    box-shadow: inset 7px 9px 5px 0px #0000004a;
+}
+.logPwd .display .hand .mat2 {
+	top: 20px;
+	left: 131px;
+	width: 30px;
+	height: 130px;
+	box-shadow: inset 5px 9px 5px 0px #0000004a;
+}
+.logPwd .display .hand .mat3 {
+	top: 47px;
+    left: 150px;
+    width: 27px;
+	height: 130px;
+	box-shadow: inset 5px 9px 5px 0px #0000004a;
+}
+.logPwd .display .hand .mat4 {
+    top: 75px;
+    left: 165px;
+    width: 27px;
+	height: 130px;
+	box-shadow: inset 2px 9px 5px 0px #0000004a;
+    border-radius: 35px / 50% 50% 50% 31px;
+}
+.logPwd .display .hand .tat {
+    top: 110px;
+    left: 51px;
+    width: 117px;
+    height: 100px;
+    z-index: 0;
+    border-radius: 50% 36%;
+    box-shadow: inset 1px -12px 34px -10px #0000004a;
+}
+.logPwd .display .hand .but {
+    top: 57px;
+    left: 51px;
+    width: 29px;
+    height: 91px;
+    transform: rotate(1deg);
+    border-radius: 50% 50px 50% 34%;
+    box-shadow: inset 6px 9px 9px 0px #0000004a;
+    z-index: 0;
+}
