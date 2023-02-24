@@ -65,22 +65,30 @@
 			flex-wrap: wrap;
 			padding: 1% 3%;
 			justify-content: center;
-			gap: 20vh 4vh;
+			gap: 1vh 4vh;
 		}
 		.menu .display {
 			width: 95%;
 			display: flex;
 			z-index: 1;
-			height: 85vh;
+			height: 83vh;
 		}
 		.menu .display .view {
 			width: calc(100% - 120px);
+			position: relative;
 		}
-		.menu .display .view video {
+		.menu .display .view video,
+		.menu .display .view iframe {
 			width: 100%;
 			height: 100%;
 			border: 2px solid #fff;
 			object-fit: cover;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.menu .display .view iframe {
+			display: none;
 		}
 		.menu .display .list {
 			height: 100%;
@@ -89,7 +97,7 @@
 			justify-content: space-between;
 			margin-left: 15px;
 		}
-		.menu .display .list video {
+		.menu .display .list :is(video, img) {
 			width: 120px;
 			height: calc(100% / 7.5);
 			object-fit: cover;
@@ -97,8 +105,12 @@
 			border: 2px solid #fff;
 			transition: .2s;
 		}
-		.menu .display .list video.active {
+		.menu .display .list :is(video, img).active {
 			translate: -17px;
+		}
+		.menu p {
+			font: 17px sans-serif;
+			letter-spacing: 2px;
 		}
 	</style>
 </head>
@@ -109,6 +121,7 @@
 		<div class="display">
 			<div class="view">
 				<video src="vid7.mp4" controls loop></video>
+				<iframe src="https://www.youtube.com/embed/4RFYqXeV9q0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</div>
 			<div class="list">
 				<video src="vid3.mp4"></video>
@@ -117,18 +130,28 @@
 				<video src="vid6.mp4"></video>
 				<video src="vid2.mp4"></video>
 				<video src="vid7.mp4" class="active"></video>
-				<video src="vid1.mp4"></video>
+				<img src="bg.jpg" alt="Img">
 			</div>
 		</div>
-
+		<p>Հասկանալի պատճառներով կոդը տեղադրված չէ</p>
 	</div>
 	<script>
 		const display = document.querySelector('.menu .display .view video');
-		const list = document.querySelectorAll('.menu .display .list video');
+		const displayIframe = document.querySelector('.menu .display .view iframe');
+		const list = document.querySelectorAll('.menu .display .list :is(video, img)');
+		console.log(list)
 		list.forEach(item => {
 			item.onclick = () => {
-				display.src = item.src;
-				display.play();
+				if (item.tagName != 'IMG') {
+					display.src = item.src;
+					display.play();
+					displayIframe.style.display = 'none';
+					display.style.display = 'block';
+				} else {
+					display.style.display = 'none';
+					displayIframe.style.display = 'block';
+					display.pause();
+				}
 				list.forEach(item => item.classList.remove('active'));
 				item.classList.add('active');
 			};
