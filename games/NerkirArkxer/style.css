@@ -1,0 +1,435 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+@font-face {
+    font-family: ArmVineta;
+    src: url(fonts/ArmVineta.ttf);
+}
+body {
+    overflow: hidden;
+}
+.gameMenu {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url(img/menuBackground.jpg) no-repeat center / cover;
+    transition: 1s;
+    z-index: 10;
+}
+.gameMenu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ffffffa8 0 6%, transparent 21% 65%, #ffffffc4 98% 100%), linear-gradient(to bottom, #74a6dc 0 6%, transparent 21% 65%, #418193 98% 100%);
+}
+.gameMenu .Elbakyan {
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    height: 100px;
+}
+.gameMenu .Elbakyan img {
+    height: 100px;
+    border-radius: 10px;
+    pointer-events: none;
+}
+.gameMenu .Elbakyan h5 {
+    font-size: 19px;
+    line-height: 1;
+}
+.gameMenu .cloud1 {
+    width: 300px;
+    height: 165px;
+    position: absolute;
+    top: -1%;
+    left: -30%;
+    background: url(img/cloud1.png) no-repeat center / contain;
+}
+.gameMenu .cloud2 {
+    width: 300px;
+    height: 165px;
+    position: absolute;
+    top: 13%;
+    right: -30%;
+    background: url(img/cloud1.png) no-repeat center / contain;
+}
+@keyframes MenuCloud1 {
+    to { left: 1%; }
+}
+@keyframes MenuCloud2 {
+    to { right: 5%; }
+}
+.gameMenu h5 {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font: 20px cursive;
+	color: #fff;
+}
+.gameMenu h1 {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -30%;
+    font-size: 4.5em;
+    font-family: ArmVineta;
+    color: #ed5400;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 14px #fff, 0 0 5px #fff;
+    letter-spacing: 5px;
+    text-align: center;
+}
+@keyframes gameName {
+    to { top: 7%; }
+}
+.gameMenu .control {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -20%);
+}
+.gameMenu .control .ctrBut {
+    background: url(img/menuButton.png) no-repeat center / contain;
+    border: 0;
+    outline: 0;
+    width: 250px;
+    cursor: pointer;
+    color: #fff;
+    height: 90px;
+    transform: scale(0);
+    letter-spacing: 2px;
+    display: block;
+    transition: 1s;
+}
+.gameMenu .control .ctrBut:hover {
+    filter: hue-rotate(-162deg);
+    transition: 0s;
+}
+.gameMenu .control .ctrBut:active {
+    filter: hue-rotate(-254deg);
+    transition: .2s;
+}
+.gameMenu .control .ctrBut span {
+    font-size: 30px;
+    display: block;
+    margin-top: -5px;
+}
+.gameMenu .loading-block {
+    width: 65%;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    text-align: center;
+    transition: .5s ease .5s;
+}
+.gameMenu .description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(50deg, #570cae, #b80807);
+    z-index: 10;
+    overflow: auto;
+    padding: 15px 0;
+    display: none;
+}
+.gameMenu .description::-webkit-scrollbar {
+    width: 10px;
+    background: #000;
+}
+.gameMenu .description::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: #fff;
+    border-radius: 80px;
+}
+.gameMenu .description .item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 3px solid #000;
+    border-radius: 20px;
+    width: 50%;
+    height: 124px;
+    margin: 15px auto;
+    padding-left: 30px;
+    background: #fff;
+}
+.gameMenu .description .item:nth-child(2) p {
+    font-family: monospace;
+}
+.gameMenu .description .closeDescr {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 45px;
+    cursor: pointer;
+    transition: .3s;
+    opacity: .8;
+}
+.gameMenu .description .closeDescr:hover {
+    transform: scale(1.15);
+    opacity: 1;
+}
+.gameMenu .description .item.authors p {
+    font-size: 30px;
+}
+.gameMenu .description .item:nth-child(3) img,
+.gameMenu .description .item:nth-child(4) img {
+    height: 80px;
+}
+.gameMenu .description .item img.descrIce {
+    filter: hue-rotate(450deg);
+}
+.gameMenu .description .item img.descrBomb {
+    filter: brightness(245%) sepia(138%) hue-rotate(279deg);
+}
+.gameMenu .description .item img {
+    height: 85px;
+    margin-right: 15px;
+    width: 85px;
+    object-fit: contain;
+}
+.gameMenu .description .item p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}
+.gameMenu .loading-block .progress-value {
+    font-size: 35px;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: 900;
+}
+.gameMenu .loading-block .progress-value span {
+    width: 12%;
+    display: inline-block;
+}
+.gameMenu .loading-block .loading {
+    background: #fff;
+    width: 100%;
+    height: 35px;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 3px outset #ff6603;
+    box-sizing: content-box;
+}
+.gameMenu .loading-block .loading::-webkit-progress-bar {
+    background: #fff;
+}
+.gameMenu .loading-block .loading::-webkit-progress-value {
+    background: linear-gradient(to bottom, #FF5500, #FF6E17, #FF7A2D, #FF8B4A, #FF9358);
+}
+.gameMenu.start h1 {
+    animation: gameName 2s ease 1s forwards;
+}
+.gameMenu.start .cloud1 {
+    animation: MenuCloud1 2s ease .5s forwards;
+}
+.gameMenu.start .cloud2 {
+    animation: MenuCloud2 2s ease .5s forwards;
+}
+.gameMenu.start .loading-block {
+    opacity: 0;
+    visibility: hidden;
+}
+@keyframes controlButton {
+    to { transform: scale(1); }
+}
+.gameMenu.start .control .continue {
+    animation: controlButton .8s ease-out 1.8s forwards; 
+}
+.gameMenu.start .control .start {
+    animation: controlButton .8s ease-out 2.2s forwards; 
+}
+.gameMenu.start .control .about {
+    animation: controlButton .8s ease-out 2.8s forwards; 
+}
+.gameMenu.start .control .exit {
+    animation: controlButton .8s ease-out 3.4s forwards; 
+}
+.gameMenu.start .control .continue {
+    display: none;
+}
+.gameMenu.hide {
+    top: 100%;
+}
+.levelsMenu {
+    width: 100%;
+    height: 100vh;
+    background: url(img/levelsMenu.jpg) no-repeat center / cover;
+    perspective: 850px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.levelsMenu .levels {
+    width: 57%;
+    height: 92vh;
+    transform-style: preserve-3d;
+    position: relative;
+/*    transform: translateZ(10em) translate(-15%, 0%);*/
+}
+.levelsMenu .levels .item {
+    width: 310px;
+    height: 200px;
+    position: absolute;
+    border: 5px dashed #fff;
+    animation: levelsBoxShadow 2.8s linear infinite;
+    cursor: pointer;
+    transition: .5s;
+    text-align: center;
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+    outline-style: dotted;
+}
+.levelsMenu .levels .item h2 {
+    color: #000;
+    text-shadow: 1px -1px 3px #fff, -2px 1px 2px #fff;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 33px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.levelsMenu .levels .item .playGameIcon {
+    width: 60px;
+    height: 60px;
+    background: url(img/playGame.png) no-repeat center / contain;
+    filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 5px #fff);
+    animation: playGameIcon .5s ease infinite alternate;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+@keyframes playGameIcon {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.2); }
+}
+.levelsMenu .levels .item.lev1:hover {
+    transform: scale(1.05);
+}
+@keyframes levelsBoxShadow {
+    0% { box-shadow: 7px 6px 12px #f00; }
+    20% { box-shadow: 7px 6px 12px #fff700; }
+    40% { box-shadow: 7px 6px 12px #3fff00; }
+    60% { box-shadow: 7px 6px 12px #00ffe7; }
+    80% { box-shadow: 7px 6px 12px #1000ff; }
+    100% { box-shadow: 7px 6px 12px #b400ff; }
+}
+.levelsMenu .levels .item.lev1 {
+    background: url(img/lev1.jpg) no-repeat center / cover;
+    top: 30%;
+    left: 0;
+    z-index: 1;
+}
+.levelsMenu .levels .item.lev2 {
+    background: url(img/lev2.jpg) no-repeat center / cover;
+    top: 15%;
+    left: 250px;
+    transform: translateZ(-160px);
+}
+.levelsMenu .levels .item.lev3 {
+    background: url(img/lev3.jpg) no-repeat center / cover;
+    top: 0%;
+    left: 520px;
+    transform: translateZ(-360px);
+}
+.levelsMenu .levels .item.lev4 {
+    background: url(img/lev4.jpg) no-repeat center / cover;
+    top: -20%;
+    left: 820px;
+    transform: translateZ(-560px);
+}
+.levelsMenu .levels .item + .item::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+}
+.levelsMenu .levels .item .lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: 10px;
+    opacity: .8;
+}
+.levelsMenu .levels .item .star {
+    width: 45px;
+    height: 45px;
+    background: url(img/starSilver.png) no-repeat center / contain;
+}
+.levelsMenu .levels .item .starBlock {
+    filter: drop-shadow(0px 0px 2px #000000) drop-shadow(0px 0px 0px #000000) drop-shadow(0px 0px 0px #000000);
+    position: absolute;
+    top: 135px;
+    left: 10px;
+}
+.levelsMenu .backMenu {
+    position: absolute;
+    top: 3%;
+    left: 1%;
+    padding: 7px 20px;
+    cursor: pointer;
+    outline: 0;
+    background: linear-gradient(to bottom, #FF5500, #FF6E17, #FF7A2D, #FF8B4A, #FF9358);
+    color: #fff;
+    font-size: 20px;
+    border: 6px ridge #a28c36;
+    border-radius: 25px;
+    transition: .5s;
+}
+.levelsMenu .backMenu:hover {
+    filter: hue-rotate(62deg);
+}
+.levelsMenu .backMenu:active {
+    filter: hue-rotate(188deg);
+}
+.effectPlayGame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #100e0e 50%, transparent 100%);
+    transition: .7s;
+    z-index: 1;
+}
+.effectPlayGame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to left, #100e0e 50%, transparent 100%);
+    transition: .7s;
+    z-index: 1;
+}
+.effectPlayGame.active::before {
+    left: 0;
+}
+.effectPlayGame.active::after {
+    right: 0;
+}

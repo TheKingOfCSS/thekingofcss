@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ներկիր արկղերը</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/lock.jpg">
+</head>
+<body>
+    <div class="gameMenu">
+        <h1>Ներկիր արկղերը</h1>
+        <span class="cloud1"></span>
+        <span class="cloud2"></span>
+        <div class="control">
+            <button class="ctrBut continue"><span>Շարունակել</span></button>
+            <button class="ctrBut start"><span>Սկսել</span></button>
+            <button class="ctrBut about"><span>Բնութագիր</span></button>
+        </div>
+        <div class="Elbakyan">
+            <img src="img/logo.png" alt="Elbakyan">
+        </div>
+        <h5>Instructor Hovo Vardanyan<br>&copy; Copyright All Right Reserved 2021</h5>
+        <div class="loading-block">
+            <h4 class="progress-value">Loading <span>0%</span></h4>
+            <progress class="loading" min="0" max="100" value="0"></progress>
+        </div> 
+        <div class="description">
+            <button class="closeDescr">&#10006;</button>
+           <div class="item">
+                <p>ԲՆՈՒԹԱԳԻՐ․ Ներկել արկղերը տրված ժամանակի ընթացքում, եթե ձեզ հաջողվի ներկել բոլոր արկղերը կտեղափոխվեք հաջորդ սենյակ:</p>
+            </div>
+            <div class="item">
+                <img src="img/bomb.gif" alt="Bomb">
+                <p>Այս բոմբը պայթելու դեպքում կխլի 10 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="img/bomb.gif" alt="Bomb" class="descrBomb">
+                <p>Այս բոմբը պայթելու դեպքում կխլի 20 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="img/bomb2.gif" alt="Bomb">
+                <p>Այս բոմբը հայտնվում է պատահական վայրում և պայթելիս խլում է 3-5 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="img/iceCube.png" alt="Bomb">
+                <img src="img/iceCube.png" alt="Bomb" class="descrIce">
+                <p>Այս սառույցները կբարդացնեն խաղը:</p>
+            </div>
+            <div class="item">
+                <img src="img/health.png" alt="Bomb">
+                <p>Այս սիրտը կհայտնվի 14-րդ սենյակից և կոգնի հաղթահարել սենյակը ավելացնելով 1-20 վայրկյան ժամանակ:</p>
+            </div>
+            <div class="item">
+                <img src="img/rumbBig.png" alt="Bomb">
+                <p>Այս բոմբը կդարձնի ձեր խաղի ժամանակը 5 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="img/rumbBig2.png" alt="Bomb">
+                <p>Այս բոմբին կպնելուց միանգամից կլինի Game Over:</p>
+            </div>
+        </div>
+    </div>
+    <div class="effectPlayGame"></div>
+    <div class="levelsMenu">
+       <button class="backMenu">Մենյու</button>
+        <div class="levels">
+            <div class="item lev1">
+              <h2>Սենյակ 1</h2>
+              <div class="playGameIcon"></div>
+               <div class="starBlock">
+                    <div class="star"></div>
+                </div>
+            </div>
+            <div class="item lev2">
+                <img src="img/lock.jpg" class="lock" alt="lock">
+            </div>
+            <div class="item lev3">
+                <img src="img/lock.jpg" class="lock" alt="lock">
+            </div>
+            <div class="item lev4">
+                <img src="img/lock.jpg" class="lock" alt="lock">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
