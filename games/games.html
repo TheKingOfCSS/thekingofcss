@@ -43,7 +43,7 @@
 			cursor: pointer;
 			border-bottom-right-radius: 30px;
 			transition: .2s;
-			z-index: 1;
+			z-index: 2;
 		}
 		.backMega:hover {
 			background: #0f0;
@@ -123,6 +123,9 @@
 		.menu .section.qaxcr .example {
 			background: url(qaxcr/bg.jpg) no-repeat center / 110%;
 		}
+		.menu .section.hunter .example {
+			background: url(VorsordGame/levels/images/winner.jpg) no-repeat center / cover;
+		}
 		.menu .section:hover {
 			scale: 1.05;
 			rotate: 2deg;
@@ -201,11 +204,13 @@
 			<div class="example"></div>
 			<p>Qaxcr Mankutyun</p>
 		</a>
+		<a class="section hunter" href="VorsordGame/index.html">
+			<div class="example"></div>
+			<p>Որսորդ</p>
+		</a>
 	</div>
 	<script>
 		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
 	</script>
 </body>
 </html>
-
-
