@@ -1,0 +1,113 @@
+* { margin: 0; user-select: none; padding: 0; border: 0; outline: 0; box-sizing: border-box; }
+.menu {
+    height: 100vh;
+    background: url(levels/images/menusniper.png) no-repeat 100% 90% / 40%, url(levels/images/level5.jpg) no-repeat center / 100%;
+    position: relative;
+    overflow: hidden;
+	animation: menu 2s infinite;
+}
+@keyframes menu {
+	50% { background-size: 40%, 110%; }
+}
+.sniperMenu {
+    width: 230px;
+    height: 230px;
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    background: url(levels/images/sniperMenu.png) no-repeat center / contain;
+    animation: sniperAnim 5s ease forwards;
+    z-index: 10;
+    transition: 1s;
+	pointer-events: none;
+}
+@keyframes sniperAnim {
+    0% { right: 5%; top: 10%; filter: none; }
+    20% { right: 52%; top: 72%; filter: none; }
+    25% { right: 52%; top: 72%; filter: none; }
+    45% { right: 78%; top: 2%; filter: none; }
+    50% { right: 78%; top: 2%; filter: none; }
+    75% { right: 52%; top: 72%; filter: none; }
+    80% { right: 52%; top: 72%; filter: none; }
+    97% { right: 25.5%; top: 5.5%; filter: none; }
+    100% { right: 25.5%; top: 5.5%; filter: invert(1) brightness(1) drop-shadow(0 0 60px #000)  drop-shadow(0 0 10px #000)  drop-shadow(0 0 30px #000); }
+}
+.menu h1 {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    font-size: 75px;
+    transform: rotate(-25deg);
+    background: linear-gradient(#D7002C, #f00, #d6002c);
+    font-family: sans-serif;
+    -webkit-background-clip: text;
+    color: transparent;
+	-webkit-text-stroke: 3px #fff;
+}
+.menu .loading-block {
+    position: absolute;
+    bottom: 5%;
+    left: 32%;
+}
+.menu .loading-block span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 28px;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    transition: .3s;
+}
+.menu #loading {
+    appearance: none;
+    height: 60px;
+    width: 220px;
+    border-radius: 1% 88% / 0% 85%;
+    overflow: hidden;
+    transform: rotate(-9deg); 
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 20px #000) drop-shadow(0 0 40px #0005);
+}
+.menu #loading::-webkit-progress-bar {
+    background: linear-gradient(#D7002C, #6f0017);
+}
+.menu #loading::-webkit-progress-value {
+    background: url(levels/images/backgroundMenu.jpg) no-repeat 35% 98% / 400% 400%;
+}
+.menu .controls {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s;
+	translate: -50%;
+}
+.menu .controls button {
+    display: block;
+    width: 250px;
+    height: 60px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 28px;
+    margin: 10px;
+    box-shadow: 2px 2px 15px #000; 
+}
+.menu .controls button:hover {
+    background: linear-gradient(#D7002C, #6f0017, #d6002c);
+    color: #fff;
+}
+.menu .controls button#continueGame {
+    display: none;
+}
+.menu .developers {
+    font-size: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    color: #fff;
+    font-family: monospace;
+	font-weight: bold;
+	text-shadow: 0 4px 5px #000, 0 0 5px #000;
+}

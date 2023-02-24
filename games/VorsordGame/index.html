@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Որսորդ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="levels/images/logo.png">
+</head>
+<body>
+    <div class="menu">
+        <h1>Որսորդ</h1>
+        <div class="controls">
+            <button id="continueGame">Շարունակել</button>
+            <button id="start">Սկսել</button>
+        </div>
+        <div class="sniperMenu"></div>
+        <div class="loading-block">
+            <progress id="loading" min="0" max="800" value="0"></progress>
+            <span id="loadingValue">0%</span>
+        </div>
+        <p class="developers">Instructor Hovo Vardanyan<br>&copy; Copyright All Right Reserved 2021</p>
+    </div>
+    <script>
+        const loadingBlock = document.querySelector('.menu .loading-block');
+        const controls = document.querySelector('.menu .controls');
+        window.onload = () => {
+            if (localStorage.getItem('backToGame') != null) {
+                loadingBlock.style.display = 'none';
+                controls.style = 'opacity: 1; visibility: visible;';
+                continueGame.style.display = 'block';
+                start.style.display = 'none';
+                continueGame.onclick = () => { 
+                    let gameSource = localStorage.getItem('backToGame');
+                    window.location.href = `levels/level${gameSource}.html`;
+                }
+            }
+        };
+        setInterval(() => {
+            let rand = Math.round(Math.random() * 1);
+            loading.value += rand;
+            loadingValue.innerText = Math.floor(loading.value / 8) + '%';
+            if (loading.value > 400) {
+                loadingValue.style.color = '#000';
+            }
+            if (loading.value == 800) {
+                loadingBlock.style.display = 'none';
+                controls.style = 'opacity: 1; visibility: visible;';
+            }
+        }, 1);
+        start.onclick = () => window.location.href = 'levels/level1.html'
+        document.oncontextmenu = () => false;
+    </script>
+</body>
+</html>
