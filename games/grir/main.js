@@ -250,7 +250,7 @@ const author = document.querySelector('.game .author');
 document.onmousemove = e => {
 	title.style.backgroundImage = `radial-gradient(circle at ${e.x / 15}% 50%, #000 30%, #ffa500 30.4%)`;
 };
-exit.onclick = () => window.close();
+exit.onclick = () => window.location.href = '../game.html';
 start.onclick = () => { menu.style.top = '-100vh'; author.style.color = '#fff'; author.style.right = '15px'; author.style.transform = 'none'; };
 descr.onclick = () => info.style.left = '50%';
 info.firstElementChild.onclick = () => info.style.left = '150%';
