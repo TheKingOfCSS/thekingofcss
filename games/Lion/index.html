@@ -108,6 +108,7 @@
 		<div class="controls">
 			<button id="play">Play</button>
 			<button id="inf">Info</button>
+			<button id="backMenu">Menu</button>
 		</div>
 		<div class="info">
 			<img src="img/logo.png" alt="Img" title="Էլբակյան կրթահամալիր">
@@ -120,6 +121,7 @@
 		const info = document.querySelector('.menu .info');
 		const theme = new Audio('sound/music.mp3');
 		play.onclick = () => location.href = 'menu.html';
+		backMenu.onclick = () => location.href = '../games.html';
 		document.onclick = () => theme.play();
 		inf.onclick = () => {
 			info.style.opacity = 1;	
