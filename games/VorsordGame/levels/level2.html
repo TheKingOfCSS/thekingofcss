@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Որսորդ</title>
+    <link rel="stylesheet" href="level2.css">
+    <link rel="shortcut icon" href="images/logo.png">
+</head>
+<body>
+    <div class="game">
+       <audio id="sniperSound" src="audio/sniper.mp3" type="audio/mpeg"></audio>
+       <audio id="birdDeath" src="audio/birdDeath.mp3" type="audio/mpeg"></audio>
+        <div class="controlPanel">
+            <div class="life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+                <img src="images/patron.png" alt="Life">
+            </div>
+        </div>
+        <div class="canvas">
+           <div class="point">
+               <div class="pointImg"></div>
+               <span class="pointValue"></span>
+           </div>
+            <div class="birds" style="--i:3; --t:1.3;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="birds" style="--i:-1; --t:2;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="birds" style="--i:2; --t:2.2;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="birds" style="--i:7.3; --t:2;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="birds" style="--i:5; --t:1;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="birds" style="--i:2; --t:0.3;">
+                <img src="images/1.gif" alt="Birds">
+            </div>
+            <div class="backMenu">
+                <button class="toMenu">Մենյու</button>
+            </div>
+        </div>
+    </div>
+    <div class="gameOver">
+        <h4>Game Over</h4>
+        <button class="replay">Կրկին փորձել</button>
+    </div>
+    <div class="winner">
+        <h4>Հաղթանակ</h4>
+        <button class="nextLevel">Հաջորդ սենյակ</button>
+    </div>
+    <div class="sniper"></div>
+
+    <script src="level2.js"></script>
+</body>
+</html>

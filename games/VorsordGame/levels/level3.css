@@ -1,0 +1,183 @@
+*, ::before, ::after { margin: 0; padding: 0; border: 0; outline: 0; user-select: none; box-sizing: border-box; }
+body { overflow: hidden; }
+.game {
+    cursor: none; 
+    background: url(images/level3.jpg) no-repeat center / cover;
+    height: 100vh;
+}
+.sniper {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background: url(images/sniper.png) no-repeat center / contain;
+    z-index: 2;
+    clip-path: polygon(0% 0%, 100% 0, 57% 49%, 53% 46%, 50% 46%, 46% 47%, 45% 50%, 44% 53%, 46% 57%, 49% 59%, 53% 60%, 57% 60%, 60% 56%, 57% 48%, 100% 0, 100% 99%, 0% 100%);
+}
+.birds {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .3s;
+    z-index: 1;
+}
+.birds:hover {
+    filter: grayscale(.7);
+}
+.birds img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+.birds:nth-of-type(even) {
+    top: calc(var(--t) * 30%);
+    left: calc(var(--i) * 15%);
+    animation: anim 1s ease infinite alternate;
+}
+.birds:nth-of-type(odd) {
+    top: calc(var(--t) * 30%);
+    left: calc(var(--i) * 10%);
+    animation: anim2 2s ease infinite;
+}
+@keyframes anim {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-100px) rotate(20deg); }
+    100% { transform: translateX(0); }
+}
+@keyframes anim2 {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(200px); }
+    100% { transform: translateX(0); }
+}
+.game .controlPanel {
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: inset 0 -36px 36px #0005;
+}
+.game .canvas {
+    height: calc(100vh - 100px);
+    position: relative;
+}
+.game .controlPanel .life {
+    height: 100px;
+    padding: 10px 20px 0;
+}
+.game .controlPanel .life img {
+    height: 100%;
+}
+/* Game Over */
+.gameOver {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.95);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s;
+}
+.gameOver h4 {
+    font-size: 8em;
+    font-family: cursive;
+    color: white;
+    text-shadow: 0 0 13px #ff0000;
+    transition: .5s;
+    width: 100%;
+    text-align: center;
+}
+.gameOver .replay {
+    font-family: cursive;
+    padding: 7px 37px 13px;
+    cursor: pointer;
+    outline: 0;
+    background: black;
+    color: #fff;
+    font-size: 30px;
+    border: 6px groove #932222;
+    border-radius: 50px;
+    transition: .5s;
+    margin-top: 30px;
+}
+.gameOver .replay:hover {
+    border: 6px dashed #fff;
+}
+.game .canvas .point {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+.game .canvas .point .pointImg {
+    width: 70px;
+    height: 70px;
+    background: url(images/logo.png) no-repeat 70% 50% / 150%;
+    border-radius: 50%;
+}
+.game .canvas .point .pointValue {
+    font-size: 34px;
+    font-family: fantasy;
+    color: #fff;
+    text-shadow: 1px 1px 3px #000,1px 1px 3px #000,1px 1px 3px #000;
+}
+.game .canvas .backMenu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.game .canvas .backMenu .toMenu {
+    font-size: 23px;
+    padding: 5px 10px 5px 15px;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+}
+.game .canvas .backMenu .toMenu:hover,
+.winner .nextLevel:hover {
+    background: linear-gradient(#D7002C, #6f0017, #d6002c);
+    color: #fff;
+}
+.winner {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #B3B3B3 url(images/winner.jpg) no-repeat 50% -10% / 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    z-index: 13;
+    gap: 20px 0;
+    padding-bottom: 25px;
+    transition: 1s .7s;
+}
+.winner .nextLevel {
+    font-size: 28px;
+    padding: 8px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgb(0, 0, 0), 0 0 8px rgba(0, 0, 0, 0.71), 0 0 15px rgba(0, 0, 0, 0.6);
+}
+.winner h4 {
+    font-size: 100px;
+    color: #0f0901;
+    margin-bottom: 10px;
+    animation: WinnerText .5s ease infinite alternate;
+}
+@keyframes WinnerText {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
