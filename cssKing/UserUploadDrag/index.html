@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User Upload</title>
+	<style>
+		*, ::before, ::after { margin: 0; padding: 0; box-sizing: border-box; }
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 35px;
+			justify-content: center;
+			align-items: flex-start;
+			padding: 7vh;
+		}
+		.container .cell {
+			width: 250px;
+			min-height: 323px;
+			border: 1px solid #000;
+			box-shadow: 4px 4px 8px #00000080;
+			border-radius: 8px;
+			padding-bottom: 15px;
+			transition: .5s;
+		}
+		.container .cell .card {
+			height: 100%;
+			text-align: center;
+			position: relative;
+			transition: .5s;
+		}
+		.container .cell .card .close {
+			position: absolute;
+			top: -10px;
+			right: 15px;
+			border-radius: 50%;
+			width: 32px;
+			height: 32px;
+			background: #f00;
+			color: #fff;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font: 20px sans-serif;
+			border: 2px solid #000;
+			box-shadow: 3px 3px 10px #00000080;
+			opacity: 0;
+			visibility: hidden;
+			transition: .9s;
+		}
+		.container .cell .card .close.active {
+			opacity: 1;
+			visibility: visible;
+		}
+		.container .cell .card .user {
+			width: 215px;
+			height: 215px;
+			background: url(img/user.jpg) no-repeat center / cover;
+			border-radius: 50%;
+			margin: 20px auto 25px;
+			transition: .8s linear;
+			position: relative;
+		}
+		.container .cell:first-child .card .user {
+			background-image: url(img/CristianoRonaldo.jpg);
+		}
+		.container .cell .card h3 {
+			font: 22px sans-serif;
+			width: 100%;
+			position: absolute;
+			bottom: 80px;
+			left: 50%;
+			transform: translateX(-50%);
+			transition: 1s .5s;
+			opacity: 0;
+		}
+		.container .cell .card h3.active {
+			bottom: 55px;
+			opacity: 1;
+		}
+		.container .cell .card .user::after {
+			content: '';
+			position: absolute;
+			top: -5px;
+			left: -5px;
+			width: calc(100% + 10px);
+			height: calc(100% + 10px);
+			background: ;
+			border-radius: 50%;
+			z-index: 1;
+			border: 5px solid #00c126;
+    		border-right-color: transparent;
+		}
+		.container .cell .card .user.active::after {
+			transition: 2s linear;
+			transform: rotate(720deg);
+		}
+		.container .cell .card label input {
+			display: none;
+		}
+		.container .cell .card label {
+			display: inline-block;
+			padding: 14px 15px 11px;
+			color: #fff;
+			background: #000;
+			font: 18px sans-serif;
+			cursor: pointer;
+			border-radius: 30px;
+			box-shadow: 1px 4px 4px #6fef84;
+			transition: .5s;
+		}
+		.container .cell .card label:hover {
+			background: #08ff08;
+			color: #000;
+			box-shadow: 1px 4px 4px #009d1a;
+		}
+		.author {
+			position: absolute;
+			top: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+			font: 18px cursive;
+			letter-spacing: .5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="cell">
+			<div class="card" draggable="true">
+				<div class="close">X</div>
+				<h3>Cristiano Ronaldo</h3>
+				<div class="user"></div>
+				<label>
+					<span>Upload Profile</span>
+					<input type="file" accept="image/*">
+				</label>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="card" draggable="true">
+				<div class="close">X</div>
+				<h3>Cristiano Ronaldo</h3>
+				<div class="user"></div>
+				<label>
+					<span>Upload Profile</span>
+					<input type="file" accept="image/*">
+				</label>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="card" draggable="true">
+				<div class="close">X</div>
+				<h3>Cristiano Ronaldo</h3>
+				<div class="user"></div>
+				<label>
+					<span>Upload Profile</span>
+					<input type="file" accept="image/*">
+				</label>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="card" draggable="true">
+				<div class="close">X</div>
+				<h3>Cristiano Ronaldo</h3>
+				<div class="user"></div>
+				<label>
+					<span>Upload Profile</span>
+					<input type="file" accept="image/*">
+				</label>
+			</div>
+		</div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+	</div>
+	<script src="main.js"></script>
+</body>
+</html>
