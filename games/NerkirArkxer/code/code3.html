@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="code3.css">
+    <title>Ներկիր արկղերը</title>
+    <link rel="shortcut icon" href="../img/lock.jpg">
+</head>
+<body>
+    <div class="gameMenu">
+        <h1>Ներկիր արկղերը</h1>
+        <span class="cloud1"></span>
+        <span class="cloud2"></span>
+        <div class="control">
+            <button class="ctrBut start"><span>Սկսել</span></button>
+            <button class="ctrBut about"><span>Բնութագիր</span></button>
+        </div>
+        <h5>Instructor Hovo Vardanyan<br>&copy; Copyright All Right Reserved 2021</h5>
+        <div class="description">
+            <button class="closeDescr">&#10006;</button>
+           <div class="item authors">
+                <p>Developers<br>Hovo Vardanyan and Miqo Babayan</p>
+            </div>
+           <div class="item">
+                <p>ԲՆՈՒԹԱԳԻՐ․ Ներկել արկղերը տրված ժամանակի ընթացքում, եթե ձեզ հաջողվի ներկել բոլոր արկղերը կտեղափոխվեք հաջորդ սենյակ:</p>
+            </div>
+            <div class="item">
+                <img src="../img/bomb.gif" alt="Bomb">
+                <p>Այս բոմբը պայթելու դեպքում կխլի 10 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="../img/bomb.gif" alt="Bomb" class="descrBomb">
+                <p>Այս բոմբը պայթելու դեպքում կխլի 20 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="../img/bomb2.gif" alt="Bomb">
+                <p>Այս բոմբը հայտնվում է պատահական վայրում և պայթելիս խլում է 3-5 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="../img/iceCube.png" alt="Bomb">
+                <img src="../img/iceCube.png" alt="Bomb" class="descrIce">
+                <p>Այս սառույցները կբարդացնեն խաղը:</p>
+            </div>
+            <div class="item">
+                <img src="../img/health.png" alt="Bomb">
+                <p>Այս սիրտը կհայտնվի 14-րդ սենյակից և կոգնի հաղթահարել սենյակը ավելացնելով 1-20 վայրկյան ժամանակ:</p>
+            </div>
+            <div class="item">
+                <img src="../img/rumbBig.png" alt="Bomb">
+                <p>Այս բոմբը կդարձնի ձեր խաղի ժամանակը 5 վայրկյան:</p>
+            </div>
+            <div class="item">
+                <img src="../img/rumbBig2.png" alt="Bomb">
+                <p>Այս բոմբին կպնելուց միանգամից կլինի Game Over:</p>
+            </div>
+        </div>
+    </div>
+    <div class="effectPlayGame"></div>
+    <div class="overlay">
+        <h4>3s</h4>
+    </div>
+    <div class="gameOver">
+        <h4>Game Over</h4>
+        <button class="replay">Կրկին փորձել</button>
+    </div>
+    <div class="winner">
+        <h4>Դուք հաղթել եք</h4>
+        <img src="../img/win.gif" alt="Win">
+    </div>
+    <div class="levelsGame level1">
+        <div class="levelsControlPanel">
+            <button class="backMenu">Մենյու</button>
+            <div class="timeBlock">
+                <h3 class="time">40s</h3>
+            </div>
+            <h3 class="pointCount"><span class="name">Քանակ </span><span class="point">0</span><span class="all">/220</span></h3>
+        </div>
+        <div class="boxBlock"></div>
+    </div>
+    
+    <div class="levelsMenu">
+       <button class="backMenu">Մենյու</button>
+        <div class="levels">
+            <div class="item lev1">
+                <h2>Սենյակ 3</h2>
+                <div class="playGameIcon"></div>
+                <div class="starBlock">
+                    <div class="star"></div>
+                </div>
+            </div>
+            <div class="item lev2">
+                <h2>Սենյակ 4</h2>
+                <div class="playGameIcon"></div>
+                <div class="starBlock">
+                    <div class="star"></div>
+                </div>
+            </div>
+            <div class="item lev3">
+                <img src="../img/lock.jpg" class="lock" alt="lock">
+            </div>
+            <div class="item lev4">
+                <img src="../img/lock.jpg" class="lock" alt="lock">
+            </div>
+        </div>
+    </div>
+    <script src="code3.js"></script>
+</body>
+</html>
+
+
+
+
