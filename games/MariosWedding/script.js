@@ -146,7 +146,7 @@ class YourGame extends Tools {
 				this['endGame']();
 			}
 			if (this['pathBool']) {
-				this['meter'] += .02;
+				this['meter'] += .4;
 				this['path']['innerText'] = Math['floor'](this['meter']) + ' Meter';
 				if (this['meter'] % 1e3 == 0) {
 					this['mission']['innerText'] = --this['km'] + 'km';
@@ -297,7 +297,7 @@ const dino = new YourGame({
 	cursor: document['querySelector']('.game .cursor'),
 	path: document['querySelector']('.game .path'),
 	mission: document['querySelector']('.game .pointBlock .mission strong'),
-	km: 100,
+	km: 10,
     recordElem: document['querySelector']('.menu .record span')
 }, {
 	bg: 'img/bg.jpg',
