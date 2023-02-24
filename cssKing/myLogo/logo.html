@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Famous Logo</title>
+	<link rel="stylesheet" href="logo.css">
+</head>
+<body id="add">
+<div class="loading">
+    <progress min="0" max="100" value="0"></progress>
+    <div class="contentText">
+        <h2>Loading</h2>
+        <div class="dots">
+            <span>...</span>
+        </div>
+        <h3>0%</h3>
+    </div>
+</div>
+<button id="button">Description</button>
+<div class="slider">
+	<div class="logo one">
+		<div class="product">
+			<div class="angular"></div>
+			<p>Angular Logo</p>
+		</div>
+		<div class="product">
+			<div class="react">
+				<div class="react-one"></div>
+				<div class="react-too">
+					<span></span>
+				</div>
+			</div>
+			<p>React Logo</p>
+		</div>
+		<div class="product">
+			<div class="pepsi">
+				<div class="pepsi-one"></div>
+			</div>
+			<p id="pepsi">Pepsi Logo</p>
+		</div>
+		<div class="product">
+			<div class="Vue">
+				<div class="vues-only"></div>
+			</div>
+			<p id="vue">Vue Logo</p>
+		</div>
+		<div class="product">
+			<div class="Instagram">
+				<div class="insta"></div>
+				<div class="insta2"></div>
+			</div>
+			<p id="intagram">Instagram Logo</p>
+		</div>
+		<div class="product">
+			<div class="SneakersShoes">
+				<div class="Sshoes"></div>
+				<div class="Sshoes2"></div>
+			</div>
+			<p id="SneakerShoes">Sneakers shoes Logo</p>
+		</div>
+		<div class="product">
+			<div class="Mesenger">
+				<div class="fb-color"></div>
+				<div class="fb-mes"></div>
+			</div>
+			<p id="mesenger">Mesenger Logo</p>
+		</div>	
+		<div class="product">
+			<div class="Chrome">
+				<div class="googleChrome"></div>
+				<div class="googleChrome2"></div>
+			</div>
+			<p id="chrome">Chrome Logo</p>
+		</div>
+		<div class="product">
+			<div class="YouTube">
+				<div class="youtube"></div>
+			</div>
+			<p id="youtube">YouTube Logo</p>
+		</div>
+		<div class="product">
+			<div class="SeireA">
+				<div class="SerieB"></div>
+				<div class="SerieC"></div>
+				<div class="SerieD"></div>
+				<div class="SerieF"></div>
+			</div>
+			<p id="serieA">Serie A Logo</p>
+		</div>
+		<div class="product">
+			<div class="HTML5">
+				<div class="html"></div>
+				<div class="html2"></div>
+			</div>
+			<p id="HTML5">HTML 5 Logo</p>
+		</div>
+		<div class="product">
+			<div class="Apple">
+				<div class="apple"></div>
+				<div class="apple2"></div>
+			</div>
+			<p id="apple">Apple Logo</p>
+		</div>
+		<div class="product">
+			<div class="LaLiga">
+				<div class="laliga">
+					<div class="laliga2"></div>
+					<div class="laliga3"></div>
+				</div>
+				<div class="laliga_color"></div>
+				<div class="laliga_color2"></div>
+				<div class="laliga_color3"></div>
+				<div class="laliga_color4"></div>
+			</div>
+			<p id="laliga">LaLiga Logo</p>
+		</div>
+		<div class="product">
+			<div class="whatsapp">
+				<div class="whatsapp2"></div>
+				<div class="whatsapp3"></div>
+			</div>
+			<p id="whatsapp">Whatsapp Logo</p>
+		</div>
+		<div class="product">
+			<div class="Telegram">
+				<div class="telegram"></div>
+			</div>
+			<p id="telegram">Telegram Logo</p>
+		</div>
+	</div>
+	<div class="logo too">
+		<div class="description">
+			<h1>World Famous Logos</h1>
+			<h2>with ::after ::before and clip-path: Polygon</h2>
+			<p>Developer Hovo Vardanyan</p>
+		</div>
+	</div>
+</div>
+	<script>
+		let body = document.querySelector('#add');
+		let button = document.querySelector('#button');
+		button.onclick = function() {
+			body.classList.toggle('effect');
+		};
+        
+        const homePage = document.querySelector('.slider');
+        const homePage2 = document.querySelector('.logo.too');
+        const progress = document.querySelector('progress');
+        const loadingBlock = document.querySelector('.loading');
+        const result = document.querySelector('.loading .contentText h3');
+        setTimeout(() => {
+            setInterval(() => {
+			let res = Math.round(Math.random() * 2);
+            progress.value += res;
+            result.innerHTML = progress.value + '%';
+                if (progress.value == 100) {
+                    loadingBlock.style.visibility = 'hidden';
+                    loadingBlock.style.opacity = 0;
+                    homePage.style.transform = 'scale(1)';
+                    homePage.style.opacity = 1;
+                    setTimeout(() => {
+                        homePage2.style.opacity = 1;
+                    }, 1000);
+                }
+            }, 30);
+        }, 500);
+        
+	</script>
+</body>
+</html>
