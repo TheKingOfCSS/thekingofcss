@@ -1,0 +1,124 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.title {
+    text-align: center;
+    font: 4em sans-serif;
+    margin: 45px 0 10px;
+}
+.Flags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px 0;
+}
+.Flags .flag {
+    width: 520px;
+    height: 314px;
+    border: 1px solid;
+}
+.Flags .flag1 {
+    background: linear-gradient(red 0 33.3%, blue 33.3% 66.6%, orange 66.6%) no-repeat;
+}
+.Flags .flag2 {
+    background: linear-gradient(white 0 33.3%, #0036A8 33.3% 66.6%, #e80000 66.6%) no-repeat;
+}
+.Flags .flag3 {
+    background: linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%) no-repeat;
+}
+.Flags .flag4 {
+    background: linear-gradient(#000 0 33.3%, #DD0000 33.3% 66.6%, #FFCE00 66.6%) no-repeat;
+}
+.Flags .flag5 {
+    background: linear-gradient(transparent 0 40%, #FECB00 40% 60%, transparent 60%), linear-gradient(to right, transparent 0 28%, #FECB00 28% 40%, transparent 40%) #005293 no-repeat;
+}
+.Flags .flag6 {
+    background: radial-gradient(circle, #BC002D 0 35%, #ebebeb 36%) no-repeat;
+}
+.Flags .flag7 {
+    background: linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%) no-repeat;
+}
+.Flags .flag8 {
+    background: linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B;
+}
+.Flags .flag9 {
+    background: linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B;
+}
+.Flags .flag10 {
+    background: linear-gradient(#AE1D27 0 33.3%, #fff 33.3% 66.6%, #22468C 66.6%) no-repeat;
+}
+.Flags .flag11 {
+    background: linear-gradient(#fff 50%, #D5213D 50%) no-repeat;
+}
+.Flags .flag12 {
+    background: linear-gradient(#0272CC 0 33.3%, #000 33.3% 66.6%, #fff 66.6%) no-repeat;
+}
+.Flags .flag13 {
+    background: linear-gradient(#ED2B3A 0 33.3%, #fff 33.3% 66.6%, #ED2B3A 66.6%) no-repeat;
+}
+.Flags .flag14 {
+    background: linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%) no-repeat;
+}
+.Flags .flag15 {
+    background: linear-gradient(transparent 0 37%, #01347F 37% 63%, transparent 63%), linear-gradient(to right, transparent 0 26%, #01347F 26% 42%, transparent 42%);
+}
+.Flags .flag16 {
+    background: linear-gradient(to right, transparent 45%, #fff 45% 55%, transparent 55%) no-repeat -42% 0 / 65% 56%, linear-gradient(transparent 40%, #fff 40% 60%, transparent 60%) no-repeat -42% 1% / 55% 55%, linear-gradient(#0D5EAF 0% 100%) no-repeat 0 0 / 36% 50%, repeating-linear-gradient(#0D5EAF 0 10%, #fff 10% 20%) no-repeat 50% 0% / 100% 111%;
+}
+.Flags .flag17 {
+    background: linear-gradient(to right, #000 0 33.3%, #FFDC10 33.3% 66.6%, #CF1D1D 66.6%) no-repeat;
+}
+.Flags .flag18 {
+    background: linear-gradient(transparent 0 43%, #FDFDFC 43% 57%, transparent 57%), linear-gradient(to right, transparent 0 27%, #FDFDFC 27% 36%, transparent 36%) #CE0A0B;
+}
+.Flags .flag19 {
+    background: conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%) no-repeat;
+}
+.Flags .flag20 {
+    background: linear-gradient(#FCD116 0 50%, #003893 50% 75%, #CE1126 75%);
+}
+.Flags .flag21 {
+    background: linear-gradient(#005BBB 50%, #FFD500 50%) no-repeat;
+}
+.Flags .flag22 {
+    background: linear-gradient(-31deg, transparent 0 44%, #fff 44.3% 55.7%, transparent 56%), linear-gradient(-149deg, transparent 0 44%, #fff 44.3% 55.7%, transparent 56%) #005EB8;
+}
+.Flags .flag23 {
+    background: conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat -2% 0.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 3% 4% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat -1.7% 8.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat -2% 4% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 1.1% 9.0% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 25px 0.5px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 49px 10px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 27.3px 24.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 23px 11px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 39.1px 24px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 61px 0.5px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 85px 10px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 62.3px 24.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 59px 11px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 76.1px 24px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 96px 0.5px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 120px 10px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 97.3px 24.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 94px 11px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 111.1px 24px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 126px 0.5px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 150px 10px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 127.3px 24.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 124px 11px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 141.1px 24px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 161px 0.5px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 185px 10px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 162.3px 24.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 159px 11px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 176.1px 24px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 7px 10.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 31px 14% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 8.3px 18.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 5px 14% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 21.1px 18.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 42px 10.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 66px 14% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 44.3px 18.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 40px 14% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 56.1px 18.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 77px 10.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 101px 14% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 79.3px 18.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 75px 14% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 91.1px 18.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 112px 10.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 136px 14% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 114.3px 18.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 110px 14% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 126.1px 18.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 145px 10.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 170px 14% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 147.3px 18.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 144px 14% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 160.1px 18.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat -2% 20.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 3% 24% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat -1.7% 28% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat -2% 24% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 1.1% 28.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 25px 61px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 49px 70px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 27.3px 81.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 23px 71px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 39.1px 82px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 61px 61px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 85px 70px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 62.3px 84px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 59px 71px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 76.1px 83px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 96px 61px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 120px 70px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 97.3px 84px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 94px 70px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 111.1px 84px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 126px 60px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 150px 70px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 127.3px 83px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 124px 70px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 141.1px 83px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 161px 60px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 185px 69px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 162.3px 83px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 159px 70px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 176.1px 83px / 6% 6%,conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 7px 30.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 31px 34% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 8.3px 38.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 5px 34% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 21.1px 38.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 42px 30.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 66px 34% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 44.3px 38.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 40px 34% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 56.1px 38.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 77px 30.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 101px 34% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 79.3px 38.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 75px 34% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 91.1px 38.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 112px 30.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 136px 34% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 114.3px 38.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 110px 34% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 126.1px 38.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 145px 30.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 170px 34% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 147.3px 38.5% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 144px 34% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 160.1px 38.5% / 6% 6%,conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat -2% 40.5% / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 3% 44% / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat -1.7% 48% / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat -2% 44% / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 1.1% 48.5% / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 25px 121px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 49px 130px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 27.3px 143.5px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 23px 131px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 39.1px 144px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 61px 121px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 85px 130px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 62.3px 144px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 59px 131px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 76.1px 144px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 96px 121px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 120px 130px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 97.3px 144px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 94px 131px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 111.1px 144px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 126px 121px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 150px 130px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 127.3px 144px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 124px 131px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 141.1px 144px / 6% 6%, conic-gradient(from 166deg, #fff 0 7%, transparent 7%) no-repeat 161px 121px / 9% 6.5%, conic-gradient(from 250deg, #fff 0 7%, transparent 7%) no-repeat 185px 130px / 4% 7%, conic-gradient(from -347deg, #fff 0 7%, transparent 7%) no-repeat 162.3px 144px / 6% 6%, conic-gradient(from -280deg, #fff 0 7%, transparent 7%) no-repeat 159px 131px / 5% 7%, conic-gradient(from -400deg, #fff 0 7%, transparent 7%) no-repeat 176.1px 144px / 6% 6%, linear-gradient(#3C3B6E 0 100%) no-repeat 0 0 / 43% 54.02%, repeating-linear-gradient(#B22234 0 10%, #fff 10% 20%) repeat 0 0 / 100% 77%;
+}
+.Flags .flag24 {
+    background: linear-gradient(transparent 0 40%, #CE1124 40% 60%, transparent 60%), linear-gradient(to right, transparent 0 44%, #CE1124 44% 56%, transparent 56%) #fff;
+}
+.Flags .flag25 {
+    background: conic-gradient(from 150deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 0% -6.2% / 30% 31%, conic-gradient(from 245deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 20% 15% / 19% 33%, conic-gradient(from 86deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat -6% 14% / 19% 33%, conic-gradient(from 19deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat -1% 39.5% / 19% 33%, conic-gradient(from -58deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 15% 39.5% / 19% 33%, conic-gradient(from 190deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 37% 5.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 38% 14% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 30.5% 6.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 30.8% 15% / 7% 6%, conic-gradient(from -8deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 34% 17.1% / 7% 10%, conic-gradient(from 111deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 36.4% 20.8% / 8% 11%, conic-gradient(from 209deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 42% 22% / 8% 10%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 34.5% 31.5% / 10% 8%, conic-gradient(from -20deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 39.8% 34% / 2% 13%, conic-gradient(from -81deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 31.1% / 6% 7%, conic-gradient(from 146deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 40% 39.8% / 5% 13%, conic-gradient(from 247deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 45% 47.7% / 8% 10%, conic-gradient(from 74deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35.5% 48.5% / 9.1% 8%, conic-gradient(from 10deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 37.8% 55% / 5% 11%, conic-gradient(from -53deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 55.1% / 5% 13%, conic-gradient(from 193deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 34% 57.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35% 66% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 27.9% 57.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 27.8% 64% / 7% 6%, conic-gradient(from -10deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 31% 69.1% / 7% 10% #EE1C25;
+}
+.Flags .flag33 {
+    background: linear-gradient(#CF0921 50%, #fff 50%);
+}
+.Flags .flag26 {
+    background: linear-gradient(to right, #008850 0 33.3%, #fff 33.3% 66.6%, #008850 66.6%);
+}
+.Flags .flag27 {
+    background: linear-gradient(#18B637 0 33.3%, #fff 33.3% 66.6%, #0073C7 66.6%);
+}
+.Flags .flag28 {
+    background: radial-gradient(circle, #E15101 15%, transparent 15.4%), linear-gradient(#E15101 0 33.3%, #fff 33.3% 66.6%, #04B227 66.6%);
+}
+.Flags .flag29 {
+    background: conic-gradient(from 215deg at 27% 50%, transparent 5%, #000 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 32% 50%, transparent 5%, #FEB71C 5.2% 25%, transparent 25.2%), linear-gradient(transparent 38%, #007749 38% 62%, transparent 62%), conic-gradient(from 215deg at 52% 50%, transparent 5%, #007749 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 57% 50%, transparent 5%, #fff 5.2% 25%, transparent 25.2%), linear-gradient(#E03C32 33%, #fff 33% 38%, #007749 38% 62%, #fff 62% 67%, #001389 67%);
+}
+.Flags .flag30 {
+    background: radial-gradient(circle at 19% 26%, transparent 0 6%, #003580 6.2% 7.99%, transparent 8.2%), conic-gradient(from 485deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 49px 10px / 9% 13%, conic-gradient(from 458deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 27px 30px / 9% 11%, conic-gradient(from 440deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 19px 51px / 9% 11%, conic-gradient(from 410deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 19px 81px / 9% 11%, conic-gradient(from 392deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 33px 100px / 8% 11%, conic-gradient(from 371deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 48px 112px / 8% 13%, conic-gradient(from 332deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 74px 114px / 9% 16%, conic-gradient(from 315deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 96px 111px / 9% 16%, conic-gradient(from 285deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 121px 100px / 9% 13%, conic-gradient(from 256deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 132px 76px / 9% 13%, conic-gradient(from 232deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 132px 48px / 9% 13%, conic-gradient(from 209deg, transparent 2%, #FFCE00 2% 12%, transparent 13%) no-repeat 125px 24px / 8% 13%, conic-gradient(from 191deg, transparent 2%, #FFCE00 2% 12%, transparent 10%) no-repeat 109px 6px / 8% 14%, conic-gradient(from 154deg, transparent 2%, #FFCE00 2% 12%, transparent 10%) no-repeat 47px -3px / 20% 16%, radial-gradient(circle at 19% 26%, #FFCE00 0 6%, transparent 6.2%), linear-gradient(149deg, transparent 0 39.8%, #fff 40% 43%, #D21034 43% 57%, #fff 57% 60%, transparent 60%), linear-gradient(149deg, #003580 50%, #009543 50%);
+}
+.Flags .flag31 {
+    background: linear-gradient(#6DABD3 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #6DABD3 67%);
+}
+.Flags .flag32 {
+    background: linear-gradient(transparent 66.6%, #fff 64% 76.2%, transparent 76%) no-repeat 79% 0 / 18% 100%, linear-gradient(transparent 76%, #fff 76% 88%, transparent 88%) no-repeat 90% 0 / 18% 100%, linear-gradient(transparent 88%, #fff 88% 100%) no-repeat 101% 0 / 18% 100%, linear-gradient(transparent 43%, #fff 43% 54.2%, transparent 54%) no-repeat 58% 0 / 18% 100%, linear-gradient(transparent 54%, #fff 54% 66.6%, transparent 66.6%) no-repeat 69% 0 / 18% 100%, linear-gradient(transparent 33%, #fff 33% 43.2%, transparent 43%) no-repeat 69% 0 / 18% 100%, linear-gradient(transparent 23%, #fff 23% 33.2%, transparent 21%) no-repeat 79% 0 / 18% 100%, linear-gradient(transparent 12%, #fff 12% 23%, transparent 23%) no-repeat 90% 0 / 18% 100%, linear-gradient(#fff 12%, transparent 12%) no-repeat 101% 0 / 18% 100%, linear-gradient(#DA000A 0 33.3%, #0030A1 33.3% 66.6%, #F2AA00 66.6%);
+}
+.Flags .flag34 {
+    background: conic-gradient(from 59deg at 54%, #000 17%, transparent 17%), conic-gradient(from -121deg at 43%, #000 17%, transparent 17%), conic-gradient(from -121deg at 59%, #FFB916 17%, transparent 17%), conic-gradient(from 59deg at 39%, #FFB916 17%, transparent 17%) #007847;
+}
+
+
+
