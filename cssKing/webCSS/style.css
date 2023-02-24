@@ -1,0 +1,3487 @@
+*, ::before, ::after { margin: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+html {
+	scroll-behavior: smooth;
+}
+body {
+	height: 210000px;
+}
+.scrAnim,
+.scrAnim2,
+.scrAnim3 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	z-index: 9;
+	display: none;
+}
+.scrAnim .dv {
+	height: 6100px;
+}
+#loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100% - 17px);
+	height: 100%;
+	background: repeating-conic-gradient(rgb(207 244 255) 7%, rgb(73 73 73) 13%, rgb(0 197 255) 17%);
+	display: none;
+	place-items: center;
+	z-index: 10;
+	opacity: 0;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+#loading::after {
+	content: '';
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#00f5ff));
+	background: linear-gradient(transparent, #00f5ff);
+}
+#loading .snowMan {
+	width: 440px;
+	height: 650px;
+	display: grid;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-line-pack: start;
+	align-content: flex-start;
+	justify-items: center;
+	position: relative;
+}
+#loading .snowMan .head {
+	z-index: 3;
+}
+#loading .snowMan .head,
+#loading .snowMan .body,
+#loading .snowMan .footer {
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	background: #a2dfff;
+	-webkit-box-shadow: inset 0 0 27px 8px #00b3ffc9, inset 0 0 60px #0ec4ffe8, 0 0 20px 2px #a2dfff, 0 0 30px 3px #00c1ff;
+	box-shadow: inset 0 0 27px 8px #00b3ffc9, inset 0 0 60px #0ec4ffe8, 0 0 20px 2px #a2dfff, 0 0 30px 3px #00c1ff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-column-gap: 50px;
+	column-gap: 50px;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding-bottom: 60px;
+	position: relative;
+}
+#loading .snowMan .head .eye {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-shadow: inset 0 -1px 7px #0066ff, 0 1px 5px #2c2c2c;
+	box-shadow: inset 0 -1px 7px #0066ff, 0 1px 5px #2c2c2c;
+}
+#loading .snowMan .head .eye .bib {
+	width: 25px;
+	height: 25px;
+	background: #000;
+	border-radius: 50%;
+}
+#loading .snowMan .head .carrot {
+	width: 99px;
+    height: 62px;
+    background: #ffa700;
+    position: absolute;
+    top: 42%;
+    left: 28%;
+    -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    rotate: -141deg;
+    -webkit-box-shadow: inset -5px 1px 20px 4px #ff680066;
+    box-shadow: inset -5px 1px 20px 4px #ff680066;
+    -webkit-transform: skewX(23deg) scaleX(.5);
+    transform: skewX(23deg) scaleX(.5);
+}
+#loading .snowMan .head .mouth {
+	width: 100px;
+    height: 75px;
+    border-radius: 50%;
+    -webkit-box-shadow: inset 0 -10px 0 #000;
+    box-shadow: inset 0 -10px 0 #000;
+    position: absolute;
+    bottom: 13%;
+    left: 31%;
+}
+#loading .snowMan .body {
+	width: 300px;
+	height: 300px;
+	margin-top: -20px;
+	z-index: 1;
+	display: grid;
+	-ms-flex-line-pack: space-evenly;
+	align-content: space-evenly;
+	padding: 0;
+}
+#loading .snowMan .footer {
+	width: 380px;
+	height: 380px;
+	margin-top: -60px;
+	padding-bottom: 120px;
+}
+#loading .snowMan .footer .progress {
+	width: 80%;
+	height: 40px;
+	border-radius: 30px;
+	background: #fff;
+    -webkit-box-shadow: inset 0 0 11px #000000b8;
+    box-shadow: inset 0 0 11px #000000b8;
+	overflow: hidden;
+	position: relative;
+}
+#loading .snowMan .footer .progress .bar {
+	height: 100%;
+	width: 0;
+	background: #000;
+    border-radius: 30px 0 0 30px;
+}
+#loading .snowMan .footer .progress h3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 22px sans-serif;
+    mix-blend-mode: difference;
+    color: #fff;
+}
+#loading .snowMan .body .button {
+	width: 15px;
+	height: 15px;
+	background: #00fff7;
+    border-radius: 50%;
+    -webkit-box-shadow: inset 0 -1px 7px #5599ffc2, 0 1px 5px #006dff;
+    box-shadow: inset 0 -1px 7px #5599ffc2, 0 1px 5px #006dff;
+}
+#loading .snowMan .hand {
+	width: 220px;
+	height: 5px;
+	background: #cb7438;
+    position: absolute;
+    top: 46%;
+    left: -110px;
+    rotate: 22deg;
+}
+#loading .snowMan .hand :is(.mat3, .mat2, .mat1) {
+	position: absolute;
+    top: -27px;
+    left: -58px;
+    width: 73px;
+    height: 5px;
+    rotate: 49deg;
+    background: #cb7438;
+}
+#loading .snowMan .hand .mat2 {
+	top: -10px;
+    left: -93px;
+    width: 95px;
+    rotate: 12deg;
+}
+#loading .snowMan .hand .mat1 {
+	top: 5px;
+    left: -70px;
+    width: 71px;
+    rotate: -5deg;
+}
+#loading .snowMan .hand.hand2 {
+	scale: -1 1;
+	left: auto;
+	right: -110px;
+	rotate: -22deg;
+}
+.page {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	--o: 1;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.page header {
+	--topBefore: 0;
+	position: relative;
+	height: 100vh;
+	background: url(img/header.jpg) center 400px / 180%;
+}
+.page header::before {
+	content: '';
+	position: absolute;
+	top: var(--topBefore);
+	left: 0;
+	width: 100%;
+	height: 500px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #ff9898), to(transparent));
+	background: linear-gradient(#ff9898 50%, transparent);
+}
+.page header .cl {
+	position: absolute;
+	bottom: -100%;
+	height: 60%;
+}
+.page header .item1 {
+	left: 0;
+	z-index: 3;
+}
+.page header .item2 {
+	position: absolute;
+	right: 0;
+	height: 60%;
+}
+.page header .item3 {
+	height: 70%;
+}
+.page header .item4 {
+	height: 60%;
+}
+.page header .santa {
+	position: absolute;
+	left: -100%;
+	bottom: 250px;
+	height: 20%;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+.page .top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.page .top .head {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 0 25px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#009f8f), color-stop(50%, #275c5a), color-stop(72%, #59efd4), color-stop(81%, #0186a0ad));
+	background: linear-gradient(#009f8f, #275c5a 50%, #59efd4 72%, #0186a0ad 81%);
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	translate: 0 -150px;
+	-webkit-transition: .8s;
+	transition: .8s;
+	overflow: hidden;
+}
+.page .top .head .logo {
+	position: relative;
+	-webkit-transition: .4s;
+	transition: .4s;
+	translate: -200%;
+}
+.page .top .head .logo:hover img {
+	rotate: -2deg;
+	scale: 1.1;
+}
+.page .top .head .logo::after {
+	content: '';
+	position: absolute;
+	top: 44%;
+	left: 35%;
+    width: 100%;
+    height: 45%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+    background: linear-gradient(87deg, #e10b0b00 16%, #ff1111ed, transparent 74%);
+    mix-blend-mode: color-dodge;
+    border-radius: 100%;
+	-webkit-animation: logo 5s infinite;
+	animation: logo 5s infinite;
+}
+@-webkit-keyframes logo {
+	50% { left: -25%; }
+}
+@keyframes logo {
+	50% { left: -25%; }
+}
+.page .top .head .logo img {
+	height: 120px;
+	-webkit-transform: translateY(-8px);
+	transform: translateY(-8px);
+	-webkit-transition: .4s;
+	transition: .4s;
+	will-change: transform;
+}
+.page .top .head nav {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	padding-top: 3px;
+	translate: 0 200px;
+	-webkit-transition: 1s .2s;
+	transition: 1s .2s;
+}
+.page .top .head nav a {
+	font: bold 22px sans-serif;
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+	margin: 0 20px;
+	white-space: nowrap;
+	text-shadow: -1px 7px 9px #0008;
+	position: relative;
+	color: transparent;
+	cursor: pointer;
+}
+.page .top .head nav a::before,
+.page .top .head nav a::after {
+	content: attr(data-title);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+.page .top .head nav a::before {
+	-webkit-clip-path: polygon(0 0, 70% 0, 30% 100%, 0 100%);
+	clip-path: polygon(0 0, 70% 0, 30% 100%, 0 100%);
+	-webkit-transition: .8s;
+	transition: .8s;
+}
+.page .top .head nav a::after {
+	-webkit-clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
+	clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
+}
+.page .top .head nav a:hover::before {
+	-webkit-transform: rotateY(360deg);
+	transform: rotateY(360deg);
+}
+.page .top .head nav a:hover::after {
+	-webkit-transform: rotateX(360deg);
+	transform: rotateX(360deg);
+}
+.page .top .head .search {
+	translate: 0 -6px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-filter: drop-shadow(0px 2px 2px #0008);
+	filter: drop-shadow(0px 2px 2px #0008);
+}
+.page .top .head .search input {
+	height: 35px;
+	padding: 10px 15px;
+	outline: 0;
+	border: 0;
+	border-radius: 10px 10px 0 0;
+	-webkit-box-shadow: 0 2px 5px #0009;
+	box-shadow: 0 2px 5px #0009;
+	-webkit-clip-path: inset(100% 0 0 0);
+	clip-path: inset(100% 0 0 0);
+	-webkit-transition: .5s;
+	transition: .5s;
+	font: 15px cursive;
+}
+.page .top .head .search .src {
+	position: relative;
+	cursor: pointer;
+	translate: 150px;
+	-webkit-transition: .7s;
+	transition: .7s;
+}
+.page .top .head .search .src :first-child {
+	width: 25px;
+	height: 25px;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	display: block;
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 70% 60%, 72% 100%, 0 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 75%, 70% 60%, 72% 100%, 0 100%);
+	-webkit-transition: .7s;
+	transition: .7s;
+}
+.page .top .head .search .src :last-child {
+	width: 3px;
+	height: 20px;
+	position: absolute;
+	bottom: -7px;
+    right: 6px;
+    border-radius: 20px;
+    rotate: -35deg;
+    background: #fff;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.page .top .slider {
+	height: calc(100vh - 125px);
+	overflow: hidden;
+	position: relative;
+	left: 0;
+	bottom: -100%;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.page .top .slider h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 8rem sans-serif;
+    text-align: center;
+    color: transparent;
+    -webkit-filter: url(#wavy2);
+    filter: url(#wavy2);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(27%, #fff), color-stop(66%, #9b007c));
+    background: linear-gradient(#fff 27% 79%, #9b007c 66%);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px #fff;
+	-webkit-clip-path: circle(100%);
+	clip-path: circle(100%);
+	-webkit-transition: -webkit-clip-path .7s;
+	transition: -webkit-clip-path .7s;
+	transition: clip-path .7s;
+	transition: clip-path .7s, -webkit-clip-path .7s;
+	text-shadow: 0 6px 13px #007b8a;
+}
+.page::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/slider/snow.gif);
+	pointer-events: none;
+	background-size: 30%;
+	opacity: var(--o);
+}
+.page .top .slider .big {
+	width: 600%;
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	left: -100%;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.page .top .slider .big .item {
+	width: 100%;
+	height: 100%;
+	background: repeat center / 400% fixed;
+	-webkit-transition: background-size 1s;
+	transition: background-size 1s;
+}
+.page .top .slider .big .item:nth-child(2) {
+	background-size: 100%;
+}
+.page .top .slider button {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	z-index: 1;
+	padding: 15px 40px 18px;
+	font-size: 4rem;
+	border: 0;
+	outline: 0;
+	background: rgba(0,0,0,.6);
+	color: #fff;
+	cursor: pointer;
+	-webkit-box-shadow: 0 0 15px #5dffd3, 0 0 25px #00ffad, inset 0 0 25px #00ffba;
+	box-shadow: 0 0 15px #5dffd3, 0 0 25px #00ffad, inset 0 0 25px #00ffba;
+	-webkit-transition: left 2s, right 2s, -webkit-box-shadow .4s;
+	transition: left 2s, right 2s, -webkit-box-shadow .4s;
+	transition: left 2s, right 2s, box-shadow .4s;
+	transition: left 2s, right 2s, box-shadow .4s, -webkit-box-shadow .4s;
+}
+.page .top .slider button:hover {
+	-webkit-box-shadow: 0 0 25px #fff, 0 0 75px #fff, inset 0 0 25px 50px #00e2ff, inset 0 0 25px 50px #00ffba;
+	box-shadow: 0 0 25px #fff, 0 0 75px #fff, inset 0 0 25px 50px #00e2ff, inset 0 0 25px 50px #00ffba;
+	text-shadow: 0 3px 7px #000;
+}
+.page .top .slider button.prev {
+	left: 3%;
+	border-radius: 15% 105% 29% / 76% 73% 134% 127%;
+}
+.page .top .slider button.next {
+	right: 3%;
+	border-radius: 15% 105% 29% 127% / 76% 73% 134% 127%;
+}
+.page .top .slider .radio {
+	position: absolute;
+	bottom: 3%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-transition: 2s;
+	transition: 2s;
+}
+.page .top .slider .radio input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 45px;
+	height: 45px;
+	background: url(img/slider/radio.png) no-repeat center / contain;
+	z-index: 1;
+	cursor: pointer;
+	-webkit-animation: treeToy 1.5s infinite;
+	animation: treeToy 1.5s infinite;
+	-webkit-filter: drop-shadow(0 3px 5px #000) brightness(.5);
+	filter: drop-shadow(0 3px 5px #000) brightness(.5);
+	-webkit-transition: .4s;
+	transition: .4s;
+	z-index: 10;
+}
+.page .top .slider .radio input:hover,
+.page .top .slider .radio input:checked {
+	-webkit-filter: drop-shadow(0 3px 5px #000);
+	filter: drop-shadow(0 3px 5px #000);
+}
+@-webkit-keyframes treeToy {
+	50% { -webkit-transform: rotate(35deg); transform: rotate(35deg); }
+}
+@keyframes treeToy {
+	50% { -webkit-transform: rotate(35deg); transform: rotate(35deg); }
+}
+.page .top .product {
+	--a: 0;
+	background: url(img/product/bg.webp) center / 300px;
+	padding: 80px;
+	-webkit-box-shadow: inset 0 58px 44px -49px #00ff29;
+	box-shadow: inset 0 58px 44px -49px #00ff29;
+	position: relative;
+}
+.page .top .product .proBlock {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	grid-gap: 250px 250px;
+}
+.page .top .product > h2 {
+	text-align: center;
+    font: bold 6.5rem sans-serif;
+    color: transparent;
+    -webkit-filter: url(#wavy2);
+    filter: url(#wavy2);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #fff), color-stop(66%, #9b007c));
+    background: linear-gradient(#fff 50%, #9b007c 66%);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px #00ffed;
+    margin: 2rem 0 8rem;
+}
+.page .top .product::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--a);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(255, 255, 255, 0.86)), to(transparent));
+	background: linear-gradient(rgba(255, 255, 255, 0.86) 50%, transparent);
+}
+.page .top .product .item {
+	width: 400px;
+	color: #fff;
+	position: relative;
+	text-align: center;
+	padding: 35px;
+	z-index: 1;
+}
+.page .top .product .item::before {
+	content: '';
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	width: 100%;
+	height: 100%;
+	border: 12px ridge #fb00ff;
+	-webkit-filter: url(#wavy);
+	filter: url(#wavy);
+	background: #fff;
+	z-index: -1;
+	-webkit-box-shadow: inset 0 0 46px 22px #005c76, 0px 29px 38px -14px #ff0be3;
+	box-shadow: inset 0 0 46px 22px #005c76, 0px 29px 38px -14px #ff0be3;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.page .top .product .item img {
+	width: 100%;
+	height: 400px;
+	-o-object-fit: contain;
+	object-fit: contain;
+}
+.page .top .product .item:hover::before {
+	border-color: #0bff19;
+	-webkit-box-shadow: inset 0 0 46px 22px #005c76, 0px 29px 38px -14px #0bff19;
+	box-shadow: inset 0 0 46px 22px #005c76, 0px 29px 38px -14px #0bff19;
+}
+.page .top .product .item h2 {
+	font: bold 40px sans-serif;
+	color: transparent;
+	-webkit-filter: url(#wavy2);
+	filter: url(#wavy2);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #000), color-stop(66%, #ff04ba));
+    background: linear-gradient(#000 50%, #ff04ba 66%);
+    -webkit-background-clip: text;
+}
+.page .top .product .item button {
+	padding: 10px 25px;
+	font: bold 20px sans-serif;
+	border-radius: 50px;
+	border: 2px solid #000;
+	cursor: pointer;
+	margin-top: 12px;
+	background: #fff;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.page .top .product .item button:hover {
+	-webkit-box-shadow: inset 19px -20px 0 -16px #ff0681, inset -19px -20px 0 -16px #ff0681;
+	box-shadow: inset 19px -20px 0 -16px #ff0681, inset -19px -20px 0 -16px #ff0681;
+    background: #00ff95;
+}
+.ballToys {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/toys/bg.webp) 0 / 200px #891818;
+	z-index: 1;
+	padding: 380px 80px 150px;
+	display: none;
+	grid-template-columns: repeat(2, 280px);
+	-webkit-box-pack: space-evenly;
+	-ms-flex-pack: space-evenly;
+	justify-content: space-evenly;
+	overflow: hidden;
+	background-blend-mode: difference;
+	-webkit-filter: brightness(0);
+	filter: brightness(0);
+}
+.ballToys .item:not(:empty) {
+	position: relative;
+	text-align: center;
+	background: #fff;
+	padding: 25px 25px;
+    border-radius: 95px;
+    -webkit-box-shadow: 1px 0 20px 7px #fff, 1px 0 85px 20px #fff;
+    box-shadow: 1px 0 20px 7px #fff, 1px 0 85px 20px #fff;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.ballToys .item:not(:empty):hover {
+    -webkit-box-shadow: 1px 0 40px 15px #fff5, 1px 0 80px 20px #fff84d;
+    box-shadow: 1px 0 40px 15px #fff5, 1px 0 80px 20px #fff84d;
+}
+.ballToys .item:not(:empty)::before,
+.ballToys .item:not(:empty)::after {
+	content: '';
+	position: absolute;
+	top: 45px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    -webkit-box-shadow: -6px 0 0 #ffbc00;
+    box-shadow: -6px 0 0 #ffbc00;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.ballToys .item:not(:empty)::after {
+	top: auto;
+	left: auto;
+	bottom: 45px;
+	right: 30px;
+    -webkit-box-shadow: 6px 0 0 #ffbc00;
+    box-shadow: 6px 0 0 #ffbc00;
+}
+.ballToys .item:not(:empty):hover::before {
+	-webkit-box-shadow: 6px 0 0 #ffbc00;
+	box-shadow: 6px 0 0 #ffbc00;
+	rotate: 360deg;
+}
+.ballToys .item:not(:empty):hover::after {
+	-webkit-box-shadow: -6px 0 0 #ffbc00;
+	box-shadow: -6px 0 0 #ffbc00;
+	rotate: -360deg;
+}
+.ballToys .item:nth-child(5) img {
+	width: 100%;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+.ballToys .item img {
+	height: 250px;
+}
+.ballToys .item h2 {
+	position: absolute;
+	top: 25px;
+    right: 25px;
+	color: transparent;
+    font: bold 46px sans-serif;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(51%, #00ff21), color-stop(66%, #37ab00));
+    background: linear-gradient(#00ff21 51%, #37ab00 66%);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px #000;
+	-webkit-animation: ballPrice 1s infinite;
+	animation: ballPrice 1s infinite;
+}
+.ballToys .item button {
+	padding: 10px 25px;
+	font: bold 18px sans-serif;
+	border-radius: 50px;
+	border: 2px solid #000;
+	cursor: pointer;
+	margin-top: 15px;
+	background: #fff;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.ballToys .item button:hover {
+	-webkit-box-shadow: inset 20px 15px 0 -16px #ff0681, inset -20px -14px 0 -16px #ff068e;
+	box-shadow: inset 20px 15px 0 -16px #ff0681, inset -20px -14px 0 -16px #ff068e;
+	background: #000;
+	color: #fff;
+}
+.ballToys .item button:active {
+	-webkit-box-shadow: inset 20px -15px 0 -16px #ff0681, inset -20px 14px 0 -16px #ff068e;
+	box-shadow: inset 20px -15px 0 -16px #ff0681, inset -20px 14px 0 -16px #ff068e;
+}
+@-webkit-keyframes ballPrice {
+	50% { letter-spacing: 4px; }
+}
+@keyframes ballPrice {
+	50% { letter-spacing: 4px; }
+}
+@-webkit-keyframes toysRot {
+	33.3% { rotate: -14deg; }
+	66.4% { rotate: 14deg; }
+}
+@keyframes toysRot {
+	33.3% { rotate: -14deg; }
+	66.4% { rotate: 14deg; }
+}
+.game {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100% - 17px);
+	height: 100%;
+	background: url(img/toys/game.webp) repeat 0 20% / 100% 130%;
+	z-index: 9;
+	-webkit-animation: game 9s linear infinite;
+	animation: game 9s linear infinite;
+	display: none;
+	overflow: hidden;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+@-webkit-keyframes game {
+	to { background-position-x: -100vw; }
+}
+@keyframes game {
+	to { background-position-x: -100vw; }
+}
+.game .santa {
+	position: absolute;
+	bottom: 18%;
+	left: 100px;
+	width: 200px;
+    height: 251px;
+    background: url(img/toys/santa.gif) no-repeat -19px -48px / 220px 300px;
+	border-radius: 90px 146px 91px 95px;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.game::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/slider/snow.gif);
+	pointer-events: none;
+	background-size: 70%;
+	z-index: 11;
+	opacity: .6;
+}
+.game .floor {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 350%;
+	height: 18%;
+	background: url(img/toys/game.webp) no-repeat -179vw 100% / 100% 100vh, url(img/toys/game.webp) no-repeat 185vw 100% / 100% 100vh;
+}
+@-webkit-keyframes hole {
+	to { left: -250%; }
+}
+@keyframes hole {
+	to { left: -250%; }
+}
+.game .hole {
+	position: absolute;
+	bottom: 0;
+	left: 48.3%;
+	width: 5.1%;
+	height: 100%;
+}
+@-webkit-keyframes santaJump {
+	50% { bottom: 55%; }
+}
+@keyframes santaJump {
+	50% { bottom: 55%; }
+}
+.game .mission {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.game .mission img {
+	height: 70px;
+	pointer-events: none;
+	opacity: .4;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.game .floor .bag {
+	position: absolute;
+	left: 68%;
+	bottom: 100%;
+	height: 120px;
+	pointer-events: none;
+}
+.game .life {
+	position: absolute;
+	top: 15px;
+	left: 25px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.game .life img {
+	height: 100px;
+	margin-right: 10px;
+	-webkit-filter: drop-shadow(0 0 0 #000) drop-shadow(0 3px 2px #0005);
+	filter: drop-shadow(0 0 0 #000) drop-shadow(0 3px 2px #0005);
+}
+.game .life span {
+	font: bold 32px sans-serif;
+}
+@-webkit-keyframes lifeScale {
+	50% { scale: 1.2; }
+}
+@keyframes lifeScale {
+	50% { scale: 1.2; }
+}
+.game h5 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 5rem cursive;
+	text-shadow: 0 4px 3px #fff, -4px 8px 6px #000;
+	letter-spacing: 100rem;
+	white-space: nowrap;
+	-webkit-transition: 1s;
+	transition: 1s;
+	opacity: 0;
+}
+.game .start {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font: bold 5rem cursive;
+	text-shadow: 0 4px 3px #ff8d00, -4px 8px 6px #000;
+    background: #139200;
+    padding: 7px 35px 13px;
+    border-radius: 45px;
+    color: #fff200;
+	text-transform: uppercase;
+	cursor: pointer;
+	-webkit-box-shadow: 0 7px 10px #000;
+	box-shadow: 0 7px 10px #000;
+	-webkit-transition: top .9s, background .3s;
+	transition: top .9s, background .3s;
+}
+.game .start:hover {
+	background: #ff0093;
+}
+.scrAnim2 {
+	display: block;
+	z-index: 11;
+	display: none;
+	top: -100%;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.scrAnim2 .dv {
+	height: 107000px;
+}
+.taddyBear {
+	position: fixed;
+	left: 0;
+	width: calc(100% - 17px);
+	height: 100%;
+	overflow: auto;
+	background: url(img/gift/bg.jpg) 0 150vh / 130%;
+	z-index: 12;
+	overflow: hidden;
+	display: none;
+	top: -100%;
+	-webkit-transition: top .5s;
+	transition: top .5s;
+}
+.taddyBear .mountain {
+	position: absolute;
+	bottom: 0;
+	height: 500px;
+}
+.taddyBear .mountain.mou1 {
+	left: 0;
+}
+.taddyBear .mountain.mou2 {
+	right: 0;
+	scale: -1 1;
+}
+.taddyBear .bgRock {
+	position: absolute;
+	bottom: 350px;
+	width: 100%;
+	height: 500px;
+	background: url(img/gift/bg.png) 0 100% / 100%  100%;
+}
+.taddyBear .bgRock::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#174a8d 20%, transparent);
+}
+.taddyBear .birdFly {
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	height: 200px;
+	translate: -50%;
+	overflow: auto;
+}
+.taddyBear .proGift {
+	height: 100%;
+	padding: 5%;
+	position: relative;
+	top: -100%;
+	overflow: hidden;
+}
+.taddyBear .parentGift {
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.taddyBear .proGift .giftItem {
+	text-align: center;
+	position: relative;
+	margin: 0 4%;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.taddyBear .proGift .giftItem:hover {
+	-webkit-filter: drop-shadow(5px -5px 8px #fff);
+	filter: drop-shadow(5px -5px 8px #fff);
+}
+.taddyBear .proGift .giftItem:nth-child(even) {
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+.taddyBear .proGift .giftItem:last-child .rock {
+	-webkit-transform: translateX(-50px);
+	transform: translateX(-50px);
+}
+.taddyBear .proGift .giftItem:last-child .toy {
+	left: 30%;
+	z-index: 2;
+}
+.taddyBear .proGift .giftItem:last-child h2 {
+	right: 50px;
+}
+.taddyBear .proGift .giftItem:last-child button {
+	left: 30%;
+}
+.taddyBear .proGift .giftItem .rock {
+	height: 135px;
+}
+.taddyBear .proGift .giftItem .toy {
+	height: 220px;
+	position: absolute;
+	bottom: 87px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	translate: 0 40px;
+}
+.taddyBear .proGift .giftItem:nth-child(3) .toy {
+	bottom: 70px;
+}
+.taddyBear .proGift .giftItem:nth-last-child(1) .toy,
+.taddyBear .proGift .giftItem:nth-last-child(2) .toy,
+.taddyBear .proGift .giftItem:nth-last-child(3) .toy {
+	translate: 0;
+}
+.taddyBear .proGift .giftItem button {
+	padding: 14px 0;
+	font: bold 19px sans-serif;
+	border-radius: 50px;
+	border: 2px solid #000;
+	cursor: pointer;
+	margin-top: 12px;
+	-webkit-transition: .5s;
+	transition: .5s;
+	position: absolute;
+	bottom: -28px;
+	width: 160px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	z-index: 1;
+	overflow: hidden;
+	-webkit-box-shadow: 0 17px 20px #000000b3;
+	box-shadow: 0 17px 20px #000000b3;
+	border: 0;
+	background: #0004;
+}
+.taddyBear .proGift .giftItem button::before {
+	content: '';
+	position: absolute;
+	inset: 3px;
+	background: #00ff98;
+	-webkit-clip-path: circle(0 at 10% 0%);
+	clip-path: circle(0 at 10% 0%);
+	-webkit-transition: .5s;
+	transition: .5s;
+	border-radius: 50px;
+	z-index: 1;
+}
+.taddyBear .proGift .giftItem button::after {
+	content: '';
+	position: absolute;
+	inset: 3px;
+	background: #00ff55;
+	-webkit-clip-path: circle(0 at 90% 100%);
+	clip-path: circle(0 at 90% 100%);
+	-webkit-transition: .5s;
+	transition: .5s;
+	border-radius: 50px;
+}
+.taddyBear .proGift .giftItem button:hover {
+	-webkit-box-shadow: 0 0 50px #fff;
+	box-shadow: 0 0 50px #fff;
+	background: #00ffba;
+}
+.taddyBear .proGift .giftItem button:hover::before,
+.taddyBear .proGift .giftItem button:hover::after {
+	-webkit-clip-path: circle(100%);
+	clip-path: circle(100%);
+}
+.taddyBear .proGift .giftItem button span {
+	position: absolute;
+	inset: 0;
+	background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, #00ffba));
+	background: linear-gradient(to right, transparent 50%, #00ffba 50%);
+	-webkit-animation: toysBtn 1.4s linear infinite;
+	animation: toysBtn 1.4s linear infinite;
+}
+.taddyBear .proGift .giftItem button i {
+	position: absolute;
+	inset: 3px;
+	background: #fffc00;
+	border-radius: 50px;
+}
+.taddyBear .proGift .giftItem button b {
+	position: relative;
+	z-index: 1;
+}
+@-webkit-keyframes toysBtn {
+	to { rotate: 360deg; }
+}
+@keyframes toysBtn {
+	to { rotate: 360deg; }
+}
+.taddyBear .proGift .giftItem button:active::before {
+	background: #00a3a2;
+    -webkit-clip-path: circle(50% at 122% -15%);
+    clip-path: circle(50% at 122% -15%);
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+.taddyBear .proGift .giftItem button:active::after {
+	-webkit-transition: .2s;
+	transition: .2s;;
+	background: #d600c6;
+    -webkit-clip-path: circle(50% at -22% 130%);
+    clip-path: circle(50% at -22% 130%);
+}
+.taddyBear .proGift .giftItem h2 {
+	font: bold 45px sans-serif;
+	color: transparent;
+	-webkit-filter: url(#wavy2);
+	filter: url(#wavy2);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #f5ff05), color-stop(66%, #ff04ba));
+    background: linear-gradient(#f5ff05 50%, #ff04ba 66%);
+    -webkit-background-clip: text;
+	position: absolute;
+	right: 0;
+	top: -200px;
+	-webkit-text-stroke: 1px #00ff26;
+}
+.parallaxSlide {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 15;
+	overflow: auto;
+	text-align: center;
+	background: #fff;
+	display: none;
+	-webkit-transition: .4s;
+	transition: .4s;
+	opacity: 0;
+}
+.parallaxSlide .item {
+	height: 120%;
+	background: no-repeat 50% 0 / cover fixed #fff;
+}
+.parallaxSlide .item.previous {
+	background: #f00;
+}
+.parallaxSlide .item.end {
+	height: 150vh;
+	background: radial-gradient(transparent 0%, #ff00f96b 100%), url(img/gift/bg.jpg) 0 0 / 100vw 150vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-blend-mode: lighten;
+}
+.parallaxSlide .item.end form {
+	width: 650px;
+    margin-top: 8%;
+    background: linear-gradient(122deg, #0069887d, #000000c4);
+    padding: 50px;
+    -webkit-box-shadow: 0 0 17px 8px #00000078, 27px 30px 0 #0000006e, inset -18px 0 20px -22px #fff;
+    box-shadow: 0 0 17px 8px #00000078, 27px 30px 0 #0000006e, inset -18px 0 20px -22px #fff;
+    border-radius: 25px;
+	position: relative;
+	overflow: hidden;
+}
+.parallaxSlide .item.end form .row {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	margin-bottom: 30px;
+	-webkit-column-gap: 30px;
+	column-gap: 30px;
+}
+.parallaxSlide .item.end form .row .line {
+	position: relative;
+	width: 100%;
+	height: 55px;
+	overflow: hidden;
+}
+.parallaxSlide .item.end form .row .line input,
+.parallaxSlide .item.end form .row .line textarea {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	color: #fff;
+    font: bold 20px sans-serif;
+}
+.parallaxSlide .item.end form .row .line:has(textarea) {
+	height: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+.parallaxSlide .item.end form .row .line textarea {
+	height: 80px;
+	resize: none;
+}
+.parallaxSlide .item.end form .row .line textarea::-webkit-scrollbar {
+	width: 8px;
+}
+.parallaxSlide .item.end form .row .line textarea::-webkit-scrollbar-track {
+	background: #fff;
+	border-radius: 100px;
+}
+.parallaxSlide .item.end form .row .line textarea::-webkit-scrollbar-thumb {
+	background: #ff005e;
+	border-radius: 50px;
+}
+.parallaxSlide .item.end form .row .line span {
+	position: absolute;
+	top: 17px;
+	left: 0;
+	font: bold 18px sans-serif;
+	pointer-events: none;
+	-webkit-transition: .4s;
+	transition: .4s;
+	color: #fff;
+	will-change: transform;
+	-webkit-transform-origin: left;
+	transform-origin: left;
+}
+.parallaxSlide .item.end form .row .line svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300%;
+	height: 100%;
+	pointer-events: none;
+	fill: none;
+	stroke: #fff;
+	-webkit-transition: left .8s, stroke .5s .5s;
+	transition: left .8s, stroke .5s .5s;
+}
+.parallaxSlide .item.end form .row:first-child .line svg {
+	top: 7px;
+	stroke-width: 3px;
+}
+.parallaxSlide .item.end form .row:nth-child(2) .line svg {
+	stroke-width: 2px;
+	scale: 2 1;
+	left: 20%;
+}
+.parallaxSlide .item.end form .row:nth-child(3) .line svg {
+	top: 9px;
+    stroke-width: 1.5px;
+}
+.parallaxSlide .item.end form .row .line :focus ~ span {
+	-webkit-transform: scale(.7) translateY(-30px);
+	transform: scale(.7) translateY(-30px);
+}
+.parallaxSlide .item.end form .row .line :focus ~ svg {
+	left: -200%;
+	stroke: #0f0;
+}
+.parallaxSlide .item.end form .row .line i {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	font: italic 15px sans-serif;
+}
+.parallaxSlide .item.end form .send {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-column-gap: 15px;
+	column-gap: 15px;
+}
+.parallaxSlide .item.end form .send button {
+	padding: 15px 35px;
+	font: bold 18px sans-serif;
+	position: relative;
+	z-index: 1;
+	background: transparent;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	color: #fff;
+	text-shadow: 1px 1px 3px #000, 1px 4px 6px #000;
+	border: 0;
+	overflow: hidden;
+	cursor: pointer;
+}
+.parallaxSlide .item.end form .send button::before {
+	content: '';
+	position: absolute;
+	width: 200%;
+    height: 300%;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fff), color-stop(50%, transparent));
+    background: linear-gradient(to right, #fff 50%, transparent 50%);
+    z-index: -1;
+    rotate: 178deg;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.parallaxSlide .item.end form .send button:hover::before {
+    rotate: none;
+}
+.parallaxSlide .item.end form .send button::after {
+	content: '';
+	position: absolute;
+	inset: 2px;
+    background: linear-gradient(-114deg, #000, #00ff2d);
+    z-index: -1;
+}
+.parallaxSlide .item.end form .progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7px;
+	height: 0;
+	background: #00ff04;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.parallaxSlide .item:not(:first-child) {
+	-webkit-clip-path: polygon(0 18rem, 100% 0, 100% 100%, 0 100%);
+	clip-path: polygon(0 18rem, 100% 0, 100% 100%, 0 100%);
+	margin-top: -18rem;
+}
+.scrAnim3 {
+	display: none;
+	z-index: 10;
+	background: #59a6ed;
+}
+.scrAnim3 .dv {
+	height: 70000px;
+}
+.TheKingOfCSS3 {
+	position: fixed;
+	top: 100%;
+	left: 0;
+	width: calc(100% - 17px);
+	height: 100%;
+	background: #121416;
+	z-index: 11;
+	display: none;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	overflow: hidden;
+	-webkit-transform: perspective(858px);
+	transform: perspective(858px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+	-webkit-transition: top .4s;
+	transition: top .4s;
+}
+.TheKingOfCSS3 .text {
+	width: 95%;
+	height: 150px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-column-gap: 2px;
+	column-gap: 2px;
+}
+.TheKingOfCSS3 .text .letter {
+	position: relative;
+	width: 102px;
+	height: 120px;
+}
+.TheKingOfCSS3 .text .letter span {
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	background: #fff;
+	border-radius: 50%;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) {
+	width: 94px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(7) {
+	left: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(1) {
+	left: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(2) {
+	left: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(3) {
+	left: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(4) {
+	left: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(5) {
+	left: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(6) {
+	left: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(8) {
+	left: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(9) {
+	left: 80px;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(10) {
+	left: 80px;
+	top: 16px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(11) {
+	left: 70px;
+	top: 16px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(12) {
+	left: 63px;
+	top: 16px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(13) {
+	left: 55px;
+	top: 16px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(14) {
+	left: 55px;
+	top: 25px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(15) {
+	left: 55px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(16) {
+	left: 55px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(17) {
+	left: 55px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(18) {
+	left: 55px;
+	top: 65px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(19) {
+	left: 55px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(20) {
+	left: 55px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(21) {
+	left: 45px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(22) {
+	left: 35px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(23) {
+	left: 35px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(24) {
+	left: 35px;
+	top: 65px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(25) {
+	left: 35px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(26) {
+	left: 35px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(27) {
+	left: 35px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(28) {
+	left: 35px;
+	top: 25px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(29) {
+	left: 35px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(30) {
+	left: 28px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(31) {
+	left: 19px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(32) {
+	left: 10px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(33) {
+	left: 10px;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(1) {
+	left: 10px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(2) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(3) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(4) {
+	left: 30px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(5) {
+	left: 30px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(6) {
+	left: 30px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(7) {
+	left: 30px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(8) {
+	left: 40px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(9) {
+	left: 50px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(10) {
+	left: 50px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(11) {
+	left: 50px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(12) {
+	left: 50px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(13) {
+	left: 50px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(14) {
+	left: 60px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(15) {
+	left: 70px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(16) {
+	left: 70px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(17) {
+	left: 70px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(18) {
+	left: 70px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(19) {
+	left: 70px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(20) {
+	left: 70px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(21) {
+	left: 70px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(22) {
+	left: 70px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(23) {
+	left: 70px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(24) {
+	left: 70px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(25) {
+	left: 60px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(26) {
+	left: 50px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(27) {
+	left: 50px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(28) {
+	left: 50px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(29) {
+	left: 50px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(30) {
+	left: 40px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(31) {
+	left: 30px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(32) {
+	left: 30px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(33) {
+	left: 30px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(34) {
+	left: 30px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(35) {
+	left: 20px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(36) {
+	left: 10px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(37) {
+	left: 10px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(38) {
+	left: 10px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(39) {
+	left: 10px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(40) {
+	left: 10px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(41) {
+	left: 10px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(42) {
+	left: 10px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(43) {
+	left: 10px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(44) {
+	left: 10px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(1) {
+	left: 0;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(2) {
+	left: 10px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(3) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(4) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(5) {
+	left: 40px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(6) {
+	left: 50px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(7) {
+	left: 60px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(8) {
+	left: 70px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(9) {
+	left: 70px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(10) {
+	left: 70px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(11) {
+	left: 60px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(12) {
+	left: 50px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(13) {
+	left: 40px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(14) {
+	left: 30px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(15) {
+	left: 20px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(16) {
+	left: 20px;
+	top: 21px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(17) {
+	left: 20px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(18) {
+	left: 20px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(19) {
+	left: 30px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(20) {
+	left: 40px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(21) {
+	left: 50px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(22) {
+	left: 60px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(23) {
+	left: 70px;
+	top: 35px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(24) {
+	left: 70px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(25) {
+	left: 70px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(26) {
+	left: 60px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(27) {
+	left: 50px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(28) {
+	left: 40px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(29) {
+	left: 30px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(30) {
+	left: 20px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(31) {
+	left: 20px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(32) {
+	left: 20px;
+	top: 65px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(33) {
+	left: 20px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(34) {
+	left: 30px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(35) {
+	left: 40px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(36) {
+	left: 50px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(37) {
+	left: 60px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(38) {
+	left: 70px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(39) {
+	left: 70px;
+	top: 82px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(40) {
+	left: 70px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(41) {
+	left: 60px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(42) {
+	left: 50px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(43) {
+	left: 40px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(44) {
+	left: 30px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(45) {
+	left: 20px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(46) {
+	left: 10px;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(47) {
+	left: 0;
+	top: 89px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(48) {
+	left: 0;
+	top: 79px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(49) {
+	left: 0;
+	top: 69px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(50) {
+	left: 0;
+	top: 59px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(51) {
+	left: 0;
+	top: 49px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(52) {
+	left: 0;
+	top: 39px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(53) {
+	left: 0;
+	top: 29px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(54) {
+	left: 0;
+	top: 19px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(55) {
+	left: 0;
+	top: 9px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(1) {
+	left: 10px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(2) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(3) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(4) {
+	left: 30px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(5) {
+	left: 30px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(6) {
+	left: 30px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(7) {
+	left: 40px;
+	top: 23px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(8) {
+	left: 50px;
+	top: 15px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(9) {
+	left: 60px;
+	top: 7px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(10) {
+	left: 70px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(11) {
+	left: 80px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(12) {
+	left: 90px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(13) {
+	left: 90px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(14) {
+	left: 80px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(15) {
+	left: 70px;
+	top: 25px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(16) {
+	left: 60px;
+	top: 32px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(17) {
+	left: 50px;
+	top: 39px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(18) {
+	left: 55px;
+	top: 47px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(19) {
+	left: 60px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(20) {
+	left: 65px;
+	top: 63px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(21) {
+	left: 70px;
+	top: 71px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(22) {
+	left: 75px;
+	top: 79px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(23) {
+	left: 80px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(24) {
+	left: 70px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(25) {
+	left: 60px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(26) {
+	left: 53px;
+	top: 79px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(27) {
+	left: 46px;
+	top: 71px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(28) {
+	left: 40px;
+	top: 63px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(29) {
+	left: 35px;
+	top: 55px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(30) {
+	left: 30px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(31) {
+	left: 30px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(32) {
+	left: 30px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(33) {
+	left: 30px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(34) {
+	left: 30px;
+	top: 88px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(35) {
+	left: 20px;
+	top: 88px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(36) {
+	left: 10px;
+	top: 88px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(37) {
+	left: 10px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(38) {
+	left: 10px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(39) {
+	left: 10px;
+	top: 58px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(40) {
+	left: 10px;
+	top: 48px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(41) {
+	left: 10px;
+	top: 38px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(42) {
+	left: 10px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(43) {
+	left: 10px;
+	top: 18px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(44) {
+	left: 10px;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(1) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(2) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(3) {
+	left: 40px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(4) {
+	left: 40px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(5) {
+	left: 40px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(6) {
+	left: 30px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(7) {
+	left: 20px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(8) {
+	left: 20px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(9) {
+	left: 20px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(10) {
+	left: 20px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(11) {
+	left: 20px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(12) {
+	left: 20px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(13) {
+	left: 20px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(14) {
+	left: 20px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(15) {
+	left: 30px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(16) {
+	left: 40px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(17) {
+	left: 40px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(18) {
+	left: 40px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(19) {
+	left: 40px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(20) {
+	left: 40px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(21) {
+	left: 40px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(22) {
+	left: 30px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(5) {
+	width: 65px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(1) {
+	left: 10px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(2) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(3) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(4) {
+	left: 34px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(5) {
+	left: 38px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(6) {
+	left: 42px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(7) {
+	left: 46px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(8) {
+	left: 50px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(9) {
+	left: 54px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(10) {
+	left: 58px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(11) {
+	left: 58px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(12) {
+	left: 58px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(13) {
+	left: 58px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(14) {
+	left: 58px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(15) {
+	left: 58px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(16) {
+	left: 58px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(17) {
+	left: 58px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(18) {
+	left: 66px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(19) {
+	left: 74px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(20) {
+	left: 82px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(21) {
+	left: 82px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(22) {
+	left: 82px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(23) {
+	left: 82px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(24) {
+	left: 82px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(25) {
+	left: 82px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(26) {
+	left: 82px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(27) {
+	left: 82px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(28) {
+	left: 82px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(29) {
+	left: 82px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(30) {
+	left: 73px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(31) {
+	left: 64px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(32) {
+	left: 54px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(33) {
+	left: 46px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(34) {
+	left: 43px;
+	top: 84px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(35) {
+	left: 38px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(36) {
+	left: 35px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(37) {
+	left: 32px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(38) {
+	left: 29px;
+	top: 52px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(39) {
+	left: 26px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(40) {
+	left: 23px;
+	top: 38px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(41) {
+	left: 20px;
+	top: 32px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(42) {
+	left: 17px;
+	top: 24px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(44) {
+	left: 17px;
+	top: 36px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(45) {
+	left: 17px;
+	top: 46px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(46) {
+	left: 17px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(47) {
+	left: 17px;
+	top: 66px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(48) {
+	left: 17px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(49) {
+	left: 17px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(43) {
+	left: 10px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(50) {
+	left: 0;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(51) {
+	left: 0;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(52) {
+	left: 0;
+	top: 66px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(53) {
+	left: 0;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(54) {
+	left: 0;
+	top: 46px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(55) {
+	left: 0;
+	top: 36px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(56) {
+	left: 0;
+	top: 26px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(57) {
+	left: 0;
+	top: 16px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(58) {
+	left: 0;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(1) {
+	background: #0000;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(2) {
+	left: 75px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(3) {
+	left: 70px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(4) {
+	left: 63px;
+	top: 15px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(5) {
+	left: 53px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(6) {
+	left: 45px;
+	top: 9px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(7) {
+	left: 37px;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(8) {
+	left: 30px;
+	top: 8px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(9) {
+	left: 23px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(10) {
+	left: 16px;
+	top: 15px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(11) {
+	left: 12px;
+	top: 21px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(12) {
+	left: 10px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(13) {
+	left: 9px;
+	top: 36px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(14) {
+	left: 9px;
+	top: 42px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(15) {
+	left: 9px;
+	top: 48px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(16) {
+	left: 9px;
+	top: 54px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(17) {
+	left: 9px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(18) {
+	left: 11px;
+	top: 66px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(19) {
+	left: 14px;
+	top: 72px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(20) {
+	left: 18px;
+	top: 77px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(21) {
+	left: 23px;
+	top: 82px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(22) {
+	left: 28px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(23) {
+	left: 34px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(24) {
+	left: 40px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(25) {
+	left: 46px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(26) {
+	left: 52px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(27) {
+	left: 58px;
+	top: 84px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(28) {
+	left: 64px;
+	top: 82px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(29) {
+	left: 70px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(30) {
+	left: 70px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(31) {
+	left: 70px;
+	top: 62px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(32) {
+	left: 70px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(33) {
+	left: 62px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(34) {
+	left: 56px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(35) {
+	left: 50px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(36) {
+	left: 44px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(37) {
+	left: 38px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(38) {
+	left: 38px;
+	top: 62px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(39) {
+	left: 38px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(40) {
+	left: 44px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(41) {
+	left: 50px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(42) {
+	left: 56px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(43) {
+	left: 56px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(44) {
+	left: 48px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(45) {
+	left: 40px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(46) {
+	left: 34px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(47) {
+	left: 28px;
+	top: 74px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(48) {
+	left: 23px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(49) {
+	left: 20px;
+	top: 62px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(50) {
+	left: 19px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(51) {
+	left: 19px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(52) {
+	left: 19px;
+	top: 44px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(53) {
+	left: 19px;
+	top: 38px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(54) {
+	left: 20px;
+	top: 32px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(55) {
+	left: 22px;
+	top: 26px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(56) {
+	left: 26px;
+	top: 21px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(57) {
+	left: 32px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(58) {
+	left: 38px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(59) {
+	left: 44px;
+	top: 21px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(60) {
+	left: 50px;
+	top: 24px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(61) {
+	left: 56px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(62) {
+	left: 60px;
+	top: 37px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(63) {
+	left: 67px;
+	top: 37px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(64) {
+	left: 75px;
+	top: 37px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(8) {
+	margin-left: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(8) span {
+	background: #0000;
+	top: 38%;
+	left: 49%;
+}
+.TheKingOfCSS3 .text .letter:nth-child(8) span i {
+	position: absolute;
+	border-radius: 50%;
+	-webkit-transform: rotate(calc(var(--i) * 18deg)) translateX(40px);
+	transform: rotate(calc(var(--i) * 18deg)) translateX(40px);
+	width: 5px;
+	height: 5px;
+	background: #fff;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(1) {
+	left: 10px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(2) {
+	left: 20px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(3) {
+	left: 30px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(4) {
+	left: 40px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(5) {
+	left: 50px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(6) {
+	left: 60px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(7) {
+	left: 70px;
+	top: 0;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(8) {
+	left: 70px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(9) {
+	left: 70px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(10) {
+	left: 60px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(11) {
+	left: 50px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(12) {
+	left: 40px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(13) {
+	left: 30px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(14) {
+	left: 20px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(15) {
+	left: 20px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(16) {
+	left: 20px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(17) {
+	left: 30px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(18) {
+	left: 40px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(19) {
+	left: 50px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(20) {
+	left: 60px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(21) {
+	left: 70px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(22) {
+	left: 70px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(23) {
+	left: 70px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(24) {
+	left: 60px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(25) {
+	left: 50px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(26) {
+	left: 40px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(27) {
+	left: 30px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(28) {
+	left: 20px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(29) {
+	left: 20px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(30) {
+	left: 20px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(31) {
+	left: 20px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(32) {
+	left: 10px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(33) {
+	left: 0;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(34) {
+	left: 0;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(35) {
+	left: 0;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(36) {
+	left: 0;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(37) {
+	left: 0;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(38) {
+	left: 0;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(39) {
+	left: 0;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(40) {
+	left: 0;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(41) {
+	left: 0;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(1) {
+	left: 10px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(2) {
+	left: 15px;
+	top: 25px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(3) {
+	left: 23px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(4) {
+	left: 30px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(5) {
+	left: 8px;
+	top: 38px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(6) {
+	left: 7px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(7) {
+	left: 7px;
+	top: 52px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(8) {
+	left: 7px;
+	top: 59px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(9) {
+	left: 7px;
+	top: 67px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(10) {
+	left: 9px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(11) {
+	left: 12px;
+	top: 82px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(12) {
+	left: 18px;
+	top: 88px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(13) {
+	left: 26px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(14) {
+	left: 35px;
+	top: 91px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(15) {
+	left: 43px;
+	top: 90px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(16) {
+	left: 50px;
+	top: 88px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(17) {
+	left: 58px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(18) {
+	left: 65px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(19) {
+	left: 65px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(20) {
+	left: 55px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(21) {
+	left: 50px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(22) {
+	left: 40px;
+	top: 77px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(23) {
+	left: 33px;
+	top: 77px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(24) {
+	left: 27px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(25) {
+	left: 23px;
+	top: 67px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(26) {
+	left: 23px;
+	top: 58px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(27) {
+	left: 23px;
+	top: 50px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(28) {
+	left: 27px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(29) {
+	left: 35px;
+	top: 36px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(30) {
+	left: 42px;
+	top: 34px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(31) {
+	left: 50px;
+	top: 34px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(32) {
+	left: 58px;
+	top: 37px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(33) {
+	left: 58px;
+	top: 30px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(34) {
+	left: 58px;
+	top: 23px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(35) {
+	left: 52px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(36) {
+	left: 45px;
+	top: 19px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(37) {
+	left: 38px;
+	top: 17px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(9) {
+	width: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(10) {
+	margin-left: 20px;
+	width: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(1),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(1) {
+	left: 38px;
+	top: 9px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(2),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(2) {
+	left: 30px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(3),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(3) {
+	left: 22px;
+	top: 15px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(4),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(4) {
+	left: 15px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(5),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(5) {
+	left: 12px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(6),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(6) {
+	left: 12px;
+	top: 36px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(7),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(7) {
+	left: 15px;
+	top: 44px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(8),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(8) {
+	left: 22px;
+	top: 48px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(9),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(9) {
+	left: 30px;
+	top: 51px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(10),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(10) {
+	left: 40px;
+	top: 52px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(11),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(11) {
+	left: 48px;
+	top: 56px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(12),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(12) {
+	left: 51px;
+	top: 62px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(13),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(13) {
+	left: 50px;
+	top: 70px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(14),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(14) {
+	left: 46px;
+	top: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(15),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(15) {
+	left: 40px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(16),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(16) {
+	left: 32px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(17),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(17) {
+	left: 24px;
+	top: 78px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(18),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(18) {
+	left: 18px;
+	top: 74px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(19),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(19) {
+	left: 12px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(20),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(20) {
+	left: 12px;
+	top: 76px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(21),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(21) {
+	left: 12px;
+	top: 84px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(22),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(22) {
+	left: 18px;
+	top: 86px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(23),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(23) {
+	left: 25px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(24),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(24) {
+	left: 32px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(25),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(25) {
+	left: 38px;
+	top: 87px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(26),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(26) {
+	left: 46px;
+	top: 85px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(27),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(27) {
+	left: 53px;
+	top: 80px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(28),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(28) {
+	left: 57px;
+	top: 74px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(29),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(29) {
+	left: 60px;
+	top: 68px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(30),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(30) {
+	left: 60px;
+	top: 60px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(31),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(31) {
+	left: 56px;
+	top: 52px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(32),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(32) {
+	left: 50px;
+	top: 48px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(33),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(33) {
+	left: 44px;
+	top: 45px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(34),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(34) {
+	left: 38px;
+	top: 44px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(35),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(35) {
+	left: 32px;
+	top: 42px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(36),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(36) {
+	left: 25px;
+	top: 40px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(37),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(37) {
+	left: 22px;
+	top: 34px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(38),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(38) {
+	left: 22px;
+	top: 28px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(39),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(39) {
+	left: 28px;
+	top: 24px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(40),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(40) {
+	left: 36px;
+	top: 22px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(41),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(41) {
+	left: 43px;
+	top: 21px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(42),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(42) {
+	left: 52px;
+	top: 23px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(43),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(43) {
+	left: 58px;
+	top: 27px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(44),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(44) {
+	left: 58px;
+	top: 20px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(45),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(45) {
+	left: 58px;
+	top: 12px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(46),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(46) {
+	left: 52px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(47),
+.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(47) {
+	left: 45px;
+	top: 10px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(11),
+.TheKingOfCSS3 .text .letter:nth-child(12) {
+	width: 75px;
+}
+.TheKingOfCSS3 .text .letter:nth-child(7) {
+	width: 85px;
+}
+.TheKingOfCSS3 .author {
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	translate: -50%;
+	display: none;
+}
+.TheKingOfCSS3 .author h2 {
+	color: #fff;
+	font: bold 2em sans-serif;
+	white-space: nowrap;
+	width: 0;
+	overflow: hidden;
+	border-right: 2px solid #fff;
+	-webkit-animation: AuthorLine 1s infinite;
+	animation: AuthorLine 1s infinite;
+}
+@-webkit-keyframes AuthorLine {
+	50% { border-color: transparent; }
+}
+@keyframes AuthorLine {
+	50% { border-color: transparent; }
+}
+footer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100% - 17px);
+	height: 100%;
+	z-index: 10;
+	background: url(img/bg.jpg) center 0 / 120%;
+	display: none;
+}
+footer .top {
+	height: 50%;
+}
+footer .bottom {
+	position: relative;
+	height: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+}
+footer .bottom .wave {
+	position: absolute;
+	top: -50px;
+	left: 0;
+	width: 100%;
+	height: 150px;
+	background: url(img/wave.svg) 0 40% / cover;
+}
+footer .bottom .wave.w2 {
+	opacity: .8;
+    top: -71px;
+	mix-blend-mode: hard-light;
+}
+footer .bottom .wave.w3 {
+	background: url(img/wave.svg) 50% 40% / cover;
+	opacity: .6;
+    top: -90px;
+	mix-blend-mode: difference;
+}
+footer .bottom .content {
+	width: 100%;
+	height: calc(100% - 90px);
+	background: #59a6ed;
+}
+footer .bottom .content .sponsor {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding-top: 15px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 15px 30px;
+	opacity: 0;
+	translate: 0 30px;
+}
+footer .bottom .content .sponsor img {
+	height: 7vw;
+	-o-object-fit: contain;
+	object-fit: contain;
+}
+footer .bird {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	height: 200px;
+}
+footer .bottom .content .creator {
+	text-align: center;
+	height: calc(100% - 130px);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+}
+footer .bottom .content .creator h3 {
+	font: 20px sans-serif;
+	letter-spacing: -9px;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+footer .bottom .content .creator p {
+	font-size: 19px;
+	translate: 0 80px;
+	word-spacing: 5px;
+	
+}
+.music {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	background: #0005;
+	z-index: 1000;
+	-webkit-clip-path: circle(50% at 25% 20%);
+	clip-path: circle(50% at 25% 20%);
+	cursor: pointer;
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+.music .play {
+	position: absolute;
+	top: 6px;
+	left: 10px;
+    background: #fff;
+    width: 16px;
+    height: 21px;
+	-webkit-clip-path: polygon(0 0, 100% 50%, 100% 50%, 0% 100%);
+	clip-path: polygon(0 0, 100% 50%, 100% 50%, 0% 100%);
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.music:hover {
+	background: #000;
+}
+.music.active .play {
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+	width: 7px;
+	left: 18px;
+}
+.music .pause {
+	position: absolute;
+	top: 100%;
+	left: 8px;
+    background: #fff;
+    width: 7px;
+    height: 21px;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.music.active .pause {
+	top: 6px;
+}
