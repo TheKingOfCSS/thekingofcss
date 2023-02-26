@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Instructor Hovo Vardanyan</title>
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		body {
 			background: #111;
 			text-align: center;
@@ -20,6 +20,7 @@
 			width: 235px;
 			height: 70px;
 			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
 			clip-path: polygon(0 0, 100% 0, 0 100%);
 		}
 		body::after {
@@ -30,6 +31,7 @@
 			width: 285px;
 			height: 95px;
 			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%);
 			clip-path: polygon(0 100%, 100% 0, 100% 100%);
 		}
 		.backMega {
@@ -42,6 +44,7 @@
 			font: bold 22px sans-serif;
 			cursor: pointer;
 			border-bottom-right-radius: 30px;
+			-webkit-transition: .2s;
 			transition: .2s;
 			z-index: 2;
 		}
@@ -54,15 +57,21 @@
 			position: relative;
 		}
 		.menu {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			padding: 7%;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
 			gap: 4vh;
 		}
 		.menu .section {
 			width: 300px;
 			cursor: pointer;
+			-webkit-transition: .3s;
 			transition: .3s;
 			font: bold 2.5rem system-ui, sans-serif;
 			will-change: transform;
@@ -76,6 +85,7 @@
 			height: 200px;
 			border: 5px solid #fff;
 			background: url(BabyMario/img/mario.gif) no-repeat center / contain, url(BabyMario/img/bg.jpg) no-repeat center / cover;
+			-webkit-box-shadow: inset 0 0 15px #0009;
 			box-shadow: inset 0 0 15px #0009;
 		}
 		.menu .section.mar2 .example {
