@@ -5,7 +5,7 @@
 	<title>Instructor Hovo Vardanyan</title>
 	<link rel="shortcut icon" href="../king.png">
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		body {
 			background: #111;
 			text-align: center;
@@ -21,6 +21,7 @@
 			width: 235px;
 			height: 70px;
 			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
 			clip-path: polygon(0 0, 100% 0, 0 100%);
 		}
 		body::after {
@@ -31,6 +32,7 @@
 			width: 285px;
 			height: 95px;
 			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%);
 			clip-path: polygon(0 100%, 100% 0, 100% 100%);
 		}
 		.backMega {
@@ -43,6 +45,7 @@
 			font: bold 22px sans-serif;
 			cursor: pointer;
 			border-bottom-right-radius: 30px;
+			-webkit-transition: .2s;
 			transition: .2s;
 			z-index: 2;
 		}
@@ -56,19 +59,26 @@
 			font-size: 6.8vh;
 			letter-spacing: 2px;
 			color: transparent;
+			background: -webkit-gradient(linear, left top, right top, color-stop(5%, #fff), color-stop(5%, #222), color-stop(6%, #fff));
 			background: linear-gradient(to right, #fff 5%, #222 5% 6%, #fff 6%);
 			-webkit-background-clip: text;
 			margin-bottom: 10vh;
 		}
 		.menu {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			padding: 7% 3%;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
 			gap: 20vh 4vh;
 		}
 		.menu .section {
 			width: 400px;
+			-webkit-transition: .3s;
 			transition: .3s;
 			font: bold 1.5rem system-ui, sans-serif;
 			will-change: transform;
@@ -79,9 +89,12 @@
 			position: absolute;
 			bottom: calc(100% - 5px);
 			left: 50%;
+			-webkit-transform: translateX(-50%);
 			transform: translateX(-50%);
 			height: 130px;
+			-webkit-transition: .3s;
 			transition: .3s;
+			-webkit-transform-origin: bottom;
 			transform-origin: bottom;
 		}
 		.menu .section .example {
@@ -90,6 +103,7 @@
 			height: 250px;
 			border: 3px solid #fff;
 			background: url(BabyMario/img/bg.jpg) no-repeat center / cover;
+			-webkit-box-shadow: inset 0 0 15px #0009;
 			box-shadow: inset 0 0 15px #0009;
 			z-index: 1;
 			position: relative;
@@ -151,10 +165,13 @@
 			font-size: 2rem;
 		}
 		.menu .section:hover .king {
+			-webkit-transform: translateX(-50%) scale(1.05);
 			transform: translateX(-50%) scale(1.05);
+			-webkit-filter: saturate(2.5);
 			filter: saturate(2.5);
 		}
 		.menu .section:active .king {
+			-webkit-transform: translate(-50%, 3px) scale(1.05);
 			transform: translate(-50%, 3px) scale(1.05);
 		}
 	</style>
