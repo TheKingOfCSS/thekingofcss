@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aphorism Room</title>
+	<link rel="shortcut icon" href="img/glass/earth.jpg">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		body { background: #111; }
+		.glassHome {
+			-webkit-perspective: 900px;
+			perspective: 900px;
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			margin-top: 3em;
+			overflow: hidden;
+			height: 150vh;
+		}
+		.glassHome .home {
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			width: 700px;
+			height: 500px;
+			position: relative;
+			margin: 9em auto 5em;
+			-webkit-transform: rotateY(2deg) translateZ(-10em) translateY(0);
+			transform: rotateY(2deg) translateZ(-10em) translateY(0);
+		}
+		.glassHome .home .face {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgb(144 197 228 / 35%);
+			-webkit-box-shadow: inset 0 0 8px #000, inset 0 0 100px 90px #ffffff94;
+			box-shadow: inset 0 0 8px #000, inset 0 0 100px 90px #ffffff94;
+		}
+		.glassHome .home .face.front {
+			-webkit-transform: translateZ(350px);
+			transform: translateZ(350px);
+			-webkit-transition: 2s;
+			transition: 2s;
+		}
+		.glassHome .home .face.front.now {
+			-webkit-clip-path: polygon(38% 100%, 0 100%, 0 64%, 0 0, 100% 0, 100% 100%, 60% 100%, 60% 36%, 38% 36%);
+			clip-path: polygon(38% 100%, 0 100%, 0 64%, 0 0, 100% 0, 100% 100%, 60% 100%, 60% 36%, 38% 36%);
+		}
+		.glassHome .home .face.front.inside {
+			-webkit-transform: translateZ(345px) rotateY(180deg);
+			transform: translateZ(345px) rotateY(180deg);
+			background: #f00;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			opacity: 0;
+			-webkit-transition: 2s;
+			transition: 2s;
+		}
+		.glassHome .home .face.front.inside video {
+			width: 140px;
+			height: 250px;
+			-o-object-fit: cover;
+			object-fit: cover;
+		}
+		.glassHome .home .face.left {
+			-webkit-transform: rotateY(-90deg) translateZ(28em) translateX(-6.2em);
+			transform: rotateY(-90deg) translateZ(28em) translateX(-6.2em);
+			width: 900px;
+			height: 500px;
+		}
+		.glassHome .home .face.left.inside {
+			-webkit-transform: rotateY(90deg) translateZ(-28em) translateX(6.2em);
+			transform: rotateY(90deg) translateZ(-28em) translateX(6.2em);
+			width: 900px;
+			height: 500px;
+			background: #f00;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			opacity: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.glassHome .home .face.left.inside video {
+			width: 149px;
+			height: 250px;
+			-o-object-fit: cover;
+			object-fit: cover;
+		}
+		.glassHome .home .face.right {
+			-webkit-transform: rotateY(90deg) translateZ(15.5em) translateX(6.2em);
+			transform: rotateY(90deg) translateZ(15.5em) translateX(6.2em);
+			width: 900px;
+			height: 500px;
+		}
+		.glassHome .home .face.right.inside {
+			-webkit-transform: rotateY(-90deg) translateZ(-15.5em) translateX(-6.2em);
+			transform: rotateY(-90deg) translateZ(-15.5em) translateX(-6.2em);
+			width: 900px;
+			height: 500px;
+			background: #f00;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			opacity: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.glassHome .home .face.right.inside video {
+			width: 149px;
+			height: 250px;
+			-o-object-fit: cover;
+			object-fit: cover;
+			-o-object-position: left;
+			object-position: left;
+		}
+		.glassHome .home .face.back {
+			-webkit-transform: translateZ(-548px);
+			transform: translateZ(-548px);
+		}
+		.glassHome .home .face.back.inside {
+			-webkit-transform: translateZ(-548px);
+			transform: translateZ(-548px);
+			background: #ff2a2a;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			opacity: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.glassHome .home .face.back.inside video {
+			width: 140px;
+			height: 250px;
+		}
+		.glassHome .home .face.inside video {
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+		.glassHome .home .face.bottom {
+			-webkit-transform: rotateX(-90deg) translateZ(50px) translateY(6.7em) translateX(-2px) scaleY(-1);
+			transform: rotateX(-90deg) translateZ(50px) translateY(6.7em) translateX(-2px) scaleY(-1);
+			width: 702px;
+			height: 56em;
+			padding: 15px 22px;
+			overflow: hidden;
+		}
+		.glassHome .home .face.bottom span {
+			-webkit-writing-mode: vertical-lr;
+			-ms-writing-mode: tb-lr;
+			writing-mode: vertical-lr;
+			text-orientation: upright;
+			font-size: 44px;
+			letter-spacing: -7px;
+			text-shadow: 0 0 23px #fff;
+			opacity: 0;
+			color: transparent;
+			-webkit-text-stroke: 1px #ffffff;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		@-webkit-keyframes glassBottomText {
+			0% {  letter-spacing: -44px; }
+			100% {  letter-spacing: 41px; }
+		}
+		@keyframes glassBottomText {
+			0% {  letter-spacing: -44px; }
+			100% {  letter-spacing: 41px; }
+		}
+		@-webkit-keyframes glassBottomTextColor {
+			0% { -webkit-text-stroke-color: #fff; }
+			30% { -webkit-text-stroke-color: #fbff00; }
+			60% { -webkit-text-stroke-color: #00ff14; }
+			80% { -webkit-text-stroke-color: #77e6ff; }
+			80% { -webkit-text-stroke-color: #fff; }
+		}
+		@keyframes glassBottomTextColor {
+			0% { -webkit-text-stroke-color: #fff; }
+			30% { -webkit-text-stroke-color: #fbff00; }
+			60% { -webkit-text-stroke-color: #00ff14; }
+			80% { -webkit-text-stroke-color: #77e6ff; }
+			80% { -webkit-text-stroke-color: #fff; }
+		}
+		.glassHome .home.bottomText .face.bottom span {
+			opacity: 1;
+			-webkit-animation: glassBottomTextColor 2s linear infinite, glassBottomText 20s linear infinite alternate;
+			animation: glassBottomTextColor 2s linear infinite, glassBottomText 20s linear infinite alternate;
+		}
+		.glassHome .home .face.top {
+			-webkit-transform: rotateX(-90deg) translateZ(-28.5em) translateY(6.7em) translateX(0px);
+			transform: rotateX(-90deg) translateZ(-28.5em) translateY(6.7em) translateX(0px);
+			width: 700px;
+			height: 57em;
+		}
+		.glassHome .home .door {
+			position: absolute;
+			top: 36%;
+			left: 38%;
+			width: 155px;
+			height: 321px;
+			-webkit-transform: translateZ(349px);
+			transform: translateZ(349px);
+			background: rgb(144 197 228 / 35%);
+			-webkit-box-shadow: inset 0 0 2px 2px #000, inset 0 0 2px 16px #ffffff94, inset 0 0 71px 35px #ffffff94;
+			box-shadow: inset 0 0 2px 2px #000, inset 0 0 2px 16px #ffffff94, inset 0 0 71px 35px #ffffff94;
+			cursor: pointer;
+			-webkit-transform-origin: left;
+			transform-origin: left;
+			-webkit-transition: 2s;
+			transition: 2s;
+		}
+		.glassHome .home .door span {
+			width: 25px;
+			height: 6px;
+			background: #fff;
+			border-radius: 26px;
+			margin-top: 10em;
+			margin-left: 7.5em;
+			display: block;
+			-webkit-transform-origin: bottom right;
+			transform-origin: bottom right;
+		}
+		@-webkit-keyframes doorSpan {
+			100% { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
+		}
+		@keyframes doorSpan {
+			100% { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
+		}
+		.glassHome .home .door.open span {
+			-webkit-animation: doorSpan 2s forwards;
+			animation: doorSpan 2s forwards;
+		}
+		@-webkit-keyframes doorGlass {
+			100% { -webkit-transform: translateZ(349px) rotateY(100deg); transform: translateZ(349px) rotateY(100deg); }
+		}
+		@keyframes doorGlass {
+			100% { -webkit-transform: translateZ(349px) rotateY(100deg); transform: translateZ(349px) rotateY(100deg); }
+		}
+		@-webkit-keyframes doorGlassClose {
+			0% { -webkit-transform: translateZ(349px) rotateY(100deg); transform: translateZ(349px) rotateY(100deg); }
+			100% { -webkit-transform: translateZ(349px) rotateY(0deg); transform: translateZ(349px) rotateY(0deg); }
+		}
+		@keyframes doorGlassClose {
+			0% { -webkit-transform: translateZ(349px) rotateY(100deg); transform: translateZ(349px) rotateY(100deg); }
+			100% { -webkit-transform: translateZ(349px) rotateY(0deg); transform: translateZ(349px) rotateY(0deg); }
+		}
+		.glassHome .home .door.open {
+			-webkit-animation: doorGlass 2s 1s forwards;
+			animation: doorGlass 2s 1s forwards;
+		}
+		.glassHome .home .door.close {
+			-webkit-animation: doorGlassClose 2s forwards;
+			animation: doorGlassClose 2s forwards;
+		}
+		@-webkit-keyframes GlassHome {
+			0% { -webkit-transform: rotateY(2deg) translateZ(-10em) translateY(0); transform: rotateY(2deg) translateZ(-10em) translateY(0); }
+			50% { -webkit-transform: rotateY(2deg) translateZ(-5em) translateY(155px); transform: rotateY(2deg) translateZ(-5em) translateY(155px); }
+			100% { -webkit-transform: rotateY(2deg) translateZ(40em) translateY(155px); transform: rotateY(2deg) translateZ(40em) translateY(155px); }
+		}
+		@keyframes GlassHome {
+			0% { -webkit-transform: rotateY(2deg) translateZ(-10em) translateY(0); transform: rotateY(2deg) translateZ(-10em) translateY(0); }
+			50% { -webkit-transform: rotateY(2deg) translateZ(-5em) translateY(155px); transform: rotateY(2deg) translateZ(-5em) translateY(155px); }
+			100% { -webkit-transform: rotateY(2deg) translateZ(40em) translateY(155px); transform: rotateY(2deg) translateZ(40em) translateY(155px); }
+		}
+		@-webkit-keyframes GlassHomeLeft {
+			0% { -webkit-transform: rotateY(2deg) translateZ(40em) translateY(155px); transform: rotateY(2deg) translateZ(40em) translateY(155px); -webkit-transform-origin: left; transform-origin: left; }
+			50% { -webkit-transform: rotateY(-45deg) translateZ(20em) translateY(200px) translateX(25em); transform: rotateY(-45deg) translateZ(20em) translateY(200px) translateX(25em); -webkit-transform-origin: left; transform-origin: left; }
+			100% { -webkit-transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); -webkit-transform-origin: center; transform-origin: center; }
+		}
+		@keyframes GlassHomeLeft {
+			0% { -webkit-transform: rotateY(2deg) translateZ(40em) translateY(155px); transform: rotateY(2deg) translateZ(40em) translateY(155px); -webkit-transform-origin: left; transform-origin: left; }
+			50% { -webkit-transform: rotateY(-45deg) translateZ(20em) translateY(200px) translateX(25em); transform: rotateY(-45deg) translateZ(20em) translateY(200px) translateX(25em); -webkit-transform-origin: left; transform-origin: left; }
+			100% { -webkit-transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); -webkit-transform-origin: center; transform-origin: center; }
+		}
+		@-webkit-keyframes GlassHomeRight {
+			0% { -webkit-transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); -webkit-transform-origin: center; transform-origin: center; }
+			100% { -webkit-transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); -webkit-transform-origin: center; transform-origin: center; }
+		}
+		@keyframes GlassHomeRight {
+			0% { -webkit-transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); transform: rotateY(-90deg) translateZ(7em) translateY(229px) translateX(37em); -webkit-transform-origin: center; transform-origin: center; }
+			100% { -webkit-transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); -webkit-transform-origin: center; transform-origin: center; }
+		}
+		@-webkit-keyframes GlassHomeBacks {
+			0% { -webkit-transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); }
+			100% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); }
+		}
+		@keyframes GlassHomeBacks {
+			0% { -webkit-transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); }
+			100% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); }
+		}
+		@-webkit-keyframes GlassHomeFrontsRot {
+			0% { -webkit-transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); }
+			100% { -webkit-transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); }
+		}
+		@keyframes GlassHomeFrontsRot {
+			0% { -webkit-transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); transform: rotateY(-270deg) translateZ(6em) translateY(203px) translateX(-39em); }
+			100% { -webkit-transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); transform: rotateY(0deg) translateZ(40em) translateY(306px) translateX(0.5em); }
+		}
+		@-webkit-keyframes GlassHomeActiveWorld {
+			0% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); }
+			100% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); }
+		}
+		@keyframes GlassHomeActiveWorld {
+			0% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(306px) translateX(-1em); }
+			100% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); }
+		}
+		@-webkit-keyframes GlassHomeExit {
+			0% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); }
+			50% { -webkit-transform: rotateY(0deg) translateZ(48em) translateY(306px) translateX(-1em); transform: rotateY(0deg) translateZ(48em) translateY(306px) translateX(-1em); }
+			100% { -webkit-transform: rotateY(2deg) translateZ(-10em) translateY(0); transform: rotateY(2deg) translateZ(-10em) translateY(0); }
+		}
+		@keyframes GlassHomeExit {
+			0% { -webkit-transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); transform: rotateY(-180deg) translateZ(-30em) translateY(206px) translateX(-1em); }
+			50% { -webkit-transform: rotateY(0deg) translateZ(48em) translateY(306px) translateX(-1em); transform: rotateY(0deg) translateZ(48em) translateY(306px) translateX(-1em); }
+			100% { -webkit-transform: rotateY(2deg) translateZ(-10em) translateY(0); transform: rotateY(2deg) translateZ(-10em) translateY(0); }
+		}
+		.glassHome .home.active {
+			-webkit-animation: GlassHome 3s 1s forwards;
+			animation: GlassHome 3s 1s forwards;
+		}
+		.glassHome .home.activeLeft {
+			-webkit-animation: GlassHomeLeft 3s forwards;
+			animation: GlassHomeLeft 3s forwards;
+		}
+		.glassHome .home.activeRight {
+			-webkit-animation: GlassHomeRight 3s forwards;
+			animation: GlassHomeRight 3s forwards;
+		}
+		.glassHome .home.activeBack {
+			-webkit-animation: GlassHomeBacks 3s forwards;
+			animation: GlassHomeBacks 3s forwards;
+		}
+		.glassHome .home.activeFront {
+			-webkit-animation: GlassHomeFrontsRot 3s forwards;
+			animation: GlassHomeFrontsRot 3s forwards;
+		}
+		.glassHome .home.activeWorld {
+			-webkit-animation: GlassHomeActiveWorld 1s forwards 1;
+			animation: GlassHomeActiveWorld 1s forwards 1;
+		}
+		.glassHome .home.activeExit {
+			-webkit-animation: GlassHomeExit 3s forwards;
+			animation: GlassHomeExit 3s forwards;
+		}
+		.glassHome .home.activeWorldGalaxy .face.front.inside {
+			-webkit-transform: translateZ(345px) rotateY(180deg) translateY(100%);
+			transform: translateZ(345px) rotateY(180deg) translateY(100%);
+			-webkit-transition: 2s linear;
+			transition: 2s linear;
+		}
+		.glassHome .home.activeWorldGalaxy .face.front {
+			-webkit-transform: translateZ(350px) translateY(100%);
+			transform: translateZ(350px) translateY(100%);
+			-webkit-transition: 2s linear;
+			transition: 2s linear;
+		}
+		.glassHome .home.activeWorldGalaxy .door {
+			top: 100%;
+			-webkit-transition: 2s linear;
+			transition: 2s linear;
+		}
+		.glassHome .home.show .face.front.inside,
+		.glassHome .home.show .face.left.inside,
+		.glassHome .home.show .face.right.inside,
+		.glassHome .home.show .face.back.inside {
+			opacity: 1;
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		.glassHome .home.show .face.back.inside video,
+		.glassHome .home.show .face.front.inside video {
+			-webkit-animation: glassTranslate 4s linear calc(var(--i) * .4s) infinite alternate;
+			animation: glassTranslate 4s linear calc(var(--i) * .4s) infinite alternate;
+		}
+		.glassHome .home.show .face.left.inside video,
+		.glassHome .home.show .face.right.inside video {
+			-webkit-animation: glassTranslateleft 4s linear calc(var(--i) * .4s) infinite alternate;
+			animation: glassTranslateleft 4s linear calc(var(--i) * .4s) infinite alternate;
+		}
+		@-webkit-keyframes glassTranslate {
+			0% { -webkit-transform: translateZ(0); transform: translateZ(0); }
+			100% { -webkit-transform: translateZ(75px); transform: translateZ(75px); }
+		}
+		@keyframes glassTranslate {
+			0% { -webkit-transform: translateZ(0); transform: translateZ(0); }
+			100% { -webkit-transform: translateZ(75px); transform: translateZ(75px); }
+		}
+		@-webkit-keyframes glassTranslateleft {
+			0% { -webkit-transform: translateZ(0); transform: translateZ(0); }
+			100% { -webkit-transform: translateZ(30px); transform: translateZ(30px); }
+		}
+		@keyframes glassTranslateleft {
+			0% { -webkit-transform: translateZ(0); transform: translateZ(0); }
+			100% { -webkit-transform: translateZ(30px); transform: translateZ(30px); }
+		}
+		.glassHome .home .face.inside video:hover {
+			-webkit-filter: hue-rotate(-59deg) brightness(.6);
+			filter: hue-rotate(-59deg) brightness(.6);
+			-webkit-transition: .5s;
+			transition: .5s;
+			cursor: pointer;
+		}
+		.glassHomeButtons {
+			position: fixed;
+			bottom: -20%;
+			left: 50%;
+			width: 53%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row nowrap;
+			flex-flow: row nowrap;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			background: rgba(0,0,0,.2);
+			padding: 15px 25px;
+			visibility: hidden;
+			-webkit-transition: .5s;
+			transition: .5s;
+			cursor: help;
+		}
+		.glassHomeButtons button {
+			font-size: 20px;
+			font-family: cursive, sans-serif;
+			background: rgba(0,0,0,.2);
+			color: #fff;
+			padding: 15px 25px;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+			vertical-align: top;
+		}
+		.glassHomeButtons button:nth-child(5) {
+			padding: 3px 22px 11px;
+			width: 24%;
+		}
+		.glassHomeButtons button span {
+			-webkit-transform: rotate(90deg) translateX(5px) translateY(0px);
+			transform: rotate(90deg) translateX(5px) translateY(0px);
+			display: inline-block;
+			margin-left: 12px;
+			font-size: 32px;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.glassHomeButtons button.active span {
+			-webkit-transform: rotate(-90deg) translateX(-6px) translateY(-7px);
+			transform: rotate(-90deg) translateX(-6px) translateY(-7px);
+		}
+		.glassHomeButtons:hover {
+			background: rgba(0,0,0,.5);
+		}
+		.glassHomeButtons:hover button {
+			background: rgba(0,0,0,.7);
+		}
+		.glassHomeButtons.show {
+			bottom: 0;
+			visibility: visible;
+		}
+		.glassHome .home .World {
+			position: absolute;
+			top: 113px;
+			left: 0;
+			width: 72em;
+			height: 53em;
+			padding: 200px;
+			background: url(img/glass/galaxy.jpg) 0 0 repeat-x;
+			background-size: cover;
+			-webkit-transform: translateZ(860px) translateX(-15em) rotateY(180deg) translateY(-17em);
+			transform: translateZ(860px) translateX(-15em) rotateY(180deg) translateY(-17em);
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-webkit-animation: galaxyPositions 140s linear infinite;
+			animation: galaxyPositions 140s linear infinite;
+			opacity: 0;
+			visibility: hidden;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.glassHome .home.activeWorld .World {
+			-webkit-animation: galaxyPositions 140s linear infinite;
+			animation: galaxyPositions 140s linear infinite;
+			opacity: 1;
+			visibility: visible;
+		}
+		@-webkit-keyframes galaxyPositions {
+			0% { background-position: 0 0; }
+			100% { background-position: 662.5% 0; }
+		}
+		@keyframes galaxyPositions {
+			0% { background-position: 0 0; }
+			100% { background-position: 662.5% 0; }
+		}
+		.glassHome .home .World .earth {
+			width: 150px;
+			height: 150px;
+			background: url(img/glass/earth.jpg) repeat-x;
+			background-size: cover;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 56px 0px #585858, inset 0 0 13px 0px #8c8c8c94;
+			box-shadow: 0 0 56px 0px #585858, inset 0 0 13px 0px #8c8c8c94;
+			-webkit-transform: rotate(-4deg);
+			transform: rotate(-4deg);
+			position: absolute;
+			left: 54%;
+			top: 44%;
+			cursor: pointer;
+		}
+		.glassHome .home.activeWorld .World .earth {
+			-webkit-animation: glassEarth 8s linear infinite, glassAllPlanet 40s linear infinite;
+			animation: glassEarth 8s linear infinite, glassAllPlanet 40s linear infinite;
+		}
+		@-webkit-keyframes glassEarth {
+			0% { background-position: 0 0 }
+			100% { background-position: 200% 0 }
+		}
+		@keyframes glassEarth {
+			0% { background-position: 0 0 }
+			100% { background-position: 200% 0 }
+		}
+		.glassHome .home .World .mars {
+			width: 130px;
+			height: 130px;
+			background: url(img/glass/mars.jpg) repeat-x;
+			background-size: cover;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 27px 0px #383737, inset 0 0 13px 3px #00000094;
+			box-shadow: 0 0 27px 0px #383737, inset 0 0 13px 3px #00000094;
+			position: absolute;
+			left: 5%;
+			top: 23%;
+			cursor: pointer;
+		}
+		.glassHome .home.activeWorld .World .mars {
+			-webkit-animation: glassEarth 12s linear infinite, glassAllPlanet 40s linear infinite;
+			animation: glassEarth 12s linear infinite, glassAllPlanet 40s linear infinite;
+		}
+		.glassHome .home .World .jupiter {
+			width: 170px;
+			height: 170px;
+			background: url(img/glass/jupiter.jpg) repeat-x;
+			background-size: cover;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 34px 0px #777777a6, inset 0 0 23px 13px #00000094;
+			box-shadow: 0 0 34px 0px #777777a6, inset 0 0 23px 13px #00000094;
+			-webkit-transform: rotate(-15deg);
+			transform: rotate(-15deg);
+			position: absolute;
+			left: 87%;
+			top: 24%;
+			cursor: pointer;
+		}
+		.glassHome .home.activeWorld .World .jupiter {
+			-webkit-animation: glassEarth 10s linear infinite, glassAllPlanet 40s linear infinite;
+			animation: glassEarth 10s linear infinite, glassAllPlanet 40s linear infinite;
+		}
+		.glassHome .home .World .neptune {
+			width: 160px;
+			height: 160px;
+			background: url(img/glass/neptune.jpg) repeat-x;
+			background-size: cover;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 34px 0px #464646a6, inset 0 0 23px 13px #0000009e;
+			box-shadow: 0 0 34px 0px #464646a6, inset 0 0 23px 13px #0000009e;
+			-webkit-transform: rotate(8deg);
+			transform: rotate(8deg);
+			position: absolute;
+			left: 16%;
+			top: 65%;
+			cursor: pointer;
+		}
+		.glassHome .home.activeWorld .World .neptune {
+			-webkit-animation: glassEarth 8s linear infinite, glassAllPlanet 40s linear infinite;
+			animation: glassEarth 8s linear infinite, glassAllPlanet 40s linear infinite;
+		}
+		.glassHome .home .World .venera {
+			width: 130px;
+			height: 130px;
+			background: url(img/glass/venera.jpg) repeat-x;
+			background-size: cover;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 34px 0px #464646a6, inset 0 0 23px 13px #0000009e;
+			box-shadow: 0 0 34px 0px #464646a6, inset 0 0 23px 13px #0000009e;
+			-webkit-transform: rotate(8deg);
+			transform: rotate(8deg);
+			position: absolute;
+			left: 40%;
+			top: 6%;
+			cursor: pointer;
+		}
+		.glassHome .home.activeWorld .World .venera {
+			-webkit-animation: glassEarth 14s linear infinite, glassAllPlanet 40s linear infinite;
+			animation: glassEarth 14s linear infinite, glassAllPlanet 40s linear infinite;
+		}
+		@-webkit-keyframes glassAllPlanet {
+			0% { -webkit-transform: translateX(800%); transform: translateX(800%); }
+			100% { -webkit-transform: translateX(-800%); transform: translateX(-800%); }
+		}
+		@keyframes glassAllPlanet {
+			0% { -webkit-transform: translateX(800%); transform: translateX(800%); }
+			100% { -webkit-transform: translateX(-800%); transform: translateX(-800%); }
+		}
+	</style>
+</head>
+<body>
+	<div class="glassHome">
+		<div class="home">
+			<div class="face front inside">
+				<video style="--i:1" src="aphorism/43.mp4"></video>
+				<video style="--i:2" src="aphorism/44.mp4"></video>
+				<video style="--i:3" src="aphorism/45.mp4"></video>
+				<video style="--i:4" src="aphorism/46.mp4"></video>
+				<video style="--i:5" src="aphorism/47.mp4"></video>
+				<video style="--i:6" src="aphorism/48.mp4"></video>
+				<video style="--i:7" src="aphorism/49.mp4"></video>
+				<video style="--i:8" src="aphorism/50.mp4"></video>
+				<video style="--i:9" src="aphorism/51.mp4"></video>
+				<video style="--i:10" src="aphorism/35.mp4"></video>
+			</div>
+			<div class="face front now"></div>
+			<div class="World">
+				<div class="earth" title="Earth"></div>
+				<div class="mars" title="Mars"></div>
+				<div class="venera" title="Venera"></div>
+				<div class="jupiter" title="Jupiter"></div>
+				<div class="neptune" title="Neptune"></div>
+			</div>
+			<div class="door">
+				<span></span>
+			</div>
+			<div class="face left"></div>
+			<div class="face left inside">
+				<video style="--i:10" src="aphorism/11.mp4"></video>
+				<video style="--i:13" src="aphorism/12.mp4"></video>
+				<video style="--i:18" src="aphorism/13.mp4"></video>
+				<video style="--i:14" src="aphorism/14.mp4"></video>
+				<video style="--i:18" src="aphorism/15.mp4"></video>
+				<video style="--i:15" src="aphorism/16.mp4"></video>
+				<video style="--i:17" src="aphorism/17.mp4"></video>
+				<video style="--i:16" src="aphorism/18.mp4"></video>
+				<video style="--i:12" src="aphorism/19.mp4"></video>
+				<video style="--i:20" src="aphorism/20.mp4"></video>
+				<video style="--i:19" src="aphorism/21.mp4"></video>
+				<video style="--i:13" src="aphorism/22.mp4"></video>
+			</div>
+			<div class="face right"></div>
+			<div class="face right inside">
+				<video style="--i:19" src="aphorism/23.mp4"></video>
+				<video style="--i:24" src="aphorism/24.mp4"></video>
+				<video style="--i:27" src="aphorism/25.mp4"></video>
+				<video style="--i:22" src="aphorism/26.mp4"></video>
+				<video style="--i:30" src="aphorism/27.mp4"></video>
+				<video style="--i:26" src="aphorism/28.mp4"></video>
+				<video style="--i:25" src="aphorism/29.mp4"></video>
+				<video style="--i:28" src="aphorism/30.mp4"></video>
+				<video style="--i:23" src="aphorism/31.mp4"></video>
+				<video style="--i:29" src="aphorism/32.mp4"></video>
+				<video style="--i:31" src="aphorism/33.mp4"></video>
+				<video style="--i:21" src="aphorism/38.mp4"></video>
+			</div>
+			<div class="face back"></div>
+			<div class="face back inside">
+				<video style="--i:1" src="aphorism/1.mp4"></video>
+				<video style="--i:9" src="aphorism/2.mp4"></video>
+				<video style="--i:7" src="aphorism/3.mp4"></video>
+				<video style="--i:4" src="aphorism/4.mp4"></video>
+				<video style="--i:10" src="aphorism/5.mp4"></video>
+				<video style="--i:6" src="aphorism/6.mp4"></video>
+				<video style="--i:3" src="aphorism/7.mp4"></video>
+				<video style="--i:8" src="aphorism/8.mp4"></video>
+				<video style="--i:2" src="aphorism/9.mp4"></video>
+				<video style="--i:5" src="aphorism/10.mp4"></video>
+			</div>
+			<div class="face top"></div>
+			<div class="face bottom">
+				<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor odit assumenda consequatur, necessitatibus adipisci quibusdam ullam in! Laboriosam cumque provident, aliquid pariatur fuga esse quia!</span>
+			</div>
+		</div>
+	</div>
+	<div class="glassHomeButtons">
+		<button>Left</button>
+		<button>Right</button>
+		<button>Front</button>
+		<button>Back</button>
+		<button>World <span class="arrow">&#62;</span></button>
+		<button>exit</button>
+	</div>
+	<script src="main.js"></script>
+</body>
+</html>
