@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smile Bubble</title>
+    <link rel="shortcut icon" href="img/smile.gif">
+    <style>
+        * { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+        .game {
+            height: 100vh;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .game .stone {
+            width: 50px;
+            height: 32%;
+            background: #fff;
+            position: absolute;
+            right: -50px;
+            -webkit-transition: height .2s, background .5s, -webkit-clip-path .5s;
+            transition: height .2s, background .5s, -webkit-clip-path .5s;
+            transition: height .2s, background .5s, clip-path .5s;
+            transition: height .2s, background .5s, clip-path .5s, -webkit-clip-path .5s;
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+        }
+        .game .stone.top {
+            top: 0;
+        }
+        .game .stone.bottom {
+            bottom: 0;
+        }
+        @-webkit-keyframes stone {
+            to { right: 100%; }
+        }
+        @keyframes stone {
+            to { right: 100%; }
+        }
+        .game .bubble {
+            position: absolute;
+            top: 85%;
+            left: 200px;
+            width: 65px;
+            height: 65px;
+            background: url(img/smile.gif) no-repeat -8px -11px / 80px 77px;
+            border-radius: 50%;
+            -webkit-transition: .2s;
+            transition: .2s;
+            -webkit-clip-path: inset(0px 3px 5px 3px);
+            clip-path: inset(0px 3px 5px 3px);
+        }
+        .game .gameOver {
+            font: bold 12vh cursive;
+            color: #fff;
+            text-shadow: -5px 5px 1px #414141, 0 15px 3px #000;
+            translate: 0 150px;
+            opacity: 0;
+            -webkit-transition: .5s;
+            transition: .5s;
+        }
+        .game .progress {
+            position: absolute;
+            bottom: 3%;
+            left: 3%;
+            width: 94%;
+            height: 30px;
+            border-radius: 30px;
+            -webkit-box-shadow: inset 0 0 20px #fff, 0 5px 5px #000;
+            box-shadow: inset 0 0 20px #fff, 0 5px 5px #000;
+            overflow: hidden;
+        }
+        .game .progress .path {
+            height: 100%;
+            width: 0;
+            background: #e5ff00;
+        }
+        .game .progress h5 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            translate: -50% -50%;
+            font: bold 20px cursive;
+            color: #000;
+            text-shadow: 0 2px 8px #000, 0 2px 8px #fff;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-transition: .5s;
+            transition: .5s;
+        }
+        .menu .hero {
+            height: 60vh;
+            -webkit-filter: drop-shadow(0 20px 5px #fff) drop-shadow(0 0 15px #fff);
+            filter: drop-shadow(0 20px 5px #fff) drop-shadow(0 0 15px #fff);
+        }
+        .menu h1 {
+            position: absolute;
+            top: 3vh;
+            left: 50%;
+            translate: -50%;
+            color: #fff;
+            font: bold 12vh cursive;
+            white-space: nowrap;
+            -webkit-animation: title 1s linear infinite;
+            animation: title 1s linear infinite;
+        }
+        .menu h1 span {
+            width: 15px;
+            height: 15px;
+            border-radius: 50px;
+            -webkit-box-shadow: inset 0 0 8px 2px rgba(82, 155, 255, 0.69);
+            box-shadow: inset 0 0 8px 2px rgba(82, 155, 255, 0.69);
+            position: absolute;
+            -webkit-transition: .1s;
+            transition: .1s;
+        }
+        @-webkit-keyframes title {
+            50%, 70% { translate: -50% 30px; }
+        }
+        @keyframes title {
+            50%, 70% { translate: -50% 30px; }
+        }
+        .menu .studio {
+            position: absolute;
+            bottom: 2%;
+            left: 50%;
+            translate: -50%;
+            color: #fff;
+            font: 1.2rem sans-serif;
+            text-align: center;
+        }
+        .menu .play {
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            translate: -50% -50%;
+            font: bold 14vh cursive;
+            width: 50vh;
+            height: 50vh;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #13f53f, inset 0 0 166px 105px #ff00ed;
+            box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #13f53f, inset 0 0 166px 105px #ff00ed;
+            cursor: pointer;
+            -webkit-transition: .4s;
+            transition: .4s;
+            opacity: 0;
+            visibility: hidden;
+			color: #0f0;
+			text-shadow: -4px 4px 9px #000, 0 4px 2px #fff;
+        }
+        .menu .play:hover {
+            -webkit-box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #000, inset 0 0 166px 105px #ff00ed;
+            box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #000, inset 0 0 166px 105px #ff00ed;
+        }
+        .menu .play:active {
+            -webkit-box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #000, inset 0 0 166px 105px #6cff00;
+            box-shadow: inset 0 0 28px 18px #4c13f5, inset 0 0 140px 26px #000, inset 0 0 166px 105px #6cff00;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone top"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="stone bottom"></div>
+        <div class="bubble"></div>
+        <h2 class="gameOver">GameOver</h2>
+        <div class="progress">
+            <div class="path"></div>
+            <h5>0%</h5>
+        </div>
+    </div>
+    <div class="menu">
+        <h1>
+            Smile Bubble
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </h1>
+        <img src="img/smile.gif" alt="Img" class="hero">
+        <div class="play">Play</div>
+        <p class="studio">Instructor Hovo Vardanyan<br>&copy; Copyright All Right Reserved 2022</p>
+    </div>
+    <script>
+        const h1Span = document.querySelectorAll('.menu h1 span');
+        const menuHero = document.querySelector('.menu .hero');
+        const menuPlay = document.querySelector('.menu .play');
+        const startGame = () => {
+		const themeSound = new Audio('img/theme.mp3');
+		const downSound = new Audio('img/down.mp3');
+		const endSound = new Audio('img/end.mp3');
+		const gameoverSound = new Audio('img/gameover.mp3');
+		themeSound.currentTime = .5;
+		themeSound.play();
+		themeSound.onended = () => (themeSound.play(), themeSound.currentTime = .5);
+		endSound.volume = .5;
+        const game = document.querySelector('.game');
+        const bubble = document.querySelector('.game .bubble');
+        const gameOver = document.querySelector('.game .gameOver');
+        const path = document.querySelector('.game .progress .path');
+        const pathName = document.querySelector('.game .progress h5');
+        const stoneTop = document.querySelectorAll('.game .stone.top');
+        const stoneBottom = document.querySelectorAll('.game .stone.bottom');
+        const stone = document.querySelectorAll('.game .stone');
+        let bubbleY = game.offsetHeight - 100;
+        let pathX = 0;
+        let randomSize = !0;
+		stone.forEach(item => item.style.animation = 'stone 8s linear infinite');
+        stoneTop.forEach((item, index) => (item.style.animationDelay = index * .5 + 's', item.style.height = Math.random() * (42 - 15) + 15 + '%'));
+        stoneBottom.forEach((item, index) => (item.style.animationDelay = index * .5 + 's', item.style.height = Math.random() * (42 - 15) + 15 + '%'));
+        const endGame = _ => {
+            bubble.style.backgroundImage = 'url(img/smile2.gif)';
+            bubble.style.clipPath = 'none';
+            setTimeout(() => {
+                bubble.style.top = '120vh';
+                bubble.ontransitionend = () => window.location.reload();
+            }, 3000);
+            clearInterval(down);
+            clearInterval(gameSet);
+            document.onkeydown = null;
+            game.onclick = null;
+            gameOver.style = 'opacity: 1; translate: none;';
+			endSound.play();
+			gameoverSound.play();
+			themeSound.pause();
+        };
+        const winGame = _ => {
+            bubble.style.clipPath = 'none';
+            clearInterval(down);
+            clearInterval(gameSet);
+            document.onkeydown = null;
+            game.onclick = null;
+            gameOver.style = 'opacity: 1; translate: none;';
+            gameOver.innerText = 'You are Winner';
+            setTimeout(() => window.location.reload(), 3500);
+        };
+        const down = setInterval(() => {
+            bubbleY -= 10;
+            bubble.style.top = bubbleY + 'px';
+            h1Span.forEach(item => {
+                item.style.left = Math.random() * item.parentElement.offsetWidth + 'px'; 
+                item.style.top = Math.random() * item.parentElement.offsetHeight + 'px'; 
+            });
+        }, 70);
+        const gameSet = setInterval(() => {
+            pathX += .0004;
+            pathX >= 100 ? (pathX = 100, winGame()) : '';
+            pathX > 30 && pathX < 60 ? stoneTop.forEach((item, _) => (item.style.clipPath = 'polygon(100% 0, 100% 55%, 50% 100%, 0 55%, 0 0)', stoneBottom[_].style.clipPath = 'polygon(50% 0, 100% 45%, 100% 100%, 0 100%, 0 45%)', stone.forEach(item => item.style.background = '#f00'))) : '';
+            if (pathX > 62) {
+                randomSize = false;
+                setInterval(() => stone.forEach((item, index) => (item.style.transition = 'none', item.style.height = Math.random() * (40 - 20) + 20 + '%', item.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0)')), 500);
+            } 
+            pathName.innerText = parseInt(pathX) + '%';
+            path.style.width = pathX + '%';
+            stoneTop[stoneTop.length-1].offsetLeft < 0 && randomSize ? stoneTop.forEach((item, index) => item.style.height = Math.random() * (38 - 15) + 15 + '%') : '';
+            stoneBottom[stoneTop.length-1].offsetLeft < 0 ? stoneBottom.forEach((item, index) => item.style.height = Math.random() * (38 - 15) + 15 + '%') : '';
+            stoneTop.forEach(item => {
+                if (item.offsetLeft < bubble.offsetLeft + bubble.offsetWidth && item.offsetLeft + item.offsetWidth > bubble.offsetLeft && bubble.offsetTop < item.offsetTop + item.offsetHeight) {
+                    endGame();
+                }
+            });
+            stoneBottom.forEach(item => {
+                if (item.offsetLeft < bubble.offsetLeft + bubble.offsetWidth && item.offsetLeft + item.offsetWidth > bubble.offsetLeft && bubble.offsetTop + bubble.offsetHeight > item.offsetTop) {
+                    endGame();
+                }
+            });
+            bubble.offsetTop <= 0 ? endGame() : '';
+        }, 1);
+        document.onkeydown = e => e.which == 40 || e.which == 32 ? (bubbleY += 70, bubble.style.top = bubbleY + 'px', downSound.play(), downSound.currentTime = 0) : e.which == 38 || e.which == 13 ? (bubbleY -= 50, bubble.style.top = bubbleY + 'px', endSound.play(), endSound.currentTime = 0) : '';
+        game.onclick = () => (bubbleY += 90, bubble.style.top = bubbleY + 'px', downSound.play(), downSound.currentTime = 0);
+        clearInterval(men);
+        };
+        menuHero.onmouseenter = () => menuPlay.style = 'opacity: 1; visibility: visible; left: 50%;';
+        document.onmousemove = e => e.target.className != 'hero' && e.target.className != 'play' ? menuPlay.style = null : '';
+        menuPlay.onclick = () => (menuPlay.parentElement.style.top = '100%', startGame());
+        const men = setInterval(() => {
+            h1Span.forEach(item => {
+                item.style.left = Math.random() * item.parentElement.offsetWidth + 'px'; 
+                item.style.top = Math.random() * item.parentElement.offsetHeight + 'px'; 
+            });
+        }, 70);
+        console.log('%cBy The King Of CSS3', 'font: bold 1.5rem/3 sans-serif; text-shadow: -1px 1px 0 #fff, 0 6px 5px #000');
+    </script>
+</body>
+</html>
