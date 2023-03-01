@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interesting Slider 12 / The King Of CSS</title>
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		#closePack {
+			position: fixed;
+			top: -100%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			font: 26px sans-serif;
+			cursor: pointer;
+			width: 50px;
+			height: 40px;
+			background: #000;
+			color: #fff;
+			border-radius: 0 0 30px 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			padding-top: 2px;
+			z-index: 10000;
+			border: 2px solid #fff;
+			border-top: 0;
+			-webkit-box-shadow: 0 3px 5px #000;
+			box-shadow: 0 3px 5px #000;
+			-webkit-transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: box-shadow .4s, border-color .4s, top 2s;
+			transition: box-shadow .4s, border-color .4s, top 2s, -webkit-box-shadow .4s;
+			-webkit-animation: toPackClose 1s 1s forwards;
+			animation: toPackClose 1s 1s forwards;
+		}
+		#closePack:hover {
+			border-color: #f00;
+			-webkit-box-shadow: 0 5px 8px #f00;
+			box-shadow: 0 5px 8px #f00;
+		}
+		#closePack:active {
+			border-color: #0f0;
+			-webkit-box-shadow: 0 5px 8px #0f0;
+			box-shadow: 0 5px 8px #0f0;
+		}
+		@-webkit-keyframes toPackClose {
+			to { top: 0; }
+		}
+		@keyframes toPackClose {
+			to { top: 0; }
+		}
+		.slider {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: -webkit-gradient(linear, left top, left bottom, from(#222), color-stop(30%, #000), to(#222));
+			background: linear-gradient(#222, #000 30% 70%, #222);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+		}
+		.slider .interest {
+			width: 10%;
+			height: calc(100% / 9);
+			background: url(../img/1.jpg) no-repeat center / cover fixed;
+			-webkit-transition: opacity .3s, -webkit-filter .1s ease-out;
+			transition: opacity .3s, -webkit-filter .1s ease-out;
+			transition: filter .1s ease-out, opacity .3s;
+			transition: filter .1s ease-out, opacity .3s, -webkit-filter .1s ease-out;
+		}
+		.slider button {
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			padding: 5px 30px 8px;
+			font-size: 4rem;
+			background: #0009;
+			color: #fff;
+			-webkit-box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			border-radius: 12px;
+			border: 0;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			z-index: 1;
+		}
+		.slider button:hover {
+			background: #fff;
+			color: #000;
+		}
+		@-webkit-keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@-webkit-keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		@keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		.slider button.prev {
+			left: 3%;
+			-webkit-animation: vers1Prev 1s infinite;
+			animation: vers1Prev 1s infinite;
+		}
+		.slider button.next {
+			right: 3%;
+			-webkit-animation: vers1Next 1s infinite;
+			animation: vers1Next 1s infinite;
+		}
+		.slider .radio {
+			position: absolute;
+			bottom: 3%;
+			left: 0;
+			width: 100%;
+			text-align: center;
+		}
+		.slider .radio input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 30px;
+			height: 15px;
+			background: #0005;
+			cursor: pointer;
+			margin: 0 5px;
+			position: relative;
+			overflow: hidden;
+			-webkit-box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 4px;
+			z-index: 1;
+		}
+		.slider .radio input:checked {
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+			background: #fff;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+	</style>
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="slider">
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<div class="interest"></div>
+		<button class="prev">&#10092;</button>
+		<button class="next">&#10093;</button>
+		<div class="radio">
+			<input type="radio" name="dot" checked>
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+		</div>
+	</div>
+	<script>
+		const interest12 = document.querySelectorAll('.slider .interest');
+		const interest12Btn = document.querySelectorAll('.slider button');
+		const interest12Inp = document.querySelectorAll('.slider .radio input');
+		const image = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/4.webp', '../img/5.jpg'];
+		let interest12Cur = 0;
+		let interest12Bool = true;
+		const control = numeric => {
+			if (interest12Bool)	{
+				numeric ? interest12Cur += numeric : '';
+				interest12Inp.forEach(item => item.style = 'opacity: .5; pointer-events: none;');
+				interest12Cur == image.length ? interest12Cur = 0 : interest12Cur < 0 ? interest12Cur = image.length-1 : '';
+				interest12Bool = false;
+				interest12.forEach(item => {
+					item.style.opacity = 0;
+					item.style.filter = 'grayscale(1)';
+					item.style.transitionDelay = Math.random() * 1 + 's';
+					setTimeout(() => {
+						item.style.opacity = null;
+						item.style.filter = null;
+						item.style.backgroundImage = `url(${image[interest12Cur]})`;
+						interest12Bool = true;
+						interest12Inp.forEach(item => item.style = null);
+					}, 1500);
+				});
+				interest12Inp[interest12Cur].checked = true;
+			}	
+		};
+		interest12Btn[1].onclick = () => control(1);
+		interest12Btn[0].onclick = () => control(-1);
+		interest12Inp.forEach((item, index) => item.onchange = () => (interest12Cur = index, control()));
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
