@@ -106,6 +106,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('talkerSlider/talker.html'), 1000);
 		} else if (index == 84) {
 			setTimeout(() => window.location.replace('dragSlider/drag.html'), 1000);
+		} else if (index == 85) {
+			setTimeout(() => window.location.replace('interestingSlider12/interest.html'), 1000);
 		}
 	};
 });
