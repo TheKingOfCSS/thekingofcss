@@ -1,4 +1,3 @@
-
 const image = ['Cristiano Ronaldo.jpg', 'Jason Statham.jpg', 'Danna Garcia.jpg', 'Jackie Chan.jpg', 'Ximena Duque.jpg'];
 const upload = document.querySelectorAll('.container .cell .card label input');
 const cell = document.querySelectorAll('.container .cell');
@@ -7,7 +6,6 @@ const user = document.querySelectorAll('.container .cell .card .user');
 const userName = document.querySelectorAll('.container .cell .card h3');
 const deleteUser = document.querySelectorAll('.container .cell .card .close');
 let curDrag = 0;
-
 upload.forEach((item, index) => {
 	item.oninput = () => {
 		const reader = new FileReader();
@@ -32,7 +30,6 @@ upload.forEach((item, index) => {
 		};
 	};
 });
-
 deleteUser.forEach((item, index) => {
 	item.onclick = () => {
 		deleteUser[index].classList.remove('active');
@@ -41,8 +38,6 @@ deleteUser.forEach((item, index) => {
 		userName[index].classList.remove('active');
 	};
 });
-
-
 cell.forEach(item => {
 	item.ondragover = e => {
 		item.style.background = '#ccc';
@@ -56,7 +51,6 @@ cell.forEach(item => {
 		}
 	};
 });
-
 card.forEach((item, index) => {
 	item.ondragstart = () => {
 		item.style.opacity = 0;
@@ -66,7 +60,3 @@ card.forEach((item, index) => {
 		item.style.opacity = 1;
 	};
 });
-
-
-
-
