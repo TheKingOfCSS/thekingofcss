@@ -1,7 +1,7 @@
 const AuthorAndCreator = document.querySelector('.AuthorAndCreator');
 const pack = document.querySelectorAll('.pack');
 const version = document.querySelectorAll('.AuthorAndCreator .collection .version .display');
-closePack.onclick = () => (pack.forEach(item => item.style.top = '-100%'), closePack.style.top = '-100%', document.body.classList.remove('scroll'), current25Bool = false, clearInterval(vers44Start), vers51Round.classList.remove('active'));
+closePack.onclick = () => (pack.forEach(item => item.style.top = '-150%'), closePack.style.top = '-100%', document.body.classList.remove('scroll'), current25Bool = false, clearInterval(vers44Start), vers51Round.classList.remove('active'));
 let vers44Start;
 version.forEach((item, index) => {
 	const number = document['createElement']('div');
@@ -108,6 +108,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('dragSlider/drag.html'), 1000);
 		} else if (index == 85) {
 			setTimeout(() => window.location.replace('interestingSlider12/interest.html'), 1000);
+		} else if (index == 86) {
+			setTimeout(() => window.location.replace('stickySlider/sticky.html'), 1000);
 		}
 	};
 });
