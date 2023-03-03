@@ -61,7 +61,7 @@
 			transition: .8s linear;
 			position: relative;
 		}
-		.container .cell:first-child .card .user {
+		.container .cell .card.on .user {
 			background-image: url(img/CristianoRonaldo.jpg);
 		}
 		.container .cell .card h3 {
@@ -85,7 +85,6 @@
 			left: -5px;
 			width: calc(100% + 10px);
 			height: calc(100% + 10px);
-			background: ;
 			border-radius: 50%;
 			z-index: 1;
 			border: 5px solid #00c126;
@@ -127,7 +126,7 @@
 <body>
 	<div class="container">
 		<div class="cell">
-			<div class="card" draggable="true">
+			<div class="card on" draggable="true">
 				<div class="close">X</div>
 				<h3>Cristiano Ronaldo</h3>
 				<div class="user"></div>
