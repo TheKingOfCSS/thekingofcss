@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mario Help Me</title>
+	<link rel="shortcut icon" href="img/mario.gif">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+		}
+		@-webkit-keyframes bg {
+			to { background-position-x: 100vw; }
+		}
+		@keyframes bg {
+			to { background-position-x: 100vw; }
+		}
+		@-webkit-keyframes bgColor {
+			to { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(360deg); }
+			50% { -webkit-filter: hue-rotate(180deg) saturate(5); filter: hue-rotate(180deg) saturate(5); }
+		}
+		@keyframes bgColor {
+			to { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(360deg); }
+			50% { -webkit-filter: hue-rotate(180deg) saturate(5); filter: hue-rotate(180deg) saturate(5); }
+		}
+		.game .bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 130%;
+			background: url(img/bg.png) 0 30% / cover;
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.game .Mario {
+			position: absolute;
+			right: 200px;
+			top: 50px;
+			width: 76px;
+			height: 80px;
+			background: url(img/mario.gif) no-repeat -12px -6px / 100px 95px;
+			scale: -1 1;
+			border-radius: 53% 15px 37px 10px;
+			-webkit-transition: top .3s, rotate .2s, scale .1s;
+			transition: top .3s, rotate .2s, scale .1s;
+		}
+		.game .Flappy {
+			position: absolute;
+			top: 50px;
+			right: 100px;
+			width: 63px;
+			height: 42px;
+			background: url(img/flappy.gif) no-repeat -7px -9px / 76px 60px;
+			-webkit-transition: .1s;
+			transition: .1s;
+			border-radius: 31px 36px 20px 28px;
+			scale: -1 1;
+			-webkit-transition: top .3s, rotate .2s;
+			transition: top .3s, rotate .2s;
+			z-index: 3;
+		}
+		.game .Sonic {
+			position: absolute;
+			top: 38%;
+			left: 23%;
+			width: 219px;
+			height: 160px;
+			background: url(img/sonic.gif) no-repeat -2px -4px / 220px 173px;
+			border-radius: 60px 90px 75px 35px;
+			-webkit-transition: top .3s, -webkit-filter .2s;
+			transition: top .3s, -webkit-filter .2s;
+			transition: top .3s, filter .2s;
+			transition: top .3s, filter .2s, -webkit-filter .2s;
+			z-index: 1;
+		}
+		.game .bomb {
+			position: absolute;
+			top: 40%;
+			left: 30%;
+			width: 50px;
+			height: 46px;
+			background: url(img/bomb.gif) no-repeat -2px -6px / 55px 55px;
+			border-radius: 20px 17px 21px 14px;
+			scale: -1 1;
+			opacity: 0;
+		}
+		.game .witchOnABroom {
+			position: absolute;
+			top: 42%;
+			left: 5%;
+			width: 125px;
+			height: 119px;
+			background: url(img/witchonabroom.gif) no-repeat -39px -13px / 185px 165px;
+			border-radius: 60px 40px 75px 36px;
+			-webkit-animation: witch 1s linear infinite;
+			animation: witch 1s linear infinite;
+			-webkit-transition: .3s;
+			transition: .3s;
+			z-index: 2;
+		}
+		.game .thought,
+		.game .MarioText {
+			position: absolute;
+			bottom: 30%;
+			left: 50px;
+			width: 170px;
+			height: 100px;
+			background: url(img/cloud.webp) no-repeat center / contain;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			padding-bottom: 10px;
+			font-family: verdana;
+			font-size: 15px;
+			opacity: 0;
+			-webkit-transition: .7s;
+			transition: .7s;
+		}
+		.game .MarioText {
+			left: auto;
+			right: 100%;
+			text-align: center;
+			-webkit-transition: opacity .7s;
+			transition: opacity .7s;
+		}
+		@-webkit-keyframes witch {
+			50% { translate: 0 20px; }
+		}
+		@keyframes witch {
+			50% { translate: 0 20px; }
+		}
+		.game .koopa {
+			position: absolute;
+			top: 40%;
+			left: 30%;
+			width: 67px;
+			height: 77px;
+			background: url(img/koopa.gif) no-repeat -17px -22px / 105px 115px;
+			border-radius: 20px 17px 21px 14px;
+			opacity: 0;
+		}
+		.game .endGame {
+			position: absolute;
+			top: 80%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%) scale(-1, 1);
+			transform: translate(-50%, -50%) scale(-1, 1);
+			font: bold 9vw cursive;
+			color: #f00;
+			text-shadow: -4px 4px 2px #fff, -6px 10px 4px #0da1e2;
+			-webkit-text-stroke: 2px #fff;
+			opacity: 0;
+			-webkit-transition: .5s;
+			transition: .5s;
+			z-index: 2;
+		}
+		.game .endGame span {
+			color: #f90;
+		}
+		.game .power {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			padding: 15px;
+		}
+		.game .power .icon {
+			--icon: 100%;
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 12px 5px #fff9;
+			box-shadow: 0 0 12px 5px #fff9;
+			overflow: hidden;
+			position: relative;
+		}
+		@-webkit-keyframes icon {
+			70% { scale: 1.08; }
+			50% { -webkit-box-shadow: 0 0 12px 15px #fff; box-shadow: 0 0 12px 15px #fff; }
+		}
+		@keyframes icon {
+			70% { scale: 1.08; }
+			50% { -webkit-box-shadow: 0 0 12px 15px #fff; box-shadow: 0 0 12px 15px #fff; }
+		}
+		.game .power .icon::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: var(--icon);
+			height: 100%;
+			background: #000;
+			mix-blend-mode: hue;
+		}
+		.game .power .icon img {
+			width: 100%;
+			height: 100%;
+			-o-object-fit: cover;
+			object-fit: cover;
+		}
+		.game .power .icon:first-child img {
+			scale: -1.3 1.3;
+			translate: 5px;
+		}
+		.game .star {
+			position: absolute;
+			top: 20px;	
+			left: -100%;
+			width: 45px;
+			height: 45px;
+			background: url(img/star.gif) no-repeat 0 / 45px 45px;
+			border-radius: 20px;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .getCoin {
+			position: absolute;
+			top: 50%;	
+			left: -100%;
+			width: 34px;
+			height: 41px;
+			background: url(img/coin.png) no-repeat -6px -2px / 45px 45px;
+			border-radius: 20px;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-filter: drop-shadow(0 0 8px #ffce00);
+			filter: drop-shadow(0 0 8px #ffce00);
+		}
+		.game .getRing {
+			position: absolute;
+			top: 60%;	
+			left: -100%;
+			width: 34px;
+			height: 41px;
+			background: url(img/ring.webp) no-repeat -6px -2px / 45px 45px;
+			border-radius: 10px;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-filter: drop-shadow(0 0 10px #f00);
+			filter: drop-shadow(0 0 10px #f00);
+		}
+		@-webkit-keyframes star {
+			to { left: 110%; }
+		}
+		@keyframes star {
+			to { left: 110%; }
+		}
+		.game .girlRequired {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 10px 7px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-column-gap: 10px;
+			column-gap: 10px;
+		}
+		.game .girlRequired .face,
+		.game .girlRequired .coin,
+		.game .girlRequired .ornament {
+			width: 55px;
+			height: 55px;
+			border-radius: 50%;
+			border: 3px solid #fff;
+			position: relative;
+			overflow: hidden;
+			-webkit-box-shadow: 0 0 10px #fff;
+			box-shadow: 0 0 10px #fff;
+		}
+		.game .girlRequired .face img {
+			height: 160px;
+			scale: -1 1;
+			position: absolute;
+			top: -30px;
+			left: -65px;
+		}
+		.game .girlRequired .coin,
+		.game .girlRequired .ornament {
+			width: 65px;
+			height: 65px;
+			background: no-repeat center / 90%;
+			-webkit-box-shadow: inset 0 0 15px 3px #fff500, 0 0 15px #fff;
+			box-shadow: inset 0 0 15px 3px #fff500, 0 0 15px #fff;
+			overflow: visible;
+		}
+		.game .girlRequired .coin {
+			background-image: url(img/coin.png);
+		}
+		.game .girlRequired .ornament {
+			background-image: url(img/ring.webp);
+		}
+		.game .girlRequired span {
+			position: absolute;
+			bottom: -31px;
+			left: 50%;
+			translate: -50%;
+			font: bold 17px verdana;
+			color: #fff;
+			letter-spacing: -3px;
+			white-space: nowrap;
+		}
+		.game .enemy {
+			position: absolute;
+			bottom: 0;
+			left: 7px;
+			width: 80px;
+			height: 80px;
+			background: url(img/sonicFace.png) no-repeat center / contain;
+			-webkit-transition: opacity .5s .5s;
+			transition: opacity .5s .5s;
+		}
+		.game .enemy span {
+			color: #fff;
+			position: absolute;
+			bottom: 12px;
+			left: 100%;
+			font: bold 22px verdana;
+			white-space: nowrap;
+			text-shadow: 0 3px 6px #000;
+		}
+		.game .buzz {
+			position: absolute;
+			top: -100%;
+			left: 23%;
+			width: 420px;
+			height: 185px;
+			border-radius: 100% 125px 155px 130px;
+			-webkit-transition: .6s;
+			transition: .6s;
+			z-index: 1;
+			-webkit-animation: buzzTopDown .8s linear infinite;
+			animation: buzzTopDown .8s linear infinite;
+		}
+		.game .goofy {
+			position: absolute;
+			top: -100%;
+			left: 23%;
+			width: 400px;
+			height: 185px;
+			border-radius: 500% 125px 300% 130px;
+			-webkit-transition: .6s;
+			transition: .6s;
+			z-index: 1;
+			-webkit-animation: buzzTopDown .8s linear infinite;
+			animation: buzzTopDown .8s linear infinite;
+		}
+		.game .jafar {
+			position: absolute;
+			top: -100%;
+			left: 23%;
+			width: 400px;
+			height: 185px;
+			-webkit-transition: .7s .9s;
+			transition: .7s .9s;
+			z-index: 1;
+			-webkit-animation: buzzTopDown .8s linear infinite;
+			animation: buzzTopDown .8s linear infinite;
+		}
+		.game .jafar img:first-child {
+			position: absolute;
+			top: -235px;
+			left: 165px;
+			height: 270px;
+			z-index: 1;
+			scale: -1 1;
+		}
+		.game .jafar img:last-child {
+			position: absolute;
+			top: -25px;
+			left: 135px;
+			height: 120px;
+		}
+		.game .buzz img:first-child {
+			position: absolute;
+			top: -25px;
+			left: 135px;
+		}
+		.game .goofy img:first-child {
+			position: absolute;
+			top: -80px;
+			left: 85px;
+			height: 180px;
+		}
+		.game .buzz img:last-child {
+			position: absolute;
+			top: -86px;
+			left: -80px;
+		}
+		.game .goofy img:last-child {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: calc(100% + 20px);
+		}
+		@-webkit-keyframes buzzTopDown {
+			50% { translate: 0 15px; }
+		}
+		@keyframes buzzTopDown {
+			50% { translate: 0 15px; }
+		}
+		.game .tear {
+			position: absolute;
+			top: 50%;
+			right: 100px;
+			height: 100px;
+			z-index: 10;
+			opacity: 0;
+			-webkit-transition: right 3s;
+			transition: right 3s;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(img/bg.png) center bottom / 150% 220%;
+			z-index: 10;
+			text-align: center;
+			padding-top: 15vh;
+			color: #fff;
+			-webkit-animation: menu 2.5s infinite;
+			animation: menu 2.5s infinite;
+			-webkit-transition: 1s;
+			transition: 1s;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+		}
+		@-webkit-keyframes menu {
+			50% { background-size: 160% 220%; }
+		}
+		@keyframes menu {
+			50% { background-size: 160% 220%; }
+		}
+		.menu h1 {
+			font: bold 5.5rem verdana, sans-serif;
+			letter-spacing: -7px;
+			-webkit-animation: menuTitle 1.2s linear infinite;
+			animation: menuTitle 1.2s linear infinite;
+		}
+		.menu h1 span {
+			color: #f00;
+			position: relative;
+			z-index: 5;
+		}
+		.menu h1 span img {
+			height: 100px;
+			position: absolute;
+			left: 65px;
+			top: -50px;
+			z-index: -1;
+			pointer-events: none;
+		}
+		.menu h1 i {
+			color: #ffe700;
+			font-style: normal;
+			position: relative;
+		}
+		.menu h1 i img {
+			height: 70px;
+			scale: -1 1;
+			position: absolute;
+			top: -35px;
+			right: 35px;
+			pointer-events: none;
+		}
+		.menu .control b {
+			font: bold 40px verdana;
+			margin-bottom: 5vh;
+			color: #ffa100;
+			-webkit-animation: menuTitle2 1.2s linear infinite;
+			animation: menuTitle2 1.2s linear infinite;
+			-webkit-text-stroke: 2px #000;
+		}
+		@-webkit-keyframes menuTitle {
+			50% { scale: 1.1; text-shadow: 0 4px 10px #f00; letter-spacing: -13px; }
+		}
+		@keyframes menuTitle {
+			50% { scale: 1.1; text-shadow: 0 4px 10px #f00; letter-spacing: -13px; }
+		}
+		@-webkit-keyframes menuTitle2 {
+			50% { scale: 1.1; text-shadow: 0 4px 10px #f00; }
+		}
+		@keyframes menuTitle2 {
+			50% { scale: 1.1; text-shadow: 0 4px 10px #f00; }
+		}
+		.menu .control {
+			margin-top: 2vh;
+			display: grid;
+			justify-items: center;
+			grid-row-gap: 3vh;
+		}
+		.menu .control .btn {
+			padding: 22px 35px;
+			font: bold 25px verdana;
+			background: linear-gradient(99deg, #f00 50%, #ffb100 50.8%);
+			cursor: pointer;
+			-webkit-transition: .3s;
+			transition: .3s;
+			border-radius: 35px;
+			text-shadow: -4px 3px 5px #000000a6, 2px 4px 3px #ff00b1d6;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+		.menu .control .btn::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: #ff0000;
+			z-index: -1;
+			-webkit-clip-path: ellipse(8% 66% at -3%);
+			clip-path: ellipse(8% 66% at -3%);
+			mix-blend-mode: difference;
+			-webkit-filter: blur(16px);
+			filter: blur(16px);
+			-webkit-transition: .2s ease-out;
+			transition: .2s ease-out;
+		}
+		.menu .control .btn:hover {
+			background: linear-gradient(99deg, #ffb100 50%, #f00 50.8%);
+			scale: 1.05;
+		}
+		.menu .control .btn:active {
+			background: linear-gradient(99deg, #111 50%, #333 50.8%);
+			-webkit-box-shadow: 0 3px 5px #fff;
+			box-shadow: 0 3px 5px #fff;
+		}
+		.menu .control .btn:hover::after {
+			-webkit-clip-path: ellipse(8% 66% at 50%);
+			clip-path: ellipse(8% 66% at 50%);
+			background: #f00;
+		}
+		.menu .son {
+			position: absolute;
+			scale: -1 1;
+			height: 150px;
+			bottom: 42px;
+			left: 50%;
+		}
+		.menu .wit {
+			position: absolute;
+			height: 160px;
+			top: 30vh;
+			right: 3%;
+		}
+		.menu .buz {
+			position: absolute;
+			height: 140px;
+			bottom: 44px;
+			left: 50%;
+			translate: -100%;
+		}
+		.menu .gof {
+			position: absolute;
+			height: 180px;
+			bottom: 50px;
+			left: 50%;
+			translate: 130%;
+		}
+		.menu .jaf {
+			position: absolute;
+			height: 240px;
+			bottom: 40px;
+			left: 50%;
+			translate: -230%;
+			scale: -1 1;
+		}
+		.menu .mI {
+			pointer-events: none;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			font: 20px/1.2 sans-serif;
+		}
+		.menu .instruction {
+			position: absolute;
+			inset: 100% 0 0 0;
+			overflow: hidden;
+			background: url(img/menuNight.webp) center 90% / 50% 100%;
+			z-index: 2;
+			-webkit-animation: menuNight 4.5s infinite;
+			animation: menuNight 4.5s infinite;
+			display: grid;
+			justify-items: center;
+			-ms-flex-line-pack: center;
+			align-content: center;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.menu .instruction p {
+			width: 40%;
+			background: #fa0;
+			padding: 30px;
+			border-radius: 25px;
+			color: #000;
+			font: bold 24px/1.3 verdana;
+			-webkit-box-shadow: 0 10px 19px #fa0, -14px -2px 19px #ff0000a8, 14px -2px 19px #00c0ffb8;
+			box-shadow: 0 10px 19px #fa0, -14px -2px 19px #ff0000a8, 14px -2px 19px #00c0ffb8;
+			position: relative;
+		}
+		.menu .instruction .close,
+		.menu .Difficulty .close {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #fff;
+			color: #000;
+			display: grid;
+			place-items: center;
+			font: bold 16px verdana;
+			text-transform: uppercase;
+			cursor: pointer;
+			-webkit-transition: .3s;
+			transition: .3s;
+			translate: 0 12px;
+			-webkit-box-shadow: 0 4px 0 #aa7100;
+			box-shadow: 0 4px 0 #aa7100;
+			z-index: 2;
+		}
+		.menu .instruction .close:hover {
+			background: #000;
+			color: #fff;
+		}
+		@-webkit-keyframes menuNight {
+			50% { background-size: 70% 140%; }
+		}
+		@keyframes menuNight {
+			50% { background-size: 70% 140%; }
+		}
+		.menu .instruction p code {
+			background: #fff;
+			padding: 8px 20px;
+			display: inline-block;
+			margin: 5px;
+			border-radius: 7px;
+			-webkit-box-shadow: inset 0 0 8px #000;
+			box-shadow: inset 0 0 8px #000;
+		}
+		.menu .instruction .lang {
+			width: 30px;
+			height: 30px;
+			border-radius: 0 50% 50% 50%;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(33.3%, #f00), color-stop(33.3%, #00f), color-stop(66.6%, #fa0));
+			background: linear-gradient(#f00 33.3%, #00f 33.3% 66.6%, #fa0 66.6%);
+			position: absolute;
+			top: 0;
+			left: 0;
+			-webkit-box-shadow: inset 0 -3px 5px #000;
+			box-shadow: inset 0 -3px 5px #000;
+			cursor: pointer;
+			-webkit-transition: .3s;
+			transition: .3s;
+			z-index: 2;
+		}
+		.menu .instruction .lang:hover {
+			border-radius: 50% 0 50% 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="bg"></div>
+		<div class="Mario"></div>
+		<div class="Flappy"></div>
+		<div class="Sonic"></div>
+		<div class="buzz">
+			<img src="img/buzz.gif" alt="Img">
+			<img src="img/air.png" alt="Img">
+		</div>
+		<div class="goofy">
+			<img src="img/goofy.gif" alt="Img">
+			<img src="img/air2.png" alt="Img">
+		</div>
+		<div class="jafar">
+			<img src="img/jafar.png" alt="Img">
+			<img src="img/carpet.avif" alt="Img">
+		</div>
+		<div class="MarioText">Fllapy Cry</div>
+		<img src="img/tear.gif" alt="Img" class="tear">
+		<div class="bomb"></div>
+		<div class="witchOnABroom">
+			<div class="thought">Give Me 10 Coins</div>
+		</div>
+		<div class="koopa"></div>
+		<h2 class="endGame">Game<span>Over</span></h2>
+		<div class="power">
+			<div class="icon">
+				<img src="img/face2.jpg" alt="Img">
+			</div>
+			<div class="icon">
+				<img src="img/face1.png" alt="Img">
+			</div>
+		</div>
+		<div class="star"></div>
+		<div class="getCoin"></div>
+		<div class="getRing"></div>
+		<div class="girlRequired">
+			<div class="face">
+				<img src="img/witchonabroom.gif" alt="Img">
+			</div>
+			<div class="coin">
+				<span>0 / 10</span>
+			</div>
+			<div class="ornament">
+				<span>0 / 5</span>
+			</div>
+		</div>
+		<div class="enemy">
+			<span>x 8</span>
+		</div>
+	</div>
+	<div class="menu">
+		<h1><span>Mario<img src="img/mario.gif" alt="Img"></span> <i>Help Me<img src="img/flappy.gif" alt="Img"></i></h1>
+		<div class="control">
+			<b>Starburst</b>
+			<div class="btn play">Play</div>
+			<div class="btn instructions">Instructions</div>
+		</div>
+		<img src="img/sonicM.png" alt="Img" class="mI son">
+		<img src="img/buzzM.png" alt="Img" class="mI buz">
+		<img src="img/goofyM.webp" alt="Img" class="mI gof">
+		<img src="img/jafarM.webp" alt="Img" class="mI jaf">
+		<img src="img/witchonabroom.gif" alt="Img" class="mI wit">
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Elbakyan Krtahamalir 2023
+		</p>
+		<div class="instruction">
+			<div class="close">x</div>
+			<b class="lang"></b>
+			<p>Flappy Bird likes a girl and asks Mario to help him to reach his dream. During the game they struggle against other characters:<br>Sonic, Buzz, Goofy and Jafar.<br><br>Mario Jump - <code>Space</code><br>Flappy Jump - <code>Arrow Up</code><br>Mario Shoot - <code>CTRL</code><br>Flappy Shoot - <code>Enter</code></p>
+		</div>
+	</div>
+	<script>
+		const gameBg = document.querySelector('.game .bg');
+		const menuGame = document.querySelector('.menu');
+		const menuTitle = document.querySelector('.menu h1');
+		const playGame = document.querySelectorAll('.menu .control .btn');
+		const instruction = document.querySelector('.menu .instruction');
+		const instructionClose = document.querySelector('.menu .instruction .close');
+		let instructionLang = document.querySelector('.menu .instruction .lang');
+		playGame[0].onclick = () => {
+			menuGame.style = 'clip-path: circle(0 at 50% 100%);';
+			gameBg.style.animation = 'bg 4s linear infinite, bgColor 10s linear infinite';
+			setTimeout(() => (menuGame.style.animation = 'none', menuTitle.style.animation = 'none', gameStart()), 5e2);
+			themeSound.play();
+			sonicSound.play();
+		};
+		playGame[1].onclick = () => (instruction.style.inset = 0, setTimeout(() => instructionLang.style.top = instruction.lastElementChild.offsetTop + 'px', 450));
+		instructionClose.onclick = () => instruction.style = null;
+		let langBool = true;
+		instructionLang.style.left = instruction.lastElementChild.offsetLeft + 'px';
+		instructionLang.onclick = () => {
+			if (langBool) {
+				instruction.lastElementChild.innerHTML = 'Flappy Bird-ը հավանում է մի աղջկա և խնդրում է Mario-ին, որ օգնի իրեն հասնել իր երազանքին։ Խաղի ընթացքում նրանք պայքարում են այլ հերոսների դեմ։ Sonic-ի, Buzz-ի, Goofy-ի և Jafar-ի:<br><br>Mario-ի թռիչքը - <code>Space</code><br>Flappy-ի թռիչքը - <code>Arrow Up</code><br>Mario-ի կրակելը - <code>CTRL</code><br>Flappy-ի կրակելը - <code>Enter</code>';
+				instructionLang.style.background = 'url(img/usa.webp) no-repeat center / cover';
+			} else {
+				instruction.lastElementChild.innerHTML = 'Flappy Bird likes a girl and asks Mario to help him to reach his dream. During the game they struggle against other characters:<br>Sonic, Buzz, Goofy and Jafar.<br><br>Mario Jump - <code>Space</code><br>Flappy Jump - <code>Arrow Up</code><br>Mario Shoot - <code>CTRL</code><br>Flappy Shoot - <code>Enter</code>';
+				instructionLang.style.background = 'linear-gradient(#f00 33.3%, #00f 33.3% 66.6%, #fa0 66.6%)';
+			}
+			langBool = !langBool;
+			instructionLang.style.top = instruction.lastElementChild.offsetTop + 'px';
+		};
+		const themeSound = new Audio('img/theme.mp3');
+		const sonicSound = new Audio('img/sonic.mp3');
+		themeSound.volume = .4;
+		const gameStart = () => {
+			const blockSound = new Audio('img/block.mp3');
+			const winSound = new Audio('img/win.mp3');
+			const coinSound = new Audio('img/coin.mp3');
+			const deathSound = new Audio('img/death.mp3');
+			const flappyJumpSound = new Audio('img/flappyJump.mp3');
+			const marioJumpSound = new Audio('img/marioJump.mp3');
+			const mariokickSound = new Audio('img/mariokick.mp3');
+			const flappykickSound = new Audio('img/flappykick.mp3');
+			const powerSound = new Audio('img/power.mp3');
+			sonicSound.onended = () => control.sonicLife ? sonicSound.play() : '';
+			const buzzSound = new Audio('img/buzz.mp3');
+			buzzSound.onended = () => control.buzzLife ? buzzSound.play() : '';
+			const goofySound = new Audio('img/goofy.mp3');
+			goofySound.onended = () => control.goofyLife ? goofySound.play() : '';
+			const starSound = new Audio('img/star.mp3');
+			flappyJumpSound.volume = .3;
+			marioJumpSound.volume = .2;
+			flappykickSound.volume = .5;
+			blockSound.volume = .5;
+			sonicSound.volume = .8;
+			buzzSound.volume = .5;
+			starSound.volume = .5;
+			const game = document.querySelector('.game');
+			const Mario = document.querySelector('.game .Mario');
+			const Flappy = document.querySelector('.game .Flappy');
+			const gameOver = document.querySelector('.game .endGame');
+			const Sonic = document.querySelector('.game .Sonic');
+			const witch = document.querySelector('.game .witchOnABroom');
+			const bomb = document.querySelector('.game .bomb');
+			const koopa = document.querySelector('.game .koopa');
+			const star = document.querySelector('.game .star');
+			const icon = document.querySelectorAll('.game .power .icon');
+			const enemyCount = document.querySelector('.game .enemy span');
+			const thought = document.querySelector('.game .thought');
+			const Buzz = document.querySelector('.game .buzz');
+			const getCoin = document.querySelector('.game .getCoin');
+			const getRing = document.querySelector('.game .getRing');
+			const girlRequired = document.querySelectorAll('.game .girlRequired span');
+			const Goofy = document.querySelector('.game .goofy');
+			const Jafar = document.querySelector('.game .jafar');
+			const MarioText = document.querySelector('.game .MarioText');
+			const FlappyTear = document.querySelector('.game .tear');
+			star.style.animation = 'star 8s linear 5s infinite';
+			let orRand = [Mario.offsetTop, Flappy.offsetTop];
+			const character = [bomb, koopa];
+			let speed = 1e3;
+			const goBomb = (x, elem) => {
+				if (control.inTheGame) {
+					x.style.top = elem.offsetTop + 70 + 'px';
+					x.style.opacity = 1;
+					x.style.left = '33%';
+					setTimeout(() => {
+						x.style.transition = 'left 2.5s linear, top 3s linear, opacity .3s';
+						x.style.left = '110%';
+						x.style.top = orRand[Math.floor(Math.random() * orRand.length)] + 'px';
+					}, 500);
+				}
+			};
+			setTimeout(() => goBomb(bomb, control.currentEnemy), 2e3);
+			const control = Object.seal({
+				MarioY: Mario.offsetTop,
+				FlappyY: Flappy.offsetTop,
+				FlappyRot: 0,
+				MarioRot: 0,
+				bgY: 0,
+				SonicY: Sonic.offsetTop,
+				BuzzY: Buzz.offsetTop,
+				GoofyY: Goofy.offsetTop,
+				witch: witch.offsetTop,
+				star: Math.random() * (game.offsetHeight - star.offsetHeight),
+				getCoin: Math.random() * (game.offsetHeight - star.offsetHeight),
+				getRing: Math.random() * (game.offsetHeight - star.offsetHeight),
+				iconMario: 100,
+				iconFlappy: 100,
+				enemyCount: 8,
+				sonicLife: true,
+				buzzLife: false,
+				goofyLife: false,
+				inTheGame: true,
+				currentEnemy: Sonic,
+				girlRequiredCoin: 0,
+				girlRequiredRing: 0,
+				starBool: true,
+			});
+			let oldChord = control.witch;
+			const globalGameOver = () => {
+				gameOver.style = 'transform: translate(-50%, -50%); opacity: 1; top: 50%;';
+				document.onkeydown = null;
+				clearInterval(drawGame);
+				deathSound.play();
+				themeSound.pause();
+				if (control.currentEnemy.className == 'Sonic') {
+					Sonic.style.left = witch.offsetLeft + 'px';
+					Sonic.style.transition = '1.5s 1s';
+				} else if (control.currentEnemy.className == 'buzz') {
+					Buzz.style.left = witch.offsetLeft + 'px';
+					Buzz.style.transition = '1.5s 1s';	   
+				} else if (control.currentEnemy.className == 'goofy') {
+					Goofy.style.left = witch.offsetLeft + 'px';
+					Goofy.style.transition = '1.5s 1s';	   
+				}
+				return new Promise(resolve => {
+					setTimeout(() => {
+						if (control.currentEnemy.className == 'Sonic') {
+							Sonic.style.transition = '1.8s';
+							Sonic.style.left = '-100%';
+						} else if (control.currentEnemy.className == 'buzz') {
+							Buzz.style.transition = '1.8s';
+							Buzz.style.left = '-100%';
+						} else if (control.currentEnemy.className == 'goofy') {
+							Goofy.style.transition = '1.8s';
+							Goofy.style.left = '-100%';
+						}
+						witch.style.left = '-100%';
+						witch.style.transition = '1.5s';
+						resolve(12e2);
+					}, 25e2);
+				});
+			};
+			const check = x => {
+				if (x.offsetLeft + x.offsetWidth >= Mario.offsetLeft && x.offsetLeft <= Mario.offsetLeft + Mario.offsetWidth && x.offsetTop + x.offsetHeight >= Mario.offsetTop && x.offsetTop <= Mario.offsetTop + Mario.offsetHeight && control.inTheGame) {
+					globalGameOver().then(item => setTimeout(() => location.reload(), item));
+					Mario.style.rotate = '1080deg';
+					Mario.style.transition = '1s';
+					setTimeout(() => (Mario.style.scale = 0, Mario.style.transition = '.5s'), 7e2);
+				}
+				if (x.offsetLeft + x.offsetWidth >= Flappy.offsetLeft && x.offsetLeft <= Flappy.offsetLeft + Flappy.offsetWidth && x.offsetTop + x.offsetHeight >= Flappy.offsetTop && x.offsetTop <= Flappy.offsetTop + Flappy.offsetHeight && control.inTheGame) {
+					globalGameOver().then(item => setTimeout(() => location.reload(), item));
+					Flappy.style.rotate = '1080deg';
+					Flappy.style.transition = '1s';
+					Mario.style.scale = 1;
+					Mario.style.rotate = 'none';
+					setTimeout(() => (Flappy.style.scale = 0, Flappy.style.transition = '.5s'), 7e2);
+				}	
+			};
+			const cancelOptions = x => {
+				x.style.left = null;
+				x.style.transition = null;
+				x.style.top = null;
+				x.style.opacity = null;
+			};
+			const drawGame = setInterval(() => {
+				if (control.inTheGame) {
+					control.MarioY += 19;
+					Mario.style.top = control.MarioY + 'px';
+					control.FlappyY += 16;
+					Flappy.style.top = control.FlappyY + 'px';
+					control.FlappyRot > -30 ? control.FlappyRot -= 5 : '';
+					Flappy.style.rotate = control.FlappyRot + 'deg';
+					control.MarioRot > -20 ? control.MarioRot -= 5.5 : '';
+					Mario.style.rotate = control.MarioRot + 'deg';
+					control.bgY > -20 ? control.bgY -= .6 : '';
+					gameBg.style.top = control.bgY + '%';
+					control.witch -= 2.3;
+					witch.style.top = control.witch + 'px';
+					control.star -= 2.3;
+					star.style.top = control.star + 'px';
+					control.getCoin -= 2.3;
+					getCoin.style.top = control.getCoin + 'px';
+					control.getRing -= 2.3;
+					getRing.style.top = control.getRing + 'px';
+				}
+				control.SonicY -= 2.3;
+				control.sonicLife ? Sonic.style.top = control.SonicY + 'px' : '';
+				if (control.buzzLife) {
+					control.BuzzY -= 2.3;
+					Buzz.style.top = control.BuzzY + 'px';
+				}
+				if (control.goofyLife) {
+					control.GoofyY -= 2.3;
+					Goofy.style.top = control.GoofyY + 'px';
+				}
+				orRand = [Mario.offsetTop, Flappy.offsetTop];
+				if (Mario.offsetTop > game.offsetHeight + 20 || Flappy.offsetTop > game.offsetHeight + 20 || Mario.offsetTop + Mario.offsetHeight < 0 || Flappy.offsetTop + Flappy.offsetHeight < 0) {
+					globalGameOver().then(item => setTimeout(() => location.reload(), item));
+					Mario.style.scale = 1;
+					Mario.style.rotate = 'none';
+				}
+				if (bomb.offsetLeft > game.offsetWidth || koopa.offsetLeft > game.offsetWidth) {
+					cancelOptions(bomb);
+					cancelOptions(koopa);
+					setTimeout(() => goBomb(character[Math.floor(Math.random() * orRand.length)], control.currentEnemy), speed);
+				}
+				star.offsetLeft > game.offsetWidth && control.starBool ? control.star = Math.random() * (game.offsetHeight - star.offsetHeight) : '';
+				getCoin.offsetLeft > game.offsetWidth ? control.getCoin = Math.random() * (game.offsetHeight - getCoin.offsetHeight) : '';
+				getRing.offsetLeft > game.offsetWidth ? control.getRing = Math.random() * (game.offsetHeight - getRing.offsetHeight) : '';
+				if (star.offsetLeft + star.offsetWidth >= Mario.offsetLeft && star.offsetLeft <= Mario.offsetLeft + Mario.offsetWidth && star.offsetTop + star.offsetHeight >= Mario.offsetTop && star.offsetTop <= Mario.offsetTop + Mario.offsetHeight) {
+					control.iconMario -= 50;
+					starSound.currentTime = 0;
+					starSound.play();
+					control.iconMario <= 0 ? (icon[1].style.animation = 'icon 1s infinite', powerSound.play()) : '';
+					icon[1].style.setProperty('--icon', control.iconMario + '%');
+					star.style.animation = 'none';
+					control.star = Math.random() * (game.offsetHeight - star.offsetHeight);
+					control.starBool ? setTimeout(() => star.style.animation = 'star 8s linear infinite', 3000) : '';
+				}
+				if (star.offsetLeft + star.offsetWidth >= Flappy.offsetLeft && star.offsetLeft <= Flappy.offsetLeft + Flappy.offsetWidth && star.offsetTop + star.offsetHeight >= Flappy.offsetTop && star.offsetTop <= Flappy.offsetTop + Flappy.offsetHeight) {
+					control.iconFlappy -= 50;
+					starSound.currentTime = 0;
+					starSound.play();
+					control.iconFlappy <= 0 ? (icon[0].style.animation = 'icon 1s infinite', powerSound.play()) : '';
+					icon[0].style.setProperty('--icon', control.iconFlappy + '%');
+					star.style.animation = 'none';
+					control.star = Math.random() * (game.offsetHeight - star.offsetHeight);
+					control.starBool ? setTimeout(() => star.style.animation = 'star 8s linear infinite', 3000) : '';
+				}
+				if (getCoin.offsetLeft + getCoin.offsetWidth >= Flappy.offsetLeft && getCoin.offsetLeft <= Flappy.offsetLeft + Flappy.offsetWidth && getCoin.offsetTop + getCoin.offsetHeight >= Flappy.offsetTop && getCoin.offsetTop <= Flappy.offsetTop + Flappy.offsetHeight) {
+					getCoin.style.animation = 'none';
+					control.girlRequiredCoin++;
+					coinSound.play();
+					girlRequired[0].innerText = control.girlRequiredCoin + ' / 10';
+					control.getCoin = Math.random() * (game.offsetHeight - star.offsetHeight);
+					control.girlRequiredCoin != 10 ? setTimeout(() => getCoin.style.animation = 'star 10s linear infinite', 3000) : '';
+				}
+				if (getRing.offsetLeft + getRing.offsetWidth >= Flappy.offsetLeft && getRing.offsetLeft <= Flappy.offsetLeft + Flappy.offsetWidth && getRing.offsetTop + getRing.offsetHeight >= Flappy.offsetTop && getRing.offsetTop <= Flappy.offsetTop + Flappy.offsetHeight) {
+					getRing.style.animation = 'none';
+					control.girlRequiredRing++;
+					coinSound.play();
+					girlRequired[1].innerText = control.girlRequiredRing + ' / 5';
+					control.getRing = Math.random() * (game.offsetHeight - star.offsetHeight);
+					control.girlRequiredRing != 5 ? setTimeout(() => getRing.style.animation = 'star 10s linear infinite', 3000) : '';
+				}
+				check(bomb);
+				check(koopa);
+				document.querySelectorAll('.game .bullet').forEach(item => {
+					if (item.offsetLeft <= Sonic.offsetLeft + Sonic.offsetWidth && item.offsetTop + item.offsetHeight >= Sonic.offsetTop + 50 && item.offsetTop <= Sonic.offsetTop + Sonic.offsetHeight && control.sonicLife) {
+						item.remove();
+						control.enemyCount--;
+						blockSound.play();
+						Sonic.style.filter = 'brightness(3)';
+						setTimeout(() => Sonic.style.filter = null, 2e2);
+						if (control.enemyCount == 0) {
+							step(Sonic, bomb, koopa, Buzz, 10, 'buzzLife', 'Give Me 10 Coins');
+						}
+						enemyCount.innerText = 'x ' + control.enemyCount;
+					}
+					if (item.offsetLeft <= Buzz.offsetLeft + Buzz.offsetWidth && item.offsetTop + item.offsetHeight >= Buzz.offsetTop + 50 && item.offsetTop <= Buzz.offsetTop + Buzz.offsetHeight && control.buzzLife) {
+						item.remove();
+						control.enemyCount--;
+						blockSound.play();
+						Buzz.style.filter = 'brightness(3)';
+						setTimeout(() => Buzz.style.filter = null, 2e2);
+						if (control.enemyCount <= 0) {
+							control.enemyCount = 0;
+							control.buzzLife = false;
+							control.starBool = false;
+							Buzz.style.rotate = '720deg';
+							Buzz.style.transition = '1.5s';
+							buzzSound.pause();
+							setTimeout(() => Buzz.style.top = '180%', 7e2);
+						}
+						enemyCount.innerText = 'x ' + control.enemyCount;
+					}
+					if (item.offsetLeft <= Goofy.offsetLeft + Goofy.offsetWidth && item.offsetTop + item.offsetHeight >= Goofy.offsetTop + 50 && item.offsetTop <= Goofy.offsetTop + Goofy.offsetHeight && control.goofyLife) {
+						item.remove();
+						control.enemyCount--;
+						blockSound.play();
+						Goofy.style.filter = 'brightness(3)';
+						setTimeout(() => Goofy.style.filter = null, 2e2);
+						if (control.enemyCount <= 0) {
+							control.enemyCount = 0;
+							control.goofyLife = false;
+							control.starBool = false;
+							Goofy.style.rotate = '720deg';
+							Goofy.style.transition = '1.5s';
+							goofySound.pause();
+							setTimeout(() => Goofy.style.top = '180%', 7e2);
+						}
+						enemyCount.innerText = 'x ' + control.enemyCount;
+					}
+					item.offsetLeft + item.offsetWidth < 0 ? item.remove() : '';
+				});
+			}, 50);
+			const step = (en, bo, bo2, en2, digit, key, word) => {
+				sonicSound.pause();
+				themeSound.pause();
+				winSound.play();
+				control.inTheGame = false;
+				en.style.rotate = '720deg';
+				en.style.transition = '1.5s';
+				control.sonicLife = false;
+				control.buzzLife = false;
+				bo.style = null;
+				bo2.style = null;
+				star.style.animation = '';
+				getCoin.style.animation = '';
+				thought.innerText = word;
+				control.girlRequiredCoin = 0;
+				setTimeout(() => {
+					en.style.top = '180%';
+					control.witch = game.offsetHeight / 2 - witch.offsetHeight;
+					witch.style.top = control.witch + 'px';
+					enemyCount.parentElement.style.opacity = 0;
+					setTimeout(() => {
+						control.MarioY = game.offsetHeight / 3;
+						Mario.style.top = control.MarioY + 'px';
+						Mario.style.transition = '1s';
+						Mario.style.rotate = 'none';
+						Flappy.style.rotate = 'none';
+						control.FlappyY = witch.offsetTop + witch.offsetHeight / 1.5;
+						Flappy.style.top = control.FlappyY + 'px';
+						Flappy.style.right = game.offsetWidth - witch.offsetWidth - Flappy.offsetWidth / 2 + 'px';
+						Flappy.style.transition = '3s';
+						setTimeout(() => {
+							thought.style = 'opacity: 1; bottom: 100%;';
+							const speak = new SpeechSynthesisUtterance(word);
+							window.speechSynthesis.onvioceschanged = () => {};
+							setTimeout(() => {
+								speak.voice = window.speechSynthesis.getVoices()[1];
+								speak.pitch = 1.4;
+								window.speechSynthesis.speak(speak);
+							}, 50);
+							setTimeout(() => {
+								thought.style = null;
+								Flappy.style.transition = 'right 3s';
+								Flappy.style.scale = '1';
+								Flappy.style.right = '100px';
+								setTimeout(() => {
+									themeSound.play();
+									themeSound.currentTime = 0;
+									en2.style.top = '35%';
+									Flappy.style = null;
+									Mario.style = null;
+									Flappy.style.transition = 'top 3s, right 3s';
+									Mario.style.transition = 'top 3s';
+									control.enemyCount = digit;
+									enemyCount.innerText = 'x ' + control.enemyCount;
+									setTimeout(() => {
+										control.inTheGame = true;
+										if (en.className == 'Sonic') {
+											enemyCount.parentElement.style = 'background-image: url(img/buzzFace.webp);';
+											bo.style.background = 'url(img/enemy.webp) no-repeat -2px -6px / 70px 80px';
+											bo.style.width = '61px';
+											bo.style.height = '70px';
+											bo.style.borderRadius = '20px 20px 25px 25px';
+											bo.style.scale = 1;
+											bo2.style.scale = 1;
+											bo2.style.background = 'url(img/enemy2.gif) no-repeat -5px -6px / 70px 80px';
+											bo2.style.width = '53px';
+											bo2.style.height = '70px';
+											control.currentEnemy = en2;
+											goBomb(character[Math.floor(Math.random() * orRand.length)], control.currentEnemy);
+											getCoin.style.animation = 'star 10s linear infinite';
+											buzzSound.play();
+											buzzSound.volume = .5;
+										} else if (en.className == 'buzz') {
+											enemyCount.parentElement.style = 'background-image: url(img/goofyFace.png); filter: drop-shadow(0 0 5px #fff);';
+											bo.style.background = 'url(img/enemy3.webp) no-repeat -10px -15px / 55px 70px';
+											bo.style.width = '32px';
+											bo.style.height = '53px';
+											bo.style.borderRadius = '20px 17px 10px 14px';
+											bo.style.scale = 1;
+											bo2.style.scale = 1;
+											bo2.style.background = 'url(img/enemy4.webp) no-repeat -9px -25px / 65px 75px';
+											bo2.style.width = '45px';
+											bo2.style.height = '49px';
+											control.currentEnemy = en2;
+											goBomb(character[Math.floor(Math.random() * orRand.length)], control.currentEnemy);
+											control.starBool = true;
+											getRing.style.animation = 'star 10s linear infinite';
+											goofySound.play();
+											goofySound.volume = .5;
+										}
+										control.BuzzY = Buzz.offsetTop;
+										control.GoofyY = Goofy.offsetTop;
+										control[key] = true;
+										control.MarioY = Mario.offsetTop;
+										control.FlappyY = Flappy.offsetTop;
+										control.witch = oldChord;
+										witch.style.top = control.witch + 'px';
+										Flappy.style.transition = null;
+										Mario.style.transition = null;
+										Buzz.style.transition = 'top .3s, filter .2s';
+										Goofy.style.transition = 'top .3s, filter .2s';
+										star.style.animation = 'star 8s linear infinite';
+									}, 12e2);
+								}, 18e2);
+							}, 2e3);
+						}, 3e3);
+					}, 5e2);
+				}, 7e2);
+			};
+
+			document.onkeydown = ({which} = e) => {
+				if (control.enemyCount == 0 && control.girlRequiredCoin == 10) {
+					step(Buzz, bomb, koopa, Goofy, 9, 'goofyLife', 'Give Me 5 Rings');
+					themeSound.pause();
+				}
+				if (control.enemyCount == 0 && control.girlRequiredRing == 5) {
+					themeSound.pause();
+					document.onkeydown = null;
+					clearInterval(drawGame);
+					enemyCount.parentElement.style.opacity = 0;
+					star.style.animation = '';
+					getRing.style.animation = '';
+					bomb.style.animation = '';
+					koopa.style.animation = '';
+					control.MarioY = game.offsetHeight / 3;
+					Mario.style.top = control.MarioY + 'px';
+					Mario.style.transition = '1s';
+					Mario.style.rotate = 'none';
+					Flappy.style.rotate = 'none';
+					control.FlappyY = witch.offsetTop + witch.offsetHeight / 1.5;
+					Flappy.style.top = control.FlappyY + 'px';
+					Flappy.style.right = game.offsetWidth - witch.offsetWidth - Flappy.offsetWidth / 2 + 'px';
+					Flappy.style.transition = '3s';
+					setTimeout(() => {
+						thought.innerText = `I don't want you, go away`;
+						thought.style = 'opacity: 1; bottom: 100%; padding: 35px; font-size: 14px;';
+						const speak = new SpeechSynthesisUtterance(thought.innerText);
+						window.speechSynthesis.onvioceschanged = () => {};
+						setTimeout(() => {
+							speak.voice = window.speechSynthesis.getVoices()[1];
+							speak.pitch = 1.4;
+							window.speechSynthesis.speak(speak);
+						}, 50);
+						setTimeout(() => {
+							thought.style = null;
+							Flappy.style.scale = 1;
+							Flappy.style.right = '100px';
+							Flappy.style.transition = 'right 3s';
+							Jafar.style.top = '45%';
+							setTimeout(() => {
+								Flappy.style.scale = null;
+								Jafar.style.left = '-95px';
+								Jafar.style.transitionDelay = '0s';
+								setTimeout(() => {
+									Jafar.style.left = '-100%';
+									witch.style.left = '-100%';
+									Jafar.style.transition = '2s';
+									witch.style.transition = '2s';
+									setTimeout(() => {
+										FlappyTear.style = `opacity: 1; top: ${Flappy.offsetTop}px;`;
+										speak.text = 'Flappy cry';
+										speak.voice = window.speechSynthesis.getVoices()[4];
+										speak.pitch = 1;
+										window.speechSynthesis.speak(speak);
+										MarioText.style = `opacity: 1; top: ${Mario.offsetTop - MarioText.offsetHeight}px; right: ${game.offsetWidth - Mario.offsetLeft - MarioText.offsetWidth}px; font: bold 17px sans-serif;`;
+										Mario.style.scale = 1;
+										Mario.style.transition = 'right 2s';
+										setTimeout(() => {
+											Mario.style.right = '-100%';
+											Mario.style.scale = 1;
+											MarioText.style = null;
+											setTimeout(() => {
+												Flappy.style.scale = 1;
+												Flappy.style.right = '-100%';
+												FlappyTear.style.right = '-100%';
+												setTimeout(() => window.location.href = '../FlappyBird/index.html', 15e2);
+											}, 5e2);
+										}, 15e2);
+									}, 2e3);
+								}, 5e2);
+							}, 25e2);
+						}, 24e2);
+					}, 3e3);
+				}
+				if (which == 38 && control.inTheGame) {
+					control.FlappyY -= 150;
+					control.FlappyRot = 40;
+					control.bgY += 4;
+					control.SonicY += 11.5;
+					control.witch += 11.5;
+					control.star += 12;
+					control.getCoin += 12;
+					control.buzzLife ? control.BuzzY += 11.5 : '';
+					control.getRing += 12;
+					control.goofyLife ? control.GoofyY += 11.5 : '';
+					flappyJumpSound.play();
+				}
+				if (which == 32 && control.inTheGame) {
+					control.MarioY -= 200;
+					control.MarioRot = 80;
+					control.bgY += 4;
+					control.SonicY += 11.5;
+					control.witch += 11.5;
+					control.star += 12;
+					control.getCoin += 12;
+					control.buzzLife ? control.BuzzY += 11.5 : '';
+					control.getRing += 12;
+					control.goofyLife ? control.GoofyY += 11.5 : '';
+					marioJumpSound.play();
+				}
+				if (which == 17 && control.iconMario <= 0) {
+					goBullet(Mario);
+					control.iconMario = 100;
+					icon[1].style.setProperty('--icon', '100%');
+					icon[1].style.animation = '';
+					mariokickSound.play();
+				}
+				if (which == 13 && control.iconFlappy <= 0) {
+					goBullet(Flappy, '#fa0');
+					control.iconFlappy = 100;
+					icon[0].style.setProperty('--icon', '100%');
+					icon[0].style.animation = '';
+					flappykickSound.play();
+				}
+				control.bgY > 0 ? control.bgY = 0 : '';
+			};
+			const goBullet = (character, x = '#f00') => {
+				const bullet = document['createElement']('span');
+				bullet.className = 'bullet';
+				bullet.style = `position: absolute; top: ${character.offsetTop + character.offsetHeight / 2}px; left: ${character.offsetLeft}px; width: 30px; height: 30px; background: ${x}; border-radius: 50%; box-shadow: inset 0 0 12px #000; transition: 2.5s linear;`;
+				game.append(bullet);
+				setTimeout(() => bullet.style.left = '-110%', 20);
+			};
+		};
+	</script>
+</body>
+</html>
