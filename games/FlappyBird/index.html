@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Flappy Bird Developer H. Vardanyan</title>
+	<title>Flappy Bird 1</title>
 	<link rel="shortcut icon" href="img/2.png">
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		.game {
 			width: 1400px;
 			height: 700px;
@@ -13,6 +13,8 @@
 			position: relative;
 			margin: auto;
 			overflow: hidden;
+			-webkit-transition: .5s;
+			transition: .5s;
 		}
 		.game::after {
 			content: '';
@@ -22,10 +24,14 @@
 			mix-blend-mode: difference;
 			z-index: 2;
 			opacity: 0;
+			-webkit-transition: 6s;
 			transition: 6s;
 		}
 		.game.night::after {
 			opacity: 1;
+		}
+		@-webkit-keyframes bg {
+			to { background-position-x: -1400px; }
 		}
 		@keyframes bg {
 			to { background-position-x: -1400px; }
@@ -37,8 +43,14 @@
 			width: 73px;
 			height: 56px;
 			background: url(img/2.png) no-repeat center / 73px 56px;
+			-webkit-transition: .1s;
 			transition: .1s;
 			z-index: 4;
+		}
+		.game .bird .tear {
+			position: absolute;
+			height: 120px;
+			top: -20px;
 		}
 		.game .bird .eye {
 			position: absolute;
@@ -57,15 +69,24 @@
 			width: 100%;
 			height: 0;
 			background: #000;
+			-webkit-animation: eye 6s linear infinite;
 			animation: eye 6s linear infinite;
+		}
+		@-webkit-keyframes eye {50%{height:0;}51%{height:0;}53%{height:100%;}56.1%{height:0;}100%{height:0;}
 		}
 		@keyframes eye {50%{height:0;}51%{height:0;}53%{height:100%;}56.1%{height:0;}100%{height:0;}
 		}
+		@-webkit-keyframes gameOver1 {
+			to { top: calc(100% - 130px); -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+		}
 		@keyframes gameOver1 {
-			to { top: calc(100% - 130px); transform: rotate(180deg); }
+			to { top: calc(100% - 130px); -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+		}
+		@-webkit-keyframes gameOver2 {
+			to { -webkit-transform: rotate(180deg); transform: rotate(180deg); top: calc(100% - 130px); }
 		}
 		@keyframes gameOver2 {
-			to { transform: rotate(180deg); top: calc(100% - 130px); }
+			to { -webkit-transform: rotate(180deg); transform: rotate(180deg); top: calc(100% - 130px); }
 		}
 		.game .truba {
 			position: absolute;
@@ -73,9 +94,12 @@
 			width: 90px;
 			height: 208px;
 			background: url(img/1.png) no-repeat -3px -13px / 100px 265px;
+			-webkit-transition: .5s 1s;
 			transition: .5s 1s;
 			z-index: 1;
+			-webkit-perspective: 850px;
 			perspective: 850px;
+			-webkit-transform-style: preserve-3d;
 			transform-style: preserve-3d;
 		}
 		.game :nth-of-type(6) .flower,
@@ -84,10 +108,14 @@
 		}
 		.game .truba.top {
 			top: 0;
+			-webkit-transform: scaleY(-1);
 			transform: scaleY(-1);
 		}
 		.game .truba.bottom {
 			bottom: 86px;
+		}
+		@-webkit-keyframes truba {
+			to { right: 101%; }
 		}
 		@keyframes truba {
 			to { right: 101%; }
@@ -99,8 +127,16 @@
 			width: 65px;
 			height: 75px;
 			background: url(img/flower.png) no-repeat -1px 0 / 65px 75px;
+			-webkit-transform: translateZ(-2px);
 			transform: translateZ(-2px);
+			-webkit-animation: 6s linear infinite;
 			animation: 6s linear infinite;
+		}
+		@-webkit-keyframes flower {
+			30% { top: -75px; }
+			40% { top: -75px; }
+			60% { top: 15px; }
+			100% { top: 15px; }
 		}
 		@keyframes flower {
 			30% { top: -75px; }
@@ -116,10 +152,17 @@
 			height: 70px;
 			background: url(img/coin.png) no-repeat center / cover;
 			z-index: 3;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			font: bold 40px sans-serif;
+			-webkit-filter: drop-shadow(2px 2px 2px #00000080);
 			filter: drop-shadow(2px 2px 2px #00000080);
 		}
 		.game .time {
@@ -127,6 +170,7 @@
 			top: 10px;
 			right: 40px;
 			font: bold 30px sans-serif;
+			z-index: 2;
 		}
 		.game .menu {
 			position: absolute;
@@ -136,21 +180,40 @@
 			height: 100%;
 			background: #9CE759;
 			z-index: 5;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: start;
+			-ms-flex-pack: start;
 			justify-content: flex-start;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
 			flex-direction: column;
 			padding-top: 5%;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.game .menu img {
 			height: 300px;
+			-webkit-transform: translate(-30%, 0);
 			transform: translate(-30%, 0);
+			-webkit-animation: logo 1s linear infinite alternate;
 			animation: logo 1s linear infinite alternate;
 			pointer-events: none;
 		}
+		@-webkit-keyframes logo {
+			100% {
+				-webkit-transform: translate(30%);
+				transform: translate(30%);
+			}
+		}
 		@keyframes logo {
 			100% {
+				-webkit-transform: translate(30%);
 				transform: translate(30%);
 			}
 		}
@@ -163,8 +226,11 @@
 			border: 4px solid #000;
 			border-right: 0;
 			position: relative;
+			-webkit-transition: .5s;
 			transition: .5s;
+			-webkit-filter: drop-shadow(2px 2px 2px #fff);
 			filter: drop-shadow(2px 2px 2px #fff);
+			-webkit-transform: translateX(-20px);
 			transform: translateX(-20px);
 		}
 		.game .menu .play::after {
@@ -178,7 +244,9 @@
 			border: 4px solid #000;
 			border-left: 0;
 			border-radius: 0 20px 20px 0;
+			-webkit-transition: .5s;
 			transition: .5s;
+			-webkit-transform-origin: 0 100%;
 			transform-origin: 0 100%;
 			pointer-events: none;
 		}
@@ -191,6 +259,7 @@
 			color: #000;
 		}
 		.game .menu .play:hover::after {
+			-webkit-transform: rotate(30deg);
 			transform: rotate(30deg);
 			background: #af004a;
 		}
@@ -210,10 +279,16 @@
 			bottom: 10px;
 			left: 50%;
 			pointer-events: none;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-column-gap: 10px;
 			column-gap: 10px;
 			z-index: 10;
+			-webkit-transform: translateX(-50%);
 			transform: translateX(-50%);
 		}
 		.info .studio {
@@ -221,20 +296,25 @@
 			border-radius: 8px;
 		}
 		.info .author {
-			font: 18px cursive;
+			font: 18px verdana;
 			text-align: center;
 		}
 		.menu .gameTitle {
 			position: absolute;
 			top: 13%;
 			left: 7%;
+			-webkit-transform: rotate(-15deg);
 			transform: rotate(-15deg);
 			font: bold 5rem cursive;
 			color: #ff5c00;
 			text-shadow: 0px 4px 3px #fff, -4px 6px 12px #000;
 			-webkit-text-stroke: 2px #fff;
 			z-index: 10;
+			-webkit-animation: menuTitle 2s infinite;
 			animation: menuTitle 2s infinite;
+		}
+		@-webkit-keyframes menuTitle {
+			50% { letter-spacing: 3px; word-spacing: 15px; }
 		}
 		@keyframes menuTitle {
 			50% { letter-spacing: 3px; word-spacing: 15px; }
@@ -244,11 +324,12 @@
 <body>
 	<div class="info">
 		<img class="studio" src="img/logo.png" alt="Img">
-		<p class="author">Developer Hovo Vardanyan<br>All Right Reserved 2022</p>
+		<p class="author">Instructor Hovo Vardanyan<br>All Right Reserved 2022</p>
 	</div>
 	<div class="game">
 		<div class="bird">
 			<div class="eye"></div>
+			<img src="img/tear.gif" alt="Img" class="tear">
 		</div>
 		<div class="truba top">
 			<div class="flower"></div>
@@ -440,12 +521,7 @@
 		};
 		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
 	</script>
 </body>
 </html>
-
-
-
-
-
-
