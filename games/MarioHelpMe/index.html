@@ -1019,7 +1019,7 @@
 				check(bomb);
 				check(koopa);
 				document.querySelectorAll('.game .bullet').forEach(item => {
-					if (item.offsetLeft <= Sonic.offsetLeft + Sonic.offsetWidth && item.offsetTop + item.offsetHeight >= Sonic.offsetTop + 50 && item.offsetTop <= Sonic.offsetTop + Sonic.offsetHeight && control.sonicLife) {
+					if (item.offsetLeft <= Sonic.offsetLeft + Sonic.offsetWidth && item.offsetTop + item.offsetHeight >= Sonic.offsetTop + 50 && item.offsetTop <= Sonic.offsetTop + Sonic.offsetHeight && control.sonicLife && item.offsetLeft + item.offsetWidth >= Sonic.offsetLeft) {
 						item.remove();
 						control.enemyCount--;
 						blockSound.play();
@@ -1030,7 +1030,7 @@
 						}
 						enemyCount.innerText = 'x ' + control.enemyCount;
 					}
-					if (item.offsetLeft <= Buzz.offsetLeft + Buzz.offsetWidth && item.offsetTop + item.offsetHeight >= Buzz.offsetTop + 50 && item.offsetTop <= Buzz.offsetTop + Buzz.offsetHeight && control.buzzLife) {
+					if (item.offsetLeft <= Buzz.offsetLeft + Buzz.offsetWidth && item.offsetTop + item.offsetHeight >= Buzz.offsetTop + 50 && item.offsetTop <= Buzz.offsetTop + Buzz.offsetHeight && control.buzzLife && item.offsetLeft + item.offsetWidth >= Buzz.offsetLeft) {
 						item.remove();
 						control.enemyCount--;
 						blockSound.play();
@@ -1047,7 +1047,7 @@
 						}
 						enemyCount.innerText = 'x ' + control.enemyCount;
 					}
-					if (item.offsetLeft <= Goofy.offsetLeft + Goofy.offsetWidth && item.offsetTop + item.offsetHeight >= Goofy.offsetTop + 50 && item.offsetTop <= Goofy.offsetTop + Goofy.offsetHeight && control.goofyLife) {
+					if (item.offsetLeft <= Goofy.offsetLeft + Goofy.offsetWidth && item.offsetTop + item.offsetHeight >= Goofy.offsetTop + 50 && item.offsetTop <= Goofy.offsetTop + Goofy.offsetHeight && control.goofyLife && item.offsetLeft + item.offsetWidth >= Goofy.offsetLeft) {
 						item.remove();
 						control.enemyCount--;
 						blockSound.play();
