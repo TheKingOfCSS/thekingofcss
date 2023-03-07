@@ -771,6 +771,7 @@
 			setTimeout(() => (menuGame.style.animation = 'none', menuTitle.style.animation = 'none', gameStart()), 5e2);
 			themeSound.play();
 			sonicSound.play();
+			themeSound.ontimeupdate = () => themeSound.currentTime >= 31 ? themeSound.currentTime = 0 : '';
 		};
 		playGame[1].onclick = () => (instruction.style.inset = 0, setTimeout(() => instructionLang.style.top = instruction.lastElementChild.offsetTop + 'px', 450));
 		instructionClose.onclick = () => instruction.style = null;
@@ -806,13 +807,15 @@
 			const goofySound = new Audio('img/goofy.mp3');
 			goofySound.onended = () => control.goofyLife ? goofySound.play() : '';
 			const starSound = new Audio('img/star.mp3');
+			const girlSound = new Audio('img/girl1.mp3');
+			const marioVoice = new Audio('img/marioVoice.mp3');
 			flappyJumpSound.volume = .3;
 			marioJumpSound.volume = .2;
 			flappykickSound.volume = .5;
 			blockSound.volume = .5;
 			sonicSound.volume = .8;
 			buzzSound.volume = .5;
-			starSound.volume = .5;
+			starSound.volume = .7;
 			const game = document.querySelector('.game');
 			const Mario = document.querySelector('.game .Mario');
 			const Flappy = document.querySelector('.game .Flappy');
@@ -1096,13 +1099,7 @@
 						Flappy.style.transition = '3s';
 						setTimeout(() => {
 							thought.style = 'opacity: 1; bottom: 100%;';
-							const speak = new SpeechSynthesisUtterance(word);
-							window.speechSynthesis.onvioceschanged = () => {};
-							setTimeout(() => {
-								speak.voice = window.speechSynthesis.getVoices()[1];
-								speak.pitch = 1.4;
-								window.speechSynthesis.speak(speak);
-							}, 50);
+							girlSound.play();
 							setTimeout(() => {
 								thought.style = null;
 								Flappy.style.transition = 'right 3s';
@@ -1119,6 +1116,7 @@
 									control.enemyCount = digit;
 									enemyCount.innerText = 'x ' + control.enemyCount;
 									setTimeout(() => {
+										girlSound.src = 'img/girl2.mp3';
 										control.inTheGame = true;
 										if (en.className == 'Sonic') {
 											enemyCount.parentElement.style = 'background-image: url(img/buzzFace.webp);';
@@ -1200,13 +1198,8 @@
 					setTimeout(() => {
 						thought.innerText = `I don't want you, go away`;
 						thought.style = 'opacity: 1; bottom: 100%; padding: 35px; font-size: 14px;';
-						const speak = new SpeechSynthesisUtterance(thought.innerText);
-						window.speechSynthesis.onvioceschanged = () => {};
-						setTimeout(() => {
-							speak.voice = window.speechSynthesis.getVoices()[1];
-							speak.pitch = 1.4;
-							window.speechSynthesis.speak(speak);
-						}, 50);
+						girlSound.src = 'img/girl3.mp3';
+						girlSound.play();
 						setTimeout(() => {
 							thought.style = null;
 							Flappy.style.scale = 1;
@@ -1224,10 +1217,7 @@
 									witch.style.transition = '2s';
 									setTimeout(() => {
 										FlappyTear.style = `opacity: 1; top: ${Flappy.offsetTop}px;`;
-										speak.text = 'Flappy cry';
-										speak.voice = window.speechSynthesis.getVoices()[4];
-										speak.pitch = 1;
-										window.speechSynthesis.speak(speak);
+										marioVoice.play();
 										MarioText.style = `opacity: 1; top: ${Mario.offsetTop - MarioText.offsetHeight}px; right: ${game.offsetWidth - Mario.offsetLeft - MarioText.offsetWidth}px; font: bold 17px sans-serif;`;
 										Mario.style.scale = 1;
 										Mario.style.transition = 'right 2s';
