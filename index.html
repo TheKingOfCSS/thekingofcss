@@ -36,6 +36,7 @@
 		.authorAndCreator {
 			z-index: 1;
 			position: relative;
+			text-shadow: 0 2px 8px #000;
 		}
 		.menu {
 			display: flex;
@@ -45,19 +46,20 @@
 			gap: 4vh;
 		}
 		.menu .section {
-			width: 300px;
-			height: 200px;
+			width: calc(100% / 5);
+			height: 13.7vw;
 			border: 2px solid #fff;
 			cursor: pointer;
 			transition: .6s linear;
-			font: bold 3rem system-ui, sans-serif;
+			font: bold 3.3vw system-ui, sans-serif;
 			will-change: transform;
-			padding: 10px;
+			padding: .5vw;
 			position: relative;
 			background: #ff0036;
-			box-shadow: inset 0 0 60px #000, 0 4px 16px #000;
+			box-shadow: inset 0 0 60px #000;
 			overflow: hidden;
 			z-index: 1;
+			white-space: nowrap;
 		}
 		.menu .section a {
 			display: block;
@@ -101,6 +103,7 @@
 		}
 		.TheKingOfCSS3 {
 			height: 50vh;
+			z-index: 11;
 			-webkit-box-pack: center;
 			-ms-flex-pack: center;
 			justify-content: center;
