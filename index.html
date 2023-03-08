@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Instructor Hovo Vardanyan</title>
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		body {
 			background: #111;
 			text-align: center;
@@ -22,6 +22,7 @@
 			width: 235px;
 			height: 70px;
 			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
 			clip-path: polygon(0 0, 100% 0, 0 100%);
 			z-index: 1;
 		}
@@ -33,6 +34,7 @@
 			width: 285px;
 			height: 95px;
 			background: linear-gradient(165deg, #7c0e0e 60%, #f00 62%);
+			-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%);
 			clip-path: polygon(0 100%, 100% 0, 100% 100%);
 		}
 		.authorAndCreator {
@@ -41,9 +43,14 @@
 			text-shadow: 0 2px 8px #000;
 		}
 		.menu {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			padding: 7% 50px 0;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
 			gap: 4vh;
 		}
@@ -52,12 +59,14 @@
 			height: 13.7vw;
 			border: 2px solid #fff;
 			cursor: pointer;
+			-webkit-transition: .6s linear;
 			transition: .6s linear;
 			font: bold 3.3vw system-ui, sans-serif;
 			will-change: transform;
 			padding: .6vw;
 			position: relative;
 			background: #ff0036;
+			-webkit-box-shadow: inset 0 0 60px #000, 0 5px 15px #000;
 			box-shadow: inset 0 0 60px #000, 0 5px 15px #000;
 			overflow: hidden;
 			z-index: 1;
@@ -71,7 +80,9 @@
 			place-items: center;
 			text-decoration: none;
 			color: #fff;
+			-webkit-transition: .6s linear;
 			transition: .6s linear;
+			-webkit-box-shadow: 0 10px 15px #000;
 			box-shadow: 0 10px 15px #000;
 		}
 		.menu .section::before {
@@ -79,6 +90,7 @@
 			position: absolute;
 			inset: 180px;
     		border: 8px solid #fff0;
+			-webkit-transition: .7s linear;
 			transition: .7s linear;
 			border-radius: 50%;
 			pointer-events: none;
@@ -94,6 +106,7 @@
 		}
 		.menu .section:active::before {
 			rotate: -1080deg;
+			-webkit-transition-duration: .7s;
 			transition-duration: .7s;
 		}
 		.menu .section:active {
