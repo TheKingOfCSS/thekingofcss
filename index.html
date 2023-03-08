@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Instructor Hovo Vardanyan</title>
 	<style>
 		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
@@ -2013,6 +2014,19 @@
 		}
 		.TheKingOfCSS3 .text .letter:nth-child(7) {
 			width: 85px;
+		}
+		@media screen and (max-width: 1024px) {
+			.TheKingOfCSS3 {
+				display: none;
+			}
+			.TheKingOfCSS3 .text .letter span {
+				animation: none;
+			}
+			.menu .section {
+				width: 300px;
+				height: 200px;
+				font-size: 3rem;
+			}
 		}
 	</style>
 </head>
