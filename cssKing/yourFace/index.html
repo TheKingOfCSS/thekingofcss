@@ -30,14 +30,43 @@
 			filter: drop-shadow(1px 1px 1px #fff) drop-shadow(-1px -1px 1px #fff);
 			display: none;
 		}
+		#myRec {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 250px;
+			height: 150px;
+		}
 	</style>
 </head>
 <body>
-	<video autoplay id="face">Not Working</video>
+	<button id="start">Start</button>
+	<button id="stop">Stop</button>
+	<video autoplay id="face"></video>
+	<video controls id="myRec"></video>
 	<button id="btn"></button>
 	<script>
 		const variant = localStorage.getItem('yourFace') || 'user';
-		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => (face.srcObject = res, btn.style.display = 'block')).catch(e => {
+		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => {
+			face.srcObject = res;
+			btn.style.display = 'block';
+			const recorder = new MediaRecorder(res);
+			let data = [];
+			start.onclick = () => {
+				recorder.start();
+			};
+			stop.onclick = () => {
+				recorder.stop();	
+			};
+			recorder.ondataavailable = e => {
+				data.push(e.data);
+			};
+			recorder.onstop = () => {
+				let blob = new Blob(data, { type: 'video/mp4' });
+				data = [];
+				myRec.src = window.URL.createObjectURL(blob);
+			};
+		}).catch(e => {
 			const over = document.createElement('h2');
 			over.innerText = 'Camera is Not Found';
 			document.body.append(over);
