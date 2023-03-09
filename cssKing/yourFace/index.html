@@ -24,30 +24,32 @@
 			font: bold 1.5rem sans-serif;
 			cursor: pointer;
 		}
+		#you {
+			position: fixed;
+			inset: 0;
+			background: #f00;
+			z-index: 2;
+		}
 	</style>
 </head>
 <body>
 	<video autoplay id="face">Not Working</video>
+	<div id="you"></div>
 	<button id="btn">Change</button>
 	<script>
-		let variant = true;
-		btn.onclick = () => {
-			if (variant) {
-				navigator.mediaDevices.getUserMedia({
-					video: { facingMode: 'user' }
-				}).then(res => {
-					face.srcObject = res;
-				}).catch(e => {});
-			} else {
-				navigator.mediaDevices.getUserMedia({
-					video: { facingMode: 'environment' }
-				}).then(res => {
-					face.srcObject = res;
-				}).catch(e => {});
-			}
-			variant = !variant;
+		const variant = localStorage.getItem('yourFace') || 'user';
+		you.onclick = () => {
+			you.style.display = 'none';
+			navigator.mediaDevices.getUserMedia({
+				video: { facingMode: variant }
+			}).then(res => {
+				face.srcObject = res;
+			}).catch(e => {});
 		};
-		
+		btn.onclick = () => {
+			localStorage.setItem('yourFace', 'environment');
+			location.reload();
+		};
 		
 	</script>
 </body>
