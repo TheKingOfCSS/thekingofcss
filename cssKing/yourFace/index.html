@@ -32,14 +32,14 @@
 	<script>
 		let variant = true;
 		btn.onclick = () => {
+			navigator.mediaDevices.getUserMedia({
+				video: { facingMode: variant ? 'user' : 'environment' },
+				
+			}).then(res => {
+				face.srcObject = res;
+			}).catch(e => {});
 			variant = !variant;
 		};
-		navigator.mediaDevices.getUserMedia({
-			video: { facingMode: 'environment' },
-			audio: true
-		}).then(res => {
-			face.srcObject = res;
-		}).catch(e => {});
 		
 	</script>
 </body>
