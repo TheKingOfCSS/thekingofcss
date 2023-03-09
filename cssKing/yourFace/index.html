@@ -38,17 +38,15 @@
 	<button id="btn">Change</button>
 	<script>
 		const variant = localStorage.getItem('yourFace') || 'user';
-		if (localStorage.getItem('yourFace')) {
-			you.style.display = 'none';
-		}
-		you.onclick = () => {
-			you.style.display = 'none';
-			navigator.mediaDevices.getUserMedia({
-				video: { facingMode: variant }
-			}).then(res => {
-				face.srcObject = res;
-			}).catch(e => {});
-		};
+		
+		you.onclick = () => you.style.display = 'none';
+
+		navigator.mediaDevices.getUserMedia({
+			video: { facingMode: variant }
+		}).then(res => {
+			face.srcObject = res;
+		}).catch(e => {});
+		
 		btn.onclick = () => {
 			if (localStorage.getItem('yourFace') != 'environment') {
 				localStorage.setItem('yourFace', 'environment');
