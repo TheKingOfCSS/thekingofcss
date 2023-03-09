@@ -18,18 +18,19 @@
 			bottom: 8%;
 			left: 50%;
 			translate: -50%;
-			padding: 10px 30px;
-			border-radius: 50px;
-			background: #fff;
-			font: bold 6vh sans-serif;
+			background: url(logo.png) no-repeat center / contain;
 			cursor: pointer;
+			width: 20vh;
+			height: 20vh;
+			border: 0;
+			outline: 0;
 			display: none;
 		}
 	</style>
 </head>
 <body>
 	<video autoplay id="face">Not Working</video>
-	<button id="btn">Change</button>
+	<button id="btn"></button>
 	<script>
 		const variant = localStorage.getItem('yourFace') || 'user';
 		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => (face.srcObject = res, btn.style.display = 'block')).catch(e => {
