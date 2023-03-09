@@ -4,28 +4,38 @@
 	<meta charset="UTF-8">
 	<title>User Upload</title>
 	<style>
-		*, ::before, ::after { margin: 0; padding: 0; box-sizing: border-box; }
+		*, ::before, ::after { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		.container {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			gap: 35px;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
 			align-items: flex-start;
 			padding: 7vh;
 		}
 		.container .cell {
-			width: 250px;
-			min-height: 323px;
+			width: 350px;
+			min-height: 423px;
 			border: 1px solid #000;
+			-webkit-box-shadow: 4px 4px 8px #00000080;
 			box-shadow: 4px 4px 8px #00000080;
 			border-radius: 8px;
 			padding-bottom: 15px;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.container .cell .card {
 			height: 100%;
 			text-align: center;
 			position: relative;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.container .cell .card .close {
@@ -38,14 +48,22 @@
 			background: #f00;
 			color: #fff;
 			cursor: pointer;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			font: 20px sans-serif;
 			border: 2px solid #000;
+			-webkit-box-shadow: 3px 3px 10px #00000080;
 			box-shadow: 3px 3px 10px #00000080;
 			opacity: 0;
 			visibility: hidden;
+			-webkit-transition: .9s;
 			transition: .9s;
 		}
 		.container .cell .card .close.active {
@@ -53,16 +71,14 @@
 			visibility: visible;
 		}
 		.container .cell .card .user {
-			width: 215px;
-			height: 215px;
-			background: url(img/user.jpg) no-repeat center / cover;
+			width: 280px;
+			height: 280px;
+			background: url(img/user.jpg) no-repeat center 20% / cover;
 			border-radius: 50%;
 			margin: 20px auto 25px;
+			-webkit-transition: .8s linear;
 			transition: .8s linear;
 			position: relative;
-		}
-		.container .cell .card.on .user {
-			background-image: url(img/CristianoRonaldo.jpg);
 		}
 		.container .cell .card h3 {
 			font: 22px sans-serif;
@@ -70,7 +86,9 @@
 			position: absolute;
 			bottom: 80px;
 			left: 50%;
+			-webkit-transform: translateX(-50%);
 			transform: translateX(-50%);
+			-webkit-transition: 1s .5s;
 			transition: 1s .5s;
 			opacity: 0;
 		}
@@ -91,7 +109,9 @@
     		border-right-color: transparent;
 		}
 		.container .cell .card .user.active::after {
+			-webkit-transition: 2s linear;
 			transition: 2s linear;
+			-webkit-transform: rotate(720deg);
 			transform: rotate(720deg);
 		}
 		.container .cell .card label input {
@@ -105,18 +125,22 @@
 			font: 18px sans-serif;
 			cursor: pointer;
 			border-radius: 30px;
+			-webkit-box-shadow: 1px 4px 4px #6fef84;
 			box-shadow: 1px 4px 4px #6fef84;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.container .cell .card label:hover {
 			background: #08ff08;
 			color: #000;
+			-webkit-box-shadow: 1px 4px 4px #009d1a;
 			box-shadow: 1px 4px 4px #009d1a;
 		}
 		.author {
 			position: absolute;
 			top: 10px;
 			left: 50%;
+			-webkit-transform: translateX(-50%);
 			transform: translateX(-50%);
 			font: 18px cursive;
 			letter-spacing: .5px;
@@ -126,7 +150,7 @@
 <body>
 	<div class="container">
 		<div class="cell">
-			<div class="card on" draggable="true">
+			<div class="card" draggable="true">
 				<div class="close">X</div>
 				<h3>Cristiano Ronaldo</h3>
 				<div class="user"></div>
@@ -170,7 +194,17 @@
 			</div>
 		</div>
 		<div class="cell"></div>
-		<div class="cell"></div>
+		<div class="cell">
+			<div class="card" draggable="true">
+				<div class="close">X</div>
+				<h3>Cristiano Ronaldo</h3>
+				<div class="user"></div>
+				<label>
+					<span>Upload Profile</span>
+					<input type="file" accept="image/*">
+				</label>
+			</div>
+		</div>
 		<div class="cell"></div>
 		<div class="cell"></div>
 	</div>
