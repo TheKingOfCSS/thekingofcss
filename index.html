@@ -137,6 +137,7 @@
 			--anim: .1;
 			--time: 50s;
 			--bg: rgb(255,255,255);
+			--rot: -720deg;
 		}
 		.TheKingOfCSS3 .text {
 			width: 95%;
@@ -169,7 +170,7 @@
 		}
 		@keyframes span {
 			0% { transform: translate(80vw); }
-			50%, 80% { transform: none; rotate: -720deg; scale: var(--anim); }
+			50%, 80% { transform: none; rotate: var(--rot); scale: var(--anim); }
 			60% { scale: 1; }
 			100% { transform: translate(80vw); }
 		}
@@ -2609,12 +2610,14 @@
 	</div>
 	<script>
 		const TheKingOfCSS3 = document.querySelector('.TheKingOfCSS3');
-		const span = document.querySelectorAll('.TheKingOfCSS3 .text .letter:not(:nth-child(8)) span');
+		const span = document.querySelectorAll('.TheKingOfCSS3 .text .letter span');
 		span.forEach((item, index) => item.style.rotate = Math.random() * 360 + 'deg');
-		TheKingOfCSS3.style.setProperty('--let', Math.random() * (.15 - .01) + .01 + ' ' + Math.random() * 2000);
+		const variant = Object.freeze({['0']: [1, Math.random() * 2000],['1']: ['-', '']});
+		TheKingOfCSS3.style.setProperty('--let', Math.random() * (.15 - .01) + .01 + ' ' + variant[0][Math.floor(Math.random() * variant[0].length)]);
 		TheKingOfCSS3.style.setProperty('--anim',  Math.random() * 2);
 		TheKingOfCSS3.style.setProperty('--time', Math.random() * (50 - 2) + 2 + 's');
 		TheKingOfCSS3.style.setProperty('--bg', `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`);
+		TheKingOfCSS3.style.setProperty('--rot', variant[1][Math.floor(Math.random() * variant[1].length)] + '720deg');
 	</script>
 </body>
 </html>
