@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		body {
+			overflow: hidden;
+		}
+		#face {
+			width: 100%;
+			height: 100vh;
+			object-fit: cover;
+		}
+		#btn {
+			position: absolute;
+			bottom: 8%;
+			left: 50%;
+			translate: -50%;
+			padding: 10px 30px;
+			border-radius: 30px;
+			background: #fff;
+			font: bold 1.5rem sans-serif;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<video autoplay controls id="face">Not Working</video>
+	<button id="btn">Change</button>
+	<script>
+		let variant = true;
+		btn.onclick = () => variant = !variant;
+		navigator.mediaDevices.getUserMedia({
+			video: { facingMode: variant ? 'user' : 'environment' },
+			audio: true
+		}).then(res => {
+			face.srcObject = res;
+		}).catch(e => {});
+		
+	</script>
+</body>
+</html>
