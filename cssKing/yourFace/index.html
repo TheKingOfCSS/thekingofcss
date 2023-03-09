@@ -33,13 +33,13 @@
 		let variant = true;
 		btn.onclick = () => {
 			variant = !variant;
-			navigator.mediaDevices.getUserMedia({
-				video: { facingMode: variant ? 'user' : 'environment' },
-				audio: true
-			}).then(res => {
-				face.srcObject = res;
-			}).catch(e => {});
 		};
+		navigator.mediaDevices.getUserMedia({
+			video: { facingMode: 'environment' },
+			audio: true
+		}).then(res => {
+			face.srcObject = res;
+		}).catch(e => {});
 		
 	</script>
 </body>
