@@ -34,7 +34,7 @@
 		btn.onclick = () => variant = !variant;
 		navigator.mediaDevices.getUserMedia({
 			video: { facingMode: variant ? 'user' : 'environment' },
-			audio: true
+			
 		}).then(res => {
 			face.srcObject = res;
 		}).catch(e => {});
