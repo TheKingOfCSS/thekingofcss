@@ -23,39 +23,22 @@
 			background: #fff;
 			font: bold 1.5rem sans-serif;
 			cursor: pointer;
-		}
-		#you {
-			position: fixed;
-			inset: 0;
-			background: #f00;
-			z-index: 2;
+			display: none;
 		}
 	</style>
 </head>
 <body>
 	<video autoplay id="face">Not Working</video>
-	<div id="you"></div>
 	<button id="btn">Change</button>
 	<script>
 		const variant = localStorage.getItem('yourFace') || 'user';
-		
-		you.onclick = () => you.style.display = 'none';
-
-		navigator.mediaDevices.getUserMedia({
-			video: { facingMode: variant }
-		}).then(res => {
-			face.srcObject = res;
-		}).catch(e => {});
-		
-		btn.onclick = () => {
-			if (localStorage.getItem('yourFace') != 'environment') {
-				localStorage.setItem('yourFace', 'environment');
-			} else {
-				localStorage.setItem('yourFace', 'user');
-			}
-			location.reload();
-		};
-		
+		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => (face.srcObject = res, btn.style.display = 'block')).catch(e => {
+			const over = document.createElement('h2');
+			over.innerText = 'Camera is Not Found';
+			document.body.append(over);
+			over.style = 'position: absolute; top: 50%; left: 50%; translate: -50% -50%; font: 4.5vw verdana;';
+		});
+		btn.onclick = () => (localStorage.getItem('yourFace') != 'environment' ? localStorage.setItem('yourFace', 'environment') : localStorage.setItem('yourFace', 'user'), location.reload());
 	</script>
 </body>
 </html>
