@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Your Face</title>
 	<style>
 		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
 		body {
@@ -27,19 +27,20 @@
 	</style>
 </head>
 <body>
-	<video autoplay controls id="face">Not Working</video>
+	<video autoplay id="face">Not Working</video>
 	<button id="btn">Change</button>
 	<script>
 		let variant = true;
 		btn.onclick = () => {
-			navigator.mediaDevices.getUserMedia({
+			variant = !variant;
+			const setting = {
 				video: { facingMode: variant ? 'user' : 'environment' },
-				
-			}).then(res => {
+			};
+			navigator.mediaDevices.getUserMedia(setting).then(res => {
 				face.srcObject = res;
 			}).catch(e => {});
-			variant = !variant;
 		};
+		
 		
 	</script>
 </body>
