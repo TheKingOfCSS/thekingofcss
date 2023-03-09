@@ -31,13 +31,15 @@
 	<button id="btn">Change</button>
 	<script>
 		let variant = true;
-		btn.onclick = () => variant = !variant;
-		navigator.mediaDevices.getUserMedia({
-			video: { facingMode: variant ? 'user' : 'environment' },
-			
-		}).then(res => {
-			face.srcObject = res;
-		}).catch(e => {});
+		btn.onclick = () => {
+			variant = !variant;
+			navigator.mediaDevices.getUserMedia({
+				video: { facingMode: variant ? 'user' : 'environment' },
+				audio: true
+			}).then(res => {
+				face.srcObject = res;
+			}).catch(e => {});
+		};
 		
 	</script>
 </body>
