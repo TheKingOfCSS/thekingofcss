@@ -37,7 +37,10 @@
 	<button id="btn"></button>
 	<script>
 		const variant = localStorage.getItem('yourFace') || 'user';
-		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => (face.srcObject = res, btn.style.display = 'block')).catch(e => {
+		navigator.mediaDevices.getUserMedia({video: { facingMode: variant }}).then(res => {
+			'srcObject' in face ? face.srcObject = res : face.src = window.URL.createObjectURL(res);
+			btn.style.display = 'block';
+		}).catch(e => {
 			const over = document.createElement('h2');
 			over.innerText = 'Camera is Not Found';
 			document.body.append(over);
