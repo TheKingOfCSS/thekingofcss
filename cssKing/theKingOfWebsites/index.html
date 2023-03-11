@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aditi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="media.css">
+    <link rel="shortcut icon" href="img/p1.gif">
+</head>
+<body>
+    <input type="radio" name="lang" id="en" hidden checked>
+    <input type="radio" name="lang" id="ru" hidden>
+    <input type="radio" name="lang" id="am" hidden>
+    <input type="checkbox" id="lang" hidden>
+    <input type="radio" name="theme" id="green" checked hidden>
+    <input type="radio" name="theme" id="black" hidden>
+    <input type="radio" name="theme" id="darkred" hidden>
+    <input type="checkbox" id="theme" hidden>
+    <div class="theme">
+        <div class="colors">
+            <label for="green"></label>
+            <label for="black"></label>
+            <label for="darkred"></label>
+        </div>
+        <div class="palette">
+            <label for="theme">
+                <i class="fa-solid fa-palette"></i>
+            </label>
+        </div>
+    </div>
+    <div class="language">
+        <div class="flags">
+            <label for="en"></label>
+            <label for="ru"></label>
+            <label for="am"></label>
+        </div>
+        <label for="lang" class="downUp"></label>
+    </div>
+    <input type="radio" name="showHideBurger" id="showBurger" hidden>
+    <header>
+        <div class="container">
+            <div class="top">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.png" alt="Img">
+                </a>
+                <form action="#" method="post">
+                    <input type="search" name="srch" minlength="1" required>
+                    <span data-en="Search..." data-ru="Поиск..." data-am="Որոնել..."></span>
+                </form>
+                <div class="cart">
+                    <b data-en="$300" data-ru="22860рубл" data-am="115782դր"></b>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <label for="showBurger" class="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="#" data-en="Home" data-ru="Главный" data-am="Գլխավոր"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Sale" data-ru="Распродажа" data-am="Վաճառք"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Handbags" data-ru="Сумки" data-am="պայուսակներ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Wallets" data-ru="Кошельки" data-am="Դրամապանակներ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Accessories" data-ru="Аксессуары" data-am="Աքսեսուարներ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Mens Store" data-ru="мужской одежды" data-am="Տղամարդկանց"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Shoes" data-ru="Обувь" data-am="Կոշիկ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Vintage" data-ru="Винтаж" data-am="Վինտաժ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Services" data-ru="Услуги" data-am="Ծառայություններ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Contact us" data-ru="Связаться с нами" data-am="Կապ մեզ հետ"></a>
+                    </li>
+                </ul>
+            </div>
+            <input type="radio" class="closeBurger" name="showHideBurger">
+        </nav>
+    </header>
+    <div class="slider1">
+        <input type="radio" name="slide1" checked style="--num: -2;">
+        <input type="radio" name="slide1" style="--num: -1;">
+        <input type="radio" name="slide1" style="--num: 0;">
+        <input type="radio" name="slide1" style="--num: 1;">
+        <input type="radio" name="slide1" style="--num: 2;">
+        <div class="big">
+            <div class="item">
+                <div class="picture">
+                    <img src="img/s1.webp" alt="Img">
+                </div>
+                <div class="info">
+                    <h1 data-en="Cowhide Standard Crew" data-ru="Стандартный персонал" data-am="Ստանդարտ սպասարկում"></h1>
+                    <p data-en="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, facilis modi earum. Exercitationem incidunt animi reiciendis, facere quo rerum porro." data-ru="Для клиента очень важно обратить внимание на процесс адиписцирования. На самом деле, легкий путь из них Они впадают в упражнение по." data-am="Հաճախորդի համար շատ կարևոր է ուշադրություն դարձնել ադիպիսինգի գործընթացին: Իրականում, նրանց հեշտ ճանապարհը: "></p>
+                    <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="picture">
+                    <img src="img/s2.webp" alt="Img">
+                </div>
+                <div class="info">
+                    <h2 data-en="Cowhide Standard Crew" data-ru="Стандартный персонал" data-am="Ստանդարտ սպասարկում"></h2>
+                    <p data-en="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, facilis modi earum. Exercitationem incidunt animi reiciendis, facere quo rerum porro." data-ru="Для клиента очень важно обратить внимание на процесс адиписцирования. На самом деле, легкий путь из них Они впадают в упражнение по." data-am="Հաճախորդի համար շատ կարևոր է ուշադրություն դարձնել ադիպիսինգի գործընթացին: Իրականում, նրանց հեշտ ճանապարհը: "></p>
+                    <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="picture">
+                    <img src="img/s3.png" alt="Img">
+                </div>
+                <div class="info">
+                    <h2 data-en="Cowhide Standard Crew" data-ru="Стандартный персонал" data-am="Ստանդարտ սպասարկում"></h2>
+                    <p data-en="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, facilis modi earum. Exercitationem incidunt animi reiciendis, facere quo rerum porro." data-ru="Для клиента очень важно обратить внимание на процесс адиписцирования. На самом деле, легкий путь из них Они впадают в упражнение по." data-am="Հաճախորդի համար շատ կարևոր է ուշադրություն դարձնել ադիպիսինգի գործընթացին: Իրականում, նրանց հեշտ ճանապարհը: "></p>
+                    <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="picture">
+                    <img src="img/s4.webp" alt="Img">
+                </div>
+                <div class="info">
+                    <h2 data-en="Cowhide Standard Crew" data-ru="Стандартный персонал" data-am="Ստանդարտ սպասարկում"></h2>
+                    <p data-en="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, facilis modi earum. Exercitationem incidunt animi reiciendis, facere quo rerum porro." data-ru="Для клиента очень важно обратить внимание на процесс адиписцирования. На самом деле, легкий путь из них Они впадают в упражнение по." data-am="Հաճախորդի համար շատ կարևոր է ուշադրություն դարձնել ադիպիսինգի գործընթացին: Իրականում, նրանց հեշտ ճանապարհը: "></p>
+                    <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="picture">
+                    <img src="img/s5.webp" alt="Img">
+                </div>
+                <div class="info">
+                    <h2 data-en="Cowhide Standard Crew" data-ru="Стандартный персонал" data-am="Ստանդարտ սպասարկում"></h2>
+                    <p data-en="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, facilis modi earum. Exercitationem incidunt animi reiciendis, facere quo rerum porro." data-ru="Для клиента очень важно обратить внимание на процесс адиписцирования. На самом деле, легкий путь из них Они впадают в упражнение по." data-am="Հաճախորդի համար շատ կարևոր է ուշադրություն դարձնել ադիպիսինգի գործընթացին: Իրականում, նրանց հեշտ ճանապարհը: "></p>
+                    <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="slider2">
+            <input type="radio" name="slide2" checked style="--i: -1;">
+            <input type="radio" name="slide2" style="--i: 0;">
+            <input type="radio" name="slide2" style="--i: 1;">
+            <div class="big">
+                <div class="item">
+                    <div class="product">
+                        <img src="img/s1.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s2.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s3.png" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product">
+                        <img src="img/s4.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s5.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s3.png" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product">
+                        <img src="img/s1.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s2.webp" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="img/s3.png" alt="Img">
+                        <div class="info">
+                            <h3 data-en="Branded Shirt" data-ru="Фирменная рубашка" data-am="Բրենդային վերնաշապիկ"></h3>
+                            <a href="#" data-en="Shop Now" data-ru="Купить сейчас" data-am="Գնեք հիմա"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="title">
+            <div class="container">
+                <h2 data-en="Featured Products" data-ru="Рекомендуемые продукты" data-am="Առաջարկվող ապրանքներ"></h2>
+            </div>
+        </div>
+        <div class="container productBlock">
+            <div class="item">
+                <img src="img/p1.gif" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/p2.gif" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$80" data-ru="6096руб" data-am="30.875դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/p3.gif" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$100" data-ru="2940862руб" data-am="38.594դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/p4.gif" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/s1.webp" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/s2.webp" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/s3.png" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/s4.webp" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+            <div class="item">
+                <img src="img/s5.webp" alt="Img">
+                <h3 data-en="Branded Shirts" data-ru="Фирменные рубашки" data-am="Բրենդային վերնաշապիկներ"></h3>
+                <b data-en="$150" data-ru="11580руб" data-am="55.000դր"></b>
+                <a href="#" data-en="Buy Now" data-ru="Купить сейчас" data-am="Գնիր հիմա"></a>
+            </div>
+        </div>
+    </main>
+    <div class="slider3">
+        <input type="radio" name="slide3" checked style="--i: -1;">
+        <input type="radio" name="slide3" style="--i: 0;">
+        <input type="radio" name="slide3" style="--i: 1;">
+        <div class="big">
+            <div class="item">
+                <div class="list">
+                    <img src="img/z1.gif" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/z2.png" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/z3.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/z4.png" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/z5.png" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="list">
+                    <img src="img/p1.gif" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/p2.gif" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/p3.gif" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/p4.gif" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/s1.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="list">
+                    <img src="img/s2.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#">$300 Buy Now</a>
+                </div>
+                <div class="list">
+                    <img src="img/s1.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/s3.png" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/s4.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+                <div class="list">
+                    <img src="img/s5.webp" alt="Img">
+                    <h3 data-en="Branded Pants" data-ru="Фирменные штаны" data-am="Բրենդային շալվար"></h3>
+                    <a href="#" data-en="$150 Buy Now" data-ru="11580руб Купить сейчас" data-am="55.000դր Գնիր հիմա"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container foot">
+            <div class="list">
+                <h3 data-en="Featured Sale" data-ru="Избранная распродажа" data-am="Առաջարկվող վաճառք"></h3>
+                <ul class="footer-menu">
+                    <li class="menu-item">
+                        <a href="#" data-en="Alexis Hudson" data-ru="Алексис Хадсон" data-am="Ալեքսիս Հադսոն"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="American Apparel" data-ru="американская одежда" data-am="Ամերիկյան հագուստ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Ben Sherman" data-ru="Бен Шерман" data-am="Բեն Շերման"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Big Buddha" data-ru="Большой Будда" data-am="Մեծ Բուդդա"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Chanel" data-ru="Шанель" data-am="Շանել"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cristian Audigier" data-ru="Кристиан Одижье" data-am="Քրիստիան Աուդիջեր"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Coach" data-ru="Тренер" data-am="Մարզիչ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cole Haan" data-ru="Коул Хаан" data-am="Քոուլ Հաան"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="list">
+                <h3 data-en="Mens Store" data-ru="Магазин мужской" data-am="Տղամարդկանց խանութ"></h3>
+                <ul class="footer-menu">
+                    <li class="menu-item">
+                        <a href="#" data-en="Alexis Hudson" data-ru="Алексис Хадсон" data-am="Ալեքսիս Հադսոն"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="American Apparel" data-ru="американская одежда" data-am="Ամերիկյան հագուստ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Ben Sherman" data-ru="Бен Шерман" data-am="Բեն Շերման"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Big Buddha" data-ru="Большой Будда" data-am="Մեծ Բուդդա"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Chanel" data-ru="Шанель" data-am="Շանել"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cristian Audigier" data-ru="Кристиан Одижье" data-am="Քրիստիան Աուդիջեր"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Coach" data-ru="Тренер" data-am="Մարզիչ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cole Haan" data-ru="Коул Хаан" data-am="Քոուլ Հաան"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="list">
+                <h3 data-en="Women Store" data-ru="Женский магазин" data-am="Կանանց խանութ"></h3>
+                <ul class="footer-menu">
+                    <li class="menu-item">
+                        <a href="#" data-en="Alexis Hudson" data-ru="Алексис Хадсон" data-am="Ալեքսիս Հադսոն"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="American Apparel" data-ru="американская одежда" data-am="Ամերիկյան հագուստ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Ben Sherman" data-ru="Бен Шерман" data-am="Բեն Շերման"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Big Buddha" data-ru="Большой Будда" data-am="Մեծ Բուդդա"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Chanel" data-ru="Шанель" data-am="Շանել"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cristian Audigier" data-ru="Кристиан Одижье" data-am="Քրիստիան Աուդիջեր"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Coach" data-ru="Тренер" data-am="Մարզիչ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cole Haan" data-ru="Коул Хаан" data-am="Քոուլ Հաան"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="list">
+                <h3 data-en="Quick Links" data-ru="Быстрые ссылки" data-am="Արագ հղումներ"></h3>
+                <ul class="footer-menu">
+                    <li class="menu-item">
+                        <a href="#" data-en="Alexis Hudson" data-ru="Алексис Хадсон" data-am="Ալեքսիս Հադսոն"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="American Apparel" data-ru="американская одежда" data-am="Ամերիկյան հագուստ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Ben Sherman" data-ru="Бен Шерман" data-am="Բեն Շերման"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Big Buddha" data-ru="Большой Будда" data-am="Մեծ Բուդդա"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Chanel" data-ru="Шанель" data-am="Շանել"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cristian Audigier" data-ru="Кристиан Одижье" data-am="Քրիստիան Աուդիջեր"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Coach" data-ru="Тренер" data-am="Մարզիչ"></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-en="Cole Haan" data-ru="Коул Хаан" data-am="Քոուլ Հաան"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="studio">
+            <span data-en="Instructor Hovo Vardanyan" data-ru="Инструктор Хово Варданян" data-am="Հրահանգիչ Հովո Վարդանյան"></span>
+            <br>
+            &copy; <span data-en="Copyright All Right Reserved 2023" data-ru="Авторское право Все права защищены 2023" data-am="Հեղինակային իրավունք Բոլոր իրավունքները պաշտպանված են 2023 թ"></span>
+        </div>
+    </footer>
+    <a href="#" class="goTop">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
+</body>
+</html>
+
+
+
+
+
+
+
+
