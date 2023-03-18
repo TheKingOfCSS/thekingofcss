@@ -1171,7 +1171,6 @@
 					}, 5e2);
 				}, 7e2);
 			};
-
 			document.onkeydown = ({which} = e) => {
 				if (control.enemyCount == 0 && control.girlRequiredCoin == 10) {
 					step(Buzz, bomb, koopa, Goofy, 9, 'goofyLife', 'Give Me 5 Rings');
@@ -1181,11 +1180,11 @@
 					themeSound.pause();
 					document.onkeydown = null;
 					clearInterval(drawGame);
+					bomb.style.display = 'none';
+					koopa.style.display = 'none';
+					star.style.display = 'none';
+					getRing.style.display = 'none';
 					enemyCount.parentElement.style.opacity = 0;
-					star.style.animation = '';
-					getRing.style.animation = '';
-					bomb.style.animation = '';
-					koopa.style.animation = '';
 					control.MarioY = game.offsetHeight / 3;
 					Mario.style.top = control.MarioY + 'px';
 					Mario.style.transition = '1s';
