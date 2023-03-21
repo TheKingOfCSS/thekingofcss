@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D Pryamid / The King Of CSS</title>
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.slider {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: #181818;
+		}
+		.pryamidPerspect {
+			width: 1420px;
+			perspective: 200px;
+			overflow: hidden;
+		}
+		.pryamidPerspect .burg {
+			transform-style: preserve-3d;
+			width: 1420px;
+			height: 780px;
+			position: relative;
+			transform: translateY(0em) translateZ(0em);
+		}
+		.pryamidPerspect .burg.prOne {
+			animation: pryamidBlockOne 20s linear 1s 2 alternate;
+		}
+		.pryamidPerspect .burg.prTwo {
+			animation: pryamidBlockTwo 15s linear 2 alternate;
+		}
+		.pryamidPerspect .burg .stone {
+			width: 80%;
+			height: 35px;
+			display: block;
+			position: absolute;
+			bottom: 0;
+			border-top-left-radius: 14%;
+			border-top-right-radius: 14%;
+			background: url(pryamid/stone.jpg);
+			box-shadow: inset 0px -2px 5px 0px #ffffffbd;
+		}
+		.pryamidPerspect .burg .stone.Ss1 {
+			width: 34%;
+			left: 10%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Ss2 {
+			width: 34%;
+			right: 10%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S2 {
+			bottom: 35px;
+			width: 32%;
+			left: 12%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl2 {
+			bottom: 35px;
+			width: 32%;
+			right: 12%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S3 {
+			bottom: 70px;
+			width: 30%;
+			left: 14%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl3 {
+			bottom: 70px;
+			width: 30%;
+			right: 14%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S4 {
+			bottom: 105px;
+			width: 28%;
+			left: 16%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl4 {
+			bottom: 105px;
+			width: 28%;
+			right: 16%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S5 {
+			bottom: 140px;
+			width: 26%;
+			left: 18%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl5 {
+			bottom: 140px;
+			width: 26%;
+			right: 18%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S6 {
+			bottom: 175px;
+			width: 24.3%;
+			left: 20%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl6 {
+			bottom: 175px;
+			width: 24.3%;
+			right: 20%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S7 {
+			bottom: 210px;
+			width: 22.5%;
+			left: 22%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl7 {
+			bottom: 210px;
+			width: 22.5%;
+			right: 22%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S8 {
+			bottom: 245px;
+			width: 20.9%;
+			left: 24%;
+			border-top-right-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.Sl8 {
+			bottom: 245px;
+			width: 20.9%;
+			right: 24%;
+			border-top-left-radius: 0;
+		}
+		.pryamidPerspect .burg .stone.S9 {
+			bottom: 280px;
+			width: 48%;
+			left: 26%;
+		}
+		.pryamidPerspect .burg .stone.S10 {
+			bottom: 315px;
+			width: 44%;
+			left: 28%;
+		}
+		.pryamidPerspect .burg .stone.S11 {
+			bottom: 350px;
+			width: 40%;
+			left: 30%;
+		}
+		.pryamidPerspect .burg .stone.S12 {
+			bottom: 385px;
+			width: 36%;
+			left: 32%;
+		}
+		.pryamidPerspect .burg .stone.S13 {
+			bottom: 420px;
+			width: 32%;
+			left: 34%;
+		}
+		.pryamidPerspect .burg .stone.S14 {
+			bottom: 455px;
+			width: 28%;
+			left: 36%;
+		}
+		.pryamidPerspect .burg .stone.S15 {
+			bottom: 490px;
+			width: 24%;
+			left: 38%;
+		}
+		.pryamidPerspect .burg .stone.S16 {
+			bottom: 525px;
+			width: 20%;
+			left: 40%;
+		}
+		.pryamidPerspect .burg .stone.S17 {
+			bottom: 560px;
+			width: 16%;
+			left: 42%;
+		}
+		.pryamidPerspect .burg .stone.S18 {
+			bottom: 595px;
+			width: 12%;
+			left: 44%;
+		}
+		.pryamidPerspect .burg .stone.S19 {
+			bottom: 630px;
+			width: 8%;
+			left: 46%;
+		}
+		.pryamidPerspect .burg .stone.S20 {
+			bottom: 665px;
+			width: 4%;
+			left: 48%;
+		}
+		.pryamidPerspect .burg .stone.S21 {
+			bottom: 700px;
+			width: 1.5%;
+			left: 49.25%;
+			height: 28px;
+			border-radius: 67% / 64%;
+			transform-style: preserve-3d;
+		}
+		.pryamidPerspect .burg .stone.S21 .boxButtons {
+			width: 26em;
+			transform: translateX(-205px);
+			transition: .5s;
+			display: flex;
+			justify-content: space-between;
+		}
+		.pryamidPerspect .burg .stone.S21 .boxButtons .but {
+			padding: 3px 10px;
+			font-size: 17px;
+			cursor: pointer;
+			outline: 0;
+		}
+		.pryamidPerspect .burg .left {
+			width: 4000px;
+			height: 280px;
+			background: url(pryamid/3.jpg) repeat;
+			background-size: 13% 125%;
+			position: absolute;
+			bottom: 0;
+			left: 615px;
+			transform: rotateY(90deg);
+			transform-origin: left;
+		}
+		.pryamidPerspect .burg .right {
+			width: 4000px;
+			height: 280px;
+			background: url(pryamid/2.jpg);
+			background-size: 17% 123%;
+			position: absolute;
+			bottom: 0;
+			right: 615px;
+			transform: rotateY(-90deg);
+			transform-origin: right;
+		}
+		.pryamidPerspect .burg .bottom {
+			width: 958px;
+			height: 4000px;
+			background: url(pryamid/3.jpg) repeat;
+			background-size: 32% 3%;
+			position: absolute;
+			bottom: 0;
+			left: 17%;
+			transform: rotateX(90deg);
+			transform-origin: bottom;
+		}
+		.pryamidPerspect .burg .top {
+			width: 602px;
+			height: 4000px;
+			position: absolute;
+			bottom: 0;
+			left: 29%;
+			transform: rotateX(90deg) translateZ(280px);
+			transform-origin: bottom;
+			background: url(pryamid/2.jpg) repeat;
+			background-size: 80% 35%;
+		}
+		.pryamidPerspect .burg .pryamidHome {
+			width: 967px;
+			height: 967px;
+			position: relative;
+			top: -23.91%;
+			left: 210px;
+			transform-style: preserve-3d;
+			transform: translateZ(-248.3em);
+		}
+		.pryamidPerspect .burg .pryamidHome .leftH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/00.jpg) repeat;
+			background-size: contain;
+			background-position: 106% 47%;
+			transform: rotateY(90deg);
+			transform-origin: left;
+		}
+		.pryamidPerspect .burg .pryamidHome .rightH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/00.jpg) repeat;
+			background-size: contain;
+			background-position: 106% 47%;
+			transform: rotateY( -90deg);
+			transform-origin: right;
+		}
+		.pryamidPerspect .burg .pryamidHome .bottomH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/11.png) repeat;
+			background-size: 223% 504%;
+			background-position: 50% 210%;
+			transform: rotateX(90deg);
+			transform-origin: bottom;
+		}
+		.pryamidPerspect .burg .pryamidHome .topH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/top.jpg) repeat;
+			background-size: 90% 5%;
+			transform: rotateX(-90deg);
+			transform-origin: top;
+		}
+		.pryamidPerspect .burg .pryamidHome .backH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/porc.png) repeat;
+			background-size: 189% 152%;
+			background-position: 50% 32%;
+			transform: translateZ(-961px);
+		}
+		.pryamidPerspect .burg .pryamidHome .backH .leftFire {
+			position: absolute;
+			top: 37.9%;
+			left: 34.3%;
+			width: 54px;
+		}
+		.pryamidPerspect .burg .pryamidHome .backH .rightFire {
+			position: absolute;
+			top: 37.9%;
+			right: 35%;
+			width: 54px;
+		}
+		.pryamidPerspect .burg .letterBlock {
+			transform-style: preserve-3d;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateZ(-293em) translateY(-36em) rotateY(290deg);
+			display: flex;
+		}
+		.pryamidPerspect .burg .letterBlock.active {
+			animation: pryamidLetterBlock 10s linear infinite; 
+		}
+		.pryamidPerspect .burg .letterBlock .letter {
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 60px;
+			color: #fff;
+			transform: rotateY(calc(var(--i) * 24deg)) translateZ(180px);
+			text-shadow: -49px 27px 27px #000, 0px -1px 5px #000;
+		}
+		.pryamidPerspect .burg .left.Two {
+			width: 4043px;
+			height: 280px;
+			background: url(pryamid/newbot.jpg) repeat;
+			background-size: 16% 125%;
+			position: absolute;
+			bottom: 0;
+			left: 38em;
+			transform: rotateY(101deg) translateX(302.6em) translateY(-31em) translateZ(59.7em);
+			transform-origin: left;
+		}
+		.pryamidPerspect .burg .right.Two {
+			width: 4000px;
+			height: 280px;
+			background: url(pryamid/newbot2.jpg);
+			background-size: 16% 98%;
+			position: absolute;
+			bottom: 0;
+			left: 48em;
+			transform: rotateY(84deg) translateX(306.90em) translateY(-31em) translateZ(-31em);
+			transform-origin: left;
+		}
+		.pryamidPerspect .burg .bottom.Two {
+			width: 1286px;
+			height: 3969px;
+			background: url(pryamid/3.jpg) repeat;
+			background-size: 39% 3%;
+			position: absolute;
+			bottom: 0;
+			left: -9%;
+			transform: rotateX(90deg) translateY(-308.39em) translateZ(31.9em);
+			transform-origin: bottom;
+		}
+		.pryamidPerspect .burg .top.Two {
+			width: 1286px;
+			height: 3969px;
+			position: absolute;
+			bottom: 0;
+			left: -7%;
+			transform: rotateX(90deg) translateY(-308.39em) translateZ(48em);
+			transform-origin: bottom;
+			background: url(pryamid/2.jpg) repeat;
+			background-size: 125% 35%;
+		}
+		@keyframes pryamidBlockOne {
+			0% { transform: translateY(0em) translateZ(0em); }
+			5% { transform: translateY(-19em) translateZ(0em); }
+			60% { transform: translateY(-19em) translateZ(258em); }
+			70% { transform: translateY(13em) translateZ(286em); }
+			100% { transform: translateY(13em) translateZ(282em); }
+		}
+		@keyframes pryamidBlockTwo {
+			0% { transform: translateY(0em) translateZ(0em); }
+			5% { transform: translateY(-19em) translateZ(0em); }
+			15% { transform: translateY(-19em) translateZ(258em); }
+			20% { transform: translateY(-19em) translateZ(290em); }
+			30% { transform: translateY(11em) translateZ(318em); }
+			70% { transform: translateY(14em) translateZ(564em) translateX(115px); }
+			100% { transform: translateY(30em) translateZ(611em) translateX(167px); }
+		}
+		@keyframes pryamidLetterBlock {
+			from {
+				transform: translateZ(-293em) translateY(-36em) rotateY(0);
+			}
+			to {
+				transform: translateZ(-293em) translateY(-36em) rotateY(360deg);
+			}
+		}
+		.pryamidPerspect .burg .pryamidHome.Second {
+			width: 1390px;
+			height: 967px;
+			position: relative;
+			top: -212.91%;
+			left: -13%;
+			transform-style: preserve-3d;
+			transform: translateZ(-556.3em);
+		}
+		.pryamidPerspect .burg .pryamidHome.Second .leftH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 18px;
+			background: url(pryamid/gal.jpg) repeat;
+			background-size: cover;
+			background-position: 106% 47%;
+			transform: rotateY(90deg);
+			transform-origin: left;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second.active .leftH {
+			animation: pryamidGalS 35s linear infinite;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second .rightH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: -7px;
+			background: url(pryamid/gal.jpg) repeat;
+			background-size: cover;
+			background-position: 106% 47%;
+			transform: rotateY( -90deg);
+			transform-origin: right;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second.active .rightH {
+			animation: pryamidGalS 35s linear infinite;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second .bottomH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/gal.jpg) repeat;
+			background-size: cover;
+			background-position: 50% 210%;
+			transform: rotateX(90deg);
+			transform-origin: bottom;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second.active .bottomH {
+			animation: pryamidGalS 35s linear infinite;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second .topH {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(pryamid/gal.jpg) repeat;
+			background-size: cover;
+			transform: rotateX(-90deg);
+			transform-origin: top;
+		}
+		.pryamidPerspect .burg .pryamidHome.Second.active .topH {
+			animation: pryamidGalS 35s linear infinite;
+		}
+		.pryamidPerspect .burg .skeleton2 {
+			position: absolute;
+			top: 11.8%;
+			left: 49%;
+			transform: translateZ(-356.3em) scaleX(-1);
+			width: 139px;
+		}
+		.pryamidPerspect .burg .skeleton3 {
+			position: absolute;
+			top: 11.8%;
+			left: 42%;
+			transform: translateZ(-386.3em);
+			width: 173px;
+			animation: pryamidMummy3 5s linear infinite alternate;
+		}
+		@keyframes pryamidMummy3 {
+			from {
+				transform: translateZ(-396.3em);
+			}
+			to {
+				transform: translateZ(-379.3em);
+			}
+		}
+		.pryamidPerspect .burg .skelAnim img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.slider button {
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			padding: 12px 30px;
+			font-size: 2rem;
+			background: #0009;
+			color: #fff;
+			-webkit-box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			box-shadow: 0 0 10px #fff;
+			border-radius: 12px;
+			border: 0;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			z-index: 1;
+			text-transform: capitalize;
+		}
+		.slider button:hover {
+			background: #fff;
+			color: #000;
+		}
+		.slider button.prev {
+			left: 3%;
+		}
+		.slider button.next {
+			right: 3%;
+		}
+	</style>
+</head>
+<body>
+	<div class="slider">
+		<div class="pryamidPerspect">
+			<div class="burg">
+				<div class="left"></div>
+				<div class="right"></div>
+				<div class="bottom"></div>
+				<div class="top"></div>
+				<div class="pryamidHome">
+					<div class="leftH"></div>
+					<div class="rightH"></div>
+					<div class="bottomH"></div>
+					<div class="topH"></div>
+					<div class="backH">
+						<img class="leftFire" src="pryamid/fire.gif" alt="Img">
+						<img class="rightFire" src="pryamid/fire.gif" alt="Img">
+					</div>
+				</div>
+				<div class="pryamidHome Second">
+					<div class="leftH"></div>
+					<div class="rightH"></div>
+					<div class="bottomH"></div>
+					<div class="topH"></div>
+				</div>
+				<div class="letterBlock">
+					<span style="--i:1" class="letter">V</span>
+					<span style="--i:2" class="letter">O</span>
+					<span style="--i:3" class="letter">V</span>
+					<span style="--i:4" class="letter">A</span>
+					<span style="--i:5" class="letter">R</span>
+					<span style="--i:6" class="letter">D</span>
+					<span style="--i:7" class="letter">A</span>
+					<span style="--i:8" class="letter">N</span>
+					<span style="--i:9" class="letter">Y</span>
+					<span style="--i:10" class="letter">A</span>
+					<span style="--i:11" class="letter">N</span>
+					<span style="--i:12" class="letter years">2</span>
+					<span style="--i:13" class="letter years">7</span>
+					<span style="--i:14" class="letter">H</span>
+					<span style="--i:15" class="letter">O</span>
+				</div>
+				<div class="left Two"></div>
+				<div class="skelAnim skeleton2">
+					<img src="pryamid/skeleton3.gif" alt="Img">
+				</div>
+				<div class="skelAnim skeleton3">
+					<img src="pryamid/skeleton2.gif" alt="Img">
+				</div>
+				<div class="right Two"></div>
+				<div class="bottom Two"></div>
+				<div class="top Two"></div>
+				<span class="stone Ss1"></span>
+				<span class="stone Ss2"></span>
+				<span class="stone S2"></span>
+				<span class="stone Sl2"></span>
+				<span class="stone S3"></span>
+				<span class="stone Sl3"></span>
+				<span class="stone S4"></span>
+				<span class="stone Sl4"></span>
+				<span class="stone S5"></span>
+				<span class="stone Sl5"></span>
+				<span class="stone S6"></span>
+				<span class="stone Sl6"></span>
+				<span class="stone S7"></span>
+				<span class="stone Sl7"></span>
+				<span class="stone S8"></span>
+				<span class="stone Sl8"></span>
+				<span class="stone S9"></span>
+				<span class="stone S10"></span>
+				<span class="stone S11"></span>
+				<span class="stone S12"></span>
+				<span class="stone S13"></span>
+				<span class="stone S14"></span>
+				<span class="stone S15"></span>
+				<span class="stone S16"></span>
+				<span class="stone S17"></span>
+				<span class="stone S18"></span>
+				<span class="stone S19"></span>
+				<span class="stone S20"></span>
+				<span class="stone S21"></span>
+			</div>
+		</div>
+		<button class="prev">part 1</button>
+		<button class="next">part 2</button>
+	</div>
+	<script>
+		const slider = document.querySelector('.slider');
+		const burgBtn = document.querySelectorAll('.slider button');
+		const burg = document.querySelector('.pryamidPerspect .burg');
+		const letterBlock = document.querySelector('.pryamidPerspect .burg .letterBlock');
+		const years = document.querySelectorAll('.years');
+		const theme = new Audio('pryamid/music.mp3');
+		theme.onended = () => theme.play();
+		let burgBool = true;
+		const myAge = new Date(Date.now() - new Date('8/28/1994').getTime()).getFullYear() - 1970;
+		years[0].innerText = myAge.toString()[0];
+		years[1].innerText = myAge.toString()[1];
+		burgBtn[0].onclick = () => {
+			theme.play();
+			burgBtn[1].style.display = 'none';
+			burg.style.animation = 'pryamidBlockOne 40s linear 2 alternate';
+			letterBlock.style.animation = 'pryamidLetterBlock 10s infinite';
+			burg.onanimationend = () => (letterBlock.style.animation = '', burgBtn[1].style.display = 'block', burg.style.animation = '');
+		};
+		burgBtn[1].onclick = () => {
+			if (burgBool) {
+				theme.play();
+				burgBool = false;
+				burgBtn[0].style.display = 'none';
+				burg.style.animation = 'pryamidBlockTwo 50s linear 2 alternate';
+				burg.onanimationend = () => (letterBlock.style.animation = '', burgBtn[0].style.display = 'block', burg.style.animation = '', burgBool = true);
+				setTimeout(() => slider.style.background = 'url(pryamid/gal.jpg) 50% 210% / 20%', 1e4);
+				setTimeout(() => slider.style.background = null, 9e4);
+			}
+		};
+		console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+	</script>
+</body>
+</html>
