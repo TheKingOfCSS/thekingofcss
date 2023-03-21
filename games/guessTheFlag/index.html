@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guess The Flag</title>
+	<link rel="shortcut icon" href="bg2.jpg">
+	<style>
+		* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: -webkit-gradient(linear, left top, left bottom, from(#111), color-stop(#000), to(#111));
+			background: linear-gradient(#111, #000, #111);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-column-gap: 8%;
+			column-gap: 8%;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.game .display {
+			text-align: center;
+			color: #fff;
+			-webkit-transition: .3s;
+			transition: .3s;
+			position: relative;
+		}
+		.game .display h1 {
+			font: bold 2.2rem verdana;
+			margin-bottom: 2vh;
+			white-space: nowrap;
+		}
+		.game .display h2 {
+			font: bold 4.5rem verdana;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			text-shadow: -5px 4px 2px #000, -2px 8px 6px #fff;
+			translate: -50% -50%;
+			opacity: 0;
+			pointer-events: none;
+			-webkit-transition: 1s;
+			transition: 1s;
+			-webkit-box-reflect: below -15px linear-gradient(transparent 28%, #000 12rem);
+		}
+		.game .display .item {
+			width: 410px;
+			height: 25vh;
+			background: #f00;
+			margin: 15px auto;
+			cursor: pointer;
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.game .display .item:hover {
+			scale: 1.05;
+		}
+		.game .time,
+		.game .point {
+			border-radius: 50%;
+			width: 130px;
+			height: 130px;
+			background: #fff;
+			display: grid;
+			justify-items: center;
+			-ms-flex-line-pack: center;
+			align-content: center;
+			font: bold 3rem verdana;
+		}
+		.game .point {
+			text-align: center;
+			font-size: 1.8rem;
+		}
+		.menu {
+			text-align: center;
+			height: 100vh;
+			background: linear-gradient(217deg, #00bcff70, #ffffff00);
+			z-index: 1;
+			position: fixed;
+			inset: 0;
+			color: #fff;
+			padding-top: 20vh;
+			-webkit-backdrop-filter: blur(5px);
+			backdrop-filter: blur(5px);
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.menu h1 {
+			font: bold 4vw verdana;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-perspective: 850px;
+			perspective: 850px;
+		}
+		.menu h1 span {
+			-webkit-animation: title 2s calc(var(--i) * .05s) infinite alternate;
+			animation: title 2s calc(var(--i) * .05s) infinite alternate;
+			-webkit-text-stroke: 2px transparent;
+			-webkit-transition: .4s;
+			transition: .4s;
+			color: #ffe200;
+			text-shadow: 0 3px 4px #000;
+		}
+		.menu h1 span:hover {
+			color: #f00;
+		}
+		@-webkit-keyframes title {
+			70% { translate: 0 -90px; }
+			10% { rotate: x -50deg; scale: 4; }
+			30% { letter-spacing: 80px; color: #7298ff; -webkit-text-stroke-color: #fff; }
+		}
+		@keyframes title {
+			70% { translate: 0 -90px; }
+			10% { rotate: x -50deg; scale: 4; }
+			30% { letter-spacing: 80px; color: #7298ff; -webkit-text-stroke-color: #fff; }
+		}
+		.menu .play {
+			padding: 20px 50px;
+			background: #ffe200;
+			display: inline-block;
+			color: #000;
+			font: bold 4rem verdana;
+			border-radius: 60px;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			margin-top: 15vh;
+			-webkit-box-shadow: inset 0 -4px 20px #000, 0 4px 30px #000;
+			box-shadow: inset 0 -4px 20px #000, 0 4px 30px #000;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-animation: menuPlay .5s infinite;
+			animation: menuPlay .5s infinite;
+		}
+		@-webkit-keyframes menuPlay {
+			50% { translate: 0 10px; }
+		}
+		@keyframes menuPlay {
+			50% { translate: 0 10px; }
+		}
+		.menu .play:hover {
+			background: #f00;
+			color: #fff;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 5px;
+			left: 0;
+			width: 100%;
+			font: 17px/1.3 verdana;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="time">5s</div>
+		<div class="display">
+			<h1>the Flag of <span>Armenia</span></h1>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<h2>GameOver</h2>
+		</div>
+		<div class="point"><span>0</span>Point</div>
+	</div>
+	<div class="menu">
+		<h1>
+			<span style="--i: 1;">G</span>
+			<span style="--i: 2;">u</span>
+			<span style="--i: 3;">e</span>
+			<span style="--i: 4;">s</span>
+			<span style="--i: 5;">s</span>
+			<span style="--i: 6;">&nbsp;</span>
+			<span style="--i: 7;">T</span>
+			<span style="--i: 8;">h</span>
+			<span style="--i: 9;">e</span>
+			<span style="--i: 10;">&nbsp;</span>
+			<span style="--i: 11;">F</span>
+			<span style="--i: 12;">l</span>
+			<span style="--i: 13;">a</span>
+			<span style="--i: 14;">g</span>
+		</h1>
+		<div class="play">Play</div>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+	</div>
+	<script>
+		const menu = document.querySelector('.menu');
+		const menuPlay = document.querySelector('.menu .play');
+		let grad = 0;
+		let setMenu = setInterval(() => menu.style.background = `linear-gradient(${grad++}deg, #00bcff70, #ffffff00)`, 1);
+		menuPlay.onclick = () => {
+			startGame();
+			clearInterval(setMenu);
+			menu.style.clipPath = 'circle(0)';
+			menuPlay.style.animation = 'none';
+			setTimeout(() => ([...menuPlay.previousElementSibling.children].forEach(item => item.style.animation = 'none')), 8e2);
+		};
+		const flagDisplay = document.querySelectorAll('.game .display > *');
+		const flag = document.querySelectorAll('.game .display .item');
+		const flagName = document.querySelector('.game .display h1 span');
+		const flagPoint = document.querySelector('.game .point span');
+		const flagTime = document.querySelector('.game .time');
+		let room = 0;
+		let time = 5;
+		const data = Object.freeze([
+			[
+				[
+					['linear-gradient(red 0 33.3%, blue 33.3% 66.6%, orange 66.6%) no-repeat', 'Armenia'],
+					['linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%)'],
+					['linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%)']
+				],
+				[
+					['linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%)'],
+					['linear-gradient(red 0 33.3%, blue 33.3% 66.6%, orange 66.6%)'],
+					['linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%)', 'France']
+				],
+				[
+					['linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%)'],
+					['linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%)', 'Italy'],
+					['linear-gradient(to right, #000 0 33.3%, #FFDC10 33.3% 66.6%, #CF1D1D 66.6%)']
+				],
+				[
+					['linear-gradient(to right, #000 0 33.3%, #FFDC10 33.3% 66.6%, #CF1D1D 66.6%)', 'Belgium'],
+					['linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%)'],
+					['linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%)']
+				],
+				[
+					['linear-gradient(to right, #009344 0 33.3%, #fff 33.3% 66.6%, #CF2734 66.6%)'],
+					['linear-gradient(#fff 50%, #D5213D 50%) no-repeat', 'Poland'],
+					['linear-gradient(to right, #002395 0 33.3%, #fff 33.3% 66.6%, #ED2939 66.6%)']
+				]
+			],
+			[
+				[
+					['conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%)'],
+					['conic-gradient(from 150deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 0% -6.2% / 30% 31%, conic-gradient(from 245deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 20% 15% / 19% 33%, conic-gradient(from 86deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat -6% 14% / 19% 33%, conic-gradient(from 19deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat -1% 39.5% / 19% 33%, conic-gradient(from -58deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 15% 39.5% / 19% 33%, conic-gradient(from 190deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 37% 5.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 38% 14% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 30.5% 6.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 30.8% 15% / 7% 6%, conic-gradient(from -8deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 34% 17.1% / 7% 10%, conic-gradient(from 111deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 36.4% 20.8% / 8% 11%, conic-gradient(from 209deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 42% 22% / 8% 10%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 34.5% 31.5% / 10% 8%, conic-gradient(from -20deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 39.8% 34% / 2% 13%, conic-gradient(from -81deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 31.1% / 6% 7%, conic-gradient(from 146deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 40% 39.8% / 5% 13%, conic-gradient(from 247deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 45% 47.7% / 8% 10%, conic-gradient(from 74deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35.5% 48.5% / 9.1% 8%, conic-gradient(from 10deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 37.8% 55% / 5% 11%, conic-gradient(from -53deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 55.1% / 5% 13%, conic-gradient(from 193deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 34% 57.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35% 66% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 27.9% 57.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 27.8% 64% / 7% 6%, conic-gradient(from -10deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 31% 69.1% / 7% 10% #EE1C25'],
+					['radial-gradient(circle, #BC002D 0 35%, #ebebeb 36%)', 'Japan']
+				],
+				[
+					['conic-gradient(from 150deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 0% -6.2% / 30% 31%, conic-gradient(from 245deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 20% 15% / 19% 33%, conic-gradient(from 86deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat -6% 14% / 19% 33%, conic-gradient(from 19deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat -1% 39.5% / 19% 33%, conic-gradient(from -58deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 15% 39.5% / 19% 33%, conic-gradient(from 190deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 37% 5.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 38% 14% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 30.5% 6.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 30.8% 15% / 7% 6%, conic-gradient(from -8deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 34% 17.1% / 7% 10%, conic-gradient(from 111deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 36.4% 20.8% / 8% 11%, conic-gradient(from 209deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 42% 22% / 8% 10%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 34.5% 31.5% / 10% 8%, conic-gradient(from -20deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 39.8% 34% / 2% 13%, conic-gradient(from -81deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 31.1% / 6% 7%, conic-gradient(from 146deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 40% 39.8% / 5% 13%, conic-gradient(from 247deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 45% 47.7% / 8% 10%, conic-gradient(from 74deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35.5% 48.5% / 9.1% 8%, conic-gradient(from 10deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 37.8% 55% / 5% 11%, conic-gradient(from -53deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 55.1% / 5% 13%, conic-gradient(from 193deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 34% 57.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35% 66% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 27.9% 57.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 27.8% 64% / 7% 6%, conic-gradient(from -10deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 31% 69.1% / 7% 10% #EE1C25'],
+					['conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%)', 'Czech'],
+					['radial-gradient(circle, #BC002D 0 35%, #ebebeb 36%)']
+				],
+				[
+					['conic-gradient(from 150deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 0% -6.2% / 30% 31%, conic-gradient(from 245deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 20% 15% / 19% 33%, conic-gradient(from 86deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat -6% 14% / 19% 33%, conic-gradient(from 19deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat -1% 39.5% / 19% 33%, conic-gradient(from -58deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 15% 39.5% / 19% 33%, conic-gradient(from 190deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 37% 5.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 38% 14% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 30.5% 6.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 30.8% 15% / 7% 6%, conic-gradient(from -8deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 34% 17.1% / 7% 10%, conic-gradient(from 111deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 36.4% 20.8% / 8% 11%, conic-gradient(from 209deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 42% 22% / 8% 10%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 34.5% 31.5% / 10% 8%, conic-gradient(from -20deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 39.8% 34% / 2% 13%, conic-gradient(from -81deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 31.1% / 6% 7%, conic-gradient(from 146deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 40% 39.8% / 5% 13%, conic-gradient(from 247deg, transparent 0 0%, #FFFF00 1% 7%, transparent 8%) no-repeat 45% 47.7% / 8% 10%, conic-gradient(from 74deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35.5% 48.5% / 9.1% 8%, conic-gradient(from 10deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 37.8% 55% / 5% 11%, conic-gradient(from -53deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 43% 55.1% / 5% 13%, conic-gradient(from 193deg, transparent 0 4%, #FFFF00 5% 11%, transparent 12%) no-repeat 34% 57.8% / 5% 9%, conic-gradient(from 280deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 35% 66% / 8% 10%, conic-gradient(from 120deg, transparent 0 0%, #FFFF00 2% 7%, transparent 8%) no-repeat 27.9% 57.5% / 10% 8%, conic-gradient(from 45deg, transparent 0 0%, #FFFF00 2% 9%, transparent 10%) no-repeat 27.8% 64% / 7% 6%, conic-gradient(from -10deg, transparent 0 0%, #FFFF00 1% 9%, transparent 10%) no-repeat 31% 69.1% / 7% 10% #EE1C25', 'China'],
+					['conic-gradient(from -126deg, transparent 5%, #fff 5% 15%, transparent 15%) repeat-y 0 0 / 73% 35px #6D0D3D'],
+					['conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%)']
+				],
+				[
+					['linear-gradient(white 0 33.3%, #0036A8 33.3% 66.6%, #e80000 66.6%)'],
+					['conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%)'],
+					['conic-gradient(from -126deg, transparent 5%, #fff 5% 15%, transparent 15%) repeat-y 0 0 / 73% 35px #6D0D3D', 'Qatar']
+				],
+				[
+					['conic-gradient(from -121deg at 52%, #08437F 17%, transparent 17%), linear-gradient(#fff 50%, #D80C13 50%)'],
+					['conic-gradient(from -126deg, transparent 5%, #fff 5% 15%, transparent 15%) repeat-y 0 0 / 73% 35px #6D0D3D'],
+					['linear-gradient(white 0 33.3%, #0036A8 33.3% 66.6%, #e80000 66.6%)', 'Russia']
+				]
+			],
+			[
+				[
+					['url(bg3.jpg) no-repeat center / cover', 'South Korea'],
+					['conic-gradient(from 215deg at 27% 50%, transparent 5%, #000 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 32% 50%, transparent 5%, #FEB71C 5.2% 25%, transparent 25.2%), linear-gradient(transparent 38%, #007749 38% 62%, transparent 62%), conic-gradient(from 215deg at 52% 50%, transparent 5%, #007749 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 57% 50%, transparent 5%, #fff 5.2% 25%, transparent 25.2%), linear-gradient(#E03C32 33%, #fff 33% 38%, #007749 38% 62%, #fff 62% 67%, #001389 67%)'],
+					['linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B']
+				],
+				[
+					['conic-gradient(from 215deg at 27% 50%, transparent 5%, #000 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 32% 50%, transparent 5%, #FEB71C 5.2% 25%, transparent 25.2%), linear-gradient(transparent 38%, #007749 38% 62%, transparent 62%), conic-gradient(from 215deg at 52% 50%, transparent 5%, #007749 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 57% 50%, transparent 5%, #fff 5.2% 25%, transparent 25.2%), linear-gradient(#E03C32 33%, #fff 33% 38%, #007749 38% 62%, #fff 62% 67%, #001389 67%)'],
+					['linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B', 'Switzerland'],
+					['url(bg3.jpg) no-repeat center / cover']
+				],
+				[
+					['linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B'],
+					['linear-gradient(transparent 0 37%, #01347F 37% 63%, transparent 63%), linear-gradient(to right, transparent 0 26%, #01347F 26% 42%, transparent 42%) #fff'],
+					['conic-gradient(from 215deg at 27% 50%, transparent 5%, #000 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 32% 50%, transparent 5%, #FEB71C 5.2% 25%, transparent 25.2%), linear-gradient(transparent 38%, #007749 38% 62%, transparent 62%), conic-gradient(from 215deg at 52% 50%, transparent 5%, #007749 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 57% 50%, transparent 5%, #fff 5.2% 25%, transparent 25.2%), linear-gradient(#E03C32 33%, #fff 33% 38%, #007749 38% 62%, #fff 62% 67%, #001389 67%)', 'South Africa']
+				],
+				[
+					['linear-gradient(transparent 0 37%, #01347F 37% 63%, transparent 63%), linear-gradient(to right, transparent 0 26%, #01347F 26% 42%, transparent 42%) #fff', 'Finland'],
+					['linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B'],
+					['conic-gradient(from 215deg at 27% 50%, transparent 5%, #000 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 32% 50%, transparent 5%, #FEB71C 5.2% 25%, transparent 25.2%), linear-gradient(transparent 38%, #007749 38% 62%, transparent 62%), conic-gradient(from 215deg at 52% 50%, transparent 5%, #007749 5.2% 25%, transparent 25.2%), conic-gradient(from 215deg at 57% 50%, transparent 5%, #fff 5.2% 25%, transparent 25.2%), linear-gradient(#E03C32 33%, #fff 33% 38%, #007749 38% 62%, #fff 62% 67%, #001389 67%)']
+				],
+				[
+					['linear-gradient(to right, transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 78% 75%, linear-gradient(transparent 0 40%, #fff 40% 60%, transparent 60%) no-repeat 50% 50% / 47% 120% #D01F1B'],
+					['linear-gradient(#FCD116 0 50%, #003893 50% 75%, #CE1126 75%)', 'Colombia'],
+					['linear-gradient(transparent 0 37%, #01347F 37% 63%, transparent 63%), linear-gradient(to right, transparent 0 26%, #01347F 26% 42%, transparent 42%) #fff']
+				]
+			],
+			[
+				[
+					['linear-gradient(#005BBB 50%, #FFD500 50%)'],
+					['url(bg.jpg) no-repeat center / cover', 'USA'],
+					['linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B']
+				],
+				[
+					['linear-gradient(#005BBB 50%, #FFD500 50%)', 'Ukraine'],
+					['linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B'],
+					['url(bg.jpg) no-repeat center / cover']
+				],
+				[
+					['linear-gradient(#000 0 33.3%, #DD0000 33.3% 66.6%, #FFCE00 66.6%)'],
+					['linear-gradient(transparent 0 40%, #FECB00 40% 60%, transparent 60%), linear-gradient(to right, transparent 0 28%, #FECB00 28% 40%, transparent 40%) #005293'],
+					['linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B', 'United Kingdom']
+				],
+				[
+					['linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B'],
+					['linear-gradient(#000 0 33.3%, #DD0000 33.3% 66.6%, #FFCE00 66.6%)'],
+					['linear-gradient(transparent 0 40%, #FECB00 40% 60%, transparent 60%), linear-gradient(to right, transparent 0 28%, #FECB00 28% 40%, transparent 40%) #005293', 'Sweden']
+				],
+				[
+					['linear-gradient(to right, transparent 0 45%, #C9072A 45% 55%, transparent 55%), linear-gradient(transparent 0 42%, #C9072A 42% 58%, transparent 58%), linear-gradient(to right, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(to left, transparent 0 42%, #fff 42% 45%, transparent 45%), linear-gradient(transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(to top, transparent 0 37%, #fff 37% 43%, transparent 43%), linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -5% 110% / 46% 44%, linear-gradient(-31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 101% -4% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat -12% -3% / 46% 44%, linear-gradient(31deg, transparent 0 46.7%, #C9072A 47% 54%, transparent 54.3%) no-repeat 108% 101% / 46% 44%, linear-gradient(-31deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%), linear-gradient(-149deg, transparent 0 44.7%, #fff 45% 55%, transparent 55.3%) #001B6B'],
+					['linear-gradient(transparent 0 40%, #FECB00 40% 60%, transparent 60%), linear-gradient(to right, transparent 0 28%, #FECB00 28% 40%, transparent 40%) #005293'],
+					['linear-gradient(#000 0 33.3%, #DD0000 33.3% 66.6%, #FFCE00 66.6%)', 'Germany']
+				]
+			],
+			[
+				[
+					['url(bg2.jpg) no-repeat center / cover', 'Namibia'],
+					['linear-gradient(to right, transparent 45%, #fff 45% 55%, transparent 55%) no-repeat -42% 0 / 65% 56%, linear-gradient(transparent 40%, #fff 40% 60%, transparent 60%) no-repeat -42% 1% / 55% 55%, linear-gradient(#0D5EAF 0% 100%) no-repeat 0 0 / 36% 50%, repeating-linear-gradient(#0D5EAF 0 10%, #fff 10% 20%) no-repeat 50% 0% / 100% 111%'],
+					['conic-gradient(from 59deg at 54%, #000 17%, transparent 17%), conic-gradient(from -121deg at 43%, #000 17%, transparent 17%), conic-gradient(from -121deg at 59%, #FFB916 17%, transparent 17%), conic-gradient(from 59deg at 39%, #FFB916 17%, transparent 17%) #007847']
+				],
+				[
+					['linear-gradient(to right, transparent 45%, #fff 45% 55%, transparent 55%) no-repeat -42% 0 / 65% 56%, linear-gradient(transparent 40%, #fff 40% 60%, transparent 60%) no-repeat -42% 1% / 55% 55%, linear-gradient(#0D5EAF 0% 100%) no-repeat 0 0 / 36% 50%, repeating-linear-gradient(#0D5EAF 0 10%, #fff 10% 20%) no-repeat 50% 0% / 100% 111%', 'Greece'],
+					['linear-gradient(#AE1D27 0 33.3%, #fff 33.3% 66.6%, #22468C 66.6%)'],
+					['conic-gradient(from 59deg at 54%, #000 17%, transparent 17%), conic-gradient(from -121deg at 43%, #000 17%, transparent 17%), conic-gradient(from -121deg at 59%, #FFB916 17%, transparent 17%), conic-gradient(from 59deg at 39%, #FFB916 17%, transparent 17%) #007847']
+				],
+				[
+					['linear-gradient(#0272CC 0 33.3%, #000 33.3% 66.6%, #fff 66.6%)'],
+					['conic-gradient(from 59deg at 54%, #000 17%, transparent 17%), conic-gradient(from -121deg at 43%, #000 17%, transparent 17%), conic-gradient(from -121deg at 59%, #FFB916 17%, transparent 17%), conic-gradient(from 59deg at 39%, #FFB916 17%, transparent 17%) #007847', 'Jamaica'],
+					['linear-gradient(#AE1D27 0 33.3%, #fff 33.3% 66.6%, #22468C 66.6%)']
+				],
+				[
+					['linear-gradient(#ED2B3A 0 33.3%, #fff 33.3% 66.6%, #ED2B3A 66.6%)'],
+					['linear-gradient(#AE1D27 0 33.3%, #fff 33.3% 66.6%, #22468C 66.6%)'],
+					['linear-gradient(#0272CC 0 33.3%, #000 33.3% 66.6%, #fff 66.6%)', 'Estonia']
+				],
+				[
+					['linear-gradient(#AE1D27 0 33.3%, #fff 33.3% 66.6%, #22468C 66.6%)', 'Netherlands'],
+					['linear-gradient(#ED2B3A 0 33.3%, #fff 33.3% 66.6%, #ED2B3A 66.6%)'],
+					['linear-gradient(#0272CC 0 33.3%, #000 33.3% 66.6%, #fff 66.6%)']
+				]
+			],
+			[
+				[
+					['linear-gradient(#ED2B3A 0 33.3%, #fff 33.3% 66.6%, #ED2B3A 66.6%)', 'Austria'],
+					['linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%)'],
+					['linear-gradient(#CF0921 50%, #fff 50%)']
+				],
+				[
+					['linear-gradient(#6DABD3 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #6DABD3 67%)'],
+					['linear-gradient(#CF0921 50%, #fff 50%)'],
+					['linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%)', 'North Rhine-Westphalia']
+				],
+				[
+					['linear-gradient(#6DABD3 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #6DABD3 67%)'],
+					['linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%)'],
+					['linear-gradient(#CF0921 50%, #fff 50%)', 'Indonesia']
+				],
+				[
+					['linear-gradient(#CF0921 50%, #fff 50%)'],
+					['linear-gradient(#6DABD3 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #6DABD3 67%)', 'Botswana'],
+					['linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%)']
+				],
+				[
+					['radial-gradient(circle, #E15101 15%, transparent 15.4%), linear-gradient(#E15101 0 33.3%, #fff 33.3% 66.6%, #04B227 66.6%)', 'Niger'],
+					['linear-gradient(#6DABD3 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #6DABD3 67%)'],
+					['linear-gradient(#00986D 0 33.3%, #fff 33.3% 66.6%, #D72413 66.6%)']
+				]
+			]
+		]);
+		const dataIndex = [0,1,2,3,4,5];
+		let level = Math.floor(Math.random() * data.length);
+		flagName.innerText = data[level][room].find(item => item.length > 1)[1];
+		dataIndex[level] = '';
+		flag.forEach((item, index) => item.style.background = data[level][room][index][0]);
+		const startGame = () => {
+			const gameTime = setInterval(() => {
+				time--;
+				flagTime.innerText = time + 's';
+				time == 0 ? gameOver() : '';
+			}, 1e3);
+			const gameOver = () => {
+				flagDisplay.forEach(item => item.style = 'pointer-events: none; opacity: 0;');
+				flagDisplay[4].style.opacity = 1;
+				clearInterval(gameTime);
+				flagTime.style.background = '#f00';
+				flagPoint.parentElement.style.background = '#0f0';
+				setTimeout(() => window.location.reload(), 2e3);
+			};
+			flag.forEach((item, index) => {
+				item.style.background = data[level][room][index][0];
+				item.onclick = () => {
+					if (data[level][room].findIndex(item => item.length > 1) == index) {
+						flagPoint.innerText++;
+						room++;
+						if (room == data[level].length) {
+							let r = Math.floor(Math.random() * data.length);
+							while(typeof dataIndex[r] == 'string' && dataIndex.some(item => typeof item == 'number')) {
+								r = Math.floor(Math.random() * data.length);
+							}
+							level = r;
+							dataIndex[level] = '';
+							room = 0;
+						}
+						time = 5;
+						flagTime.innerText = time + 's';
+						level != data.length ? flag.forEach((item, index) => item.style.background = data[level][room][index][0]) : '';
+						level != data.length ? flagName.innerText = data[level][room].find(item => item.length > 1)[1] : '';
+						if (flagPoint.innerText == 30) {
+							flag.forEach(item => item.onclick = null);
+							clearInterval(gameTime);
+							flagDisplay.forEach(item => item.style = 'pointer-events: none; opacity: 0;');
+							flagDisplay[4].innerText = 'Genius';
+							flagDisplay[4].style.opacity = 1;
+							flagPoint.parentElement.style.background = '#0f0';
+							setTimeout(() => window.location.reload(), 3e3);
+						}
+					} else {
+						gameOver();
+					}
+				};
+			});	
+		};
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
