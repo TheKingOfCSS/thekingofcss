@@ -210,11 +210,19 @@
 		</p>
 	</div>
 	<script>
+		const theme = new Audio('music.mp3');
+		const trueSound = new Audio('point.mp3');
+		const timeSound = new Audio('time.mp3');
+		const winnerSound = new Audio('winner.mp3');
+		const falseSound = new Audio('falseanswer.mp3');
 		const menu = document.querySelector('.menu');
 		const menuPlay = document.querySelector('.menu .play');
 		let grad = 0;
 		let setMenu = setInterval(() => menu.style.background = `linear-gradient(${grad++}deg, #00bcff70, #ffffff00)`, 1);
 		menuPlay.onclick = () => {
+			theme.play();
+			timeSound.play();
+			timeSound.onended = () => timeSound.play();
 			startGame();
 			clearInterval(setMenu);
 			menu.style.clipPath = 'circle(0)';
@@ -404,6 +412,7 @@
 				time == 0 ? gameOver() : '';
 			}, 1e3);
 			const gameOver = () => {
+				falseSound.play();
 				flagDisplay.forEach(item => item.style = 'pointer-events: none; opacity: 0;');
 				flagDisplay[4].style.opacity = 1;
 				clearInterval(gameTime);
@@ -416,6 +425,8 @@
 				item.onclick = () => {
 					if (data[level][room].findIndex(item => item.length > 1) == index) {
 						flagPoint.innerText++;
+						trueSound.currentTime = .2;
+						trueSound.play();
 						room++;
 						if (room == data[level].length) {
 							let r = Math.floor(Math.random() * data.length);
@@ -437,7 +448,9 @@
 							flagDisplay[4].innerText = 'Genius';
 							flagDisplay[4].style.opacity = 1;
 							flagPoint.parentElement.style.background = '#0f0';
-							setTimeout(() => window.location.reload(), 3e3);
+							setTimeout(() => window.location.reload(), 7e3);
+							winnerSound.play();
+							timeSound.pause();
 						}
 					} else {
 						gameOver();
