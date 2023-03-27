@@ -1,0 +1,1976 @@
+*, ::before, ::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+.TheKingOfCss3 {
+	height: 100vh;
+	position: relative;
+	display: grid;
+	place-items: center;
+	background: linear-gradient(#bfd7ff 76vh, #68696E 76vh);
+}
+.TheKingOfCss3 .opera {
+	width: 1000px;
+	height: 600px;
+	border: 1px solid transparent;
+	display: flex;
+	align-items: flex-end;
+	position: relative;
+	scale: .85;
+}
+.TheKingOfCss3 .opera .front {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: linear-gradient(#96999E, #C3C5C2);
+	clip-path: polygon(0% 9%, 8% 6%, 22% 1%, 33% -1%, 72% 0%, 79% 1%, 89% 5%, 100% 11%, 100% 100%, 0% 100%);
+	z-index: 10;
+}
+.TheKingOfCss3 .opera .front .round {
+	width: 90px;
+	height: 290px;
+	background: #3C4259;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-radius: 75px 50px 0 0;
+	padding-left: 8px;
+	padding-top: 8px;
+	overflow: hidden;
+}
+.TheKingOfCss3 .opera .front .round::after {
+	content: '';
+	position: absolute;
+	top: 9px;
+    right: -5px;
+    width: 53px;
+    height: 24px;
+    background: #d6d1cc;
+    rotate: 16deg;
+    border-radius: 26px 0 0 0;
+}
+.TheKingOfCss3 .opera .front .round .e {
+	width: 100%;
+	height: 100%;
+	background: #D6D1CC;
+	border-radius: 75px 50px 0 0;
+	position: relative;
+}
+.TheKingOfCss3 .opera .front .round .e .door {
+	width: 40px;
+	height: 90px;
+	background: linear-gradient(to right, #403333, #866644);
+	position: absolute;
+	bottom: 0;
+	right: 25px;
+}
+.TheKingOfCss3 .opera .front .round .e .door .p {
+	width: 15px;
+	height: 60px;
+	background: #000;
+	position: absolute;
+	top: 6px;
+	left: 7px;
+}
+.TheKingOfCss3 .opera .front .round .e .door .p:nth-child(2) {
+	left: auto;
+	right: 0;
+	width: 13px;
+}
+.TheKingOfCss3 .opera .front .round .e::after {
+	content: '';
+	position: absolute;
+	top: 10.6rem;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #9B9A98;
+	rotate: -1deg;
+}
+.TheKingOfCss3 .opera .front .round .e .door .t {
+	width: 15px;
+	height: 15px;
+	border: 1px solid #3c2a1f;
+	position: absolute;
+	bottom: 4px;
+	left: 7px;
+}
+.TheKingOfCss3 .opera .front .round .e .door .t:nth-child(4) {
+	left: auto;
+	right: 0;
+}
+.TheKingOfCss3 .opera .front .round .e .bord {
+	position: absolute;
+	top: 8rem;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #B5B5B3;
+    rotate: -1deg;
+	display: flex;
+	border-bottom: 1px solid #454654;
+	justify-content: space-around;
+	align-items: flex-end;
+}
+.TheKingOfCss3 .opera .front .round .e .bord .c {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	border: 2px solid #454654;
+	translate: 0 3px;
+	box-shadow: 0 2px 0 #454654;
+}
+.TheKingOfCss3 .opera .front .round .e .window {
+	position: absolute;
+	top: 22px;
+	left: 15px;
+	width: 45px;
+	height: 106px;
+	background: linear-gradient(#5E6874, #807F82);
+	border-radius: 90px 60px 0 0;
+	border: 3px solid #7D5C53;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	overflow: hidden;
+}
+.TheKingOfCss3 .opera .front .round .e .window .mini {
+	width: 70%;
+	height: 85%;
+	border: 3px solid #7D5C53;
+	border-radius: 60px 60px 0 0;
+	border-bottom: 0;
+}
+.TheKingOfCss3 .opera .front .round .e .window .line {
+	width: 100%;
+	height: 4px;
+	background: linear-gradient(to right, #554645, #897365, #7C635E);
+	position: absolute;
+	top: 60%;
+	left: 0;
+}
+.TheKingOfCss3 .opera .front .round .e .window .line:nth-child(3) {
+	top: 40%;
+}
+.TheKingOfCss3 .opera .front .round .e .window::before,
+.TheKingOfCss3 .opera .front .round .e .window::after {
+	content: '';
+	width: 5px;
+	height: 15px;
+	position: absolute;
+	top: 3px;
+	background: linear-gradient(#554645, #897365, #6e5853);
+}
+.TheKingOfCss3 .opera .front .round .e .window::before {
+	left: 8px;
+    rotate: -35deg;
+}
+.TheKingOfCss3 .opera .front .round .e .window::after {
+	right: 8px;
+    rotate: 35deg;
+}
+.TheKingOfCss3 .opera .front .round.round2 {
+	left: 100px;
+	width: 105px;
+	height: 302px;
+}
+.TheKingOfCss3 .opera .front .round.round2 .e::after { top: 11.3rem; rotate: 0deg; }
+.TheKingOfCss3 .opera .front .round.round2 .door { width: 45px; height: 93px; }
+.TheKingOfCss3 .opera .front .round.round2 .door .p,
+.TheKingOfCss3 .opera .front .round.round2 .door .t { left: 6px; }
+.TheKingOfCss3 .opera .front .round.round2 .door .p:nth-child(2),
+.TheKingOfCss3 .opera .front .round.round2 .door .t:nth-child(4) { right: 4px; }
+.TheKingOfCss3 .opera .front .round.round2 .window {
+	width: 55px;
+	border-radius: 80px 60px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round2::after { top: 12px; }
+.TheKingOfCss3 .opera .front .round.round3::after { top: 13px; height: 14px; }
+.TheKingOfCss3 .opera .front .round.round3 {
+	left: 220px;
+	width: 120px;
+	height: 306px;
+	border-radius: 60px 60px 0 0;
+	padding-left: 15px;
+	padding-top: 5px;
+}
+.TheKingOfCss3 .opera .front .round.round3 .e {
+	border-radius: 60px 60px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round3 .window {
+	width: 65px;
+	border-radius: 60px 60px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round3 .window::before,
+.TheKingOfCss3 .opera .front .round.round3 .window::after {
+	height: 19px;
+}
+.TheKingOfCss3 .opera .front .round.round3 .door,
+.TheKingOfCss3 .opera .front .round.round4 .door { width: 60px; height: 95px; right: 34px; }
+.TheKingOfCss3 .opera .front .round.round3 .door .p,
+.TheKingOfCss3 .opera .front .round.round4 .door .p { width: 20px; }
+.TheKingOfCss3 .opera .front .round.round3 .door .p:nth-child(2),
+.TheKingOfCss3 .opera .front .round.round4 .door .p:nth-child(2) { right: 5px; width: 20px; }
+.TheKingOfCss3 .opera .front .round.round3 .door .t,
+.TheKingOfCss3 .opera .front .round.round4 .door .t { width: 20px; }
+.TheKingOfCss3 .opera .front .round.round3 .door .t:nth-child(4),
+.TheKingOfCss3 .opera .front .round.round4 .door .t:nth-child(4) { right: 5px; }
+.TheKingOfCss3 .opera .front .round.round4 {
+	left: 355px;
+	width: 120px;
+	height: 310px;
+}
+.TheKingOfCss3 .opera .front .round.round4::after {
+	content: none;
+}
+.TheKingOfCss3 .opera .front .round.round4 .window {
+	width: 65px;
+	height: 112px;
+	border-radius: 60px 60px 0 0;
+	top: 16px;
+    left: 25px;
+	background: linear-gradient(to right, #2E3235, #5A5D56);
+}
+.TheKingOfCss3 .opera .front .round.round3 .e::after,
+.TheKingOfCss3 .opera .front .round.round4 .e::after {
+	top: 11.6rem;
+}
+.TheKingOfCss3 .opera .front .round.round4 .window::before,
+.TheKingOfCss3 .opera .front .round.round4 .window::after {
+	width: 4px;
+	height: 20px;
+}
+.TheKingOfCss3 .opera .front .round.round4 .door { left: 25px; }
+.TheKingOfCss3 .opera .front .round.round4.round4-2 .door { left: 15px; background: linear-gradient(to left, #403333, #866644); }
+.TheKingOfCss3 .opera .front .round.round4.round4-2 {
+	left: auto;
+	right: 375px;
+	border-radius: 50px 75px 0 0;
+	padding-left: 3px;
+	padding-right: 8px;
+}
+.TheKingOfCss3 .opera .front .round.round4.round4-2 .window {
+	background: linear-gradient(to left, #2E3235, #5A5D56);
+}
+.TheKingOfCss3 .opera .front .round.round4.round4-2 .e {
+	border-radius: 50px 75px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round4.round4-2 .window {
+	left: 12px;
+}
+.TheKingOfCss3 .opera .front .round.round3.round3-1 {
+	left: auto;
+	right: 240px;
+	padding-left: 0;
+	padding-right: 15px;
+}
+.TheKingOfCss3 .opera .front .round.round3.round3-1::after,
+.TheKingOfCss3 .opera .front .round.round2.round2-1::after { content: none; }
+.TheKingOfCss3 .opera .front .round.round3.round3-1 .window { left: 27px; }
+.TheKingOfCss3 .opera .front .round.round3.round3-1 .door { right: 18px; background: linear-gradient(to left, #403333, #866644); }
+.TheKingOfCss3 .opera .front .round.round2.round2-1 {
+	left: auto;
+	right: 120px;
+	padding-left: 0;
+	padding-right: 10px;
+	border-radius: 50px 75px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round2.round2-1 .e {
+	border-radius: 50px 75px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round2.round2-1 .window { left: 24px; border-radius: 60px 80px 0 0; }
+.TheKingOfCss3 .opera .front .round.round2.round2-1 .door { right: 23px; background: linear-gradient(to left, #403333, #866644); }
+.TheKingOfCss3 .opera .front .round.round1-1 {
+	left: auto;
+	right: 15px;
+	padding-left: 0;
+	padding-right: 10px;
+	border-radius: 50px 75px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round1-1 .e {
+	border-radius: 50px 75px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round1-1::after {
+	right: auto;
+	top: 11px;
+	left: -20px;
+	rotate: -8deg;
+	height: 22px;
+}
+.TheKingOfCss3 .opera .front .round.round1-1 .window {
+	border-radius: 60px 90px 0 0;
+}
+.TheKingOfCss3 .opera .front .round.round1-1 .door { right: 24px; background: linear-gradient(to left, #403333, #866644); }
+.TheKingOfCss3 .opera .front .round.round1-1 .e .door .p,
+.TheKingOfCss3 .opera .front .round.round1-1 .e .door .t { left: 2px; }
+.TheKingOfCss3 .opera .front .round.round1-1 .e .door .p:nth-child(2),
+.TheKingOfCss3 .opera .front .round.round1-1 .e .door .t:nth-child(4) { left: 22px; }
+.TheKingOfCss3 .opera .faceFront {
+	width: 100%;
+	height: 60%;
+	position: relative;
+}
+.TheKingOfCss3 .opera .faceFront .stone {
+	position: absolute;
+	bottom: 0;
+	left: -48px;
+	width: 53px;
+	height: 215px;
+	display: grid;
+	align-content: flex-start;
+	justify-items: center;
+	transform-origin: bottom;
+	z-index: 10;
+}
+.TheKingOfCss3 .opera .faceFront .stone .top {
+	width: 100%;
+	height: 10px;
+	border: 1px solid #3C445B;
+	border-radius: 0 0 20px 20px;
+	background: #C2C4C3;
+	box-shadow: 7px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone .round {
+	width: 14px;
+	height: 19px;
+	background: #C2C4C3;
+	border-radius: 50%;
+	position: absolute;
+	top: 8px;
+	left: 0;
+	box-shadow: 1px 0 0 #3C445B;
+}
+.TheKingOfCss3 .opera .faceFront .stone .ellipse {
+	width: 12px;
+	height: 19px;
+	border-radius: 25px 25px 227% 229%;
+	background: #C2C4C3;
+	position: absolute;
+	top: 8px;
+	left: 20px;
+	box-shadow: 1px 0 0 #3C445B;
+}
+.TheKingOfCss3 .opera .faceFront .stone .round:nth-child(4) {
+	left: auto;
+	right: 0;
+	box-shadow: 10px 0 0 #3C445B;
+}
+.TheKingOfCss3 .opera .faceFront .stone .p {
+	width: 100%;
+	height: 17px;
+	background: linear-gradient(#A9AAAE, #848589);
+	border-radius: 0 0 10px 10px;
+}
+.TheKingOfCss3 .opera .faceFront .stone .height {
+	width: 80%;
+	height: 189px;
+	background: linear-gradient(#d2d2d2, #c6c1c1);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2 {
+	left: 60px;
+    transform: scaleY(1.03);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2 .height {
+	box-shadow: 12px 0 0 #3c4259;
+	background: linear-gradient(#d2d2d2, #b9b8b8);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2 .round:nth-child(4) {
+	box-shadow: 8px 0 0 2px #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st3 {
+	left: 174px;
+    transform: scaleY(1.06);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st3 .round:nth-child(4) {
+	box-shadow: 12px 0 0 2px #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st3 .top {
+	box-shadow: 15px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4 {
+	left: 317px;
+    transform: scaleY(1.08);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4 .round:nth-child(4) {
+	box-shadow: 9px 0 0 2px #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4 .top {
+	box-shadow: 14px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 {
+	left: auto;
+	right: 350px;
+	transform: scaleY(1.08);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 .top {
+	box-shadow: -10px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 .round:nth-child(2) {
+	box-shadow: -10px 0 0 2px #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 .round:nth-child(4) {
+	box-shadow: -1px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 .ellipse {
+	box-shadow: -1px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5 .height {
+	box-shadow: -10px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5.st5-2 {
+	right: 200px;
+	transform: scaleY(1.06);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5.st5-1 {
+	right: 80px;
+	transform: scaleY(1.03);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5.st5-0 {
+	right: -33px;
+	transform: none;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5.st5-0 .top {
+	box-shadow: -7px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st5.st5-0 .round:nth-child(2) {
+	box-shadow: -10px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4.center {
+	left: 460px;
+	transform: scaleY(1.1);
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4.center .round:nth-child(2) {
+	box-shadow: -4px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4.center .round:nth-child(4) {
+	box-shadow: 4px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4.center .top {
+	box-shadow: -4px 0 0 #3c445b, 4px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .stone.st2.st4.center .height {
+	box-shadow: -4px 0 0 #3c445b, 4px 0 0 #3c445b;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder {
+	position: absolute;
+	top: -11px;
+	left: -18px;
+	width: calc(100% + 36px);
+	height: 50px;
+	background: #464A4D;
+	padding-bottom: 8px;
+	clip-path: polygon(0 75%, 0% 73%, 14% 24%, 16% 21%, 18% 16%, 26% 4%, 32% 1%, 46% 0%, 62% 0%, 72% 1%, 77% 6%, 80% 11%, 85% 27%, 92% 56%, 99% 95%, 100% 118%, 105% 101%, 4% 100%);
+	z-index: 8;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s {
+	bottom: 11px;
+    left: 10px;
+    width: 15px;
+    height: 10px;
+    background: #BBBFB1;
+    position: absolute;
+    rotate: -8deg;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(2) {
+	left: 32px;
+    rotate: -9deg;
+    bottom: 14px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(3) {
+	left: 54px;
+    rotate: -9deg;
+    bottom: 17px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(4) {
+	left: 78px;
+    rotate: -7deg;
+    bottom: 21px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(5) {
+	left: 103px;
+    rotate: -7deg;
+    bottom: 25px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(6) {
+	left: 103px;
+    rotate: -7deg;
+    bottom: 25px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(7) {
+	left: 132px;
+    rotate: -7deg;
+    bottom: 29px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(8) {
+	left: 160px;
+    rotate: -8deg;
+    bottom: 33px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(9) {
+	left: 190px;
+    rotate: -6deg;
+    bottom: 36px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(10) {
+	left: 216px;
+    rotate: -6deg;
+    bottom: 39px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(11) {
+	left: 244px;
+    rotate: -4deg;
+    bottom: 41px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(12) {
+	left: 273px;
+    rotate: -4deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(13) {
+	left: 303px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(14) {
+	left: 333px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(15) {
+	left: 365px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(16) {
+	left: 395px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(17) {
+	left: 425px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(18) {
+	left: 455px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(19) {
+	left: 485px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(20) {
+	left: 515px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(21) {
+	left: 545px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(22) {
+	left: 575px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(23) {
+	left: 605px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(24) {
+	left: 635px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(25) {
+	left: 665px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(26) {
+	left: 695px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(27) {
+	left: 725px;
+    rotate: 0deg;
+    bottom: 43px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(28) {
+	left: 755px;
+    rotate: 3deg;
+    bottom: 42px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(29) {
+	left: 785px;
+    rotate: 2deg;
+    bottom: 41px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(30) {
+	left: 815px;
+    rotate: 7deg;
+    bottom: 38px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(31) {
+	left: 845px;
+    rotate: 9deg;
+    bottom: 34px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(32) {
+	left: 875px;
+    rotate: 9deg;
+    bottom: 29px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(33) {
+	left: 905px;
+    rotate: 9deg;
+    bottom: 24px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(34) {
+	left: 935px;
+    rotate: 12deg;
+    bottom: 18px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(35) {
+	left: 965px;
+    rotate: 12deg;
+    bottom: 12px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder .s:nth-child(36) {
+	left: 995px;
+    rotate: 12deg;
+    bottom: 4px;
+}
+.TheKingOfCss3 .opera .faceFront .topBorder.two {
+	top: -20px;
+	background: #D2D2D2;
+	z-index: 7;
+	clip-path: polygon(3% 94%, 2% 64%, 5% 51%, 17% 20%, 18% 17%, 26% 3%, 32% 1%, 46% 0%, 62% 0%, 72% 0%, 77% 1%, 82% 12%, 85% 21%, 91% 48%, 100% 93%, 98% 120%, 95% 105%, 29% 100%);
+	width: calc(100% + 70px);
+    left: -47px;
+}
+.TheKingOfCss3 .opera .faceFront .parent {
+	filter: drop-shadow(0 -2px 0 #6F6F6F);
+    position: absolute;
+    top: -20px;
+    left: -48px;
+    width: calc(100% + 2px);
+    height: 36px;
+    z-index: 7;
+}
+.TheKingOfCss3 .opera .faceFront .parent.one::after {
+	content: '';
+	position: absolute;
+	top: 50px;
+    right: -54px;
+    width: 30px;
+    height: 8px;
+	background: #d2d2d2;
+}
+.TheKingOfCss3 .opera .faceFront .parent.p2::after {
+	content: '';
+	position: absolute;
+	top: 49px;
+    right: -63px;
+    width: 61px;
+    height: 8px;
+    background: #d2d2d2;
+    clip-path: polygon(0 0, 83% 0, 72% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .faceFront .parent.p3::after {
+	content: '';
+	position: absolute;
+	top: 49px;
+    right: -63px;
+    width: 61px;
+    height: 8px;
+    background: #bdb9b6;
+    clip-path: polygon(0 0, 83% 0, 72% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .faceFront .parent .topBorder {
+	position: static;
+	clip-path: polygon(3% 94%, 2% 76%, 5% 60%, 17% 20%, 18% 17%, 26% 3%, 32% 1%, 46% 0%, 62% 0%, 72% 0%, 77% 1%, 82% 12%, 85% 25%, 91% 54%, 100% 108%, 100% 116%, 92% 105%, 29% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .parent.p2 {
+	top: -30px;
+	left: -59px;
+	z-index: 6;
+    width: calc(100% + 25px);
+	filter: drop-shadow(0 -4px 0 #6F6F6F);
+}
+.TheKingOfCss3 .opera .faceFront .parent.p3 {
+	top: -38px;
+    left: -70px;
+    z-index: 5;
+    width: calc(100% + 44px);
+}
+.TheKingOfCss3 .opera .faceFront .parent.p3 .topBorder {
+	background: #BDB9B6;
+}
+.TheKingOfCss3 .opera .faceFront .syuner {
+	position: absolute;
+	left: 0;
+	top: -40px;
+	width: 100%;
+	height: 30px;
+	z-index: 4;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little {
+	position: absolute;
+	top: 0;
+	left: 0;
+	filter: drop-shadow(3px 0 0 #625F58);
+	transform-origin: bottom;
+    scale: 1 1.1;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little .e {
+	width: 35px;
+	height: 35px;
+	background: linear-gradient(to right, #b8b5ad, #CCCABE);
+	clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l2 {
+	left: 84px;
+    top: -14px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l2 .e {
+	clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l3 {
+    left: 202px;
+    top: -22px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l3 .e {
+	clip-path: polygon(0% 8%, 100% 0%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l4 {
+    left: 331px;
+    top: -26px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l4 .e {
+	width: 41px;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l5 {
+    left: 469px;
+    top: -30px;
+	filter: drop-shadow(2px 0 0 #625F58) drop-shadow(-2px 0 0 #625F58);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l5 .e {
+	width: 41px;
+	clip-path: polygon(0% 10%, 50% 0, 100% 10%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l4.l4-2 {
+    left: auto;
+	right: 348px;
+	filter: drop-shadow(-3px 0 0 #625F58);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l4.l4-2 .e,
+.TheKingOfCss3 .opera .faceFront .syuner .little.l3.l3-2 .e,
+.TheKingOfCss3 .opera .faceFront .syuner .little.l2.l2-2 .e,
+.TheKingOfCss3 .opera .faceFront .syuner .little.l1 .e {
+	background: linear-gradient(to left, #b8b5ad, #CCCABE) !important;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l3.l3-2 {
+    left: auto;
+	right: 218px;
+	filter: drop-shadow(-3px 0 0 #625F58);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l3.l3-2 .e {
+	clip-path: polygon(0% 0%, 100% 6%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l2.l2-2 {
+	left: auto;
+	right: 95px;
+	filter: drop-shadow(-3px 0 0 #625F58);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l2.l2-2 .e {
+	clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);
+}
+
+.TheKingOfCss3 .opera .faceFront .syuner .little.l1 {
+	top: 6px;
+	left: auto;
+	right: 0;
+	filter: drop-shadow(-3px 0 0 #625F58);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .little.l1 .e {
+	width: 35px;
+	height: 35px;
+	background: #CAC8BC;
+	clip-path: polygon(0% 0%, 100% 25%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big {
+	position: absolute;
+	top: 0;
+    left: 37px;
+    width: 50px;
+    height: 21px;
+    background: #D4CEC0;
+    rotate: -9deg;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big::after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #4B473C;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b2 {
+	left: 121px;
+    top: -12px;
+    rotate: -5deg;
+    width: 83px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b3 {
+	left: 239px;
+    top: -20px;
+    rotate: -2deg;
+    width: 93px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b4 {
+	left: 374px;
+    top: -21px;
+    rotate: 0deg;
+    width: 93px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b4.b4-2 {
+	left: auto;
+	right: 392px;
+	width: 94px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b3.b3-2 {
+	left: auto;
+	right: 256px;
+	rotate: 2deg;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b2.b2-2 {
+	left: auto;
+    right: 132px;
+    rotate: 5deg;
+    width: 87px;
+}
+.TheKingOfCss3 .opera .faceFront .syuner .big.b1 {
+	position: absolute;
+    left: auto;
+    top: 5px;
+    right: 35px;
+    width: 65px;
+    height: 25px;
+    rotate: 13deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound {
+	position: absolute;
+	top: -50px;
+	left: 0;
+	width: 100%;
+	z-index: 3;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy {
+	position: absolute;
+	left: 464px;
+	top: -115px;
+	width: 50px;
+	height: 105px;
+	filter: drop-shadow(0 1px 1px #0009);
+	transform-origin: bottom;
+	z-index: 2;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy .t {
+	width: 100%;
+	height: 30px;
+	background: linear-gradient(#949288 5px, #9F9F93 5px 80%, #878784 85%);
+	clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 94% 25%, 94% 100%, 8% 100%, 8% 12%, 0% 16%, 0% 0%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy .f {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy .f .l {
+	width: 43%;
+	height: 100%;
+	background: linear-gradient(to right, #4A4A4A, #95958B, #B2B2A8, #94948A, #363636);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s1 {
+	left: 376px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s1 .f .l {
+	background: linear-gradient(to right, #B7B4AF, #B7B4AF, #818479, #61635E, #2C2C2E);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s2 {
+	left: 555px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s2 .f .l {
+	background: linear-gradient(to left, #B7B4AF, #B7B4AF, #818479, #61635E, #2C2C2E);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3 {
+	left: 646px;
+    top: -115px;
+    scale: 1 .95;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3::after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: -8px;
+	width: 12px;
+	height: 30px;
+	background: linear-gradient(45deg, #3A3C3B, #3B3B39);
+	clip-path: polygon(45% 26%, 100% 0%, 100% 90%, 57% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2::after {
+	right: -8px;
+	left: auto;
+	clip-path: polygon(0% 0%, 60% 25%, 51% 78%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3 .l {
+	background: linear-gradient(to right, #3C3C3E, #3C3C3E, #888A7F, #A3A496, #B1B1A7);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2 {
+	left: 290px;
+    scale: 1 .95;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r {
+	left: 210px;
+    scale: 1 .88;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y {
+	left: 140px;
+    scale: 1 .80;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y.w {
+	left: 795px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y.w::after {
+	right: auto;
+	left: -8px;
+	clip-path: polygon(15% 30%, 95% 0%, 95% 90%, 32% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y.w .f .l:first-child {
+	background: linear-gradient(to left, #AFAB9F, #ACAA9E, #8d8c85, #5d5d5c, #40403E);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y.w .f .l:last-child {
+	background: #AFAB9F;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y .f .l:first-child {
+	background: #AFAB9F;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y::after {
+	clip-path: polygon(0% 0%, 90% 12%, 75% 90%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.y .f .l {
+	background: linear-gradient(to right, #AFAB9F, #ACAA9E, #8d8c85, #5d5d5c, #40403E);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r::after {
+	clip-path: polygon(0% 0%, 80% 12%, 70% 77%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2 .l {
+	background: linear-gradient(to left, #3C3C3E, #3C3C3E, #888A7F, #A3A496, #B1B1A7);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s4 {
+	left: 728px;
+    top: -115px;
+    scale: 1 .88;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s4 .l {
+	background: linear-gradient(to right, #3C3C3E, #3C3C3E, #888A7F, #A3A496, #B1B1A7);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s4::after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: -8px;
+	width: 12px;
+	height: 30px;
+	background: linear-gradient(45deg, #3A3C3B, #3B3B39);
+	clip-path: polygon(13% 25%, 100% 0%, 100% 90%, 25% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x {
+	left: 48px;
+    scale: 1 .70;
+    top: -113px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x::after {
+	width: 22px;
+	right: -20px;
+	clip-path: polygon(0% 0%, 80% 15%, 70% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s4.s4-2 {
+	left: 882px;
+    scale: 1 .70;
+    top: -110px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s4.s4-2::after {
+	left: -14px;
+	width: 18px;
+	clip-path: polygon(0% 15%, 100% 0%, 100% 90%, 6% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt {
+	position: absolute;
+	top: -150px;
+    left: 390px;
+    width: 100px;
+    height: 35px;
+    background: #A1A197;
+	box-shadow: 0 9px 0 -1px #42413d, inset 0 10px 4px -6px #565759;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t2 {
+	left: 490px;
+	border-left: 1px solid #838379;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t1 {
+	left: 290px;
+    rotate: -3deg;
+    top: -146px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t4 {
+	left: 190px;
+    rotate: -6deg;
+    top: -137px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t5 {
+	left: 113px;
+    rotate: -9deg;
+    top: -126px;
+    width: 80px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t6 {
+	left: 46px;
+    rotate: -13deg;
+    top: -111px;
+    width: 70px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t7 {
+	left: 10px;
+    rotate: -16deg;
+    top: -98px;
+    width: 40px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t1.h1 {
+	left: 590px;
+    rotate: 3deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t4.h1 {
+	left: 689px;
+    rotate: 6deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t5.h1 {
+	left: 787px;
+    rotate: 9deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t6.h1 {
+	left: 864px;
+    rotate: 13deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t7.h1 {
+	left: 930px;
+    rotate: 16deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .back {
+	position: absolute;
+	top: -108px;
+    left: 29px;
+    width: 94.7%;
+    height: 135px;
+    background: #212123;
+    z-index: -1;
+    border-radius: 50px 105px 0 0;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1 {
+	top: -106px;
+	left: -8px;
+    scale: .8 0.6;
+    transform-origin: bottom;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1 .f .l:first-child {
+	background: #B7B5A8;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1::after {
+	width: 15px;
+    right: -10px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t7.h1.j {
+	left: -9px;
+    rotate: -20deg;
+    top: -92px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.t7.h1.k {
+	left: 965px;
+    rotate: 20deg;
+    top: -86px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1.d2 {
+	top: -99px;
+    left: 950px;
+    scale: .8 .55;
+    transform-origin: bottom;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1.d2::after {
+	right: auto;
+	left: -8px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new {
+	top: -159px !important;
+    height: 10px;
+    background: #40423D;
+    box-shadow: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n1 {
+	top: -156px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n2 {
+	top: -156px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n3 {
+	top: -147px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n4 {
+	top: -136px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n5 {
+	top: -121px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n6 {
+	top: -108px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n7 {
+	top: -100px !important;
+	left: -15px !important;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new.n8 {
+	top: -96px !important;
+	left: 968px !important;
+	rotate: 20deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .tt.new span {
+	width: 7px;
+	height: 6px;
+	background: #8E8F89;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1.d2 .f .l:nth-child(1) {
+	background: linear-gradient(to right, #3C3C3E, #3C3C3E, #888A7F, #A3A496, #B1B1A7);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .sy.s3.s3-2.r.x.d1.d2 .f .l:nth-child(2) {
+	background: #ACACA1;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh {
+	position: absolute;
+	top: -179px;
+    left: 390px;
+	width: 200px;
+    height: 20px;
+    background: linear-gradient(#A6A89A 42%, #777A71 42% 58%, #A6A89A 58%);
+	box-shadow: 0 -4px 0px #3d3f3c, 0 -11px 0px #929688;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h1 {
+    top: -176px;
+	left: 290px;
+    width: 100px;
+    rotate: -3deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h1.e2 {
+	left: 590px;
+    rotate: 3deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h2 {
+    top: -168px;
+    left: 190px;
+    width: 100px;
+    rotate: -6deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h2.e2 {
+    left: 690px;
+    rotate: 6deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h3 {
+    top: -155px;
+    left: 106px;
+    width: 85px;
+    rotate: -10deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h3.e2 {
+    left: 789px;
+    rotate: 10deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h4 {
+    top: -135px;
+    left: 8px;
+    width: 100px;
+    rotate: -14.2deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h4.e2 {
+    left: 871px;
+    rotate: 14.2deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h5 {
+    top: -117px;
+    left: -22px;
+    width: 33px;
+    rotate: -19.2deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .hh.h5.e2 {
+	top: -115px;
+    left: 967px;
+    rotate: 19.2deg;
+    width: 45px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun {
+	position: absolute;
+	top: -207px;
+    left: 426px;
+	width: 32px;
+	height: 17px;
+	filter: drop-shadow(1px 0 0 #6A6D66);
+	transform-origin: bottom;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun .sur {
+	width: 100%;
+	height: 100%;
+	background: #969892;
+	box-shadow: inset 0 4px 0 #878785, inset -15px 0 0 #888a85;
+	clip-path: polygon(0% 18%, 50% 0, 100% 18%, 100% 100%, 0% 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s2 {
+	left: 530px;
+	filter: drop-shadow(-1px 0 0 #6A6D66);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s3 {
+	left: 630px;
+    top: -202px;
+    scale: 1 1.2;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s4 {
+	left: 730px;
+    top: -193px;
+    scale: 1 1.15;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s5 {
+	left: 825px;
+    top: -178px;
+    scale: 1 1;
+    rotate: 7deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s6 {
+	left: 928px;
+    top: -155px;
+    scale: 1 .8;
+    rotate: 10deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s7 {
+	left: 330px;
+    top: -204px;
+    scale: 1 1.2;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s8 {
+	left: 230px;
+    top: -194px;
+    scale: 1 1.2;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s9 {
+	left: 130px;
+    top: -182px;
+    scale: 1 1.1;
+    rotate: -5deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linesyun.s10 {
+	left: 30px;
+    top: -159px;
+    scale: 1 .8;
+    rotate: -10deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat {
+	position: absolute;
+	top: -205px;
+    left: 459px;
+    width: 70px;
+    height: 15px;
+	background: linear-gradient(#9FA19C 34%, #878882 34% 46%, #9FA19C 46% 62%, #878882 62% 74%, #9FA19C 74%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e2 {
+	left: 562px;
+    rotate: 2deg;
+    top: -203px;
+    width: 68px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e3 {
+	left: 663px;
+    rotate: 4deg;
+    top: -195px;
+    width: 68px;
+    height: 13px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e4 {
+	left: 763px;
+    rotate: 8deg;
+    top: -182px;
+    width: 68px;
+    height: 11px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e5 {
+	left: 859px;
+    rotate: 13deg;
+    top: -162px;
+    width: 72px;
+    height: 9px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e6 {
+	left: 961px;
+    rotate: 19deg;
+    top: -136px;
+    width: 57px;
+    height: 9px;
+    border-radius: 0 119% 0 0;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e7 {
+	left: 363px;
+    rotate: -2deg;
+    top: -203px;
+    width: 63px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e8 {
+	left: 263px;
+    rotate: -5deg;
+    top: -196px;
+    width: 67px;
+    height: 12px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e9 {
+	left: 162px;
+    rotate: -8deg;
+    top: -185px;
+    width: 69px;
+    height: 12px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e10 {
+	left: 61px;
+    rotate: -13deg;
+    top: -165px;
+    width: 70px;
+    height: 9px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .linepat.e11 {
+	left: -28px;
+    rotate: -17deg;
+    top: -140px;
+    width: 60px;
+    height: 9px;
+    border-radius: 119% 0 0 0;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .bardzr {
+	position: absolute;
+	top: -228px;
+    left: 40px;
+    width: 85px;
+    height: 75px;
+	background: linear-gradient(#878780, #999A8C);
+	z-index: -1;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .bardzr.b2 {
+	left: auto;
+	right: 50px;
+	height: 80px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .cur {
+	position: absolute;
+	top: -227px;
+    left: 125px;
+    width: 115px;
+    height: 56px;
+	background: #595854;
+	z-index: -1;
+	clip-path: polygon(0 0, 100% 65%, 0 100%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .cur.c2 {
+	left: auto;
+	right: 135px;
+	clip-path: polygon(0 65%, 100% 0%, 100% 100%);
+	height: 60px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .center {
+	position: absolute;
+	top: -215px;
+    left: 264px;
+    width: 467px;
+    height: 35px;
+	background: repeating-linear-gradient(to right, #7c7c7c 4% 5%, #32352e 5% 6.3%);
+	z-index: -1;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .center.l {
+	rotate: 18deg;
+    left: 125px;
+    width: 149px;
+    top: -218px;
+    height: 14px;
+	background: repeating-linear-gradient(to right, #7c7c7c 4% 7%, #272826 8% 10.3%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .center.l.l2 {
+	rotate: 0deg;
+	left: 40px;
+    width: 93px;
+    top: -241px;
+    height: 13px;
+	background: repeating-linear-gradient(to right, #41434F 4% 10%, #888A85 10% 16.3%);
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .center.l.l2.l3 {
+	left: auto;
+	right: 50px;
+	width: 87px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .center.l.r {
+	left: auto;
+	right: 120px;
+	rotate: -18deg;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 10px;
+    width: 95px;
+    position: absolute;
+    left: 32px;
+    top: -250px;
+    background: #383B42;
+    border-radius: 50% 0 0 24px;
+	box-shadow: 0 -4px 0 #6a6e6e, 0 -9px 0 #424554, 0 -16px 0 #94908c;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack span {
+	width: 8px;
+	height: 4px;
+	background: #6F7572;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack.t2 {
+	left: auto;
+	right: 44px;
+    border-radius: 0 50% 24px 0;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack.rot {
+	left: 119px;
+    rotate: 18deg;
+    top: -229px;
+    width: 149px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack.rot.rot2 {
+	left: auto;
+    right: 127px;
+    rotate: -19deg;
+    top: -228px;
+    width: 147px;
+    height: 12px;
+	border-radius: 0 50% 24px 0;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .topblack.uxix {
+	left: 257px;
+    top: -218px;
+    width: 474px;
+	border-radius: 50% 50% 24px 24px;
+	box-shadow: 0 0 0 #6a6e6e, 14px -4px 0 #424554, -8px -4px 0 #424554, 0 -9px 0 #94908c, 12px -9px 0 #94908c;
+	z-index: 1;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .KingCSS {
+	position: absolute;
+	top: -275px;
+    left: 62px;
+    width: 70px;
+    height: 10px;
+    background: #85837F;
+    z-index: -1;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .KingCSS.css2 {
+	rotate: 18deg;
+    left: 127px;
+    top: -254px;
+    width: 134px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .KingCSS.css3 {
+ 	left: 257px;
+    top: -234px;
+    width: 474px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .KingCSS.css4 {
+	rotate: -18deg;
+    left: auto;
+    right: 138px;
+    top: -254px;
+    width: 134px;
+    height: 12px;
+}
+.TheKingOfCss3 .opera .faceFront .tpRound .KingCSS.css5 {
+    left: auto;
+    right: 73px;
+    top: -275px;
+    width: 70px;
+    height: 12px;
+}
+.TheKingOfCss3 .opera .bottomStone {
+	position: absolute;
+	bottom: -44px;
+    left: 275px;
+    width: 210px;
+    height: 45px;
+    background: repeating-linear-gradient(#B8B7B3 15% 25%, #A9A59C 32%);
+    z-index: 12;
+    rotate: .5deg;
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .bottomStone.sto2 {
+	left: 484px;
+    rotate: -.5deg;
+    clip-path: polygon(0 0, 88% 0, 100% 100%, 0 100%);
+	box-shadow: inset 1px 0px 0 #9d9d9d;
+}
+.TheKingOfCss3 .opera .bottomStone.sto3 {
+	left: 665px;
+    rotate: -.5deg;
+    clip-path: polygon(0 0, 79% 0, 100% 100%, 14% 100%);
+    bottom: -43px;
+	background: repeating-linear-gradient(#b0aea6 15% 25%, #9f9c93 32%);
+}
+.TheKingOfCss3 .opera .bottomStone.sto4 {
+	left: 90px;
+    rotate: .5deg;
+    clip-path: polygon(22% 0, 100% 0, 88% 100%, 0% 100%);
+    bottom: -43px;
+    background: repeating-linear-gradient(#b0aea6 15% 25%, #9f9c93 32%);
+}
+.TheKingOfCss3 .opera .bottomStone.sto3.s3 {
+	left: 830px;
+    rotate: -1.5deg;
+    clip-path: polygon(0 0, 70% 0, 100% 100%, 17% 100%);
+    bottom: -39px;
+    background: repeating-linear-gradient(#ada8a0 15% 25%, #9f9c93 32%);
+    width: 258px;
+}
+.TheKingOfCss3 .opera .bottomStone.sto4.s4 {
+	left: -111px;
+    rotate: .5deg;
+    clip-path: polygon(35% 0, 100% 0, 80% 100%, 0% 100%);
+    bottom: -42px;
+    background: repeating-linear-gradient(#a8a6a2 15% 25%, #9f9c93 32%);
+    width: 250px;
+}
+.TheKingOfCss3 .opera .bottomStone.sto4.s4.E {
+	left: -189px;
+    rotate: 4.5deg;
+    clip-path: polygon(48% 3%, 100% 0, 50% 100%, 0% 100%);
+    bottom: -41px;
+    background: repeating-linear-gradient(#9C9B97 15% 25%, #9c988e 32%);
+    width: 168px;
+    height: 51px;
+}
+.TheKingOfCss3 .opera .bottomStone.sto4.s4.E.F {
+	left: auto;
+    right: -185px;
+    rotate: -7.5deg;
+    clip-path: polygon(0% 0%, 53% 0, 100% 100%, 40% 100%);
+    bottom: -33px;
+    background: repeating-linear-gradient(#9C9B97 15% 25%, #9c988e 32%);
+    height: 50px;
+}
+.TheKingOfCss3 .opera::before {
+	content: '';
+	position: absolute;
+	bottom: 214px;
+    left: -28px;
+    width: 32px;
+    height: 128px;
+    background: #9FA0A5;
+    rotate: 4deg;
+	z-index: 1;
+}
+.TheKingOfCss3 .opera::after {
+	content: '';
+	position: absolute;
+	bottom: 214px;
+    right: -6px;
+    width: 12px;
+    height: 125px;
+    background: #a0a3a6;
+    rotate: -2deg;
+	z-index: 1;
+}
+.TheKingOfCss3 .opera .leftBlock {
+	position: absolute;
+	bottom: 5px;
+    left: -160px;
+    width: 140px;
+    height: 280px;
+	background: linear-gradient(to right, transparent 10%, #D6D6D6 7%) no-repeat 0 45px;
+}
+.TheKingOfCss3 .opera .leftBlock.rr {
+	left: auto;
+    right: -144px;
+    scale: -1 1;
+}
+.TheKingOfCss3 .opera .leftBlock .bot {
+	position: absolute;
+	bottom: 0px;
+    right: 22px;
+    width: 25px;
+    height: 20px;
+    background: #CCCBC6;
+    border: 2px solid #9C9C9A;
+}
+.TheKingOfCss3 .opera .leftBlock .wind {
+	position: absolute;
+	bottom: 24px;
+    right: 21px;
+	width: 25px;
+	height: 60px;
+	background: #423D3E;
+	border: 1px solid #957E74;
+	z-index: 1;
+}
+.TheKingOfCss3 .opera .leftBlock .wind::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	translate: -50%;
+	width: 3px;
+	height: 100%;
+	background: #957E74;
+}
+.TheKingOfCss3 .opera .leftBlock .wind::after {
+	content: '';
+	position: absolute;
+	top: 35%;
+	left: 0;
+	translate: 0 -50%;
+	width: 100%;
+	height: 3px;
+	background: #957E74;
+}
+.TheKingOfCss3 .opera .leftBlock .wp {
+	position: absolute;
+	right: 20px;
+    bottom: 133px;
+    width: 41px;
+    height: 10px;
+    display: flex;
+    justify-content: space-around;
+	align-items: flex-end;
+    background: #AEB1AA;
+	border-bottom: 2px solid #68696E;
+	z-index: 1;
+}
+.TheKingOfCss3 .opera .leftBlock .wp span {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	border: 1px solid #68696E;
+}
+.TheKingOfCss3 .opera .leftBlock .wind.topW {
+	bottom: 143px;
+    width: 30px;
+    rotate: 2deg;
+}
+.TheKingOfCss3 .opera .bottomStoneLeftEnd {
+	position: absolute;
+    left: -190px;
+    bottom: -34px;
+    width: 85px;
+    height: 42px;
+    background: #383F47;
+    z-index: 2;
+}
+.TheKingOfCss3 .opera .bottomStoneLeftEnd.r {
+	left: auto;
+    right: -189px;
+    height: 39px;
+    bottom: -22px;
+}
+.TheKingOfCss3 .opera .bottomStoneLeftEndFace {
+	position: absolute;
+    left: -206px;
+    bottom: -34px;
+    width: 15px;
+    height: 42px;
+    background: #C8C6B6;
+    z-index: 1;
+}
+.TheKingOfCss3 .opera .bottomStoneLeftEndFace.r {
+	left: auto;
+    right: -204px;
+    bottom: -21px;
+    width: 15px;
+    height: 38px;
+}
+.TheKingOfCss3 .opera .leftBlock .syy {
+	position: absolute;
+	bottom: 0;
+    left: 59px;
+    width: 20px;
+    height: 204px;
+	filter: drop-shadow(5px 0 0 #3C4258);
+	z-index: 1;
+}
+.TheKingOfCss3 .opera .leftBlock .syy .to {
+	height: 10px;
+	background: #C1C2C0;
+	clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .leftBlock .syy .bo {
+	height: 100%;
+	background: #C1C2C0;
+}
+.TheKingOfCss3 .opera .leftBlock .syy .r {
+	position: absolute;
+	top: 6px;
+	left: 0;
+	width: 7px;
+	height: 15px;
+	border-radius: 50%;
+	background: #B5B9B9;
+	border: 1px solid #88898B;
+}
+.TheKingOfCss3 .opera .leftBlock .syy .r.r2 {
+	left: auto;
+	right: -3px;
+	width: 8px;
+}
+.TheKingOfCss3 .opera .leftBlock .syy .cent {
+	position: absolute;
+	top: 6px;
+    left: 7px;
+    width: 7px;
+    height: 14px;
+    border-radius: 50%;
+    background: #a4a6aa;
+    border: 1px solid #88898B;
+}
+.TheKingOfCss3 .opera .leftBlock .wp.w2 {
+	left: 36px;
+    width: 23px
+}
+.TheKingOfCss3 .opera .leftBlock .bot.b2 {
+	left: 41px;
+    bottom: -4px;
+    rotate: -2deg;
+    width: 20px;
+}
+.TheKingOfCss3 .opera .leftBlock .wind.lw2 {
+	left: 37px;
+    scale: .7 1;
+    bottom: 18px;
+	rotate: -1deg;
+}
+.TheKingOfCss3 .opera .leftBlock .wind.lw2.t2 {
+	bottom: 143px;
+    height: 56px;
+    clip-path: polygon(9% 6%, 100% 0, 100% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .leftBlock .syy.lb2 {
+	left: 14px;
+    transform-origin: bottom;
+    scale: .7 .956;
+}
+.TheKingOfCss3 .opera .leftBlock .ttSyun {
+	position: absolute;
+	top: 53px;
+    right: 0;
+    width: 80px;
+	height: 24px;
+	background: linear-gradient(#CECBC6 42%, #5B5853 42% 53%, #CECBC6 53%);
+	rotate: -5deg;
+	box-shadow: 0 -2px 0 #999691;
+}
+.TheKingOfCss3 .opera .leftBlock .ttSyun.l2 {
+	top: 60px;
+    right: 79px;
+    width: 32px;
+    height: 24px;
+    rotate: -9deg;
+}
+.TheKingOfCss3 .opera .leftBlock .ttSyun.l2.l3 {
+	top: 65px;
+    right: 103px;
+    width: 25px;
+    height: 24px;
+    rotate: -13deg;
+}
+.TheKingOfCss3 .opera .leftBlock .ttSyun.e2 {
+	top: 25px;
+    right: 0;
+    width: 60px;
+    rotate: -7deg;
+    background: linear-gradient(#CECBC6 15%, #6F6E6A 15% 25%, #CECBC6 25%);
+}
+.TheKingOfCss3 .opera .leftBlock .ttSyun.e2.i2 {
+	top: 40px;
+    right: 68px;
+    width: 60px;
+    rotate: -13deg;
+    height: 18px;
+}
+.TheKingOfCss3 .opera .leftBlock .ttcent {
+	position: absolute;
+    top: 24px;
+    right: 58px;
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to right, #b8b5ad, #CCCABE);
+    clip-path: polygon(0% 22%, 45% 0, 100% 17%, 100% 100%, 0% 100%);
+    z-index: 1;
+    rotate: -5deg;
+	box-shadow: inset -2px 0 0 #3c4259;
+}
+.TheKingOfCss3 .opera .leftBlock .ttcent.ll {
+	right: 108px;
+    rotate: -4deg;
+    scale: .8 .9;
+    top: 35px;
+}
+.TheKingOfCss3 .opera .leftBlock .silv {
+	position: absolute;
+    bottom: -1px;
+    left: -136px;
+    width: 150px;
+    height: 153px;
+    background: #A2A298;
+    z-index: -1;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+	box-shadow: inset 0 2px 0 #5D5E5A;
+}
+.TheKingOfCss3 .opera .leftBlock .silv.ttop {
+	height: 20px;
+    bottom: 151px;
+    clip-path: none;
+    width: 140px;
+    left: -124px;
+	background: #8D8E86;
+	box-shadow: inset 0 3px 0 #ABAAA7, inset 0 -3px 0 #ABAAA7;
+}
+.TheKingOfCss3 .opera .leftBlock .silv.tttop {
+    height: 50px;
+    bottom: 170px;
+    clip-path: none;
+    width: 140px;
+    left: -124px;
+    background: #A2A298;
+    box-shadow: none;
+	z-index: -2;
+	clip-path: polygon(3% 0, 100% 0, 100% 100%, 0 100%);
+}
+.TheKingOfCss3 .opera .leftBlock .silBl {
+	position: absolute;
+	bottom: 219px;
+    left: -127px;
+    z-index: -3;
+    width: 146px;
+    height: 10px;
+    background: #474B53;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+}
+.TheKingOfCss3 .opera .leftBlock .silBl.e2 {
+    bottom: 229px;
+    background: #979797;
+    clip-path: none;
+    z-index: -4;
+    height: 12px;
+    box-shadow: 0 -5px 0 #484a52;
+    width: 195px;
+}
+.TheKingOfCss3 .opera .leftBlock .silBl.nn2 {
+	bottom: 246px;
+    left: -136px;
+    height: 6px;
+    background: #8A8783;
+    z-index: -5;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 3% 100%);
+    width: 218px;
+}
+.TheKingOfCss3 .opera .leftBlock .silBlock {
+	position: absolute;
+	bottom: 251px;
+    left: -112px;
+    width: 25px;
+    height: 25px;
+	background: #979795;
+	box-shadow: 4px 0 0 #383A49;
+}
+.TheKingOfCss3 .opera .leftBlock .silRight {
+	position: absolute;
+	bottom: 251px;
+    left: -84px;
+    width: 225px;
+    height: 21px;
+    background: #979795;
+    z-index: -1;
+}
+.TheKingOfCss3 .opera .leftBlock .jur {
+	position: absolute;
+	left: -130px;
+    bottom: 147px;
+    width: 20px;
+    height: 23px;
+	filter: drop-shadow(3px 2px 0 #303C4D);
+}
+.TheKingOfCss3 .opera .leftBlock .jur .elem {
+	width: 100%;
+    height: 100%;
+    background: #ACADB1;
+    clip-path: polygon(0 0, 100% 0, 100% 65%, 35% 69%, 23% 100%, 0 100%);
+	box-shadow: inset -2px -5px 9px #303c4d;
+}
+.TheKingOfCss3 .opera .leftBlock .silv .windowSilv {
+	width: 40px;
+    height: 53px;
+    background: radial-gradient(#4D4F4C 30%, #1B2120 75%);
+    position: absolute;
+    bottom: 9px;
+    right: 7px;
+	clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
+	padding-top: 20px;
+}
+.TheKingOfCss3 .opera .leftBlock .silv .windowSilv::before,
+.TheKingOfCss3 .opera .leftBlock .silv .windowSilv::after {
+	content: '';
+	position: absolute;
+	left: 10px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #756055;
+    rotate: 2deg;
+}
+.TheKingOfCss3 .opera .leftBlock .silv .windowSilv::after {
+	left: auto;
+	right: 10px;
+}
+.TheKingOfCss3 .opera .leftBlock .silv .windowSilv .line {
+	height: 4px;
+	background: #756055;
+}
+.TheKingOfCss3 .opera .leftBlock.rr .silv .windowSilv {
+	bottom: 18px;
+}
+.palette {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	translate: -50%;
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+.palette input {
+	width: 50px;	
+	height: 40px;
+	cursor: pointer;
+	accent-color: #000;
+}
+.palette button {
+	padding: 5px;
+	cursor: pointer;
+}
