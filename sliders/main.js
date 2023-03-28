@@ -110,6 +110,10 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider12/interest.html'), 1000);
 		} else if (index == 86) {
 			setTimeout(() => window.location.replace('stickySlider/sticky.html'), 1000);
+		} else if (index == 87) {
+			setTimeout(() => window.location.replace('glissEffectSlider/index.html'), 1000);
+		} else if (index == 88) {
+			setTimeout(() => window.location.replace('clickListSlider/index.html'), 1000);
 		}
 	};
 });
