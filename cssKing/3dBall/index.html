@@ -424,7 +424,7 @@
 		sizex.oninput = e => ballItemN.forEach(item => item.style.width = sizex.value + 'px');
 		sizey.oninput = e => ballItemN.forEach(item => item.style.height = sizey.value + 'px');
 		shadow.oninput = e => ballItem.forEach(item => item.style.boxShadow = `0 0 ${shadow.value}px ${picker.value}, 0 0 ${shadow.value}px ${picker.value}`);
-		rand.oninput = e => ballItem.forEach(item => item.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, .8)`);
+		rand.oninput = e => ballItem.forEach(item => item.style.background = rand.value > 1 ? `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, .8)` : 'none');
 		console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 	</script>
