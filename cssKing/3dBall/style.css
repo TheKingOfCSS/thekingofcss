@@ -1,0 +1,138 @@
+* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+body {
+	-webkit-perspective: 850px;
+	perspective: 850px;
+	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background: #000;
+	overflow: hidden;
+	cursor: -webkit-grab;
+	cursor: grab;
+}
+body:active {
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+.Dblock {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.ball {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	width: 300px;
+	height: 300px;
+	-webkit-transform: translate3d(0em, 0em, 15em) scaleY(1.7);
+	transform: translate3d(0em, 0em, 15em) scaleY(1.7);
+}
+.ball .item {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 5px;
+    height: 5px;
+	border-radius: 50%;
+    -webkit-box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+    box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+	-webkit-transition: .1s;
+	transition: background .1s;
+}
+.ball .item.cent {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--c) * 50deg)) translateZ(170px);
+	transform: translate(-50%, -50%) rotateY(calc(var(--c) * 50deg)) translateZ(170px);
+}
+.ball .item.j {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--j) * 10deg)) translateZ(163px) rotateX(25deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--j) * 10deg)) translateZ(163px) rotateX(25deg);
+	top: 121px;
+}
+.ball .item.r {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--r) * 11deg)) translateZ(146px) rotateX(48deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--r) * 11deg)) translateZ(146px) rotateX(48deg);
+	top: 98px;
+}
+.ball .item.w {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--w) * 13deg)) translateZ(121px) rotateX(65deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--w) * 13deg)) translateZ(121px) rotateX(65deg);
+	top: 83px;
+}
+.ball .item.q {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--q) * 15deg)) translateZ(93px) rotateX(75deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--q) * 15deg)) translateZ(93px) rotateX(75deg);
+    top: 73px;
+}
+.ball .item.t {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--t) * 20deg)) translateZ(64px) rotateX(82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--t) * 20deg)) translateZ(64px) rotateX(82deg);
+    top: 67px;
+}
+.ball .item.a {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--a) * 30deg)) translateZ(37px) rotateX(82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--a) * 30deg)) translateZ(37px) rotateX(82deg);
+    top: 64px;
+}
+.ball .item.s {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--s) * 52deg)) translateZ(13px) rotateX(82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--s) * 52deg)) translateZ(13px) rotateX(82deg);
+    top: 61px;
+    width: 20px;
+    height: 26px;
+}
+.ball .item.jb {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--j) * 10deg)) translateZ(163px) rotateX(-25deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--j) * 10deg)) translateZ(163px) rotateX(-25deg);
+	top: 177px;
+}
+.ball .item.x {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--r) * 11deg)) translateZ(146px) rotateX(-48deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--r) * 11deg)) translateZ(146px) rotateX(-48deg);
+	top: 200px;
+}
+.ball .item.n {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--w) * 13deg)) translateZ(121px) rotateX(-65deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--w) * 13deg)) translateZ(121px) rotateX(-65deg);
+	top: 216px;
+}
+.ball .item.m {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--q) * 15deg)) translateZ(93px) rotateX(-75deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--q) * 15deg)) translateZ(93px) rotateX(-75deg);
+    top: 226px;
+}
+.ball .item.o {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--t) * 20deg)) translateZ(64px) rotateX(-82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--t) * 20deg)) translateZ(64px) rotateX(-82deg);
+    top: 232px;
+}
+.ball .item.p {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--a) * 30deg)) translateZ(37px) rotateX(-82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--a) * 30deg)) translateZ(37px) rotateX(-82deg);
+    top: 235px;
+}
+.ball .item.f {
+	-webkit-transform: translate(-50%, -50%) rotateY(calc(var(--s) * 52deg)) translateZ(13px) rotateX(-82deg);
+	transform: translate(-50%, -50%) rotateY(calc(var(--s) * 52deg)) translateZ(13px) rotateX(-82deg);
+    top: 238px;
+    width: 20px;
+    height: 26px;
+}
+.control {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	display: grid;
+	grid-row-gap: 20px;
+	accent-color: #fff;
+}
+:is(#size, #sizex, #sizey, #shadow, #rand) {
+	width: 50px;
+}
