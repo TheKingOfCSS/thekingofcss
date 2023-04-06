@@ -146,7 +146,7 @@ class YourGame extends Tools {
 				this['endGame']();
 			}
 			if (this['pathBool']) {
-				this['meter'] += .4;
+				this['meter'] += .5;
 				this['path']['innerText'] = Math['floor'](this['meter']) + ' Meter';
 				if (this['meter'] % 1e3 == 0) {
 					this['mission']['innerText'] = --this['km'] + 'km';
