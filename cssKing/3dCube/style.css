@@ -1,0 +1,239 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.block {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 850px;
+    background: #111;
+}
+.block .cube {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: .8s;
+}
+.block .cube .item {
+    width: 100%;
+    height: 100%;
+    background: #00b2ff42;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: inset 0 -410px 30px 2px #000000ba, inset 0 0 25px #fff;
+    transition: 2s;
+}
+.block .cube:hover .item {
+    box-shadow: inset 0 0 30px 2px #000000ba;
+}
+.block .cube .item.left {
+    transform: rotateY(-90deg) translateZ(200px);
+}
+.block .cube .item.right {
+    transform: rotateY(90deg) translateZ(200px);
+}
+.block .cube .item.front {
+    transform: translateZ(200px);
+}
+.block .cube .item.back {
+    transform: rotateY(180deg) translateZ(200px);
+}
+.block .cube .item.top {
+    transform: rotateX(90deg) translateZ(200px);
+}
+.block .cube .item.bottom {
+    transform: rotateX(-90deg) translateZ(200px);
+}
+.block input {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    translate: calc(40px * var(--i) - 50%);
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    cursor: pointer;
+    transition: .3s;
+    z-index: 10;
+}
+.block input:checked {
+    background: #0f0;
+    translate: calc(40px * var(--i) - 50%) 10px;
+	border-radius: 50%;
+}
+.block input:nth-child(2):checked ~ .cube {
+    transform: rotateY(-90deg);
+}
+.block input:nth-child(3):checked ~ .cube {
+    transform: rotateY(-180deg);
+}
+.block input:nth-child(4):checked ~ .cube {
+    transform: rotateY(-270deg);
+}
+.block input:nth-child(5):checked ~ .cube {
+    transform: rotateX(-90deg);
+}
+.block input:nth-child(6):checked ~ .cube {
+    transform: rotateX(90deg);
+}
+.block .cube .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.block .cube .item .listSlider {
+    display: flex;
+    height: 100%;
+}
+.block .cube .item .listSlider .list {
+    border-left: 2px solid #0f0;
+    width: calc(100% / 8);
+    transition: .8s;
+    opacity: .2;
+}
+.block .cube .item .listSlider .list:hover {
+    width: 300%;
+    opacity: 1;
+}
+.block .cube .item .vertical {
+    height: 100%;
+    overflow: hidden;
+    opacity: .05;
+    transition: 2s;
+}
+.block .cube .item:hover .vertical {
+    opacity: .9;
+}
+.block .cube .item .vertical .big {
+    height: 100%;
+    position: relative;
+    top: 0;
+    transition: .8s;
+}
+.block .cube .item .vertical .big .vertItem {
+    height: 100%;
+}
+.block .cube .item .vertical input {
+    top: 50%;
+    left: 3%;
+    translate: 0 calc(40px * var(--i) - 50%);
+}
+.block .cube .item .vertical input:checked {
+    translate: 10px calc(40px * var(--i) - 50%);
+}
+.block .cube .item .vertical input:nth-child(2):checked ~ .big {
+    top: -100%;
+}
+.block .cube .item .vertical input:nth-child(3):checked ~ .big {
+    top: -200%;
+}
+.block .cube .item .vertical input:nth-child(4):checked ~ .big {
+    top: -300%;
+}
+.block .cube .item .vertical input:nth-child(5):checked ~ .big {
+    top: -400%;
+}
+.block .cube .item .glissSlider {
+    height: 100%;
+    overflow: hidden;
+    opacity: .2;
+    transition: 2s;
+}
+.block .cube .item:hover .glissSlider {
+    opacity: .9;
+}
+.block .cube .item .glissSlider .big {
+    width: 500%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    left: 0;
+    transition: .8s;
+}
+.block .cube .item .glissSlider .big .glissItem {
+    width: 100%;
+    height: 100%;
+}
+.block .cube .item .glissSlider input {
+    top: auto;
+    bottom: 5%;
+}
+.block .cube .item .glissSlider input:checked {
+    background: #ff0808;
+}
+.block .cube .item .glissSlider input:nth-child(2):checked ~ .big {
+    left: -100%;
+}
+.block .cube .item .glissSlider input:nth-child(3):checked ~ .big {
+    left: -200%;
+}
+.block .cube .item .glissSlider input:nth-child(4):checked ~ .big {
+    left: -300%;
+}
+.block .cube .item .glissSlider input:nth-child(5):checked ~ .big {
+    left: -400%;
+}
+.block .cube .item .clip {
+	height: 100%;
+	opacity: .1;
+	transition: .4s;
+}
+.block .cube .item:hover .clip {
+	opacity: 1;
+}
+.block .cube .item .clip .clipItem {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: .4s;
+}
+.block .cube .item .clip .clipItem:nth-child(1) {
+	clip-path: polygon(0 0, 100% 0, 100% 5%, 0 28%);
+}
+.block .cube .item .clip .clipItem:nth-child(2) {
+	clip-path: polygon(0 28%, 100% 5%, 100% 48%, 0 29%);
+}
+.block .cube .item .clip .clipItem:nth-child(3) {
+	clip-path: polygon(0 29%, 100% 48%, 100% 50%, 0 70%);
+}
+.block .cube .item .clip .clipItem:nth-child(4) {
+	clip-path: polygon(0 70%, 100% 50%, 100% 85%, 0 72%);
+}
+.block .cube .item .clip .clipItem:nth-child(5) {
+	clip-path: polygon(0 72%, 100% 85%, 100% 100%, 0 100%);
+}
+.block .cube .item .clip:hover .clipItem {
+	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+.block .cube .item .clip .clipItem:hover {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.block .cube .item .parallax {
+	display: flex;
+	height: 100%;
+	background: url(img/Mushex.jpg) no-repeat center / cover;
+	opacity: .1;
+	transition: 1s;
+}
+.block .cube .item:hover .parallax {
+	opacity: 1;
+}
+.block .cube .item .parallax .itemPar {
+	width: calc(100% / 20);
+	height: 100%;
+	background: url(img/Ronaldinho.jpg) no-repeat calc(var(--i) * calc(100% / 20)) / 400px 100%;
+	transition: .5s .2s;
+}
+.block .cube .item .parallax .itemPar:hover {
+	opacity: 0;
+	transition: none;
+	background-size: 
+}
+
+
+
