@@ -552,7 +552,7 @@
 				coin.innerText = point;
 				control.value = null;
 				setTimeout(() => robotCode(), 10);
-				levelWidth += 10;
+				levelWidth += 5;
 				let nn = [...displayItem[room].firstElementChild.firstElementChild.children].filter(item => item.tagName == 'DIV');
 				nn[currentLevel].style.width = `calc(${levelWidth}% - 30px)`;
 				if (levelWidth >= 1e2) {
