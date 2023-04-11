@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Robot Code</title>
+	<link rel="shortcut icon" href="img/coin.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			grid-row-gap: 5%;
+			text-align: center;
+			background: linear-gradient(42deg, #000, #000000ab);
+			overflow: hidden;
+			position: relative;
+		}
+		.game .big {
+			width: 400%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			position: relative;
+			left: 0;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.game .big .item {
+			width: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+            -webkit-perspective: 850px;
+            perspective: 850px;
+		}
+        .game .big .item .robotBlock {
+			width: 35%;
+			height: 300px;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: .5s;
+            transition: .5s;
+        }
+        .game .big .item .robot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            background: #080808;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-column-gap: 30px;
+            column-gap: 30px;
+        }
+		.game .big .item:nth-child(4) .robot {
+			-webkit-transform: none;
+			transform: none;
+			padding-bottom: 60px;
+		}
+		.game .big .item:nth-child(4) .robot .eye .bib {
+			background: #00ff00;
+		}
+		.game .big .item:nth-child(4) .robot h3 {
+			width: auto;
+			bottom: 20px;
+			font-size: 30px;
+		}
+        .game .big .item .robot .eye,
+        .menu .robot .eye {
+            width: 80px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            background: #fff5;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .game .big .item .robot .eye::after,
+        .menu .robot .eye::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ff0081;
+            -webkit-transform-origin: top;
+            transform-origin: top;
+            -webkit-animation: toBlink 4s infinite;
+            animation: toBlink 4s infinite;
+            scale: 1 0;
+        }
+        .game .big .item:nth-child(2) .robot .eye::after {
+            background: #fff700;
+        }
+        .game .big .item:nth-child(3) .robot .eye::after {
+            background: #0f0;
+        }
+        @-webkit-keyframes toBlink {
+            26%, 73% { scale: 1 1; }
+            20%, 40%, 66%, 80% { scale: 1 0; }
+        }
+        @keyframes toBlink {
+            26%, 73% { scale: 1 1; }
+            20%, 40%, 66%, 80% { scale: 1 0; }
+        }
+        .game .big .item .robot .eye .bib,
+        .menu .robot .eye .bib {
+            width: 30px;
+            height: 35px;
+            background: #fff;
+            border-radius: 50%;
+            -webkit-box-shadow: inset 0 -8px 12px #000000d9, 0 2px 6px #fff;
+            box-shadow: inset 0 -8px 12px #000000d9, 0 2px 6px #fff;
+            -webkit-animation: bib 2s linear infinite;
+            animation: bib 2s linear infinite;
+        }
+        @-webkit-keyframes bib {
+            50% { -webkit-transform: rotate(300deg) translateX(20px); transform: rotate(300deg) translateX(20px); }
+            60%, 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+            80% { -webkit-transform: rotate(360deg) translateY(-20px); transform: rotate(360deg) translateY(-20px); }
+            90% { -webkit-transform: rotate(360deg) translateY(20px); transform: rotate(360deg) translateY(20px); }
+        }
+        @keyframes bib {
+            50% { -webkit-transform: rotate(300deg) translateX(20px); transform: rotate(300deg) translateX(20px); }
+            60%, 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+            80% { -webkit-transform: rotate(360deg) translateY(-20px); transform: rotate(360deg) translateY(-20px); }
+            90% { -webkit-transform: rotate(360deg) translateY(20px); transform: rotate(360deg) translateY(20px); }
+        }
+        .game .big .item .robot h3 {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            translate: -50%;
+            color: #fff;
+            font: bold 22px monospace;
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        @-webkit-keyframes write {
+            to { width: 100%; }
+        }
+        @keyframes write {
+            to { width: 100%; }
+        }
+        @-webkit-keyframes hideWrite {
+            to { opacity: 0; }
+        }
+        @keyframes hideWrite {
+            to { opacity: 0; }
+        }
+		.game .big .item .display {
+            height: 100%;
+			background: #222;
+			border-radius: 20px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-column-gap: 5px;
+			column-gap: 5px;
+			position: relative;
+			overflow: hidden;
+			-webkit-box-shadow: 0 0 20px #000000a6;
+			box-shadow: 0 0 20px #000000a6;
+		}
+		.game .big .item .display span {
+			color: #fff;
+			font: bold 7vw verdana;
+		}
+		.game .big .item .display .level {
+			position: absolute;
+			left: 15px;
+			width: 0;
+			height: 7px;
+			background: #ff0081;
+			-webkit-transition: .3s;
+			transition: .3s;
+			border-radius: 10px;
+		}
+		.game .big .item:nth-child(2) .display .level {
+			background: #fff700;
+		}
+		.game .big .item:nth-child(3) .display .level {
+			background: #0f0;
+		}
+		.game .big .item .display .level.top {
+			top: 0;
+		}
+		.game .big .item .display .level.bottom {
+			bottom: 0;
+		}
+		.game .control {
+			position: relative;
+			z-index: 1;
+		}
+		.game .control input {
+			width: 215px;
+			height: 60px;
+			padding: 15px;
+			border: 2px solid #000;
+			font: 30px verdana;
+			text-align: center;
+			letter-spacing: -2px;
+			border-radius: 15px;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .control .coin {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			translate: -50%;
+			width: 60px;
+			height: 60px;
+			background: url(img/coin.png) no-repeat center / contain;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			font: 30px sans-serif;
+			z-index: -1;
+			padding-top: 2px;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.game .time {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 10px;
+			height: 100%;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #ff0081), to(transparent));
+			background: linear-gradient(#ff0081 50%, transparent 100%);
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.game .time .current {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			color: #fff;
+			font: bold 22px verdana;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: -webkit-gradient(linear, left bottom, left top, color-stop(50%, #111), to(transparent));
+			background: linear-gradient(to top, #111 50%, transparent 100%);
+			z-index: 10;
+			text-align: center;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.menu .robot {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-column-gap: 20px;
+			column-gap: 20px;
+			padding-top: 25px;
+		}
+		.menu h1 {
+			color: #fff;
+			font: bold 3rem monospace;
+			text-transform: uppercase;
+			-webkit-text-stroke: 1px #ff003b;
+			text-shadow: 0 4px 10px #ff003b;
+			-webkit-animation: gameName 1s infinite;
+			animation: gameName 1s infinite;
+		}
+		@-webkit-keyframes gameName {
+			50% { text-shadow: 0 41px 0px #ff003b; scale: .7; }
+		}
+		@keyframes gameName {
+			50% { text-shadow: 0 41px 0px #ff003b; scale: .7; }
+		}
+		.menu .play {
+			font: bold 3rem verdana;
+			background: linear-gradient(42deg, #080808, #222);
+			padding: 15px 40px;
+			display: inline-block;
+			border-radius: 50px;
+			margin-top: 30vh;
+			cursor: pointer;
+			color: #fff;
+			-webkit-box-shadow: 0 5px 1px 3px #fff;
+			box-shadow: 0 5px 1px 3px #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			outline: 1px solid #fff;
+			outline-offset: -4px;
+		}
+		.menu .play:hover {
+			-webkit-box-shadow: 0 2px 1px #fff;
+			box-shadow: 0 2px 1px #fff;
+			translate: 0 8px;
+		}
+		.menu .play:active {
+			-webkit-box-shadow: 0 2px 1px #0f0;
+			box-shadow: 0 2px 1px #0f0;
+			outline-color: #0f0;
+			color: #ff0;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="big">
+			<div class="item">
+				<div class="robotBlock">
+				    <div class="display">
+                        <div class="level top"></div>
+                        <div class="level bottom"></div>
+                        <span>a</span>
+                        <span>B</span>
+                        <span>0</span>
+                    </div>
+                    <div class="robot">
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <h3>You are Robot</h3>
+                    </div>
+				</div>
+			</div>
+			<div class="item">
+			    <div class="robotBlock">
+			        <div class="display">
+                        <div class="level top"></div>
+                        <div class="level bottom"></div>
+                        <span>a</span>
+                        <span>B</span>
+                        <span>0</span>
+                        <span>a</span>
+                        <span>B</span>
+                        <span>0</span>
+                    </div>
+                    <div class="robot">
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <h3>You are Robot</h3>
+                    </div>
+			    </div>
+			</div>
+			<div class="item">
+			    <div class="robotBlock">
+			        <div class="display">
+                        <div class="level top"></div>
+                        <div class="level bottom"></div>
+                        <span>a</span>
+                        <span>B</span>
+                        <span>0</span>
+                        <span>a</span>
+                        <span>B</span>
+                        <span>0</span>
+                        <span>B</span>
+                        <span>0</span>
+                    </div>
+                    <div class="robot">
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <div class="eye">
+                            <div class="bib"></div>
+                        </div>
+                        <h3>You are Robot</h3>
+                    </div>
+			    </div>
+			</div>
+			<div class="item">
+				<div class="robot">
+					<div class="eye">
+						<div class="bib"></div>
+					</div>
+					<div class="eye">
+						<div class="bib"></div>
+					</div>
+					<h3>You are Winner<br>You are not a Robot</h3>
+				</div>
+			</div>
+		</div>
+		<div class="control">
+			<input type="text" placeholder="Robot Code" autofocus>
+			<div class="coin">0</div>
+		</div>
+		<div class="time">
+			<div class="current">10s</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="robot">
+			<div class="eye">
+				<div class="bib"></div>
+			</div>
+			<div class="eye">
+				<div class="bib"></div>
+			</div>
+		</div>
+		<h1>Robot Code</h1>
+		<div class="play">Play</div>
+	</div>
+	<script>
+		const timeSound = new Audio('img/time.mp3');
+		const winnerSound = new Audio('img/endWin.mp3');
+		const gameOverSound = new Audio('img/gameOver.mp3');
+		const gameOver2Sound = new Audio('img/gameOver2.mp3');
+		const nextLevelSound = new Audio('img/nextLevel.mp3');
+		const typingSound = new Audio('img/typing.mp3');
+		typingSound.currentTime = 1;
+		const control = document.querySelector('.game .control input');
+		const rooms = document.querySelector('.game .big');
+		const coin = document.querySelector('.game .control .coin');
+		const time = document.querySelector('.game .time');
+		const menu = document.querySelector('.menu');
+		const play = document.querySelector('.menu .play');
+		const displayItem = document.querySelectorAll('.game .big .item');
+		const displayLevel = document.querySelectorAll('.game .big .item .display');
+		const displayEndGame = document.querySelectorAll('.game .big .item .robotBlock');
+		const displayEndGameH3 = document.querySelectorAll('.game .big .item .robotBlock .robot h3');
+		const displayLevelSpan = document.querySelectorAll('.game .big .item .display span');
+		play.onclick = () => {
+			timeSound.play();
+			menu.style.top = '100%';
+			startGame = true;
+		};
+		const sizeData = [3, 6, 8];
+		let data = [];
+		let point = 0;
+		let curTime = 100;
+		let curDur = 10;
+		let currentLevel = 0;
+		let levelWidth = 0;
+		let room = 0;
+		let big = 0;
+		let size = 3;
+		let fz = 7;
+		let gameBool = true;
+		let startGame = false;
+		const gameOver = () => {
+			document.querySelectorAll('.game .big .item .display span').forEach(item => item.style.color = '#f00');
+			control.disabled = true;
+			control.style.pointerEvents = 'none';
+			displayEndGame[room].style.transform = 'rotateY(-180deg)';
+			displayEndGameH3[room].style.animation = 'write 6s steps(50) 1s forwards, hideWrite 2s 4s forwards';
+			coin.style.top = '150%';
+			clearInterval(setTime);
+			gameOverSound.play();
+			gameOver2Sound.play();
+			setTimeout(() => location.reload(), 6e3);
+		};
+		for (let i = 48; i <= 122; i++) {
+			i >= 48 && i <= 57 || i >= 65 && i <= 90 || i >= 97 && i <= 122 ? data.push(String.fromCharCode(i)) : '';
+		}
+		data = data.map(item => Number.isNaN(+item) ? item : +item);
+		(robotCode = () => {
+			const randNumber = Math.floor(Math.random() * 3);
+			for (let i = 0; i < size; i++) {
+				let r = data[Math.floor(Math.random() * data.length)];
+				if (i == randNumber) {
+					while(typeof r != 'number') {
+						r = data[Math.floor(Math.random() * data.length)];
+					}
+				} else {
+					while(typeof r != 'string') {
+						r = data[Math.floor(Math.random() * data.length)];
+					}
+				}
+				let n = [...displayItem[room].firstElementChild.firstElementChild.children].filter(item => item.tagName == 'SPAN');
+				gameBool ? n[i].innerText = r : '';
+			}
+		})();
+		control.oninput = () => {
+			typingSound.play();
+			setTimeout(() => (typingSound.pause()), 100);
+			let mission = '';
+			let n = [...displayItem[room].firstElementChild.firstElementChild.children].filter(item => item.tagName == 'SPAN');
+			n.forEach(item => mission += item.innerText);
+			if (control.value == mission) {
+				timeSound.currentTime = 0;
+				nextLevelSound.currentTime = 0;
+				nextLevelSound.play();
+				nextLevelSound.volume = .5;
+				curTime = 1e2;
+				curDur = 10;
+				time.firstElementChild.innerText = curDur + 's';
+				coin.style.top = '110%';
+				let setSet = setTimeout(() => coin.style = null, 7e2);
+				point++;
+				coin.innerText = point;
+				control.value = null;
+				setTimeout(() => robotCode(), 10);
+				levelWidth += 10;
+				let nn = [...displayItem[room].firstElementChild.firstElementChild.children].filter(item => item.tagName == 'DIV');
+				nn[currentLevel].style.width = `calc(${levelWidth}% - 30px)`;
+				if (levelWidth >= 1e2) {
+					currentLevel++;
+					if (currentLevel == nn.length) {
+						gameBool = false;
+						currentLevel = 0;
+						room++;
+						if (room == 3) {
+							coin.style = 'top: -50%; width: 100px; height: 100px; font-size: 60px;';
+							control.style = 'opacity: 0; visibility: hidden;';
+							control.disabled = true;
+							nextLevelSound.pause();
+							time.style.opacity = 0;
+							winnerSound.play();
+							timeSound.pause();
+							clearInterval(setTime);
+							clearTimeout(setSet);
+							setTimeout(() => location.reload(), 6e3);
+						}
+						size = sizeData[room];
+						robotCode();
+						mission = '';
+						n.forEach(item => mission += item.innerText);
+						fz -= 1;
+						displayLevelSpan.forEach(item => item.style.fontSize = fz + 'vw');
+						big -= 100;
+						setTimeout(() => (rooms.style.left = big + '%', gameBool = true), 3e2);
+					}
+					levelWidth = 0;
+				}
+			} else if (control.value.length == size) {
+				gameOver();
+			}
+		};
+		const setTime = setInterval(() => {
+			if (startGame) {
+				curTime--;
+				time.style.background = `linear-gradient(#ff0081 ${curTime-20}%, transparent ${curTime}%)`;
+				time.firstElementChild.style.top = curTime + '%';
+				if (curTime % 10 == 0) {
+					curDur--;
+					time.firstElementChild.innerText = curDur + 's';
+				}
+				curTime <= 0 ? gameOver() : '';
+			}
+		}, 100);
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
