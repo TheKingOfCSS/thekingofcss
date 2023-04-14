@@ -5,23 +5,34 @@
 	<title>Mario Cards</title>
 	<link rel="shortcut icon" href="img/logo.webp">
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		.game {
 			height: 100vh;
 			position: relative;
 			overflow: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
 			flex-direction: column;
+			-webkit-box-pack: end;
+			-ms-flex-pack: end;
 			justify-content: flex-end;
 		}
 		.game .display {
 			height: calc(100% - 60px);
 			background: linear-gradient(45deg, #00abff, #a9f4ff, #00b8ff);
+			-webkit-perspective: 450px;
 			perspective: 450px;
 			padding: 25px;
 			display: grid;
 			grid-template-columns: repeat(11, 7vw);
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-ms-flex-line-pack: center;
 			align-content: center;
 		}
 		.game .display .card:not(:empty) {
@@ -29,14 +40,20 @@
 			height: 12vh;
 			border: 4px solid #fff;
 			border-radius: 50%;
+			-webkit-box-shadow: 2px 3px 20px 2px #fff, inset 1px 1px 50px 12px #fff;
 			box-shadow: 2px 3px 20px 2px #fff, inset 1px 1px 50px 12px #fff;
 			cursor: pointer;
+			-webkit-transition: -webkit-transform 1s, -webkit-box-shadow .5s;
+			transition: -webkit-transform 1s, -webkit-box-shadow .5s;
 			transition: transform 1s, box-shadow .5s;
+			transition: transform 1s, box-shadow .5s, -webkit-transform 1s, -webkit-box-shadow .5s;
 			position: relative;
+			-webkit-transform-style: preserve-3d;
 			transform-style: preserve-3d;
 			scale: 0;
 		}
 		.game .display .card:not(:empty):hover {
+			-webkit-box-shadow: 2px 3px 20px 2px #fff, inset 0 0 0 15px #fff;
 			box-shadow: 2px 3px 20px 2px #fff, inset 0 0 0 15px #fff;
 		}
 		.game .display .card .back {
@@ -47,21 +64,33 @@
 			height: 100%;
 			border-radius: 50%;
 			background: #000;
+			-webkit-transform: rotateY(180deg);
 			transform: rotateY(180deg);
+			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
 		}
 		.game .control {
 			height: 60px;
 			background: linear-gradient(45deg, #ff0000, #ff8585, #d10000);
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
 			justify-content: space-between;
 			padding: 0 10px;
 		}
 		.game .control .life {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-column-gap: 25px;
 			column-gap: 25px;
 			translate: 0 -70px;
+			-webkit-animation: goDown 1s forwards;
 			animation: goDown 1s forwards;
 		}
 		.game .control .life .heart {
@@ -71,6 +100,7 @@
 			position: relative;
 			translate: 0 5px;
 			rotate: 45deg;
+			-webkit-transition: .3s;
 			transition: .3s;
 		}
 		.game .control .life .heart::before,
@@ -89,14 +119,19 @@
 			left: 0;
 		}
 		.game .control .backMenu {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-transition: .3s;
 			transition: .3s;
 			translate: 0 -70px;
+			-webkit-animation: goDown 1s .5s forwards;
 			animation: goDown 1s .5s forwards;
 			cursor: pointer;
 		}
 		.game .control .backMenu:hover {
 			scale: 1.2;
+			-webkit-filter: drop-shadow(0 0 15px #fff);
 			filter: drop-shadow(0 0 15px #fff);
 			rotate: 360deg;
 		}
@@ -108,16 +143,29 @@
 			width: 50px;
 			height: 50px;
 			background: url(img/coin.png) no-repeat center / cover;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			font: 28px verdana;
 			translate: 0 -70px;
 			rotate: -20deg;
+			-webkit-animation: goDown 1s .5s forwards, coin 1s infinite;
 			animation: goDown 1s .5s forwards, coin 1s infinite;
+		}
+		@-webkit-keyframes coin {
+			50% { rotate: 20deg; }
 		}
 		@keyframes coin {
 			50% { rotate: 20deg; }
+		}
+		@-webkit-keyframes goDown {
+			to { translate: 0; }
 		}
 		@keyframes goDown {
 			to { translate: 0; }
@@ -129,20 +177,28 @@
 			translate: -50% -50%;
 			pointer-events: none;
 			height: 50vh;
+			-webkit-transition: .7s;
 			transition: .7s;
 		}
 		.game .curBlock {
 			position: absolute;
 			bottom: 5px;
 			left: 5px;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: end;
+			-ms-flex-align: end;
 			align-items: flex-end;
 			font: bold 22px verdana;
+			-webkit-column-gap: 5px;
 			column-gap: 5px;
 			color: #fff;
 			text-shadow: 0 2px 3px #000;
 			translate: -150px;
+			-webkit-animation: goDown 1s 2.5s forwards;
 			animation: goDown 1s 2.5s forwards;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.game .curBlock h3 {
@@ -168,6 +224,7 @@
 			--end: inset(0 0 100% 0);
 			--bg: #f00;
 			opacity: 0;
+			-webkit-transition: .6s;
 			transition: .6s;
 			white-space: nowrap;
 		}
@@ -180,6 +237,7 @@
 			pointer-events: none;
 			color: #ffd800;
 			-webkit-text-stroke: 2px #000;
+			-webkit-transition: .6s;
 			transition: .6s;
 			white-space: nowrap;
 			opacity: 0;
@@ -193,18 +251,27 @@
 			width: 100%;
 			height: 100%;
 			color: var(--bg);
+			-webkit-clip-path: var(--end);
 			clip-path: var(--end);
+			-webkit-transition: -webkit-clip-path 1.5s;
+			transition: -webkit-clip-path 1.5s;
 			transition: clip-path 1.5s;
+			transition: clip-path 1.5s, -webkit-clip-path 1.5s;
 		}
 		.game .cursor::after {
 			content: '';
 			width: 4px;
 			height: 4px;
 			border-radius: 50%;
+			-webkit-box-shadow: 0 0 5px #fff, 0 0 15px #fff;
 			box-shadow: 0 0 5px #fff, 0 0 15px #fff;
 			background: #fff;
 			display: block;
+			-webkit-animation: cursor .8s infinite;
 			animation: cursor .8s infinite;
+		}
+		@-webkit-keyframes cursor {
+			50% { translate: 50px; }
 		}
 		@keyframes cursor {
 			50% { translate: 50px; }
@@ -217,9 +284,12 @@
 			width: 4vw;
 			height: 4vw;
 			z-index: 1;
+			-webkit-perspective: 500px;
 			perspective: 500px;
+			-webkit-animation: questionMark .8s infinite;
 			animation: questionMark .8s infinite;
 			cursor: pointer;
+			-webkit-transition: 1s;
 			transition: 1s;
 		}
 		.game .box .top {
@@ -229,9 +299,13 @@
 			width: 100%;
 			height: 100%;
 			background: #f0c500;
+			-webkit-transform: rotateX(87deg);
 			transform: rotateX(87deg);
+			-webkit-transform-origin: top;
 			transform-origin: top;
+			-webkit-box-shadow: inset 0 0 11px #000000a1;
 			box-shadow: inset 0 0 11px #000000a1;
+			-webkit-transition: 1.2s .1s;
 			transition: 1.2s .1s;
 		}
 		.game .box img {
@@ -249,8 +323,11 @@
 			background: url(img/questionmark.png) no-repeat center / 100% #F0C500;
 			border-radius: 2px;
 		}
+		@-webkit-keyframes questionMark {
+			50% { scale: 1.15; -webkit-filter: brightness(1.1); filter: brightness(1.1); }
+		}
 		@keyframes questionMark {
-			50% { scale: 1.15; filter: brightness(1.1); }
+			50% { scale: 1.15; -webkit-filter: brightness(1.1); filter: brightness(1.1); }
 		}
 		.menu {
 			position: fixed;
@@ -258,11 +335,14 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
+			background: -webkit-gradient(linear, left top, left bottom, from(0), color-stop(#00abff), color-stop(#a9f4ff), to(#00b8ff));
 			background: linear-gradient(0, #00abff, #a9f4ff, #00b8ff);
 			text-align: center;
 			padding-top: 5vw;
 			z-index: 10;
+			-webkit-transition: .8s;
 			transition: .8s;
+			-webkit-clip-path: circle(100%);
 			clip-path: circle(100%);
 		}
 		.menu h1 {
@@ -271,6 +351,7 @@
 			margin-bottom: 10vw;
 			text-shadow: 0 -5px 4px #faf4f4, 0 7px 2px #042636;
 			letter-spacing: -10vw;
+			-webkit-animation: menuTitle 2s infinite alternate;
 			animation: menuTitle 2s infinite alternate;
 		}
 		.menu .play {
@@ -279,8 +360,10 @@
 			border-radius: 50px;
 			display: inline-block;
 			cursor: pointer;
+			-webkit-transition: .4s;
 			transition: .4s;
 			font: bold 3.5vw verdana;
+			-webkit-box-shadow: inset 0 -7px 10px #0c0c0c;
 			box-shadow: inset 0 -7px 10px #0c0c0c;
 			color: #fff;
 			transition: .4s;
@@ -292,15 +375,25 @@
 		.menu .play:active {
 			background: #080;
 		}
+		@-webkit-keyframes menuTitle {
+			50% { text-shadow: 0 5px 4px #faf4f4, 0 7px 2px #042636; -webkit-transform: skewY(10deg); transform: skewY(10deg); }
+			55%, to { letter-spacing: 0; }
+		}
 		@keyframes menuTitle {
-			50% { text-shadow: 0 5px 4px #faf4f4, 0 7px 2px #042636; transform: skewY(10deg); }
+			50% { text-shadow: 0 5px 4px #faf4f4, 0 7px 2px #042636; -webkit-transform: skewY(10deg); transform: skewY(10deg); }
 			55%, to { letter-spacing: 0; }
 		}
 		.menu .menDisplay {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-column-gap: 4%;
 			column-gap: 4%;
 			padding-top: 4%;
+			-webkit-perspective: 350px;
 			perspective: 350px;
 			opacity: .4;
 		}
@@ -309,9 +402,12 @@
 			height: 15vh;
 			border: 4px solid #fff;
 			border-radius: 50%;
+			-webkit-box-shadow: 2px 3px 20px 2px #fff, inset 1px 1px 50px 12px #fff;
 			box-shadow: 2px 3px 20px 2px #fff, inset 1px 1px 50px 12px #fff;
 			position: relative;
+			-webkit-transform-style: preserve-3d;
 			transform-style: preserve-3d;
+			-webkit-animation: menuCard 2s 1s infinite;
 			animation: menuCard 2s 1s infinite;
 		}
 		.menu .menDisplay .card img {
@@ -320,14 +416,21 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
+			-o-object-fit: contain;
 			object-fit: contain;
+			-webkit-transform: rotateY(180deg);
 			transform: rotateY(180deg);
+			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
 			pointer-events: none;
 		}
+		@-webkit-keyframes menuCard {
+			40%, 60% { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+			to { -webkit-transform: rotateY(360deg); transform: rotateY(360deg); }
+		}
 		@keyframes menuCard {
-			40%, 60% { transform: rotateY(180deg); }
-			to { transform: rotateY(360deg); }
+			40%, 60% { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+			to { -webkit-transform: rotateY(360deg); transform: rotateY(360deg); }
 		}
 		.menu .author {
 			position: absolute;
@@ -335,6 +438,9 @@
 			left: 0;
 			width: 100%;
 			font: bold 19px/1.3 sans-serif;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
 			user-select: none;
 			color: #fff;
 		}
