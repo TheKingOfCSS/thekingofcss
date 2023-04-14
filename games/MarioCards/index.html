@@ -444,6 +444,11 @@
 			user-select: none;
 			color: #fff;
 		}
+		.menu .myRecord {
+			margin-top: 2%;
+			font: bold 20px verdana;
+			text-shadow: 0 2px 4px #fff9;
+		}
 	</style>
 </head>
 <body>
@@ -616,6 +621,7 @@
 	<div class="menu">
 		<h1>Mario Cards</h1>
 		<div class="play">Play</div>
+		<h5 class="myRecord">Record Point 0</h5>
 		<div class="menDisplay">
 			<div class="card">
 				<img src="img/6.png" alt="Img">
@@ -660,6 +666,8 @@
 		const winSound = new Audio('img/win.mp3');
 		const windSound = new Audio('img/wind.mp3');
 		const playBtn = document.querySelector('.menu .play');
+		const myRecord = localStorage.getItem('MarioCardsRecord') || 0;
+		document['querySelector']('.menu .myRecord').innerText = 'Record Point ' + myRecord;
 		playBtn.onclick = () => {
 			theme.play();
 			theme.volume = .25;
@@ -765,6 +773,7 @@
 							cardIndex.push(index);
 							if (mission == 0) {
 								coin.innerText = ++point;
+								point > myRecord ? localStorage.setItem('MarioCardsRecord', point) : '';
 								cardIndex.forEach(item => {
 									card[item].style.scale = 0;
 									card[item].style.transition = '.5s';
