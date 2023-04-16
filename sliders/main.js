@@ -114,6 +114,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('glissEffectSlider/index.html'), 1000);
 		} else if (index == 88) {
 			setTimeout(() => window.location.replace('clickListSlider/index.html'), 1000);
+		} else if (index == 89) {
+			setTimeout(() => window.location.replace('interestingSlider13/interest.html'), 1000);
 		}
 	};
 });
