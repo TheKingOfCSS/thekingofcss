@@ -90,8 +90,6 @@
 			-webkit-column-gap: 25px;
 			column-gap: 25px;
 			translate: 0 -70px;
-			-webkit-animation: goDown 1s forwards;
-			animation: goDown 1s forwards;
 		}
 		.game .control .life .heart {
 			width: 15px;
@@ -125,8 +123,6 @@
 			-webkit-transition: .3s;
 			transition: .3s;
 			translate: 0 -70px;
-			-webkit-animation: goDown 1s .5s forwards;
-			animation: goDown 1s .5s forwards;
 			cursor: pointer;
 		}
 		.game .control .backMenu:hover {
@@ -155,8 +151,6 @@
 			font: 28px verdana;
 			translate: 0 -70px;
 			rotate: -20deg;
-			-webkit-animation: goDown 1s .5s forwards, coin 1s infinite;
-			animation: goDown 1s .5s forwards, coin 1s infinite;
 		}
 		@-webkit-keyframes coin {
 			50% { rotate: 20deg; }
@@ -669,6 +663,8 @@
 		const myRecord = localStorage.getItem('MarioCardsRecord') || 0;
 		document['querySelector']('.menu .myRecord').innerText = 'Record Point ' + myRecord;
 		playBtn.onclick = () => {
+			document.querySelector('.game .control .life').style.animation = 'goDown 1s forwards';
+			document.querySelector('.game .control .backMenu').style.animation = 'goDown 1s .5s forwards';
 			theme.play();
 			theme.volume = .25;
 			theme.onended = () => theme.play();
@@ -685,6 +681,7 @@
 			const winEndPoint = document.querySelector('.game .winEnd');
 			const boxGift = document.querySelector('.game .box');
 			const boxGiftOption = document.querySelectorAll('.game .box img');
+			coin.style.animation = 'goDown 1s .5s forwards, coin 1s infinite';
 			let mission = 3;
 			let life = heart.length-1;
 			let point = 0;
@@ -718,6 +715,8 @@
 					endGame.style.opacity = 1;
 					await asyncControl(2e2);
 					card.forEach(item => item.style.scale = 0);
+					boxGift.style.opacity = 0;
+					boxGift.style.visibility = 'hidden';
 					await asyncControl(18e2);
 					gameOverSound.play();
 					endGame.style.setProperty('--end', 'inset(0)');
