@@ -365,6 +365,11 @@
 			user-select: none;
 			color: #fff;
 		}
+		.menu .myRecord {
+			color: #fff;
+			margin-top: 3%;
+			font: 20px verdana;
+		}
 	</style>
 </head>
 <body>
@@ -469,6 +474,7 @@
 		</div>
 		<h1>Robot Code</h1>
 		<div class="play">Play</div>
+		<h2 class="myRecord">Record Point 0</h2>
 		<p class="author">
 			Instructor Hovo Vardanyan
 			<br>
@@ -513,6 +519,8 @@
 		let fz = 7;
 		let gameBool = true;
 		let startGame = false;
+		let myRecord = localStorage.getItem('RobotCodeGameMyRecord') || 0;
+		document.querySelector('.menu .myRecord').innerText = 'Record Point ' + myRecord;
 		const gameOver = () => {
 			document.querySelectorAll('.game .big .item .display span').forEach(item => item.style.color = '#f00');
 			control.disabled = true;
@@ -563,6 +571,7 @@
 				coin.style.top = '110%';
 				let setSet = setTimeout(() => coin.style = null, 7e2);
 				point++;
+				point > myRecord ? localStorage.setItem('RobotCodeGameMyRecord', point) : '';
 				coin.innerText = point;
 				control.value = null;
 				setTimeout(() => robotCode(), 10);
