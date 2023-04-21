@@ -342,7 +342,7 @@ burgerMenu.onclick = () => {
 			document.body.style.overflow = null;
 			document.querySelectorAll('.asideLink').forEach((item, index) => {
 				item.style.translate = '-50vw';
-				item.style.transition = 'translate 1s ' + index * .1 + 's, opacity .8s, color .8s';
+				item.style.transition = 'translate 1s ' + index * .1 + 's, opacity .8s .4s, color .8s';
 				item.style.opacity = 0;
 			});
 			asideOverlay.style.opacity = 0;
@@ -364,7 +364,7 @@ const aside = AC('aside');
 const asideOverlay = AC('div');
 header.after(aside);
 aside.after(asideOverlay);
-aside.style = 'position: fixed; bottom: 0; left: -40%; width: 40%; backdrop-filter: blur(7px); z-index: 10; background: #0006; transition: left .7s; display: flex; flex-flow: column nowrap; align-items: flex-end; padding: 5% 7% 2% 0;';
+aside.style = 'position: fixed; bottom: 0; left: -40%; width: 40%; backdrop-filter: blur(8px); z-index: 10; background: #0006; transition: left .7s; display: flex; flex-flow: column nowrap; align-items: flex-end; padding: 5% 7% 2% 0;';
 asideOverlay.style = 'position: fixed; top: 0; right: 0; width: 60%; height: 100%; background: #0005; z-index: 12; transition: .8s .7s; opacity: 0; visibility: hidden;';
 asideOverlay.onclick = () => {
 	if (burgerActivate) {
@@ -373,7 +373,7 @@ asideOverlay.onclick = () => {
 		document.body.style.overflow = null;
 		document.querySelectorAll('.asideLink').forEach((item, index) => {
 			item.style.translate = '-50vw';
-			item.style.transition = 'translate 1s ' + index * .1 + 's, opacity .8s, color .8s';
+			item.style.transition = 'translate 1s ' + index * .1 + 's, opacity .8s .4s, color .8s';
 			item.style.opacity = 0;
 		});
 		asideOverlay.style.opacity = 0;
