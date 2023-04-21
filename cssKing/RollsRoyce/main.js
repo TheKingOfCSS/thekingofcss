@@ -527,7 +527,7 @@ let svgNext = setInterval(() => {
 	if (burgerOpen) {
 		if (boolWheel) {
 			svg[current].firstElementChild.style.strokeDasharray = svgOffset;
-			svgOffset += .1;
+			svgOffset += .05;
 		}
 		if (svgOffset >= 150) {
 			current < 2 ? svg[current].style.scale = 0 : '';
