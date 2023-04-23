@@ -26,7 +26,6 @@
 		.game .Mario {
 			position: absolute;
 			bottom: 343px;
-/*			bottom: 44000px;*/
 			left: 150px;
 			width: 88px;
 			height: 151px;
@@ -658,7 +657,6 @@
 			let jumpY = game.offsetHeight - Mario.offsetTop - Mario.offsetHeight;
 			let jumpEnd = game.offsetHeight;
 			let jumpCur = 1;
-	//		let roomY = 43200;
 			let roomY = 0;
 			let speed = .5;
 			let bgY = -100;
@@ -746,18 +744,22 @@
 					let Brect = item.getBoundingClientRect();
 					MRect.bottom >= Brect.top && Brect.left <= MRect.right && Brect.right >= MRect.left && MRect.top <= Brect.bottom ? gameOver() : '';
 				});
-				if (MRect.top < PRect.bottom - PRect.height / 2 && PRect.left < MRect.right - 100 && PRect.right > MRect.left + 100 && myCoin >= 50) {
+				if (MRect.top < PRect.bottom - PRect.height / 2 && PRect.left < MRect.right - 100 && PRect.right > MRect.left + 100 && myCoin >= 0) {
 					clearInterval(drawGame);
 					clearInterval(j);
 					clearInterval(d);
 					document.onkeydown = null;
 					theme.pause();
 					pipeSound.play();
+					endGame[0].parentElement.style.display = 'flex';
+					endGame[0].parentElement.style.whiteSpace = 'nowrap';
+					endGame[0].parentElement.innerText = 'You are Winner';
 					(async function() {
 						await asyncControl(3e2);
 						Mario.style.display = 'none';
 						await asyncControl(5e2);
 						winnerSound.play();
+						winnerSound.onended = () => location.href = 'https://thekingofcss.netlify.app/games/mariovssonic';
 					})();
 				}
 			}, 1);
@@ -799,9 +801,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
