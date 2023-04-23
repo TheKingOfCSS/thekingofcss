@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Teenager Mario</title>
+	<link rel="shortcut icon" href="img/Mario.gif">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+		}
+		.game .bg {
+			position: absolute;
+			top: -100%;
+			left: 0;
+			width: 100%;
+			height: 200%;
+		}
+		.game .bg .item {
+			width: 100%;
+			height: 100vh;
+			background: url(img/bg.avif) repeat center 93% / 50% 82%;
+		}
+		.game .Mario {
+			position: absolute;
+			bottom: 343px;
+/*			bottom: 44000px;*/
+			left: 150px;
+			width: 88px;
+			height: 151px;
+			background: url(img/Mario.gif) no-repeat -6px -12px / 100px 175px;
+			border-radius: 44px 67% 25px 12px;
+			-webkit-transform-origin: bottom;
+			transform-origin: bottom;
+			z-index: 1;
+		}
+		.game .sky {
+			position: absolute;
+			bottom: 200px;
+			width: 35%;
+			height: 47px;
+			background: url(img/sky.png) round 0 0 / 45px;
+			border-radius: 9px;
+		}
+		.game .sky.left {
+			left: 110px;
+			bottom: calc(var(--i) * 85% + 300px);
+		}
+		.game .sky.right {
+			right: 110px;
+			bottom: calc(var(--i) * 85% + 630px);
+		}
+		.game .room {
+			position: relative;
+			height: 100%;
+			top: 0;
+		}
+		.game .room .pipe {
+			position: absolute;
+			bottom: calc(var(--i) * 85% + 320px);
+			left: 50%;
+			scale: 1 -1;
+			width: 165px;
+			height: 300px;
+			z-index: 1;
+		}
+		.game .lava {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 70px;
+			background: url(img/lava.gif) center / 40% 250%;
+			z-index: 1;
+		}
+		.game .Bowser {
+			position: absolute;
+			bottom: 50px;
+			right: 0;
+			z-index: 1;
+			border-radius: 100px;
+		}
+		@-webkit-keyframes Bowser {
+			to { right: calc(100% - 100px); }
+		}
+		@keyframes Bowser {
+			to { right: calc(100% - 100px); }
+		}
+		.game .Bowser::after {
+			content: '';
+			position: absolute;
+			bottom: -3px;
+			left: 15px;
+			width: 90%;
+			height: 15px;
+			background: #4e3419;
+			border-radius: 25%;
+		}
+		.game .Bowser img {
+			height: 120px;
+			pointer-events: none;
+		}
+		.game .coin {
+			height: 50px;
+			position: absolute;
+			pointer-events: none;
+		}
+		.game .coin.left {
+			left: 17%;
+			bottom: calc(var(--i) * 85% + 343px);
+		}
+		.game .coin.right {
+			right: 20%;
+			bottom: calc(var(--i) * 85% + 675px);
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			font: bold 7vw verdana;
+			color: #f00;
+			text-shadow: -1px 8px 2px #fff, -1px 14px 8px #000000;
+    		-webkit-text-stroke: 2px #fff;
+			display: none;
+		}
+		.game .gameOver span {
+			scale: 0;
+			translate: 0 400px;
+		}
+		@-webkit-keyframes gameOver {
+			to { scale: 1; translate: 0; }
+		}
+		@keyframes gameOver {
+			to { scale: 1; translate: 0; }
+		}
+		.game .mission {
+			position: absolute;
+			top: 10px;
+			right: 15px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-animation: mission .6s infinite;
+			animation: mission .6s infinite;
+		}
+		.game .mission :first-child {
+			height: 155px;
+			-o-object-position: 20px;
+			object-position: 20px;
+			-o-object-position: 7px -90px;
+			object-position: 7px -90px;
+    		border-radius: 18px 55px 0 0;
+			pointer-events: none;
+			-webkit-filter: sepia(1);
+			filter: sepia(1);
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		@-webkit-keyframes mission {
+			50% { scale: 1.05; }
+		}
+		@keyframes mission {
+			50% { scale: 1.05; }
+		}
+		.game .mission :nth-child(2) {
+			height: 30px;
+			margin: 0 5px 0 -20px;
+			translate: 0 10px;
+			pointer-events: none;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.game .mission span {
+			font: bold 20px verdana;
+			translate: 0 12px;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.game .goals {
+			position: absolute;
+			top: 10px;
+			left: 15px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-animation: mission .2s infinite;
+			animation: mission .2s infinite;
+			-webkit-transition: left 1s linear, opacity .5s linear .7s;
+			transition: left 1s linear, opacity .5s linear .7s;
+		}
+		.game .goals img {
+			height: 40px;
+			margin-right: 5px;
+			pointer-events: none;
+		}
+		.game .goals span {
+			font: 24px verdana;
+			color: #fffc00;
+			text-shadow: 0 1px 2px #000;
+		}
+		@-webkit-keyframes jump {
+			50% { background-position: -7px 0; }
+		}
+		@keyframes jump {
+			50% { background-position: -7px 0; }
+		}
+		@-webkit-keyframes endJump {
+			to { bottom: -100%; }
+		}
+		@keyframes endJump {
+			to { bottom: -100%; }
+		}
+		.game .room .bullet {
+			position: absolute;
+			right: -50%;
+			bottom: calc(var(--i) * 85% + 550px);
+			width: 80px;
+			-webkit-animation: bullet 4s linear infinite;
+			animation: bullet 4s linear infinite;
+			border-radius: 10px 0 0 10px;
+		}
+		@-webkit-keyframes bullet {
+			to { right: 100%; }
+		}
+		@keyframes bullet {
+			to { right: 100%; }
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(img/bg.avif) repeat center / 40%;
+			z-index: 10;
+			text-align: center;
+			padding-top: 5%;
+			-webkit-animation: menu 6s linear infinite;
+			animation: menu 6s linear infinite;
+			-webkit-transition: .5s;
+			transition: .5s;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+		}
+		.menu h1 {
+			font: bold 9vw fantasy;
+			color: transparent;
+			background: url(img/dream.png) center -25% / 23% #10ff00b5;
+			-webkit-background-clip: text;
+			-webkit-text-stroke: .1px #ce0000;
+			-webkit-animation: titleMenu 2s linear infinite;
+			animation: titleMenu 2s linear infinite;
+		}
+		@-webkit-keyframes titleMenu {
+			50% { word-spacing: 30px; background-color: #fff; }
+			to { background-position-y: 120%; }
+		}
+		@keyframes titleMenu {
+			50% { word-spacing: 30px; background-color: #fff; }
+			to { background-position-y: 120%; }
+		}
+		@-webkit-keyframes menu {
+			80% { background-position-y: 100vh; }
+		}
+		@keyframes menu {
+			80% { background-position-y: 100vh; }
+		}
+		.menu .display {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			position: relative;
+		}
+		.menu .display::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 30px;
+			background: url(img/sky.png) round center / 2%;
+		}
+		.menu .display .mM {
+			--i: -12px;
+			height: 180px;
+			translate: -200% -12px;
+			-webkit-animation: menuDisplay 10s linear infinite;
+			animation: menuDisplay 10s linear infinite;
+			-webkit-transition: .1s;
+			transition: .1s;
+			pointer-events: none;
+		}
+		.menu .display .mB {
+			--i: 18px;
+			height: 140px;
+			scale: -1 1;
+			translate: -250% 18px;
+			-webkit-animation: menuDisplay 10s linear infinite;
+			animation: menuDisplay 10s linear infinite;
+			pointer-events: none;
+		}
+		@-webkit-keyframes menuDisplay {
+			to { translate: 100vw var(--i); }
+		}
+		@keyframes menuDisplay {
+			to { translate: 100vw var(--i); }
+		}
+		@-webkit-keyframes menuBowser {
+			50% { -webkit-transform: translateY(-30px); transform: translateY(-30px); }
+		}
+		@keyframes menuBowser {
+			50% { -webkit-transform: translateY(-30px); transform: translateY(-30px); }
+		}
+		.menu .play {
+			font: bold 3rem verdana;
+			border-radius: 50px;
+			padding: 17px 40px 20px;
+			background: #f00;
+			display: inline-block;
+			color: #fff;
+			-webkit-transition: .5s;
+			transition: .5s;
+			margin-top: 2%;
+			cursor: pointer;
+			text-shadow: 0 3px 3px #000;
+		}
+		.menu .play:hover {
+			background: #43D632;
+			-webkit-box-shadow: 0 0px 9px #000,  0 0px 0 2px #000;
+			box-shadow: 0 0px 9px #000,  0 0px 0 2px #000;
+		}
+		.menu:has(.play:hover) :where(.display .mB, .display .mM) {
+			-webkit-animation: menuDisplay 10s linear infinite, menuBowser .5s infinite;
+			animation: menuDisplay 10s linear infinite, menuBowser .5s infinite;
+			scale: -1 1;
+		}
+		.menu .myRec {
+			font: bold 20px verdana;
+			margin-top: 3%;
+			-webkit-animation: rec 1s infinite;
+			animation: rec 1s infinite;
+		}
+		@-webkit-keyframes rec {
+			50% { letter-spacing: 2px; }
+		}
+		@keyframes rec {
+			50% { letter-spacing: 2px; }
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 5px;
+			left: 0;
+			width: 100%;
+			font: 19px/1.3 verdana;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="bg">
+			<div class="item"></div>
+			<div class="item"></div>
+		</div>
+		<div class="room">
+			<div class="Mario"></div>
+			<div class="sky left" style="--i: 0;"></div>
+			<div class="sky left" style="--i: 1;"></div>
+			<div class="sky left" style="--i: 2;"></div>
+			<div class="sky left" style="--i: 3;"></div>
+			<div class="sky left" style="--i: 4;"></div>
+			<div class="sky left" style="--i: 5;"></div>
+			<div class="sky left" style="--i: 6;"></div>
+			<div class="sky left" style="--i: 7;"></div>
+			<div class="sky left" style="--i: 8;"></div>
+			<div class="sky left" style="--i: 9;"></div>
+			<div class="sky left" style="--i: 10;"></div>
+			<div class="sky left" style="--i: 11;"></div>
+			<div class="sky left" style="--i: 12;"></div>
+			<div class="sky left" style="--i: 13;"></div>
+			<div class="sky left" style="--i: 14;"></div>
+			<div class="sky left" style="--i: 15;"></div>
+			<div class="sky left" style="--i: 16;"></div>
+			<div class="sky left" style="--i: 17;"></div>
+			<div class="sky left" style="--i: 18;"></div>
+			<div class="sky left" style="--i: 19;"></div>
+			<div class="sky left" style="--i: 20;"></div>
+			<div class="sky left" style="--i: 21;"></div>
+			<div class="sky left" style="--i: 22;"></div>
+			<div class="sky left" style="--i: 23;"></div>
+			<div class="sky left" style="--i: 24;"></div>
+			<div class="sky left" style="--i: 25;"></div>
+			<div class="sky left" style="--i: 26;"></div>
+			<div class="sky left" style="--i: 27;"></div>
+			<div class="sky left" style="--i: 28;"></div>
+			<div class="sky left" style="--i: 29;"></div>
+			<div class="sky left" style="--i: 30;"></div>
+			<div class="sky left" style="--i: 31;"></div>
+			<div class="sky left" style="--i: 32;"></div>
+			<div class="sky left" style="--i: 33;"></div>
+			<div class="sky left" style="--i: 34;"></div>
+			<div class="sky left" style="--i: 35;"></div>
+			<div class="sky left" style="--i: 36;"></div>
+			<div class="sky left" style="--i: 37;"></div>
+			<div class="sky left" style="--i: 38;"></div>
+			<div class="sky left" style="--i: 39;"></div>
+			<div class="sky left" style="--i: 40;"></div>
+			<div class="sky left" style="--i: 41;"></div>
+			<div class="sky left" style="--i: 42;"></div>
+			<div class="sky left" style="--i: 43;"></div>
+			<div class="sky left" style="--i: 44;"></div>
+			<div class="sky left" style="--i: 45;"></div>
+			<div class="sky left" style="--i: 46;"></div>
+			<div class="sky left" style="--i: 47;"></div>
+			<div class="sky left" style="--i: 48;"></div>
+			<div class="sky left" style="--i: 49;"></div>
+			<div class="sky left" style="--i: 50;"></div>
+			<div class="sky left" style="--i: 51;"></div>
+			<div class="sky left" style="--i: 52;"></div>
+			<div class="sky left" style="--i: 53;"></div>
+			<div class="sky left" style="--i: 54;"></div>
+			<div class="sky left" style="--i: 55;"></div>
+			<div class="sky left" style="--i: 56;"></div>
+			<div class="sky left" style="--i: 57;"></div>
+			<div class="sky left" style="--i: 58;"></div>
+			<div class="sky left" style="--i: 59;"></div>
+			<div class="sky left" style="--i: 60;"></div>
+			<div class="sky left" style="--i: 61;"></div>
+			<div class="sky left" style="--i: 62;"></div>
+			<div class="sky left" style="--i: 63;"></div>
+			<div class="sky left" style="--i: 64;"></div>
+			<div class="sky left" style="--i: 65;"></div>
+			<div class="sky right" style="--i: 0;"></div>
+			<div class="sky right" style="--i: 1;"></div>
+			<div class="sky right" style="--i: 2;"></div>
+			<div class="sky right" style="--i: 3;"></div>
+			<div class="sky right" style="--i: 4;"></div>
+			<div class="sky right" style="--i: 5;"></div>
+			<div class="sky right" style="--i: 6;"></div>
+			<div class="sky right" style="--i: 7;"></div>
+			<div class="sky right" style="--i: 8;"></div>
+			<div class="sky right" style="--i: 9;"></div>
+			<div class="sky right" style="--i: 10;"></div>
+			<div class="sky right" style="--i: 11;"></div>
+			<div class="sky right" style="--i: 12;"></div>
+			<div class="sky right" style="--i: 13;"></div>
+			<div class="sky right" style="--i: 14;"></div>
+			<div class="sky right" style="--i: 15;"></div>
+			<div class="sky right" style="--i: 16;"></div>
+			<div class="sky right" style="--i: 17;"></div>
+			<div class="sky right" style="--i: 18;"></div>
+			<div class="sky right" style="--i: 19;"></div>
+			<div class="sky right" style="--i: 20;"></div>
+			<div class="sky right" style="--i: 21;"></div>
+			<div class="sky right" style="--i: 22;"></div>
+			<div class="sky right" style="--i: 23;"></div>
+			<div class="sky right" style="--i: 24;"></div>
+			<div class="sky right" style="--i: 25;"></div>
+			<div class="sky right" style="--i: 26;"></div>
+			<div class="sky right" style="--i: 27;"></div>
+			<div class="sky right" style="--i: 28;"></div>
+			<div class="sky right" style="--i: 29;"></div>
+			<div class="sky right" style="--i: 30;"></div>
+			<div class="sky right" style="--i: 31;"></div>
+			<div class="sky right" style="--i: 32;"></div>
+			<div class="sky right" style="--i: 33;"></div>
+			<div class="sky right" style="--i: 34;"></div>
+			<div class="sky right" style="--i: 35;"></div>
+			<div class="sky right" style="--i: 36;"></div>
+			<div class="sky right" style="--i: 37;"></div>
+			<div class="sky right" style="--i: 38;"></div>
+			<div class="sky right" style="--i: 39;"></div>
+			<div class="sky right" style="--i: 40;"></div>
+			<div class="sky right" style="--i: 41;"></div>
+			<div class="sky right" style="--i: 42;"></div>
+			<div class="sky right" style="--i: 43;"></div>
+			<div class="sky right" style="--i: 44;"></div>
+			<div class="sky right" style="--i: 45;"></div>
+			<div class="sky right" style="--i: 46;"></div>
+			<div class="sky right" style="--i: 47;"></div>
+			<div class="sky right" style="--i: 48;"></div>
+			<div class="sky right" style="--i: 49;"></div>
+			<div class="sky right" style="--i: 50;"></div>
+			<div class="sky right" style="--i: 51;"></div>
+			<div class="sky right" style="--i: 52;"></div>
+			<div class="sky right" style="--i: 53;"></div>
+			<div class="sky right" style="--i: 54;"></div>
+			<div class="sky right" style="--i: 55;"></div>
+			<div class="sky right" style="--i: 56;"></div>
+			<div class="sky right" style="--i: 57;"></div>
+			<div class="sky right" style="--i: 58;"></div>
+			<div class="sky right" style="--i: 59;"></div>
+			<div class="sky right" style="--i: 60;"></div>
+			<div class="sky right" style="--i: 61;"></div>
+			<div class="sky right" style="--i: 62;"></div>
+			<div class="sky right" style="--i: 63;"></div>
+			<div class="sky right" style="--i: 64;"></div>
+			<div class="sky right" style="--i: 65;"></div>
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 3;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 5;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 6;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 8;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 10;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 11;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 13;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 15;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 17;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 20;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 22;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 24;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 27;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 31;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 34;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 36;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 40;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 43;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 47;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 49;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 50;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 52;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 53;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 55;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 56;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 59;">
+			<img src="img/coin.gif" alt="Img" class="coin left" style="--i: 62;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 2;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 4;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 6;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 8;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 9;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 10;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 15;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 18;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 20;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 23;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 29;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 33;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 35;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 38;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 41;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 42;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 45;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 48;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 50;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 51;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 53;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 54;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 56;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 58;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 59;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 61;">
+			<img src="img/coin.gif" alt="Img" class="coin right" style="--i: 62;">
+			<img src="img/bullet.png" alt="Img" class="bullet" style="--i: 38;">
+			<img src="img/bullet.png" alt="Img" class="bullet" style="--i: 44;">
+			<img src="img/bullet.png" alt="Img" class="bullet" style="--i: 55;">
+			<img src="img/bullet.png" alt="Img" class="bullet" style="--i: 59;">
+			<img src="img/pipe.png" alt="Img" class="pipe" style="--i: 66;">
+		</div>
+		<div class="lava"></div>
+		<div class="Bowser">
+			<img src="img/bowser.webp" alt="Img">
+		</div>
+		<h2 class="gameOver">
+			<span style="--i: 1;">G</span>
+			<span style="--i: 2;">a</span>
+			<span style="--i: 3;">m</span>
+			<span style="--i: 4;">e</span>
+			<span style="--i: 5;">O</span>
+			<span style="--i: 6;">v</span>
+			<span style="--i: 7;">e</span>
+			<span style="--i: 8;">r</span>
+		</h2>
+		<div class="mission">
+			<img src="img/dream.png" alt="Img">
+			<img src="img/coin.gif" alt="Img">
+			<span>x 50</span>
+		</div>
+		<div class="goals">
+			<img src="img/coin.gif" alt="Img">
+			<span>x 0</span>
+		</div>
+	</div>
+	<div class="menu">
+		<h1>Teenager Mario</h1>
+		<div class="display">
+			<img src="img/bowser.webp" alt="Img" class="mB">
+			<img src="img/Mario.gif" alt="Img" class="mM">
+		</div>
+		<div class="play">Play</div>
+		<div class="myRec">Record Point <span>0</span></div>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+	</div>
+	<script>
+		const theme = new Audio('img/theme.mp3');
+		const bulletSound = new Audio('img/bullet.mp3');
+		theme.volume = .55;
+		const menu = document.querySelector('.menu');
+		const menuPlay = document.querySelector('.menu .play');
+		const menuRec = document.querySelector('.menu .myRec span');
+		const myRecord = localStorage.getItem('TennagerMarioRecord') || 0;
+		menuRec.innerText = myRecord;
+		menuPlay.onclick = () => {
+			menu.style.clipPath = 'circle(0)';
+			theme.play();
+			theme.onended = () => theme.play();
+			startGame();
+			void async function() {
+				await asyncControl(5e2);
+				menu.style.display = 'none';
+				await asyncControl(2e3);
+				bulletSound.play();
+				bulletSound.onended = () => {
+					void async function() {
+						await asyncControl(Math.random() * (3e4 - 7e3) + 7e3);
+						bulletSound.play();
+					}();
+				};
+			}();
+		};
+		const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
+		const startGame = () => {
+			const pipeSound = new Audio('img/pipe.mp3');
+			pipeSound.volume = .5;
+			pipeSound.currentTime = .3;
+			const powerSound = new Audio('img/power.mp3');
+			const coinSound = new Audio('img/coin.mp3');
+			const gameOverSound = new Audio('img/gameOver.mp3');
+			const winnerSound = new Audio('img/win.mp3');
+			const jumpSound = new Audio('img/jump.mp3');
+			jumpSound.volume = .5;
+			const game = document.querySelector('.game');
+			const Mario = document.querySelector('.game .Mario');
+			const room = document.querySelector('.game .room');
+			const bg = document.querySelector('.game .bg');
+			const sky = document.querySelectorAll('.game .sky');
+			const Bowser = document.querySelector('.game .Bowser');
+			const lava = document.querySelector('.game .lava');
+			const endGame = document.querySelectorAll('.game .gameOver span');
+			const coin = document.querySelectorAll('.game .coin');
+			const goals = document.querySelector('.game .goals span');
+			const mission = document.querySelector('.game .mission span');
+			const dream = document.querySelector('.game .mission :first-child');
+			const pipe = document.querySelector('.game .room .pipe');
+			const bullet = document.querySelectorAll('.game .room .bullet');
+			Bowser.style.animation = 'Bowser 5s infinite alternate';
+			const keys = {};
+			let MarioX = Mario.offsetLeft;
+			let jump = true;
+			let jumpY = game.offsetHeight - Mario.offsetTop - Mario.offsetHeight;
+			let jumpEnd = game.offsetHeight;
+			let jumpCur = 1;
+	//		let roomY = 43200;
+			let roomY = 0;
+			let speed = .5;
+			let bgY = -100;
+			let myCoin = 0;
+			let lavaY = 1e2;
+			const gameOver = () => {
+				theme.pause();
+				gameOverSound.play();
+				clearInterval(drawGame);
+				clearInterval(j);
+				clearInterval(d);
+				document.onkeydown = null;
+				Mario.style.animation = 'endJump .5s forwards';
+				endGame[0].parentElement.style.display = 'flex';
+				endGame.forEach(item => item.style.animation = 'gameOver .5s calc(var(--i) * .2s) forwards');
+				setTimeout(() => location.reload(), 3e3);
+			};
+			const drawGame = setInterval(() => {
+				keys[39] ? (MarioX < game.offsetWidth - Mario.offsetWidth ? MarioX += 2 : '', Mario.style.scale = null) : '';
+				keys[37] ? (MarioX > 0 ? MarioX -= 2 : '', Mario.style.scale = '-1 1') : '';
+				Mario.style.left = MarioX + 'px';
+				sky.forEach(item => {
+					Mario.offsetTop + Mario.offsetHeight >= item.offsetTop && item.offsetLeft > Mario.offsetLeft + Mario.offsetWidth - 10 && item.offsetLeft + item.offsetWidth > Mario.offsetLeft && Mario.offsetTop < item.offsetTop + item.offsetHeight && jump ? gameOver() : '';
+					Mario.offsetTop + Mario.offsetHeight >= item.offsetTop && item.offsetLeft < Mario.offsetLeft + Mario.offsetWidth && item.offsetLeft + item.offsetWidth < Mario.offsetLeft + 10 && Mario.offsetTop < item.offsetTop + item.offsetHeight && jump ? gameOver() : '';
+					if (item.getBoundingClientRect().top >= lava.offsetTop - 30) {
+						item.style.opacity = 0;
+						item.style.transition = '.3s';
+						void async function() {
+							await asyncControl(25e2);
+							item.style.display = 'none';
+						}();
+					}
+				});
+				pipe.getBoundingClientRect().top < 0 ? roomY += speed : '';
+				room.style.top = roomY + 'px';
+				pipe.getBoundingClientRect().top < 0 ? bgY += speed / 14 : '';
+				bgY >= 0 ? bgY = -100 : '';
+				bg.style.top = bgY + '%';
+				Bowser.firstElementChild.style.scale = Bowser.offsetLeft < Mario.offsetLeft ? '-1 1' : null;
+				let MRect = Mario.getBoundingClientRect();
+				let PRect = pipe.getBoundingClientRect();
+				MRect.bottom >= lava.offsetTop + lavaY ? gameOver() : '';
+				Bowser.offsetLeft <= MRect.right && Bowser.offsetLeft + Bowser.offsetWidth >= MRect.left && MRect.bottom >= Bowser.offsetTop + 100 ? gameOver() : '';
+				coin.forEach(item => {
+					let coinRect = item.getBoundingClientRect();
+					if (coinRect.left <= MRect.right && coinRect.right >= MRect.left && MRect.bottom >= coinRect.top && MRect.top <= coinRect.bottom) {
+						item.style.display = 'none';
+						myCoin++;
+						myCoin > myRecord ? localStorage.setItem('TennagerMarioRecord', myCoin) : '';
+						coinSound.play();
+						goals.innerText = 'x ' + myCoin;
+						if (goals.innerText == mission.innerText) {
+							goals.parentElement.style = `left: calc(100% - ${goals.parentElement.offsetWidth}px - 13px); opacity: 0;`;
+							coin.forEach(item => item.style.display = 'none');
+							(async function() {
+								await asyncControl(1e3);
+								dream.style.filter = 'none';
+								await asyncControl(8e2);
+								mission.style.opacity = 0;
+								mission.previousElementSibling.style.opacity = 0;
+								await asyncControl(5e2);
+								dream.style.translate = '70px';
+								await asyncControl(5e2);
+								Mario.style.transition = 'transform .5s';
+								Mario.style.transform = 'scaleY(.5)';
+								await asyncControl(5e2);
+								Mario.style.transform = 'scaleY(1)';
+								await asyncControl(3e2);
+								Mario.style.transition = 'background .2s, width .2s, height .2s';
+								Mario.style.background = 'url("img/withClothes.gif") no-repeat -7px 16px / 100px 127px';
+								powerSound.play();
+								Mario.style.width = '84px';
+								Mario.style.height = '132px';
+								Mario.style.borderRadius = '39px 45px 24px 30px';
+								Mario.style.animation = 'jump .4s infinite';
+								lavaY = 30;
+								await asyncControl(2e2);
+								Mario.style.transition = 'none';
+								dream.style.translate = '200px';
+							})();
+						}
+					}
+				});
+				bullet.forEach(item => {
+					let Brect = item.getBoundingClientRect();
+					MRect.bottom >= Brect.top && Brect.left <= MRect.right && Brect.right >= MRect.left && MRect.top <= Brect.bottom ? gameOver() : '';
+				});
+				if (MRect.top < PRect.bottom - PRect.height / 2 && PRect.left < MRect.right - 100 && PRect.right > MRect.left + 100 && myCoin >= 50) {
+					clearInterval(drawGame);
+					clearInterval(j);
+					clearInterval(d);
+					document.onkeydown = null;
+					theme.pause();
+					pipeSound.play();
+					(async function() {
+						await asyncControl(3e2);
+						Mario.style.display = 'none';
+						await asyncControl(5e2);
+						winnerSound.play();
+					})();
+				}
+			}, 1);
+			let j;
+			let d;
+			document.onkeydown = e => {
+				keys[e.which] = true;
+				if (e.which == 38 && jump) {
+					jumpSound.play();
+					jump = false;
+					speed < 1 ? speed += .1 : '';
+					j = setInterval(() => {
+						jumpY += 5;
+						Mario.style.bottom = jumpY + 'px';
+						if (jumpY > jumpEnd) {
+							clearInterval(j);
+							d = setInterval(() => {
+								jumpY -= 3;
+								Mario.style.bottom = jumpY + 'px';
+								let MRect = Mario.getBoundingClientRect();
+								sky.forEach(item => {
+									let dom = item.getBoundingClientRect();
+									if (MRect.bottom >= dom.top && dom.left < MRect.right && dom.right > MRect.left && MRect.bottom < dom.bottom) {
+										clearInterval(d);
+										jumpEnd = jumpY + game.offsetHeight / 1.9;
+										jump = true;
+									}
+								});
+							}, 1);
+						}
+					}, 1);
+				}
+			};
+			document.onkeyup = e => delete keys[e.which];
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
+
+
+
+
+
+
