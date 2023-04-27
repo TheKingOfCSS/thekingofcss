@@ -53,6 +53,10 @@
 		@keyframes toPackClose {
 			to { top: 0; }
 		}
+		html {
+			-webkit-transition: .5s .2s;
+			transition: .5s .2s;
+		}
 		.slider {
 			height: 100vh;
 			position: relative;
@@ -190,6 +194,8 @@
 		</div>
 	</div>
 	<script>
+		document.documentElement.style.opacity = 0;
+		window.onload = () => document.documentElement.style.opacity = null;
 		const appleSlider = document.querySelector('.slider .parent');
 		const appleSliderTitle = document.querySelector('.slider .radio h3');
 		const appleSliderInp = document.querySelectorAll('.slider .radio input');
