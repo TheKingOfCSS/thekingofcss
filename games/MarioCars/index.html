@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mario Cars</title>
+    <link rel="shortcut icon" href="img/logo.ico">
+    <style>
+        * { margin: 0; padding: 0px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+        .game {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .game .path {
+            height: 50%;
+            position: relative;
+			overflow: hidden;
+        }
+        .game .path .target {
+            position: absolute;
+			top: 20px;
+			left: 50%;
+			width: 80%;
+            height: 20px;
+			border-radius: 50px;
+			translate: -50%;
+			z-index: 1;
+			-webkit-box-shadow: inset 0 0 15px 1px #fff;
+			box-shadow: inset 0 0 15px 1px #fff;
+        }
+		.game .path .target .current {
+			height: 100%;
+			width: 0;
+			background: #00f7ff;
+			-webkit-box-shadow: inset 0 0 8px #000;
+			box-shadow: inset 0 0 8px #000;
+			border-radius: 50px;
+			translate: 1px;
+		}
+		.game .path .target .finish {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background: conic-gradient(#000 25%, #fff 25% 50%, #000 50% 75%, #fff 75%) repeat center / 20px 20px;
+			position: absolute;
+			top: -10px;
+			right: -20px;
+			-webkit-box-shadow: 0 0 10px #fff;
+			box-shadow: 0 0 10px #fff;
+		}
+        @-webkit-keyframes pathbg {
+            to { background-position-x: -100vw; }
+        }
+        @keyframes pathbg {
+            to { background-position-x: -100vw; }
+        }
+        .game .path:first-child {
+            border-bottom: 5px solid #000;
+			z-index: 1;
+        }
+        .game .path .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: end;
+            -ms-flex-align: end;
+            align-items: flex-end;
+        }
+        .game .path .room {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: end;
+            -ms-flex-align: end;
+            align-items: flex-end;
+        }
+        .game .path .room img {
+            width: 8vw;
+            height: 16vh;
+			position: relative;
+			bottom: 0;
+			-o-object-fit: cover;
+			object-fit: cover;
+        }
+		@-webkit-keyframes stoneT {
+			50% { bottom: 50px; }
+		}
+		@keyframes stoneT {
+			50% { bottom: 50px; }
+		}
+        .game .path .bg img {
+			width: 50vw;
+			height: 50vh;
+			-o-object-fit: cover;
+			object-fit: cover;
+        }
+        @-webkit-keyframes room {
+            to { left: -100%; }
+        }
+        @keyframes room {
+            to { left: -100%; }
+        }
+        .game .path .person {
+            position: absolute;
+            bottom: 15vh;
+            left: 150px;
+            width: 300px;
+            height: 200px;
+            scale: -1 1;
+			z-index: 1;
+        }
+        .game .path.p1 .person {
+            background: url(img/luigi.gif) no-repeat -63px -116px / 400px 380px;
+            width: 253px;
+            height: 138px;
+            border-radius: 122% 123px 70px 35px;
+        }
+        .game .path.p2 .person {
+            background: url(img/mario.gif) no-repeat -81px -125px / 400px 380px;
+            width: 255px;
+            height: 135px;
+            border-radius: 60% 68px 45% 24px;
+        }
+		.game .path .power {
+			position: absolute;
+			bottom: -100px;
+			left: 0;
+			width: 70px;
+			height: 70px;
+			background: rgba(0, 0, 0, 0.53);
+			-webkit-clip-path: polygon(45% 0, 68% 2%, 51% 39%, 82% 40%, 37% 99%, 50% 55%, 28% 55%);
+			clip-path: polygon(45% 0, 68% 2%, 51% 39%, 82% 40%, 37% 99%, 50% 55%, 28% 55%);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: end;
+			-ms-flex-align: end;
+			align-items: flex-end;
+			z-index: 1;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.game .path .power .on {
+			width: 100%;
+			height: 0;
+			background: #ffe200;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.game .path .room .super {
+			width: 28px;
+			height: 54px;
+			position: absolute;
+			top: 50px;
+			left: 20%;
+			background: url(img/lightning.png) no-repeat -16px -4px / 60px 60px;
+			z-index: 2;
+			border-radius: 27px 21% 92% 5px;
+		}
+		.game .path :is(.rocket, .arsenal) {
+			position: absolute;
+			bottom: 16vh;
+            left: 280px;
+            width: 97px;
+			height: 59px;
+			background: url(img/rocket.gif) no-repeat -4px -19px / 110px 110px;
+			border-radius: 98% 6px 86% 2px;
+			rotate: 27deg;
+			opacity: 0;
+			-webkit-transition: opacity .2s, left 1.2s linear;
+			transition: opacity .2s, left 1.2s linear;
+		}
+		.game .path .arsenal {
+			opacity: 1;
+			left: calc(100vw - 80px);
+			z-index: 1;
+			bottom: -95px;
+			rotate: -63deg;
+			scale: .8;
+			-webkit-transition: .8s;
+			transition: .8s;
+			background-image: url(img/rocket.png);
+		}
+		.game .path .room :is(.guest, .guest2) {
+			position: absolute;
+			bottom: 15vh;
+			left: 80%;
+			width: 226px;
+			height: 188px;
+			z-index: 1;
+			background: url(img/bowser.gif) no-repeat -56px -54px / 330px 310px;
+			border-radius: 72px 40px 55px 55px;
+			-webkit-animation: guest 40s linear;
+			animation: guest 40s linear;
+		}
+		.game .path .room .guest2 {
+			bottom: 15.3vh;
+			width: 177px;
+			height: 157px;
+			background: url(img/princess.gif) no-repeat -93px -89px / 360px 350px;
+			border-radius: 78px 85px 55px 50px;
+		}
+		@-webkit-keyframes guest {
+			to { left: -300px; }
+		}
+		@keyframes guest {
+			to { left: -300px; }
+		}
+		.game .path .gameOver {
+			position: absolute;
+			left: 50%;
+			translate: -50%;
+			bottom: -50px;
+			font: bold 2.5vw sans-serif;
+			color: #fff;
+			text-shadow: -2px 3px 2px #f00, -1px 6px 3px #ff7474;
+			-webkit-transition: .6s;
+			transition: .6s;
+		}
+		.game .timeStart {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			z-index: 2;
+			overflow: hidden;
+			width: 15vw;
+			height: 15vw;
+			scale: 0;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.game .timeStart .slide {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			position: relative;
+			left: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+			width: 400%;
+			height: 100%;
+		}
+		.game .timeStart .slide .item {
+			width: 15vw;
+			height: 100%;
+			text-align: center;
+			font: bold 10vw/15vw sans-serif;
+			color: var(--tc);
+			text-shadow: -1px 5px 2px #000, 2px 8px 7px #fff;
+			-webkit-text-stroke: 2px #fff;
+			-webkit-box-shadow: inset 0 0 20px 5px #fff;
+			box-shadow: inset 0 0 20px 5px #fff;
+			border-radius: 50%;
+		}
+		@-webkit-keyframes timeStart {
+			10% { left: 0; }
+			25%, 35% { left: -100%; }
+			50%, 60% { left: -200%; }
+			75%, 100% { left: -300%; }
+		}
+		@keyframes timeStart {
+			10% { left: 0; }
+			25%, 35% { left: -100%; }
+			50%, 60% { left: -200%; }
+			75%, 100% { left: -300%; }
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(img/floor3.jpg) center / 1% #7a6848;
+			z-index: 10;
+			text-align: center;
+			padding-top: 5%;
+			background-blend-mode: difference;
+			-webkit-animation: menu 6s linear infinite;
+			animation: menu 6s linear infinite;
+			-webkit-transition: .6s;
+			transition: .6s;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+		}
+		@-webkit-keyframes menu {
+			50% { background-color: #1c1515; background-size: 60%; }
+			70% { background-color: #b98db2; }
+		}
+		@keyframes menu {
+			50% { background-color: #1c1515; background-size: 60%; }
+			70% { background-color: #b98db2; }
+		}
+		.menu h1 {
+			font: bold 12vw sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			color: #f00;
+		}
+		.menu h1 span {
+			letter-spacing: -2px;
+			-webkit-animation: menuTitle 1s calc(var(--ti) * .2s) linear infinite;
+			animation: menuTitle 1s calc(var(--ti) * .2s) linear infinite;
+			text-shadow: 0 13px 6px var(--c), 0 20px 6px #fff;
+			-webkit-text-stroke: 3px #f5ff00;
+			color: var(--c);
+		}
+		@-webkit-keyframes menuTitle {
+			50% { translate: 0 -30px; letter-spacing: 20px; text-shadow: 0 13px 6px #000, 0 20px 6px #000; -webkit-text-stroke: 7px #fff; }
+		}
+		@keyframes menuTitle {
+			50% { translate: 0 -30px; letter-spacing: 20px; text-shadow: 0 13px 6px #000, 0 20px 6px #000; -webkit-text-stroke: 7px #fff; }
+		}
+		.menu .play {
+			font: bold 8vw sans-serif;
+			margin-top: 6vw;
+			background: #fff;
+			border-radius: 80px;
+			display: inline-block;
+			padding: 17px 55px;
+			cursor: pointer;
+			position: relative;
+			background: url(img/floor4.png) no-repeat center top / 95% 100%;
+			color: #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			text-shadow: -2px 6px 5px #000;
+			will-change: transform;
+			-webkit-text-stroke: 2px transparent;
+		}
+		.menu .play:hover {
+			scale: 1.2;
+			color: #0f0;
+			background-size: 85% 90%;
+			background-position-y: -5px;
+		}
+		.menu .play:active {
+			scale: 1.3;
+			background-position-y: 0;
+			rotate: -5deg;
+			-webkit-text-stroke-color: #000;
+		}
+		.menu .play:hover::before {
+			top: -82px;
+		}
+		.menu .play::before {
+			content: '';
+			position: absolute;
+			top: -70px;
+			right: -50px;
+			width: 160px;
+			height: 120px;
+			background: url(img/mario.gif) no-repeat center / cover;
+			rotate: 25deg;
+			-webkit-animation: menuHero 2s linear infinite;
+			animation: menuHero 2s linear infinite;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		@-webkit-keyframes menuHero {
+			50% { right: 70%; scale: 1; }
+			50.00001% { right: 70%; scale: -1 1; rotate: -7deg; }
+			to { scale: -1 1; rotate: -7deg; }
+		}
+		@keyframes menuHero {
+			50% { right: 70%; scale: 1; }
+			50.00001% { right: 70%; scale: -1 1; rotate: -7deg; }
+			to { scale: -1 1; rotate: -7deg; }
+		}
+		.menu .recordsTable {
+			margin: 2% auto;
+			color: #fff;
+		}
+		.menu .recordsTable tr :is(th, td) {
+			padding: 3px 20px;
+			font: 22px sans-serif;
+			text-shadow: 0 3px 5px #000;
+			color: var(--rc);
+		}
+		.menu .recordsTable tr .restore {
+			cursor: pointer;
+			padding-top: 12px;
+			font-size: 20px;
+			-webkit-transition: .3s;
+			transition: .3s;
+			will-change: transform;
+			opacity: 0;
+			visibility: hidden;
+		}
+		.menu .recordsTable tr .restore:hover {
+			color: #ffc400;
+			scale: 1.15;
+		}
+		.menu .recordsTable:hover tr .restore {
+			opacity: 1;
+			visibility: visible;
+			-webkit-transition: color .3s, scale .3s, opacity .3s 2s, visibility .3s 2s;
+			transition: color .3s, scale .3s, opacity .3s 2s, visibility .3s 2s;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #f00;
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+		}
+    </style>
+</head>
+<body>
+    <div class="game">
+        <div class="path p1">
+         	<div class="power">
+                <div class="on"></div>
+            </div>
+            <div class="arsenal"></div>
+          	<div class="target">
+          		<div class="current"></div>
+          		<div class="finish"></div>
+          	</div>
+           	<div class="bg">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+           	</div>
+            <div class="room">
+               	<div class="super"></div>
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <div class="guest" style="display: none;"></div>
+                <div class="guest2" style="display: none;"></div>
+            </div>
+            <h3 class="gameOver">GameOver</h3>
+            <div class="rocket"></div>
+            <div class="person"></div>
+        </div>
+        <div class="path p2">
+         	<div class="power">
+                <div class="on"></div>
+            </div>
+            <div class="arsenal"></div>
+          	<div class="target">
+          		<div class="current"></div>
+          		<div class="finish"></div>
+          	</div>
+           	<div class="bg">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+                <img src="img/pathbg.jpg" alt="Img">
+           	</div>
+            <div class="room">
+              	<div class="super"></div>
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <img src="img/floor.png" alt="Img">
+                <div class="guest" style="display: none;"></div>
+                <div class="guest2" style="display: none;"></div>
+            </div>
+            <h3 class="gameOver">GameOver</h3>
+            <div class="rocket"></div>
+            <div class="person"></div>            
+        </div>
+        <div class="timeStart">
+        	<div class="slide">
+        		<div class="item" style="--tc: #f00;">3</div>
+        		<div class="item" style="--tc: #ff00c7;">2</div>
+        		<div class="item" style="--tc: #08f;">1</div>
+        		<div class="item" style="--tc: #00a407;">Go</div>
+        	</div>
+        </div>
+    </div>
+    <div class="menu">
+    	<h1>
+    		<span style="--ti: 1; --c: #f00;">M</span>
+    		<span style="--ti: 2; --c: #f00;">a</span>
+    		<span style="--ti: 3; --c: #f00;">r</span>
+    		<span style="--ti: 4; --c: #00ff00;">i</span>
+    		<span style="--ti: 5; --c: #f00;">o</span>
+    		<span style="--ti: 6;">&nbsp;</span>
+    		<span style="--ti: 7; --c: #00ff00;">C</span>
+    		<span style="--ti: 8; --c: #f00;">a</span>
+    		<span style="--ti: 9; --c: #2ded2d;">r</span>
+    		<span style="--ti: 10; --c: #f00;">s</span>
+    	</h1>
+    	<div class="play">Play</div>
+		<table class="recordsTable">
+			<tr>
+				<th>Luigi Wins</th>
+				<th>Draw</th>
+				<th>Mario Wins</th>
+			</tr>
+			<tr>
+				<td style="--rc: #0f0;">0</td>
+				<td style="--rc: #fa0;">0</td>
+				<td style="--rc: #f00;">0</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="restore">Restore</td>
+			</tr>
+		</table>
+   		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+    </div>
+    <script>
+		let winMario = localStorage.getItem('MarioCarsM') || 0;
+		let winLuigi = localStorage.getItem('MarioCarsL') || 0;
+		let draw = localStorage.getItem('MarioCarsD') || 0;
+		const themeSound = new Audio('img/theme.mp3');
+		const startSound = new Audio('img/start.mp3');
+		const startSound2 = new Audio('img/start.mp3');
+		startSound.onended = () => startSound.play();
+		startSound2.onended = () => startSound2.play();
+		startSound.currentTime = .2;
+		const goSound = new Audio('img/go.mp3');
+		const goSound2 = new Audio('img/go.mp3');
+		const powerSound = new Audio('img/power.mp3');
+		const powerSound2 = new Audio('img/power.mp3');
+		const speedSound = new Audio('img/speed.mp3');
+		const speedSound2 = new Audio('img/speed.mp3');
+		const explosionSound = new Audio('img/explosion.mp3');
+		const endSound = new Audio('img/end.mp3');
+		const rocketSound = new Audio('img/rocket.mp3');
+		const rocketSound2 = new Audio('img/rocket.mp3');
+		const stopSound = new Audio('img/stop.mp3');
+		const gameOverSound = new Audio('img/death.mp3');
+		const jumpSound = new Audio('img/jump.mp3');
+		const jumpSound2 = new Audio('img/jump.mp3');
+		const timeGoSound = new Audio('img/timeGo.mp3');
+		themeSound.volume = .5;
+		startSound.volume = .6;
+		startSound2.volume = .6;
+		goSound.volume = .4;
+		goSound2.volume = .4;
+		speedSound.volume = .5;
+		speedSound2.volume = .5;
+		powerSound.volume = .6;
+		powerSound2.volume = .6;
+		rocketSound.volume = .4;
+		rocketSound2.volume = .4;
+		jumpSound.volume = .2;
+		jumpSound2.volume = .2;
+		timeGoSound.volume = .5;
+		rocketSound.currentTime = 1;
+		rocketSound2.currentTime = 1;
+		explosionSound.currentTime = .2;
+		gameOverSound.currentTime = .3;
+        const menuPlay = document.querySelector('.menu .play');
+        const menuRecords = document.querySelectorAll('.menu .recordsTable tr:nth-child(2) td');
+		menuRecords[0].innerText = winLuigi;
+		menuRecords[1].innerText = draw;
+		menuRecords[2].innerText = winMario;
+        const recordsRestore = document.querySelector('.menu .recordsTable tr .restore');
+		recordsRestore.onclick = () => (localStorage.removeItem('MarioCarsM'), localStorage.removeItem('MarioCarsL'), localStorage.removeItem('MarioCarsD'), menuRecords.forEach(item => item.innerText = 0));
+        const stone = document.querySelectorAll('.game .path .room');
+        const person = document.querySelectorAll('.game .path .person');
+        const pathBg = document.querySelectorAll('.game .path .bg');
+        const pathRoom = document.querySelectorAll('.game .path .room');
+        const target = document.querySelectorAll('.game .path .target .current');
+        const power = document.querySelectorAll('.game .path .room .super');
+        const powerOn = document.querySelectorAll('.game .path .power .on');
+        const rocket = document.querySelectorAll('.game .path .rocket');
+        const arsenal = document.querySelectorAll('.game .path .arsenal');
+        const guests = document.querySelectorAll('.game .path.p1 .room :is(.guest, .guest2)');
+        const guests2 = document.querySelectorAll('.game .path.p2 .room :is(.guest, .guest2)');
+        const gameOver = document.querySelectorAll('.game .path .gameOver');
+        const timeStart = document.querySelector('.game .timeStart .slide');
+		const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
+		menuPlay.onclick = () => {
+			menuPlay.style.pointerEvents = 'none';
+			startSound.play();
+			startSound2.play();
+			menuPlay.parentElement.style.clipPath = 'circle(0)';
+			setTimeout(() => (menuPlay.parentElement.style.animation = 'none', Object.values(menuPlay.previousElementSibling.children).forEach(item => item.style.animation = 'none'), menuPlay.parentElement.style.display = 'none'), 6e2);
+			void async function() {
+				const stoneFace = ['img/floor.png', 'img/floor2.png', 'img/floor3.jpg', 'img/floor4.png', 'img/floor5.jpg'];
+				const faceR = Math.floor(Math.random() * stoneFace.length);
+				const variant = [
+					'brightness(.2)',
+					'brightness(.5)',
+					'brightness(1)',
+					'brightness(1.5)',
+					'brightness(2.2)',
+					'contrast(.2)',
+					'contrast(1.5)',
+					'contrast(2)',
+					'contrast(3)',
+					'hue-rotate(70deg)',
+					'hue-rotate(150deg)',
+					'hue-rotate(220deg)',
+					'hue-rotate(270deg)',
+					'invert(1)',
+					'invert(.55)',
+					'saturate(3)',
+					'saturate(7)',
+					'saturate(45)',
+					'saturate(10)',
+				];
+				let variantR = Math.floor(Math.random() * variant.length);
+				pathBg.forEach(item => item.style.filter = variant[variantR]);
+				stone.forEach(item => [...item.children].forEach(item => item.src = stoneFace[faceR]));
+				await asyncControl(1e2);
+				powerOn.forEach(item => item.parentElement.style.bottom = '10px');
+				arsenal.forEach(item => item.style.bottom = '18px');
+				await asyncControl(3e2);
+				timeGoSound.play();
+				timeStart.parentElement.style.scale = 1;
+				await asyncControl(3e2);
+				timeStart.style.animation = 'timeStart 4s forwards';
+				await asyncControl(3e3);
+				timeStart.parentElement.style.scale = null;
+				timeStart.parentElement.style.transition = '.4s';
+				await asyncControl(3e2);
+				timeStart.parentElement.style.display = 'none';
+				const degree = [stone[0], stone[1], null];
+				const degreeShow = Math.floor(Math.random() * degree.length);
+				degree[degreeShow] ? [degree[degreeShow].children[degree[degreeShow].children.length-2], degree[degreeShow].children[degree[degreeShow].children.length-1]][Math.floor(Math.random() * 2)]['style']['display'] = 'block' : '';
+				const key = {};
+				let pers1 = 0;
+				let pers2 = 0;
+				let persX = 0;
+				let pers2X = 0;
+				let pers1Bool = false;
+				let pers2Bool = false;
+				let pers1Jump = true;
+				let pers2Jump = true;
+				let pers1Tar = 0;
+				let pers2Tar = 0;
+				let persSpeed = 3;
+				let persSpeed2 = 3;
+				let persSpeedPlus = .008;
+				let persSpeedPlus2 = .008;
+				let pers1True = true;
+				let pers2True = true;
+				let rocketLTrue = false;
+				let rocketMTrue = false;
+				let explosionRot = true;
+				let explosionRot2 = true;
+				let KINGCSS = true;
+				let KINGCSS2 = true;
+				let KINGJS = true;
+				let KINGJS2 = true;
+				let LuigiSound = true;
+				let MarioSound = true;
+				let powerSoundLuigi = false;
+				let powerSoundMario = false;
+				let stoneRand = [Math.floor(Math.random() * ((stone[0].children.length - 2) - 10) + 10)];
+				let stoneRand2 = [Math.floor(Math.random() * ((stone[1].children.length - 2) - 10) + 10)];
+				const upDown = [stone[0].children[stoneRand[0]]];
+				const upDown2 = [stone[1].children[stoneRand2[0]]];
+				const newUnique = (n, data, data2, o) => {
+					let newRand = Math.floor(Math.random() * (stone[n].children.length - 10) + 10);
+					while(data.some(item => item == newRand) || stone[n].children[newRand].nodeName == 'DIV') {
+						newRand = Math.floor(Math.random() * (stone[n].children.length - 10) + 10);
+					}
+					data.push(newRand);
+					data2.push(stone[n].children[data[o]]);
+				};
+				winMario >= 20 ? newUnique(0, stoneRand, upDown, 1) : '';
+				winMario >= 30 ? newUnique(0, stoneRand, upDown, 2) : '';
+				winMario >= 40 ? newUnique(0, stoneRand, upDown, 3) : '';
+				winLuigi >= 20 ? newUnique(1, stoneRand2, upDown2, 1) : '';
+				winLuigi >= 30 ? newUnique(1, stoneRand2, upDown2, 2) : '';
+				winLuigi >= 40 ? newUnique(1, stoneRand2, upDown2, 3) : '';
+				upDown.forEach(item => item.style.animation = 'stoneT 2s infinite');
+				upDown2.forEach(item => item.style.animation = 'stoneT 2s infinite');
+				const winGame = () => (Object.values(stone[0].children).forEach(item => item.style.animation = null), Object.values(stone[1].children).forEach(item => item.style.animation = null), clearInterval(setGo), clearInterval(setBack), document.onkeydown = null, document.onkeyup = null, themeSound.play(), powerSound.pause(), powerSound2.pause(), goSound.pause(), goSound2.pause(), gameOverSound.pause(), MarioSound = false, LuigiSound = false, setTimeout(() => window['location']['reload'](), 25e2));
+				const endGame = x => {
+					if (x == 0 && pers2X <= 2) {
+						pers1True = false;
+						LuigiSound = false;
+						person[x].style.rotate = '-20deg';
+						person[x].style.transition = '.2s linear';
+						upDown.forEach(item => item.style.animationPlayState = 'paused');
+						startSound.pause();
+						goSound.pause();
+						speedSound.pause();
+						stopSound.play();
+						return false;
+					} else if (x == 1 && persX <= 2) {
+						pers2True = false;
+						MarioSound = false;
+						person[x].style.rotate = '-20deg';
+						person[x].style.transition = '.2s linear';
+						upDown2.forEach(item => item.style.animationPlayState = 'paused');
+						startSound2.pause();
+						goSound2.pause();
+						speedSound2.pause();
+						stopSound.play();
+						return false;
+					}
+					endSound.play();
+					stopSound.currentTime = .15;
+					stopSound.play();
+					person[x].style.rotate = '45deg';
+					person[x].style.transition = '.2s linear';
+					x == 0 ? (pers1True = false, LuigiSound = false, startSound.pause(), goSound.pause(), speedSound.pause(), powerSound.pause()) : (pers2True = false, MarioSound = false, startSound2.pause(), goSound2.pause(), speedSound2.pause(), powerSound2.pause());
+					setTimeout(() => (person[x].style.rotate = '180deg', person[x].style.left = '450px', person[x].style.bottom = '6vh', person[x].style.transition = '.4s'), 220);
+				};
+				const goWin = x => setTimeout(() => (person[x].style.left = '100%', person[x].style.transition = '1s linear'), 9e2);
+				const explosion = (x, item) => (rocket[x].style = `background: url(img/explosion.webp) no-repeat center / 108px; left: ${item.getBoundingClientRect().left - 30}px; transition: none; opacity: 1; width: 80px; height: 80px; border-radius: 0; rotate: none;`, setTimeout(() => rocket[x].style.display = 'none', 4e2));
+				const personHide = x => (person[x].style.background = 'url(img/explosion.webp) no-repeat center / 70%', person[x].style.borderRadius = 0, person[x].style.transition = 'none', gameOverSound.play(), explosionSound.play(), x == 0 ? (pers1True = false, powerSound.pause(), startSound.pause(), goSound.pause(), speedSound.pause(), LuigiSound = false) : (pers2True = false, powerSound2.pause(), startSound2.pause(), goSound2.pause(), speedSound2.pause(), MarioSound = false), setTimeout(() => person[x].style.display = 'none', 1e3));
+				const hideGuest = (x, n) => (x.style.background = 'url(img/explosion.webp) no-repeat center / 70%', rocket[n].style.display = 'none', setTimeout(() => x.style.display = 'none', 1e3));
+				const setGo = setInterval(() => {
+					key[39] && pers2True && KINGJS2 ? (persX <= persSpeed ? persX += persSpeedPlus : '', pers1 -= persX, pathBg[1].style.left = pers1 + 'px', pathRoom[1].style.left = pers1 * 1.4 + 'px', pers1Tar += persX / 105, target[1].style.width = pers1Tar + '%', !powerSoundMario ? goSound2.play() : powerSound2.play(), startSound2.pause(), speedSound2.pause()) : '';
+					key[68] && pers1True && KINGJS ? (pers2X <= persSpeed2 ? pers2X += persSpeedPlus2 : '', pers2 -= pers2X, pathBg[0].style.left = pers2 + 'px', pathRoom[0].style.left = pers2 * 1.4 + 'px', pers2Tar += pers2X / 105, target[0].style.width = pers2Tar + '%', !powerSoundLuigi ? goSound.play() : powerSound.play(), startSound.pause(), speedSound.pause()) : '';
+					pers1Tar >= 1e2 && KINGJS2 ? (winGame(), goWin(1), winMario++, localStorage.setItem('MarioCarsM', winMario)) : '';
+					pers2Tar >= 1e2 && KINGJS ? (winGame(), goWin(0), winLuigi++, localStorage.setItem('MarioCarsL', winLuigi)) : '';
+					const PRect = power[0].getBoundingClientRect();
+					const PRect2 = power[1].getBoundingClientRect();
+					const persRect = person[0].getBoundingClientRect();
+					const persRect2 = person[1].getBoundingClientRect();
+					persRect.right >= PRect.left && persRect.top <= PRect.bottom && persRect.left <= PRect.right && pers1True ? (persSpeed2 = 100, persSpeedPlus2 = .01, powerOn[0].style.height = '100%', power[0].style.display = 'none', goSound.pause(), powerSound.play(), powerSoundLuigi = true) : '';
+					persRect2.right >= PRect2.left && persRect2.top <= PRect2.bottom && persRect2.left <= PRect2.right && pers2True ? (persSpeed = 100, persSpeedPlus = .01, powerOn[1].style.height = '100%', power[1].style.display = 'none', goSound2.pause(), powerSound2.play(), powerSoundMario = true) : '';
+					!pers1True && !pers2True ? (winGame(), draw++, localStorage.setItem('MarioCarsD', draw)) : '';
+					const GBRect = guests[0].getBoundingClientRect();
+					const GPRect = guests[1].getBoundingClientRect();
+					const RLRect = rocket[0].getBoundingClientRect();
+					const GBRect2 = guests2[0].getBoundingClientRect();
+					const GPRect2 = guests2[1].getBoundingClientRect();
+					const RMRect = rocket[1].getBoundingClientRect();
+					RLRect.right - 50 >= GBRect.left && RLRect.bottom >= GBRect.top + 50 && rocketLTrue && RLRect.left < GBRect.right && RLRect.left < innerWidth && !guests[0].style.getPropertyValue('display').includes('none') ? (hideGuest(guests[0], 0), explosionSound.play(), KINGCSS = false) : '';
+					RLRect.right - 50 >= GPRect.left && RLRect.bottom >= GPRect.top + 50 && rocketLTrue && RLRect.left < GPRect.right && RLRect.left < innerWidth && !guests[1].style.getPropertyValue('display').includes('none') ? (hideGuest(guests[1], 0), gameOver[0].style.bottom = '40px', explosionSound.play(), gameOverSound.play(), goSound.pause(), speedSound.pause(), powerSound.pause(), startSound.pause(), KINGJS = false, setTimeout(() => pers1True = false, 2e3)) : '';
+					RMRect.right - 50 >= GBRect2.left && RMRect.bottom >= GBRect2.top + 50 && rocketMTrue && RMRect.left < GBRect2.right && RMRect.left < innerWidth && !guests2[0].style.getPropertyValue('display').includes('none') ? (hideGuest(guests2[0], 1), explosionSound.play(), KINGCSS2 = false) : '';
+					RMRect.right - 50 >= GPRect2.left && RMRect.bottom >= GPRect2.top + 50 && rocketMTrue && RMRect.left < GPRect2.right && RMRect.left < innerWidth && !guests2[1].style.getPropertyValue('display').includes('none') ? (hideGuest(guests2[1], 1), gameOver[1].style.bottom = '40px', explosionSound.play(), gameOverSound.play(), goSound2.pause(), speedSound2.pause(), powerSound2.pause(), startSound2.pause(), KINGJS2 = false, setTimeout(() => pers2True = false, 2e3)) : '';
+					persRect.right >= GBRect.left + 30 && persRect.bottom >= GBRect.top && !guests[0].style.getPropertyValue('display').includes('none') && explosionRot && KINGCSS ? (personHide(0), explosionRot = false, gameOver[0].style.bottom = '40px') : '';
+					persRect2.right >= GBRect2.left + 30 && persRect2.bottom >= GBRect2.top && !guests2[0].style.getPropertyValue('display').includes('none') && explosionRot2 && KINGCSS2 ? (personHide(1), explosionRot2 = false, gameOver[1].style.bottom = '40px') : '';
+					upDown.forEach(item => (RLRect.right >= item.getBoundingClientRect().left && RLRect.bottom >= item.getBoundingClientRect().top + 40 && RLRect.left < item.getBoundingClientRect().right - 1e2 && rocketLTrue ? (explosion(0, item), explosionSound.play()) : '', item.getBoundingClientRect().top + 15 <= persRect.bottom && persRect.right - 70 >= item.getBoundingClientRect().left && persRect.left + 150 <= item.getBoundingClientRect().right && pers1True ? endGame(0) : ''));
+					upDown2.forEach(item => (RMRect.right >= item.getBoundingClientRect().left && RMRect.bottom >= item.getBoundingClientRect().top + 40 && RMRect.left < item.getBoundingClientRect().right - 1e2 && rocketMTrue ? (explosion(1, item), explosionSound.play()) : '', item.getBoundingClientRect().top + 15 <= persRect2.bottom && persRect2.right - 70 >= item.getBoundingClientRect().left && persRect2.left + 150 <= item.getBoundingClientRect().right && pers2True ? endGame(1) : ''));
+				}, 1);
+				const goJump = x => x.animate([{ bottom: 'calc(35vh + 25px)', rotate: '-30deg', offset: .3 },{ rotate: '50deg', offset: .8 }], { duration: 9e2 });
+				const setBack = setInterval(() => (pers1Bool && pers2True ? (persX -= .01, persX <= 0 ? (pers1Bool = false, startSound2.play(), speedSound2.pause()) : '', pers1 -= persX, pathBg[1].style.left = pers1 + 'px', pathRoom[1].style.left = pers1 * 1.4 + 'px', pers1Tar += persX / 200, target[1].style.width = pers1Tar + '%') : '', pers2Bool && pers1True ? (pers2X -= .01, pers2X <= 0 ? (pers2Bool = false, startSound.play(), speedSound.pause()) : '', pers2 -= pers2X, pathBg[0].style.left = pers2 + 'px', pathRoom[0].style.left = pers2 * 1.4 + 'px', pers2Tar += pers2X / 200, target[0].style.width = pers2Tar + '%') : ''), 10);
+				document.onkeydown = e => (key[e.which] = true, key[39] ? pers1Bool = false : '', key[68] ? pers2Bool = false : '', key[38] && pers1Jump && pers2True ? (pers1Jump = false, goJump(person[1]), jumpSound2.play(), setTimeout(() => pers1Jump = true, 8e2)) : '', key[87] && pers2Jump && pers1True ? (pers2Jump = false, goJump(person[0]), jumpSound.play(), setTimeout(() => pers2Jump = true, 8e2)) : '', key[13] && pers2True ? (rocket[1].style = 'opacity: 1; left: 105%; bottom: ' + (innerHeight - person[1].parentElement.offsetHeight - person[1].offsetTop - person[1].offsetHeight + 7) + 'px', arsenal[1].style.filter = 'grayscale(1)', rocketMTrue = true, rocketSound2.play()) : '', key[32] && pers1True ? (rocket[0].style = 'opacity: 1; left: 105%; bottom: ' + (innerHeight - person[0].parentElement.offsetHeight - person[0].offsetTop - person[0].offsetHeight + 7) + 'px', arsenal[0].style.filter = 'grayscale(1)', rocketLTrue = true, rocketSound.play()) : '');
+				document.onkeyup = e => (key[39] ? (pers1Bool = true, MarioSound ? speedSound2.play() : '', goSound2.pause(), startSound2.pause(), powerSound2.pause()) : '', key[68] ? (pers2Bool = true, LuigiSound ? speedSound.play() : '', goSound.pause(), startSound.pause(), powerSound.pause()) : '', delete key[e.which]);
+				document.addEventListener('keyup', e => (e.which == 39 ? goSound2.currentTime = 0 : '', e.which == 68 ? goSound.currentTime = 0 : ''));
+			}();
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+    </script>
+</body>
+</html>
