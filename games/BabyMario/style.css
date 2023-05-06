@@ -546,38 +546,3 @@
 @keyframes playBtn {
 	to { rotate: 360deg; }
 }
-.game .mobileControl {
-	position: absolute;
-	bottom: 25%;
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	border: 4px solid #fff9;
-	box-shadow: inset 0 0 20px #fff9, 0 3px 5px #0009;
-	z-index: 10;
-	place-items: center;
-	font: bold 40px sans-serif;
-	text-shadow: 0 3px 3px #fff;
-	cursor: pointer;
-	transition: .3s;
-	display: none;
-}
-.game .mobileControl:hover {
-	box-shadow: inset 0 0 40px #fff, 0 3px 5px #0009;
-}
-.game .mobileControl.mLeft {
-	left: 3%;
-}
-.game .mobileControl.mRight {
-	right: 3%;
-}
-.game .mobileControl.mJump {
-	bottom: 40%;
-	right: 3%;
-	font-size: 22px;
-}
-@media screen and (max-width: 768px) {
-	.game .mobileControl {
-		display: grid;
-	}
-}
