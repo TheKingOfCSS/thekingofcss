@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dr. Mario</title>
+	<link rel="shortcut icon" href="img/1.webp">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			background: url(img/bg.jpg) center / 40%;
+			-webkit-animation: bg 20s linear infinite;
+			animation: bg 20s linear infinite;
+		}
+		@-webkit-keyframes bg {
+			50% { background-size: 70%; }
+		}
+		@keyframes bg {
+			50% { background-size: 70%; }
+		}
+		.game .display {
+			width: 50%;
+			height: 65%;
+			background: url(img/mario.jpg) no-repeat center / cover;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			-ms-flex-line-pack: start;
+			align-content: flex-start;
+			position: relative;
+			z-index: 1;
+		}
+		.game .display .stone {
+			width: calc(100% / 8);
+			height: calc(100% / 8);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.game .display .stone.quest {
+			background: url(img/stone.png) 0 0 / 50% 100%;
+		}
+		.game .display .stone.quest img {
+			width: 100%;
+			height: 100%;
+			-o-object-fit: contain;
+			object-fit: contain;
+			pointer-events: none;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-animation: quest .7s linear infinite;
+			animation: quest .7s linear infinite;
+		}
+		.game .display .stone.quest:hover img {
+			scale: .9;
+		}
+		@-webkit-keyframes quest {
+			50% { -webkit-filter: brightness(1.7); filter: brightness(1.7); }
+		}
+		@keyframes quest {
+			50% { -webkit-filter: brightness(1.7); filter: brightness(1.7); }
+		}
+		.game .display .stone span {
+			width: 50%;
+			height: 50%;
+			background: url(img/stone.png) no-repeat calc(var(--l) * 90%) calc(var(--t) * 10%) / 150% 150%;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .answer {
+			width: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			margin-top: 1.5%;
+		}
+		.game .answer .screen {
+			width: 15%;
+			height: 3vw;
+			border-radius: 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			font: bold 1.9vw cursive;
+			padding-bottom: 3px;
+			-webkit-box-shadow: 0 3px 8px #f00;
+			box-shadow: 0 3px 8px #f00;
+			background: url(img/stone.png) 0 -1px / contain;
+			color: #fff;
+			text-shadow: 0 4px 5px #000;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .keyboard {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			margin-top: 1.5%;
+			-webkit-transition: .5s;
+			transition: .5s;
+			translate: 0 120px;
+		}
+		.game .keyboard .item {
+			cursor: pointer;
+			font: bold 2vw sans-serif;
+			padding: .5vw .9vw;
+			border-radius: 7px;
+			margin: 0 .1vw;
+			background: #f00;
+			color: #fff;
+			-webkit-box-shadow: inset 0 0 5px #000, 0 6px 0 #fff;
+			box-shadow: inset 0 0 5px #000, 0 6px 0 #fff;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .keyboard .item:hover {
+			-webkit-box-shadow: inset 0 0 5px #000, 0 2px 0 #fff;
+			box-shadow: inset 0 0 5px #000, 0 2px 0 #fff;
+			translate: 0 5px;
+		}
+		.game .keyboard .item:active {
+			-webkit-transition: .1s;
+			transition: .1s;
+			background: #080;
+			-webkit-box-shadow: inset 0 0 5px #000, 0 2px 0 #0f0;
+			box-shadow: inset 0 0 5px #000, 0 2px 0 #0f0;
+		}
+		.game .control {
+			width: 50%;
+			margin-bottom: 1%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+		}
+		.game .control :is(.life, .coin) {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			color: #fff;
+			font: bold 1.8vw sans-serif;
+			-webkit-column-gap: 7px;
+			column-gap: 7px;
+		}
+		.game .control :is(.life, .coin) img {
+			height: 3vw;
+			-webkit-filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 10px #fff);
+			filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 10px #fff);
+			pointer-events: none;
+		}
+		.game .control .coin {
+			cursor: pointer;
+			position: relative;
+		}
+		.game .control .coin .select {
+			position: absolute;
+			left: 100%;
+			top: 0;
+			opacity: 0;
+			visibility: hidden;
+			-webkit-transition: .1s;
+			transition: .1s;
+		}
+		.game .control .coin .select li {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			background: #0008;
+			padding: 5px 5px 5px 15px;
+			white-space: nowrap;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.game .control .coin .select li span {
+			margin-right: 15px;
+			font-size: 1.6vw;
+		}
+		.game .control .coin .select li:hover {
+			background: #fff9;
+			color: #000;
+		}
+		.game .control .coin .select li img {
+			height: 2.7vw;
+			-webkit-filter: none;
+			filter: none;
+		}
+		.game .control .coin .select li img:first-child {
+			height: 2vw;
+			margin: 0 10px 0 5px;
+		}
+		.game .control .coin:hover .select {
+			opacity: 1;
+			visibility: visible;
+			-webkit-transition: .9s;
+			transition: .9s;
+		}
+		.game .control .coin img {
+			height: 4vw;
+		}
+		.game .gift {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50%;
+			-webkit-transition: .8s;
+			transition: .8s;
+			height: 5vw;
+			pointer-events: none;
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 150%;
+			left: 50%;
+			translate: -50% -50%;
+			font: bold 9vw verdana;
+			color: #f00;
+			-webkit-text-stroke: 2px #fff;
+			text-shadow: -30px 10px 1px #000;
+			-webkit-transition: .8s;
+			transition: .8s;
+			z-index: 1;
+			white-space: nowrap;
+		}
+		@-webkit-keyframes gameOver {
+			50% { text-shadow: 0 25px 1px #fff; }
+			to { text-shadow: 30px 9px 1px #000; }
+		}
+		@keyframes gameOver {
+			50% { text-shadow: 0 25px 1px #fff; }
+			to { text-shadow: 30px 9px 1px #000; }
+		}
+		.game .Mario {
+			position: absolute;
+			right: 200%;
+			width: 20vw;
+			height: 45vh;
+			-webkit-transition: .8s .4s;
+			transition: .8s .4s;
+		}
+		.game .Mario img {
+			width: 25vw;
+			pointer-events: none;
+			translate: 0 6px;
+			-webkit-transition: .6s;
+			transition: .6s;
+		}
+		.game .Mario .floor {
+			height: 4vw;
+			background: url(img/stone.png) 0 0 / cover;
+			-webkit-box-shadow: inset 0 8px 14px #000;
+			box-shadow: inset 0 8px 14px #000;
+			-webkit-transition: .6s;
+			transition: .6s;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			background: #fff;
+			padding-top: 5%;
+			z-index: 10;
+			-webkit-box-shadow: inset 0 0 100px 20px #0000008f;
+			box-shadow: inset 0 0 100px 20px #0000008f;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.menu h1 {
+			font: bold 9vw sans-serif;
+			color: #000;
+			-webkit-text-stroke: 2px #03dcff;
+    		text-shadow: -1px 7px 3px #05d7f9, -1px 11px 3px #000;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+		}
+		.menu h1 span {
+			-webkit-transition: .4s;
+			transition: .4s;
+			-webkit-animation: title .8s linear infinite;
+			animation: title .8s linear infinite;
+		}
+		@-webkit-keyframes title {
+			50% {
+				text-shadow: -1px 7px 3px #f00, -1px 11px 3px #fff;
+				-webkit-text-stroke: 2px #f00;
+			}
+			80% { color: #f00; -webkit-text-stroke: 2px #fff; }
+		}
+		@keyframes title {
+			50% {
+				text-shadow: -1px 7px 3px #f00, -1px 11px 3px #fff;
+				-webkit-text-stroke: 2px #f00;
+			}
+			80% { color: #f00; -webkit-text-stroke: 2px #fff; }
+		}
+		.menu .men {
+			position: relative;
+			width: 20vw;
+			margin: 7vw auto 0;
+		}
+		.menu .men img {
+			height: 35vw;
+			position: absolute;
+			top: 0;
+			right: 70%;
+			translate: 0 -45%;
+			pointer-events: none;
+			z-index: 3;
+		}
+		.menu .men .play {
+			background: url(img/stone.png) no-repeat center / 97%;
+			padding: 6vw 4vw;
+			display: inline-block;
+			color: #fff;
+			font: bold 5vw sans-serif;
+			cursor: pointer;
+			text-shadow: 1px 6px 5px #28292a, 3px 5px 0 #00ffa9;
+			-webkit-transition: background .4s, text-shadow .3s;
+			transition: background .4s, text-shadow .3s;
+			will-change: transform;
+			z-index: 2;
+			position: relative;
+		}
+		.menu .men .play:hover {
+			background: url(img/stone.png) no-repeat center / 80%;
+			text-shadow: 1px 6px 5px #28292a, 3px 5px 0 #0f0;
+		}
+		.menu .men .play:active {
+			-webkit-transition: background .2s, text-shadow .3s;
+			transition: background .2s, text-shadow .3s;
+			background: url(img/stone.png) no-repeat center / 97%;
+			text-shadow: 1px 6px 5px #28292a, 3px 5px 0 #0f0;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #f00;
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="control">
+			<div class="life">
+				<img src="img/life.webp" alt="Img">x
+				<span>6</span>
+			</div>
+			<div class="coin">
+				<img src="img/coin.gif" alt="Img">x
+				<span>25</span>
+				<ul class="select">
+					<li>
+						4
+						<img src="img/life.webp" alt="Img">
+						=
+						10
+						<img src="img/coin.gif" alt="Img">
+					</li>
+					<li>
+						<span>Hint</span> = 12
+						<img src="img/coin.gif" alt="Img">
+					</li>
+					<li>
+						<span>Next Level</span> = 15
+						<img src="img/coin.gif" alt="Img">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<img src="img/life.webp" alt="Img" class="gift">
+		<img src="img/bad.webp" alt="Img" class="gift">
+		<img src="img/coin.gif" alt="Img" class="gift">
+		<div class="display">
+			<div class="Mario">
+				<img src="img/1.webp" alt="Img">
+				<div class="floor"></div>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone quest">
+				<img src="img/question.jpg" alt="Img">
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+			<div class="stone">
+				<span style="--l: 0; --t: 0;"></span>
+				<span style="--l: 1; --t: 0;"></span>
+				<span style="--l: 0; --t: 1;"></span>
+				<span style="--l: 1; --t: 1;"></span>
+			</div>
+		</div>
+		<div class="answer">
+			<div class="screen"></div>
+		</div>
+		<div class="keyboard">
+			<div class="item">&#8672;</div>
+		</div>
+		<h2 class="gameOver">GameOver</h2>
+	</div>
+	<div class="menu">
+		<h1>
+			<span>D</span>
+			<span>r</span>
+			<span>.</span>
+			<span>&nbsp;</span>
+			<span>M</span>
+			<span>a</span>
+			<span>r</span>
+			<span>i</span>
+			<span>o</span>
+		</h1>
+		<div class="men">
+			<img src="img/2.webp" alt="Img">
+			<div class="play">Play</div>
+		</div>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+	</div>
+	<script>
+		const menu = document.querySelector('.menu');
+		const menuMario = document.querySelector('.menu .men img');
+		const menuPlay = document.querySelector('.menu .men .play');
+		const menuTitle = document.querySelectorAll('.menu h1 span');
+		menu.onmousemove = e => {
+			menuMario.style.scale = e.x <= menuMario.getBoundingClientRect().left + menuMario.offsetWidth / 2 ? '-1 1' : null;
+			menuPlay.style.rotate = (menu.offsetWidth / 2 - e.x) / 150 + 'deg';
+			menuTitle.forEach(item => e.x % 20 == 0 ? item.style.transform = `rotate(${Math.random() * (10 - -10) + -10}deg) translate(${(menu.offsetWidth / 2 - e.x) / (Math.random() * (80 - 40) + 40)}px, ${(menu.offsetWidth / 2 - e.y) / (Math.random() * (80 - 30) + 30)}px)` : '');
+		};
+		const themeSound = new Audio('img/theme.mp3');
+		const blockSound = new Audio('img/block.mp3');
+		const gameOverSound = new Audio('img/gameOver.mp3');
+		const winnerSound = new Audio('img/win.mp3');
+		const kickSound = new Audio('img/kick.mp3');
+		const badSound = new Audio('img/bad.mp3');
+		const coinSound = new Audio('img/coin.mp3');
+		const powerSound = new Audio('img/power.mp3');
+		const lifeSound = new Audio('img/life.mp3');
+		const voiceSound = new Audio('img/voice.mp3');
+		const goSound = new Audio('img/go.mp3');
+		const marioSound2 = new Audio('img/mario2.mp3');
+		const marioSound3 = new Audio('img/mario3.mp3');
+		const marioSound4 = new Audio('img/mario4.mp3');
+		const marioSound5 = new Audio('img/mario5.mp3');
+		const marioSound6 = new Audio('img/mario6.mp3');
+		const keySound = new Audio('img/key.mp3');
+		const key2Sound = new Audio('img/key2.mp3');
+		blockSound.volume = .6;
+		themeSound.volume = .5;
+		keySound.volume = .3;
+		key2Sound.volume = .4;
+		menuPlay.onclick = () => {
+			menuPlay.style.pointerEvents = 'none';
+			const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
+			menu.style.clipPath = `circle(10% at ${menuMario.getBoundingClientRect().left + menuMario.offsetWidth / 2}px 50%)`;
+			void async function() {
+				await asyncControl(12e2);
+				menu.style.clipPath = `circle(0 at ${menuMario.getBoundingClientRect().left + menuMario.offsetWidth / 2}px 50%)`;
+				Mario.parentElement.style.right = '100%';
+				await asyncControl(2e2);
+				goSound.play();
+				await asyncControl(1e3);
+				voiceSound.play();
+				keyboard.style.translate = 0;
+			}();
+			themeSound.play();
+			themeSound.onended = () => themeSound.play();
+			const data = Object.freeze([
+				['img/mario.jpg', 'MARIO'],
+				['img/luigi.jpg', 'LUIGI'],
+				['img/princess.jpg', 'PRINCESS'],
+				['img/mushroom.jpg', 'MUSHROOM'],
+				['img/wario.jpg', 'WARIO'],
+				['img/yoshi.jpg', 'YOSHI'],
+				['img/goomba.jpg', 'GOOMBA'],
+				['img/bowser.jpg', 'BOWSER'],
+				['img/koopa.webp', 'KOOPA'],
+				['img/pipetrap.jpg', 'PIPETRAP'],
+				['img/hammerbro.jpg', 'HAMMERBRO'],
+				['img/spiny.jpg', 'SPINY'],
+				['img/toad.jpg', 'TOAD'],
+				['img/buzzybeetle.jpg', 'BUZZYBEETLE'],
+				['img/lakitu.jpg', 'LAKITU'],
+				['img/cheep.webp', 'CHEEPCHEEP'],
+				['img/diddykong.webp', 'DIDDYKONG'],
+			]);
+			const questData = Object.freeze(['bad','coin','life','bad','hide','coin','life','hide']);
+			const questRand = [Math.floor(Math.random() * questData.length)];
+			const display = document.querySelector('.game .display');
+			const keyboard = document.querySelector('.game .keyboard');
+			const screen = document.querySelector('.game .answer .screen');
+			const stone = document.querySelectorAll('.game .display .stone');
+			const stoneQuest = document.querySelectorAll('.game .display .stone.quest');
+			const lifeInf = document.querySelector('.game .control .life span');
+			const coinInf = document.querySelector('.game .control .coin span');
+			const gift = document.querySelectorAll('.game .gift');
+			const gameOver = document.querySelector('.game .gameOver');
+			const Mario = document.querySelector('.game .Mario img');
+			const select = document.querySelectorAll('.game .control .coin .select li');
+			const image = ['img/1.webp','img/3.webp','img/4.webp','img/5.webp','img/6.webp'];
+			(function movie() {
+				let xMario = 0;
+				void async function() {
+					await asyncControl(2700);
+					xMario++;
+					Mario.src = image[xMario];
+					await asyncControl(1800);
+					xMario++;
+					Mario.src = image[xMario];
+					await asyncControl(1800);
+					xMario++;
+					Mario.src = image[xMario];
+					await asyncControl(2000);
+					xMario++;
+					Mario.src = image[xMario];
+					await asyncControl(2700);
+					movie()
+				}();	
+			})();
+			stone.forEach((item, index) => {	
+				item.onclick = () => {
+					void async function() {
+						if (!item.classList.contains('quest')) {
+							if (life > 0) {
+								blockSound.currentTime = 0;
+								blockSound.play();
+								item.style.pointerEvents = 'none';
+								life--;
+								lifeInf.innerText = life;
+								item.firstElementChild.style.transform = 'rotate(-25deg) translate(-22px, -55px)';
+								item.children[1].style.transform = 'rotate(25deg) translate(22px, -55px)';
+								item.children[2].style.transform = 'rotate(25deg) translate(-22px, 55px)';
+								item.lastElementChild.style.transform = 'rotate(-25deg) translate(22px, 55px)';
+								await asyncControl(70);
+								Array.from(item.children).forEach(item => item.style.opacity = 0);
+								await asyncControl(15e1);
+								Array.from(item.children).forEach(item => item.style.display = 'none');
+							}
+						} else {
+							item.style.pointerEvents = 'none';
+							item.classList.add('none');
+							item.firstElementChild.style.filter = 'grayscale(1)';
+							item.firstElementChild.style.animation = 'none';
+							powerSound.play();
+							if (questData[questRand[0]] == 'life') {
+								stoneQuest.forEach(item => item.style.pointerEvents = 'none');
+								gift[0].style.top = lifeInf.previousElementSibling.getBoundingClientRect().top - lifeInf.previousElementSibling.offsetHeight / 2 + 'px';
+								await asyncControl(8e2);
+								gift[0].style.left = lifeInf.previousElementSibling.getBoundingClientRect().left + lifeInf.previousElementSibling.offsetWidth / 2 + 'px';
+								await asyncControl(8e2);
+								gift[0].style.scale = 0;
+								lifeSound.play();
+								await asyncControl(3e2);
+								life += Math.floor(Math.random() * (5 - 2) + 2);
+								lifeInf.innerText = life;
+								await asyncControl(3e2);
+								gift[0].style = 'transition: none;';
+								await asyncControl(40);
+								gift[0].style = null;
+								stoneQuest.forEach(item => !item.classList.contains('none') ? item.style.pointerEvents = null : '');
+							} else if (questData[questRand[0]] == 'coin') {
+								stoneQuest.forEach(item => item.style.pointerEvents = 'none');
+								gift[2].style.top = coinInf.previousElementSibling.getBoundingClientRect().top + 'px';
+								await asyncControl(8e2);
+								gift[2].style.left = coinInf.previousElementSibling.getBoundingClientRect().left + coinInf.previousElementSibling.offsetWidth / 2 + 'px';
+								await asyncControl(8e2);
+								gift[2].style.scale = 0;
+								coinSound.currentTime = 0;
+								coinSound.play();
+								await asyncControl(3e2);
+								coin += Math.floor(Math.random() * (5 - 1) + 1);
+								coinInf.innerText = coin;
+								await asyncControl(3e2);
+								gift[2].style = 'transition: none;';
+								await asyncControl(40);
+								gift[2].style = null;
+								stoneQuest.forEach(item => !item.classList.contains('none') ? item.style.pointerEvents = null : '');
+							} else if (questData[questRand[0]] == 'bad') {
+								stone.forEach(item => item.style.pointerEvents = 'none');
+								gift[1].style.top = '15px';
+								console.log('gameOver');
+								await asyncControl(8e2);
+								themeSound.pause();
+								gameOverSound.play();
+								Mario.nextElementSibling.style.translate = '0 100vh';
+								voiceSound.pause();
+								[marioSound2, marioSound4, marioSound5][Math.floor(Math.random() * 3)].play();
+								await asyncControl(3e2);
+								Mario.style.translate = '0 100vh';
+								await asyncControl(8e2);
+								keyboard.style.translate = '0 120px';
+								stone.forEach(item => Array.from(item.children).forEach(item => item.style.transition = '.8s'));
+								stone.forEach(item => {
+									if (!item.classList.contains('quest')) {
+										item.firstElementChild.style.transform = 'rotate(-25deg) translate(-22px, -55px)';
+										item.children[1].style.transform = 'rotate(25deg) translate(22px, -55px)';
+										item.children[2].style.transform = 'rotate(25deg) translate(-22px, 55px)';
+										item.lastElementChild.style.transform = 'rotate(-25deg) translate(22px, 55px)';
+									}
+								});
+								await asyncControl(1e2);
+								gameOver.style = 'top: 50%; animation: gameOver .5s linear infinite alternate;';
+								stone.forEach(item => Array.from(item.children).forEach(item => item.style.opacity = 0));
+								await asyncControl(25e2);
+								location.reload();
+							} else if (questData[questRand[0]] == 'hide') {
+								for (let i = 0; i < Math.floor(Math.random() * (10 - 5) + 5); i++) {
+									themeSound.volume = .1;
+									kickSound.currentTime = 0;
+									kickSound.play();
+									let r = Math.floor(Math.random() * stone.length);
+									while(stone[r].classList.contains('quest')) {
+										r = Math.floor(Math.random() * stone.length);
+									}
+									stone[r].firstElementChild.style.transform = 'rotate(-25deg) translate(-22px, -55px)';
+									stone[r].children[1].style.transform = 'rotate(25deg) translate(22px, -55px)';
+									stone[r].children[2].style.transform = 'rotate(25deg) translate(-22px, 55px)';
+									stone[r].lastElementChild.style.transform = 'rotate(-25deg) translate(22px, 55px)';
+									await asyncControl(200);
+									stone[r].style.opacity = 0;
+								}
+								themeSound.volume = .5;
+							}
+							questX++;
+							let r = Math.floor(Math.random() * questData.length);
+							while(questRand.some(item => item == r) && questX != questData.length) {
+								r = Math.floor(Math.random() * questData.length);
+							}
+							questRand.unshift(r);
+						}
+					}();
+				};
+			});
+			let life = +lifeInf.innerText;
+			let coin = +coinInf.innerText;
+			let questX = 0;
+			const current = [Math.floor(Math.random() * data.length)];
+			let room = 0;
+			display.style.backgroundImage = `url(${data[current[0]][0]})`;
+			for (let i = 65; i <= 90; i++) {
+				const key = document.createElement('div');
+				key.innerText = String.fromCharCode(i);
+				key.className = 'item';
+				keyboard.append(key);
+				key.onclick = () => {
+					let keyR = Math.floor(Math.random() * 2);
+					[keySound, key2Sound][keyR].play();
+					[keySound, key2Sound][keyR].currentTime = 0;
+					screen.innerText.length < 14 ? key.style = 'background: #080; box-shadow: inset 0 0 5px #000, 0 2px 0 #0f0; translate: 0 5px;' : '';
+					screen.innerText.length < 14 ? screen.innerText += String.fromCharCode(i) : '';
+					screen.innerText.length == 8 ? screen.style.width = '20%' : screen.innerText.length == 10 ? screen.style.width = '25%' : '';
+					if (screen.innerText == data[current[0]][1]) {
+						themeSound.pause();
+						winnerSound.play();
+						select[1].style.pointerEvents = 'none';
+						select[2].style.pointerEvents = 'none';
+						room < data.length ? room++ : '';
+						void async function() {
+							stone.forEach(item => item.style.pointerEvents = 'none');
+							gameOver.style.top = '50%';
+							gameOver.style.color = '#080';
+							gameOver.style.animation = 'gameOver .5s linear infinite alternate';
+							if (room < data.length) {
+								gameOver.innerText = 'Correct';
+								await asyncControl(2e3);
+								gameOver.style.top = null;
+							} else {
+								gameOver.innerText = 'You are Winner';
+								await asyncControl(3e3);
+								location.reload();
+							}
+							if (room < data.length) {
+								await asyncControl(6e2);
+								gameOver.style = null;
+								stone.forEach(item => (Array.from(item.children).forEach(item => item.style.display = null), item.style.opacity = null, item.style.pointerEvents = null));
+								await asyncControl(20);
+								stone.forEach(item => {
+									Array.from(item.children).forEach(item => {
+										item.style.opacity = null;
+										item.style.transform = 'none';
+									});
+								});
+								await asyncControl(2e2);
+								let r = Math.floor(Math.random() * data.length);
+								while(current.some(item => item == r) && room != data.length) {
+									r = Math.floor(Math.random() * data.length);
+								}
+								current.unshift(r);
+								console.log(current)
+								screen.innerText = '';
+								screen.style = null;
+								Array.from(keyboard.children).forEach(item => item.style = null);
+								display.style.backgroundImage = `url(${data[current[0]][0]})`;
+								select[1].style.pointerEvents = null;
+								select[2].style.pointerEvents = null;
+								await asyncControl(2e3);
+								themeSound.play();
+							}
+						}();
+					}
+				};
+			}
+			keyboard.append(keyboard.firstElementChild);
+			keyboard.lastElementChild.onclick = () => {
+				Array.from(keyboard.children).forEach(item => item.innerText == screen.innerText.slice(-1) ? item.style = null : '');
+				screen.innerText = screen.innerText.slice(0, -1);
+				screen.innerText.length == 8 ? screen.style.width = '15%' : screen.innerText.length == 10 ? screen.style.width = '20%' : '';
+			};
+			let showX = 0;
+			select.forEach((item, index) => {
+				item.onclick = () => {
+					if (index == 0 && coin >= 10) {
+						lifeSound.currentTime = .3;
+						lifeSound.play();
+						life += 4;
+						lifeInf.innerText = life;
+						coin -= 10;
+						coinInf.innerText = coin;
+					} else if (index == 1 && coin >= 12) {
+						voiceSound.pause();
+						[marioSound3, marioSound6][Math.floor(Math.random() * 2)].play();
+						item.style.pointerEvents = 'none';
+						item.style.background = '#6fb517';
+						screen.innerText = data[current[0]][1].slice(0, 3);
+						coin -= 12;
+						coinInf.innerText = coin;
+						Array.from(keyboard.children).forEach(item => {
+							data[current[0]][1].slice(0, 3).split('').forEach(elem => {
+								if (elem == item.innerText) {
+									item.style = 'background: #080; box-shadow: inset 0 0 5px #000, 0 2px 0 #0f0; translate: 0 5px;';
+								}
+							});
+						});
+					} else if (index == 2 && coin >= 15) {
+						goSound.currentTime = .3;
+						goSound.play();
+						themeSound.pause();
+						winnerSound.play();
+						coin -= 15;
+						select[1].style.pointerEvents = 'none';
+						select[2].style.pointerEvents = 'none';
+						room < data.length ? room++ : '';
+						if (room == data.length-1) {
+							select[1].style.display = 'none';
+							select[2].style.display = 'none';
+						}
+						coinInf.innerText = coin;
+						stone.forEach(item => item.style.pointerEvents = 'none');
+						void async function() {
+							for (let i = 0; i < stone.length; i++) {
+								if (!stone[i].classList.contains('quest')) {
+									kickSound.play();
+									stone[i].firstElementChild.style.transform = 'rotate(-25deg) translate(-22px, -55px)';
+									stone[i].children[1].style.transform = 'rotate(25deg) translate(22px, -55px)';
+									stone[i].children[2].style.transform = 'rotate(25deg) translate(-22px, 55px)';
+									stone[i].lastElementChild.style.transform = 'rotate(-25deg) translate(22px, 55px)';
+									await asyncControl(50);
+									stone[i].style.opacity = 0;
+								}
+							}
+							Array.from(keyboard.children).forEach(item => (data[current[0]][1].split('').forEach(elem => elem == item.innerText ? item.style = 'background: #080; box-shadow: inset 0 0 5px #000, 0 2px 0 #0f0; translate: 0 5px;' : ''), item.style.pointerEvents = 'none'));
+							await asyncControl(3e2);
+							screen.innerText = data[current[0]][1];
+							await asyncControl(7e2);
+							for (let i = stone.length-1; i >= 0; i--) {
+								if (!stone[i].classList.contains('quest')) {
+									blockSound.play();
+									stone[i].style.opacity = null;
+									Array.from(stone[i].children).forEach(item => (item.style.display = null, item.style.opacity = null));
+									await asyncControl(50);
+									stone[i].firstElementChild.style.transform = null;
+									stone[i].children[1].style.transform = null;
+									stone[i].children[2].style.transform = null;
+									stone[i].lastElementChild.style.transform = null;
+								}
+							}
+							screen.innerText = '';
+							Array.from(keyboard.children).forEach(item => item.style = null);
+							stone.forEach(item => !item.classList.contains('none') ? item.style.pointerEvents = null : '');
+							let r = Math.floor(Math.random() * data.length);
+							while(current.some(item => item == r) && room != data.length) {
+								r = Math.floor(Math.random() * data.length);
+							}
+							current.unshift(r);
+							await asyncControl(3e2);
+							select[1].style.pointerEvents = null;
+							select[2].style.pointerEvents = null;
+							display.style.backgroundImage = `url(${data[current[0]][0]})`;
+							themeSound.play();
+						}();
+					}
+				};
+			});
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
