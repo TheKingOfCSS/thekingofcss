@@ -32,22 +32,23 @@
         	<img src="img/umbrella.webp" alt="Img">
         </div>
         <div class="nextGame">
-        	<a href="https://game10.elbakyan.am" target="_blank">
+        	<a href="../TeenagerMario/index.html" target="_blank">
+        		<img src="img/next3.jpg" alt="Img">
+        		<h3>Tennager Mario</h3>
+        	</a>
+        	<a href="../MarioVSSonic/index.html" target="_blank">
         		<img src="img/next1.jpg" alt="Img">
         		<h3>Mario Vs Sonic</h3>
         	</a>
-        	<a href="https://game18.elbakyan.am" target="_blank">
+        	<a href="../MariosWedding/index.html" target="_blank">
         		<img src="img/next3.webp" alt="Img">
         		<h3>Mario's Wedding</h3>
         	</a>
-        	<a href="https://game9.elbakyan.am" target="_blank">
+        	<a href="../MarioReachtheQueen/index.html" target="_blank">
         		<img src="img/next2.jpg" alt="Img">
         		<h3>Mario Reach the Queen</h3>
         	</a>
         </div>
-        <div class="mobileControl mLeft">&#10092;</div>
-        <div class="mobileControl mRight">&#10093;</div>
-        <div class="mobileControl mJump">Jump</div>
     </div>
 	<div class="years">
 		<div class="path">
@@ -115,7 +116,6 @@
 			const marioLife = document.querySelector('.years .life .step');
 			const umbrellaBtn = document.querySelector('.game .umbrellaBtn');
 			const nextGameBlock = document.querySelector('.game .nextGame');
-			const mobileControl = document.querySelectorAll('.game .mobileControl');
 			mario.style.left = game.offsetWidth / 2 - mario.offsetWidth / 2 + 'px';
 			const cars = ['carLeft 8s linear, leftStop 2s paused forwards', 'carLeft2 8s linear, rightStop 2s paused forwards', 'carLeft 8s linear, leftStop 2s paused forwards', 'carLeft2 8s linear, rightStop 2s paused forwards'];
 			let curCar = Math.floor(Math.random() * cars.length);
@@ -159,13 +159,6 @@
 			umbrellaBtn.onclick = () => umbrellaChange();
 			document.onkeyup = e => (delete key[e.which], yoshi.style.backgroundImage = 'url(img/1.png)', umbrella.style.animation = '');
 			let upLife = setInterval(() => (life < 100 && gameBool ? life += 1 : '', marioLife.style.height = life + '%'), 500);
-			let mobSet1;
-			let mobSet2;
-			mobileControl[1].ontouchstart = e => (e.preventDefault(), mobSet1 = setInterval(() => (yoshiX > 0 ? yoshiX -= 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = 1, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft > mario.offsetLeft && gameBool ? mario.style.scale = '-1 1' : ''), 1));
-			mobileControl[0].ontouchstart = e => (e.preventDefault(), mobSet2 = setInterval(() => (yoshiX < game.offsetWidth - yoshi.offsetWidth ? yoshiX += 2 : '', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.style.scale = null, umbrella.style.animation = 'umbrella .4s infinite', yoshi.offsetLeft + yoshi.offsetWidth < mario.offsetLeft + mario.offsetWidth && gameBool ? mario.style.scale = 1 : ''), 1));
-			mobileControl[2].ontouchstart = e => (e.preventDefault(), yoshi.style.animation = 'jump .7s', yoshi.style.backgroundImage = 'url(img/1.gif)', yoshi.onanimationend = () => (yoshi.style.animation = '', yoshi.style.backgroundImage = 'url(img/1.png)'));
-			mobileControl[1].ontouchend = () => (clearInterval(mobSet1), yoshi.style.backgroundImage = 'url(img/1.png)');
-			mobileControl[0].ontouchend = () => (clearInterval(mobSet2), yoshi.style.backgroundImage = 'url(img/1.png)');
 		};
 		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 		console['log']('%cThe King Of CSS and Perfect JavaScript Writer', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
