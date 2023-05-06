@@ -1052,6 +1052,7 @@
 					screen.innerText.length < 14 ? screen.innerText += String.fromCharCode(i) : '';
 					screen.innerText.length == 8 ? screen.style.width = '20%' : screen.innerText.length == 10 ? screen.style.width = '25%' : '';
 					if (screen.innerText == data[current[0]][1]) {
+						select[1].style = null;
 						themeSound.pause();
 						winnerSound.play();
 						select[1].style.pointerEvents = 'none';
