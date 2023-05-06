@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Instructor Hovo Vardanyan</title>
 	<style>
 		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -11,6 +12,7 @@
 			color: #fff;
 			padding-top: 5vh;
 			font-family: system-ui, sans-serif;
+			overflow: hidden;
 		}
 		body::before {
 			content: '';
@@ -22,6 +24,7 @@
 			background: linear-gradient(165deg, #f00 37%, #7c0e0e 39%);
 			-webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
 			clip-path: polygon(0 0, 100% 0, 0 100%);
+			z-index: 1;
 		}
 		body::after {
 			content: '';
@@ -34,27 +37,10 @@
 			-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%);
 			clip-path: polygon(0 100%, 100% 0, 100% 100%);
 		}
-		.backMega {
-			position: fixed;
-			top: 0;
-			left: 0;
-			padding: 5px 25px 5px 15px;
-			background: #f00;
-			color: #fff;
-			font: bold 22px sans-serif;
-			cursor: pointer;
-			border-bottom-right-radius: 30px;
-			-webkit-transition: .2s;
-			transition: .2s;
-			z-index: 2;
-		}
-		.backMega:hover {
-			background: #0f0;
-			color: #000;
-		}
 		.authorAndCreator {
 			z-index: 1;
 			position: relative;
+			text-shadow: 0 2px 8px #000;
 		}
 		.menu {
 			display: -webkit-box;
@@ -62,251 +48,2580 @@
 			display: flex;
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
-			padding: 7%;
+			padding: 7% 50px 0;
 			-webkit-box-pack: center;
 			-ms-flex-pack: center;
 			justify-content: center;
 			gap: 4vh;
 		}
 		.menu .section {
-			width: 300px;
+			width: calc(100% / 5);
+			height: 13.7vw;
+			border: 2px solid #fff;
 			cursor: pointer;
-			-webkit-transition: .3s;
-			transition: .3s;
-			font: bold 2.5rem system-ui, sans-serif;
+			-webkit-transition: .6s linear;
+			transition: .6s linear;
+			font: bold 3.3vw system-ui, sans-serif;
 			will-change: transform;
+			padding: .6vw;
 			position: relative;
+			background: #ff0036;
+			-webkit-box-shadow: inset 0 0 60px #000, 0 5px 15px #000;
+			box-shadow: inset 0 0 60px #000, 0 5px 15px #000;
+			overflow: hidden;
 			z-index: 1;
-			color: #fff;
+			white-space: nowrap;
+		}
+		.menu .section a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			display: grid;
+			place-items: center;
 			text-decoration: none;
+			color: #fff;
+			-webkit-transition: .6s linear;
+			transition: .6s linear;
+			-webkit-box-shadow: 0 10px 15px #000;
+			box-shadow: 0 10px 15px #000;
 		}
-		.menu .section .example {
-			width: 300px;
-			height: 200px;
-			border: 5px solid #fff;
-			background: url(BabyMario/img/mario.gif) no-repeat center / contain, url(BabyMario/img/bg.jpg) no-repeat center / cover;
-			-webkit-box-shadow: inset 0 0 15px #0009;
-			box-shadow: inset 0 0 15px #0009;
-		}
-		.menu .section.mar2 .example {
-			background: url(MarioVSSonic/img/ver1.jpg) no-repeat center / cover;
-		}
-		.menu .section.tennagerMario .example {
-			background: url(TeenagerMario/img/mario.gif) no-repeat center 40% / 45%, url(TeenagerMario/img/bg.avif) no-repeat center / cover;
-		}
-		.menu .section.mar3 .example {
-			background: url(MariosWedding/img/mario.gif) no-repeat center / 30%, url(MariosWedding/img/bg.jpg) no-repeat center / cover;
-		}
-		.menu .section.mar4 .example {
-			background: url(MarioReachtheQueen/img/menu.jpg) no-repeat center / cover;
-		}
-		.menu .section.mar5 .example {
-			background: url(MarioHelpMe/bg.jpg) no-repeat center top / 225% 250%;
-		}
-		.menu .section.mar5 .example::after,
-		.menu .section.mar8 .example::after {
-			content: 'TOP';
-			position: absolute;
-			top: -25px;
-			right: -15px;
-			background: #3bff00;
-			color: #000;
-			font-size: 18px;
-			padding: 10px;
-			border-radius: 30%;
-			-webkit-box-shadow: inset 0 0 6px #000;
-			box-shadow: inset 0 0 6px #000;
-		}
-		.menu .section.mar6 .example {
-			background: url(MarioCards/bg.jpg) no-repeat center / cover;
-		}
-		.menu .section.mar8 .example {
-			background: url(MarioCars/bg.jpg) no-repeat 49% top / 145%;
-		}
-		.menu .section.mar8 .example::before {
+		.menu .section::before {
 			content: '';
 			position: absolute;
-			top: -50px;
-			left: -20px;
-			width: 80px;
-			height: 80px;
-			background: url(MarioCars/logo.png) no-repeat center / cover;
-		}
-		.menu .section.mar9 .example {
-			background: url(drMario/bg.jpg) no-repeat center 20% / 160%;
-		}
-		.menu .section.flap1 .example {
-			background: url(FlappyBird/img/2.png) no-repeat center / 40%, url(FlappyBird/img/bg.webp) no-repeat center bottom / 200%;
-		}
-		.menu .section.flap2 .example {
-			background: url(FlappyBird2/img/bird.gif) no-repeat center / 50%, url(FlappyBird2/img/bg.webp) no-repeat center bottom / 200%;
-		}
-		.menu .section.battle .example {
-			background: url(BattleGame/img/menu.jpg) no-repeat center bottom / cover;
-		}
-		.menu .section.rebbit .example {
-			background: url(RebbitGame/img/rebbit.gif) no-repeat center / contain, url(RebbitGame/img/bg.webp) no-repeat center bottom / 200%;
-		}
-		.menu .section.guess .example {
-			background: url(guessTheFlag/bgM.jpg) no-repeat center / 130%;
-		}
-		.menu .section.findLet .example {
-			background: url(letter/bg.jpg) no-repeat center / 120%;
-		}
-		.menu .section.XO .example {
-			background: url(xo/bg.jpg) no-repeat center / 150%;
-		}
-		.menu .section.puzzle .example {
-			background: url(PuzzleGame/img/theme.jpg) no-repeat center / cover;
-		}
-		.menu .section.writeIf .example {
-			background: url(grir/bg.jpg) no-repeat center / contain;
-		}
-		.menu .section.dino .example {
-			background: url(GameDino/img/bg.jpg) no-repeat center / cover;
-		}
-		.menu .section.col .example {
-			background: url(ColorGame/back.jpg) no-repeat center / cover;
-		}
-		.menu .section.lion .example {
-			background: url(Lion/img/2.gif) no-repeat center / 90%, url(Lion/img/back.jpg) no-repeat center / cover;
-		}
-		.menu .section.fillBox .example {
-			background: url(NerkirArkxer/img/lev16.jpg) no-repeat center / 270%;
-		}
-		.menu .section.bubble .example {
-			background: url(smileBubble/bg.jpg) no-repeat left / 150%;
-		}
-		.menu .section.qaxcr .example {
-			background: url(qaxcr/bg.jpg) no-repeat center / 110%;
-		}
-		.menu .section.hunter .example {
-			background: url(VorsordGame/levels/images/winner.jpg) no-repeat center / cover;
-		}
-		.menu .section.robotCode .example {
-			background: url(robotCode/bg.jpg) no-repeat center / 190%;
+			inset: 180px;
+    		border: 8px solid #fff0;
+			-webkit-transition: .7s linear;
+			transition: .7s linear;
+			border-radius: 50%;
+			pointer-events: none;
 		}
 		.menu .section:hover {
 			scale: 1.05;
-			rotate: 2deg;
+		}
+		.menu .section:hover::before {
+			inset: -5px;
+			border-color: #fff;
+			border-radius: 0;
+			rotate: 1080deg;
+		}
+		.menu .section:active::before {
+			rotate: -1080deg;
+			-webkit-transition-duration: .7s;
+			transition-duration: .7s;
 		}
 		.menu .section:active {
 			scale: 1.1;
-			rotate: -2deg;
+			background: #efff00;
+		}
+		.menu .section:active a {
+			color: #000;
+			text-shadow: -2px 4px 2px #fff, 0 5px 5px #000;
+		}
+		.TheKingOfCSS3 {
+			height: 50vh;
+			z-index: 11;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-transform: perspective(858px);
+			transform: perspective(858px);
+			-webkit-transform-origin: top;
+			transform-origin: top;
+			-webkit-transition: top .4s;
+			transition: top .4s;
+			padding-top: 10vh;
+			--let: 1;
+			--anim: .1;
+			--time: 50s;
+			--bg: rgb(255,255,255);
+			--rot: -720deg;
+		}
+		.TheKingOfCSS3 .text {
+			width: 95%;
+			height: 150px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-column-gap: 2px;
+			column-gap: 2px;
+		}
+		.TheKingOfCSS3 .text .letter {
+			position: relative;
+			width: 102px;
+			height: 120px;
+		}
+		.TheKingOfCSS3 .text .letter span {
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: var(--bg);
+			border-radius: 50%;
+			scale: var(--let);
+			animation: span var(--time) linear infinite;
+		}
+		@keyframes span {
+			0% { transform: translate(80vw); }
+			50%, 80% { transform: none; rotate: var(--rot); scale: var(--anim); }
+			60% { scale: 1; }
+			100% { transform: translate(80vw); }
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) {
+			width: 94px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(7) {
+			left: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(1) {
+			left: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(2) {
+			left: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(3) {
+			left: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(4) {
+			left: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(5) {
+			left: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(6) {
+			left: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(8) {
+			left: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(9) {
+			left: 80px;
+			top: 8px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(10) {
+			left: 80px;
+			top: 16px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(11) {
+			left: 70px;
+			top: 16px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(12) {
+			left: 63px;
+			top: 16px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(13) {
+			left: 55px;
+			top: 16px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(14) {
+			left: 55px;
+			top: 25px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(15) {
+			left: 55px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(16) {
+			left: 55px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(17) {
+			left: 55px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(18) {
+			left: 55px;
+			top: 65px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(19) {
+			left: 55px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(20) {
+			left: 55px;
+			top: 85px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(21) {
+			left: 45px;
+			top: 85px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(22) {
+			left: 35px;
+			top: 85px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(23) {
+			left: 35px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(24) {
+			left: 35px;
+			top: 65px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(25) {
+			left: 35px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(26) {
+			left: 35px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(27) {
+			left: 35px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(28) {
+			left: 35px;
+			top: 25px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(29) {
+			left: 35px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(30) {
+			left: 28px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(31) {
+			left: 19px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(32) {
+			left: 10px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(1) span:nth-child(33) {
+			left: 10px;
+			top: 8px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(1) {
+			left: 10px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(2) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(3) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(4) {
+			left: 30px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(5) {
+			left: 30px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(6) {
+			left: 30px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(7) {
+			left: 30px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(8) {
+			left: 40px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(9) {
+			left: 50px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(10) {
+			left: 50px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(11) {
+			left: 50px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(12) {
+			left: 50px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(13) {
+			left: 50px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(14) {
+			left: 60px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(15) {
+			left: 70px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(16) {
+			left: 70px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(17) {
+			left: 70px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(18) {
+			left: 70px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(19) {
+			left: 70px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(20) {
+			left: 70px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(21) {
+			left: 70px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(22) {
+			left: 70px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(23) {
+			left: 70px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(24) {
+			left: 70px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(25) {
+			left: 60px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(26) {
+			left: 50px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(27) {
+			left: 50px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(28) {
+			left: 50px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(29) {
+			left: 50px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(30) {
+			left: 40px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(31) {
+			left: 30px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(32) {
+			left: 30px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(33) {
+			left: 30px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(34) {
+			left: 30px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(35) {
+			left: 20px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(36) {
+			left: 10px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(37) {
+			left: 10px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(38) {
+			left: 10px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(39) {
+			left: 10px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(40) {
+			left: 10px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(41) {
+			left: 10px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(42) {
+			left: 10px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(43) {
+			left: 10px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(2) span:nth-child(44) {
+			left: 10px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(1) {
+			left: 0;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(2) {
+			left: 10px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(3) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(4) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(5) {
+			left: 40px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(6) {
+			left: 50px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(7) {
+			left: 60px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(8) {
+			left: 70px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(9) {
+			left: 70px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(10) {
+			left: 70px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(11) {
+			left: 60px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(12) {
+			left: 50px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(13) {
+			left: 40px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(14) {
+			left: 30px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(15) {
+			left: 20px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(16) {
+			left: 20px;
+			top: 21px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(17) {
+			left: 20px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(18) {
+			left: 20px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(19) {
+			left: 30px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(20) {
+			left: 40px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(21) {
+			left: 50px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(22) {
+			left: 60px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(23) {
+			left: 70px;
+			top: 35px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(24) {
+			left: 70px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(25) {
+			left: 70px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(26) {
+			left: 60px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(27) {
+			left: 50px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(28) {
+			left: 40px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(29) {
+			left: 30px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(30) {
+			left: 20px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(31) {
+			left: 20px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(32) {
+			left: 20px;
+			top: 65px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(33) {
+			left: 20px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(34) {
+			left: 30px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(35) {
+			left: 40px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(36) {
+			left: 50px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(37) {
+			left: 60px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(38) {
+			left: 70px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(39) {
+			left: 70px;
+			top: 82px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(40) {
+			left: 70px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(41) {
+			left: 60px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(42) {
+			left: 50px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(43) {
+			left: 40px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(44) {
+			left: 30px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(45) {
+			left: 20px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(46) {
+			left: 10px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(47) {
+			left: 0;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(48) {
+			left: 0;
+			top: 79px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(49) {
+			left: 0;
+			top: 69px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(50) {
+			left: 0;
+			top: 59px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(51) {
+			left: 0;
+			top: 49px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(52) {
+			left: 0;
+			top: 39px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(53) {
+			left: 0;
+			top: 29px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(54) {
+			left: 0;
+			top: 19px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(3) span:nth-child(55) {
+			left: 0;
+			top: 9px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(1) {
+			left: 10px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(2) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(3) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(4) {
+			left: 30px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(5) {
+			left: 30px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(6) {
+			left: 30px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(7) {
+			left: 40px;
+			top: 23px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(8) {
+			left: 50px;
+			top: 15px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(9) {
+			left: 60px;
+			top: 7px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(10) {
+			left: 70px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(11) {
+			left: 80px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(12) {
+			left: 90px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(13) {
+			left: 90px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(14) {
+			left: 80px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(15) {
+			left: 70px;
+			top: 25px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(16) {
+			left: 60px;
+			top: 32px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(17) {
+			left: 50px;
+			top: 39px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(18) {
+			left: 55px;
+			top: 47px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(19) {
+			left: 60px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(20) {
+			left: 65px;
+			top: 63px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(21) {
+			left: 70px;
+			top: 71px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(22) {
+			left: 75px;
+			top: 79px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(23) {
+			left: 80px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(24) {
+			left: 70px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(25) {
+			left: 60px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(26) {
+			left: 53px;
+			top: 79px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(27) {
+			left: 46px;
+			top: 71px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(28) {
+			left: 40px;
+			top: 63px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(29) {
+			left: 35px;
+			top: 55px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(30) {
+			left: 30px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(31) {
+			left: 30px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(32) {
+			left: 30px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(33) {
+			left: 30px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(34) {
+			left: 30px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(35) {
+			left: 20px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(36) {
+			left: 10px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(37) {
+			left: 10px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(38) {
+			left: 10px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(39) {
+			left: 10px;
+			top: 58px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(40) {
+			left: 10px;
+			top: 48px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(41) {
+			left: 10px;
+			top: 38px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(42) {
+			left: 10px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(43) {
+			left: 10px;
+			top: 18px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(4) span:nth-child(44) {
+			left: 10px;
+			top: 8px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(1) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(2) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(3) {
+			left: 40px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(4) {
+			left: 40px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(5) {
+			left: 40px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(6) {
+			left: 30px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(7) {
+			left: 20px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(8) {
+			left: 20px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(9) {
+			left: 20px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(10) {
+			left: 20px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(11) {
+			left: 20px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(12) {
+			left: 20px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(13) {
+			left: 20px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(14) {
+			left: 20px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(15) {
+			left: 30px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(16) {
+			left: 40px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(17) {
+			left: 40px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(18) {
+			left: 40px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(19) {
+			left: 40px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(20) {
+			left: 40px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(21) {
+			left: 40px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) span:nth-child(22) {
+			left: 30px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(5) {
+			width: 65px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(1) {
+			left: 10px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(2) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(3) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(4) {
+			left: 34px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(5) {
+			left: 38px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(6) {
+			left: 42px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(7) {
+			left: 46px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(8) {
+			left: 50px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(9) {
+			left: 54px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(10) {
+			left: 58px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(11) {
+			left: 58px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(12) {
+			left: 58px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(13) {
+			left: 58px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(14) {
+			left: 58px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(15) {
+			left: 58px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(16) {
+			left: 58px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(17) {
+			left: 58px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(18) {
+			left: 66px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(19) {
+			left: 74px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(20) {
+			left: 82px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(21) {
+			left: 82px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(22) {
+			left: 82px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(23) {
+			left: 82px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(24) {
+			left: 82px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(25) {
+			left: 82px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(26) {
+			left: 82px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(27) {
+			left: 82px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(28) {
+			left: 82px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(29) {
+			left: 82px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(30) {
+			left: 73px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(31) {
+			left: 64px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(32) {
+			left: 54px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(33) {
+			left: 46px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(34) {
+			left: 43px;
+			top: 84px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(35) {
+			left: 38px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(36) {
+			left: 35px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(37) {
+			left: 32px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(38) {
+			left: 29px;
+			top: 52px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(39) {
+			left: 26px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(40) {
+			left: 23px;
+			top: 38px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(41) {
+			left: 20px;
+			top: 32px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(42) {
+			left: 17px;
+			top: 24px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(44) {
+			left: 17px;
+			top: 36px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(45) {
+			left: 17px;
+			top: 46px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(46) {
+			left: 17px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(47) {
+			left: 17px;
+			top: 66px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(48) {
+			left: 17px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(49) {
+			left: 17px;
+			top: 86px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(43) {
+			left: 10px;
+			top: 86px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(50) {
+			left: 0;
+			top: 86px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(51) {
+			left: 0;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(52) {
+			left: 0;
+			top: 66px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(53) {
+			left: 0;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(54) {
+			left: 0;
+			top: 46px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(55) {
+			left: 0;
+			top: 36px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(56) {
+			left: 0;
+			top: 26px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(57) {
+			left: 0;
+			top: 16px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(58) {
+			left: 0;
+			top: 8px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(6) span:nth-child(59) {
+			left: 0;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(1) {
+			background: #0000;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(2) {
+			left: 75px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(3) {
+			left: 70px;
+			top: 19px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(4) {
+			left: 63px;
+			top: 13px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(5) {
+			left: 53px;
+			top: 7px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(6) {
+			left: 45px;
+			top: 4px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(7) {
+			left: 37px;
+			top: 4px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(8) {
+			left: 30px;
+			top: 4px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(9) {
+			left: 22px;
+			top: 6px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(10) {
+			left: 15px;
+			top: 12px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(11) {
+			left: 10px;
+			top: 21px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(12) {
+			left: 8px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(13) {
+			left: 7px;
+			top: 36px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(14) {
+			left: 6px;
+			top: 42px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(15) {
+			left: 6px;
+			top: 48px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(16) {
+			left: 6px;
+			top: 54px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(17) {
+			left: 6px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(18) {
+			left: 8px;
+			top: 66px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(19) {
+			left: 9px;
+			top: 72px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(20) {
+			left: 13px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(21) {
+			left: 19px;
+			top: 84px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(22) {
+			left: 26px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(23) {
+			left: 34px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(24) {
+			left: 40px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(25) {
+			left: 46px;
+			top: 89px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(26) {
+			left: 52px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(27) {
+			left: 58px;
+			top: 86px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(28) {
+			left: 64px;
+			top: 84px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(29) {
+			left: 70px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(30) {
+			left: 70px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(31) {
+			left: 70px;
+			top: 62px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(32) {
+			left: 70px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(33) {
+			left: 62px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(34) {
+			left: 56px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(35) {
+			left: 50px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(36) {
+			left: 44px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(37) {
+			left: 38px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(38) {
+			left: 38px;
+			top: 62px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(39) {
+			left: 38px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(40) {
+			left: 44px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(41) {
+			left: 50px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(42) {
+			left: 56px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(43) {
+			left: 56px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(44) {
+			left: 48px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(45) {
+			left: 40px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(46) {
+			left: 34px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(47) {
+			left: 28px;
+			top: 74px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(48) {
+			left: 23px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(49) {
+			left: 20px;
+			top: 62px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(50) {
+			left: 19px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(51) {
+			left: 19px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(52) {
+			left: 19px;
+			top: 44px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(53) {
+			left: 19px;
+			top: 38px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(54) {
+			left: 20px;
+			top: 32px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(55) {
+			left: 22px;
+			top: 26px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(56) {
+			left: 26px;
+			top: 21px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(57) {
+			left: 32px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(58) {
+			left: 38px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(59) {
+			left: 44px;
+			top: 21px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(60) {
+			left: 50px;
+			top: 24px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(61) {
+			left: 56px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(62) {
+			left: 60px;
+			top: 37px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(63) {
+			left: 67px;
+			top: 37px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) span:nth-child(64) {
+			left: 75px;
+			top: 37px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(8) {
+			margin-left: 5px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(8) span {
+			background: #0000;
+			top: 38%;
+			left: 49%;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(8) span i {
+			position: absolute;
+			border-radius: 50%;
+			-webkit-transform: rotate(calc(var(--i) * 18deg)) translateX(40px);
+			transform: rotate(calc(var(--i) * 18deg)) translateX(40px);
+			width: 5px;
+			height: 5px;
+			background: #fff;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(1) {
+			left: 10px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(2) {
+			left: 20px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(3) {
+			left: 30px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(4) {
+			left: 40px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(5) {
+			left: 50px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(6) {
+			left: 60px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(7) {
+			left: 70px;
+			top: 0;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(8) {
+			left: 70px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(9) {
+			left: 70px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(10) {
+			left: 60px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(11) {
+			left: 50px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(12) {
+			left: 40px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(13) {
+			left: 30px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(14) {
+			left: 20px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(15) {
+			left: 20px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(16) {
+			left: 20px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(17) {
+			left: 30px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(18) {
+			left: 40px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(19) {
+			left: 50px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(20) {
+			left: 60px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(21) {
+			left: 70px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(22) {
+			left: 70px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(23) {
+			left: 70px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(24) {
+			left: 60px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(25) {
+			left: 50px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(26) {
+			left: 40px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(27) {
+			left: 30px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(28) {
+			left: 20px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(29) {
+			left: 20px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(30) {
+			left: 20px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(31) {
+			left: 20px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(32) {
+			left: 10px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(33) {
+			left: 0;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(34) {
+			left: 0;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(35) {
+			left: 0;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(36) {
+			left: 0;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(37) {
+			left: 0;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(38) {
+			left: 0;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(39) {
+			left: 0;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(40) {
+			left: 0;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) span:nth-child(41) {
+			left: 0;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(1) {
+			left: 10px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(2) {
+			left: 15px;
+			top: 25px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(3) {
+			left: 23px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(4) {
+			left: 30px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(5) {
+			left: 8px;
+			top: 38px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(6) {
+			left: 7px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(7) {
+			left: 7px;
+			top: 52px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(8) {
+			left: 7px;
+			top: 59px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(9) {
+			left: 7px;
+			top: 67px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(10) {
+			left: 9px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(11) {
+			left: 12px;
+			top: 82px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(12) {
+			left: 18px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(13) {
+			left: 26px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(14) {
+			left: 35px;
+			top: 91px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(15) {
+			left: 43px;
+			top: 90px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(16) {
+			left: 50px;
+			top: 88px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(17) {
+			left: 58px;
+			top: 85px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(18) {
+			left: 65px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(19) {
+			left: 65px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(20) {
+			left: 55px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(21) {
+			left: 50px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(22) {
+			left: 40px;
+			top: 77px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(23) {
+			left: 33px;
+			top: 77px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(24) {
+			left: 27px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(25) {
+			left: 23px;
+			top: 67px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(26) {
+			left: 23px;
+			top: 58px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(27) {
+			left: 23px;
+			top: 50px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(28) {
+			left: 27px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(29) {
+			left: 35px;
+			top: 36px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(30) {
+			left: 42px;
+			top: 34px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(31) {
+			left: 50px;
+			top: 34px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(32) {
+			left: 58px;
+			top: 37px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(33) {
+			left: 58px;
+			top: 30px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(34) {
+			left: 58px;
+			top: 23px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(35) {
+			left: 52px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(36) {
+			left: 45px;
+			top: 19px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) span:nth-child(37) {
+			left: 38px;
+			top: 17px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(9) {
+			width: 80px;
+			margin-left: 5px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(10) {
+			margin-left: 20px;
+			width: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(1),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(1) {
+			left: 38px;
+			top: 9px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(2),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(2) {
+			left: 30px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(3),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(3) {
+			left: 22px;
+			top: 15px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(4),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(4) {
+			left: 15px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(5),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(5) {
+			left: 12px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(6),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(6) {
+			left: 12px;
+			top: 36px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(7),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(7) {
+			left: 15px;
+			top: 44px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(8),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(8) {
+			left: 22px;
+			top: 48px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(9),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(9) {
+			left: 30px;
+			top: 51px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(10),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(10) {
+			left: 40px;
+			top: 52px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(11),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(11) {
+			left: 48px;
+			top: 56px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(12),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(12) {
+			left: 51px;
+			top: 62px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(13),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(13) {
+			left: 50px;
+			top: 70px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(14),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(14) {
+			left: 46px;
+			top: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(15),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(15) {
+			left: 40px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(16),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(16) {
+			left: 32px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(17),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(17) {
+			left: 24px;
+			top: 78px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(18),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(18) {
+			left: 18px;
+			top: 74px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(19),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(19) {
+			left: 12px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(20),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(20) {
+			left: 12px;
+			top: 76px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(21),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(21) {
+			left: 12px;
+			top: 84px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(22),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(22) {
+			left: 18px;
+			top: 86px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(23),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(23) {
+			left: 25px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(24),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(24) {
+			left: 32px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(25),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(25) {
+			left: 38px;
+			top: 87px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(26),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(26) {
+			left: 46px;
+			top: 85px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(27),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(27) {
+			left: 53px;
+			top: 80px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(28),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(28) {
+			left: 57px;
+			top: 74px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(29),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(29) {
+			left: 60px;
+			top: 68px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(30),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(30) {
+			left: 60px;
+			top: 60px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(31),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(31) {
+			left: 56px;
+			top: 52px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(32),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(32) {
+			left: 50px;
+			top: 48px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(33),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(33) {
+			left: 44px;
+			top: 45px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(34),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(34) {
+			left: 38px;
+			top: 44px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(35),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(35) {
+			left: 32px;
+			top: 42px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(36),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(36) {
+			left: 25px;
+			top: 40px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(37),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(37) {
+			left: 22px;
+			top: 34px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(38),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(38) {
+			left: 22px;
+			top: 28px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(39),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(39) {
+			left: 28px;
+			top: 24px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(40),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(40) {
+			left: 36px;
+			top: 22px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(41),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(41) {
+			left: 43px;
+			top: 21px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(42),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(42) {
+			left: 52px;
+			top: 23px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(43),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(43) {
+			left: 58px;
+			top: 27px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(44),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(44) {
+			left: 58px;
+			top: 20px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(45),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(45) {
+			left: 58px;
+			top: 12px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(46),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(46) {
+			left: 52px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11) span:nth-child(47),
+		.TheKingOfCSS3 .text .letter:nth-child(12) span:nth-child(47) {
+			left: 45px;
+			top: 10px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(11),
+		.TheKingOfCSS3 .text .letter:nth-child(12) {
+			width: 75px;
+		}
+		.TheKingOfCSS3 .text .letter:nth-child(7) {
+			width: 85px;
+		}
+		@media screen and (max-width: 1024px) {
+			body {
+				overflow: visible;
+			}
+			.TheKingOfCSS3 {
+				display: none;
+			}
+			.TheKingOfCSS3 .text .letter span {
+				animation: none;
+			}
+			.menu .section {
+				width: 300px;
+				height: 200px;
+				font-size: 3rem;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			.authorAndCreator {
+				font-size: 1.8rem;
+			}
+			.menu .section {
+				width: 230px;
+				height: 150px;
+				font-size: 2.2rem;
+			}
 		}
 	</style>
 </head>
 <body>
-	<div class="backMega">Menu</div>
-	<h1 class="authorAndCreator">All These Games were Created and Coded by Hovo Vardanyan</h1>
+	<h1 class="authorAndCreator">Senior Developer Hovo Vardanyan</h1>
 	<div class="menu">
-		<a class="section" href="BabyMario/index.html">
-			<div class="example"></div>
-			<p>Baby Mario</p>
-		</a>
-		<a class="section tennagerMario" href="TeenagerMario/index.html">
-			<div class="example"></div>
-			<p>Teenager Mario</p>
-		</a>
-		<a class="section mar2" href="MarioVSSonic/index.html">
-			<div class="example"></div>
-			<p>Mario vs Sonic Battle</p>
-		</a>
-		<a class="section mar3" href="MariosWedding/index.html">
-			<div class="example"></div>
-			<p>Mario's Wedding</p>
-		</a>
-		<a class="section mar4" href="MarioReachtheQueen/index.html">
-			<div class="example"></div>
-			<p>Mario Reach The Queen</p>
-		</a>
-		<a class="section mar6" href="MarioCards/index.html">
-			<div class="example"></div>
-			<p>Mario Cards</p>
-		</a>
-		<a class="section mar8" href="MarioCars/index.html">
-			<div class="example"></div>
-			<p>Mario Cars</p>
-		</a>
-		<a class="section mar9" href="drMario/index.html">
-			<div class="example"></div>
-			<p>Dr. Mario</p>
-		</a>
-		<a class="section mar5" href="MarioHelpMe/index.html">
-			<div class="example"></div>
-			<p>Mario Help Me Starburts</p>
-		</a>
-		<a class="section flap1" href="FlappyBird/index.html">
-			<div class="example"></div>
-			<p>Flappy Bird 1</p>
-		</a>
-		<a class="section flap2" href="FlappyBird2/index.html">
-			<div class="example"></div>
-			<p>Flappy Bird 2</p>
-		</a>
-		<a class="section battle" href="BattleGame/index.html">
-			<div class="example"></div>
-			<p>Battle Game</p>
-		</a>
-		<a class="section rebbit" href="RebbitGame/index.html">
-			<div class="example"></div>
-			<p>Rabbit Target</p>
-		</a>
-		<a class="section guess" href="guessTheFlag/index.html">
-			<div class="example"></div>
-			<p>Guess The Flag</p>
-		</a>
-		<a class="section findLet" href="letter/index.html">
-			<div class="example"></div>
-			<p>Find The Letter</p>
-		</a>
-		<a class="section XO" href="xo/index.html">
-			<div class="example"></div>
-			<p>XO Game</p>
-		</a>
-		<a class="section puzzle" href="PuzzleGame/index.html">
-			<div class="example"></div>
-			<p>Puzzle Game</p>
-		</a>
-		<a class="section writeIf" href="grir/index.html">
-			<div class="example"></div>
-			<p>Write if You Can</p>
-		</a>
-		<a class="section dino" href="GameDino/index.html">
-			<div class="example"></div>
-			<p>Browser Dino</p>
-		</a>
-		<a class="section col" href="ColorGame/index.html">
-			<div class="example"></div>
-			<p>Color Game</p>
-		</a>
-		<a class="section lion" href="Lion/index.html">
-			<div class="example"></div>
-			<p>Lion</p>
-		</a>
-		<a class="section fillBox" href="NerkirArkxer/index.html">
-			<div class="example"></div>
-			<p>Ներկիր արկղերը</p>
-		</a>
-		<a class="section bubble" href="smileBubble/index.html">
-			<div class="example"></div>
-			<p>Smile Bubble</p>
-		</a>
-		<a class="section qaxcr" href="qaxcr/index.html">
-			<div class="example"></div>
-			<p>Քաղցր Մանկություն</p>
-		</a>
-		<a class="section hunter" href="VorsordGame/index.html">
-			<div class="example"></div>
-			<p>Որսորդ</p>
-		</a>
-		<a class="section robotCode" href="robotCode/index.html">
-			<div class="example"></div>
-			<p>Robot Code</p>
-		</a>
+		<div class="section"><a href="sliders/index.html">91 Sliders</a></div>
+		<div class="section"><a href="games/games.html">26 Games</a></div>
+		<div class="section"><a href="cssKing/cssKing.html">CSS King</a></div>
+		<div class="section"><a href="aboutMe/about.html">About Me</a></div>
+	</div>
+	<div class="TheKingOfCSS3">
+		<div class="text">
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span><i style="--i:1;"></i></span>
+				<span><i style="--i:2;"></i></span>
+				<span><i style="--i:3;"></i></span>
+				<span><i style="--i:4;"></i></span>
+				<span><i style="--i:5;"></i></span>
+				<span><i style="--i:6;"></i></span>
+				<span><i style="--i:7;"></i></span>
+				<span><i style="--i:8;"></i></span>
+				<span><i style="--i:9;"></i></span>
+				<span><i style="--i:10;"></i></span>
+				<span><i style="--i:11;"></i></span>
+				<span><i style="--i:12;"></i></span>
+				<span><i style="--i:13;"></i></span>
+				<span><i style="--i:14;"></i></span>
+				<span><i style="--i:15;"></i></span>
+				<span><i style="--i:16;"></i></span>
+				<span><i style="--i:17;"></i></span>
+				<span><i style="--i:18;"></i></span>
+				<span><i style="--i:19;"></i></span>
+				<span><i style="--i:20;"></i></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="letter">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 	</div>
 	<script>
-		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
+		const TheKingOfCSS3 = document.querySelector('.TheKingOfCSS3');
+		const span = document.querySelectorAll('.TheKingOfCSS3 .text .letter span');
+		span.forEach((item, index) => item.style.rotate = Math.random() * 360 + 'deg');
+		const variant = Object.freeze({['0']: [1, Math.random() * 2000],['1']: ['-', '']});
+		TheKingOfCSS3.style.setProperty('--let', Math.random() * (.15 - .01) + .01 + ' ' + variant[0][Math.floor(Math.random() * variant[0].length)]);
+		TheKingOfCSS3.style.setProperty('--anim',  Math.random() * 2);
+		TheKingOfCSS3.style.setProperty('--time', Math.random() * (50 - 2) + 2 + 's');
+		TheKingOfCSS3.style.setProperty('--bg', `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`);
+		TheKingOfCSS3.style.setProperty('--rot', variant[1][Math.floor(Math.random() * variant[1].length)] + '720deg');
 	</script>
 </body>
 </html>
