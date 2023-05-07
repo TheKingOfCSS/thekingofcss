@@ -398,6 +398,14 @@
 				--resp: 25%;
 				--resp2: 30%;
 			}
+			.game .control .coin .select {
+				left: -90px;
+    			top: 100%;
+				z-index: 2;
+			}
+			.game .control .coin .select :is(li, span) {
+				font-size: 2vw !important;
+			}
 			.game .keyboard {
 				flex-wrap: wrap;
 				justify-content: center;
@@ -428,6 +436,9 @@
 				--resp2: 35%;
 				--resp3: 25%;
 			}
+			.game .gameOver {
+				font-size: 11vw;
+			}
 			.menu h1 {
 				font-size: 14vw;
 			}
@@ -453,6 +464,21 @@
 			.game .display {
 				width: 70%;
     			height: 66%;
+			}
+			.game .control {
+				width: 70%;
+			}
+			.game .control .coin .select {
+				left: -230px;
+			}
+			.game .control .coin .select :is(li, span) {
+				font-size: 4vw !important;
+			}
+			.game .control .coin .select li img {
+				height: 4.7vw;
+			}
+			.game .control .coin .select li img:first-child {
+				height: 3vw;
 			}
 			.game .Mario {
 				width: 13vw;
@@ -483,6 +509,21 @@
 				--resp: 45%;
 				--resp2: 55%;
 				--resp3: 40%;
+			}
+			.game .gameOver {
+				font-size: 13vw;
+			}
+			.game .control .coin .select {
+				left: -160px;
+			}
+			.game .control .coin .select :is(li, span) {
+				font-size: 5vw !important;
+			}
+			.game .control .coin .select li img {
+				height: 6.7vw;
+			}
+			.game .control .coin .select li img:first-child {
+				height: 5vw;
 			}
 			.menu {
 				padding-top: 18%;
@@ -1206,6 +1247,7 @@
 					screen.innerText.length < 14 ? screen.innerText += String.fromCharCode(i) : '';
 					screen.innerText.length == 8 ? screen.style.width = 'var(--resp)' : screen.innerText.length == 10 ? screen.style.width = 'var(--resp2)' : '';
 					if (screen.innerText == data[current[0]][1]) {
+						[marioSound3, marioSound6][Math.floor(Math.random() * 2)].play();
 						select[1].style = null;
 						themeSound.pause();
 						winnerSound.play();
@@ -1258,6 +1300,7 @@
 			}
 			keyboard.append(keyboard.firstElementChild);
 			keyboard.lastElementChild.onclick = () => {
+				kickSound.play();
 				Array.from(keyboard.children).forEach(item => item.innerText == screen.innerText.slice(-1) ? item.style = null : '');
 				screen.innerText = screen.innerText.slice(0, -1);
 				screen.innerText.length == 8 ? screen.style.width = 'var(--resp3)' : screen.innerText.length == 10 ? screen.style.width = 'var(--resp)' : '';
