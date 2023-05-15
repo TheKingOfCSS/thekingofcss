@@ -800,7 +800,7 @@
 				await asyncControl(1e3);
 				const drawGame = setInterval(() => {
 					if (loop) {
-						sleepPercent -= .02;
+						sleepPercent -= .005;
 						sleep.style.setProperty('--sleep', sleepPercent + '%');
 						if (sleepPercent <= 0) {
 							sleep.style.top = '-50%';
