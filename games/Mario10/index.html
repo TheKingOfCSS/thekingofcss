@@ -388,6 +388,14 @@
 			clip-path: ellipse(100% 100%);
 			-webkit-transition: 1.5s;
 			transition: 1.5s;
+			-webkit-animation: menuBg 6s linear infinite;
+			animation: menuBg 6s linear infinite;
+		}
+		@-webkit-keyframes menuBg {
+			50% { background-position-y: -80px; }
+		}
+		@keyframes menuBg {
+			50% { background-position-y: -80px; }
 		}
 		.menu h1 {
 			display: -webkit-box;
@@ -707,6 +715,7 @@
 				doorKey.forEach(item => item.style.opacity = 1);
 				await asyncControl(26e2);
 				Array.from(menuPlay.previousElementSibling.children).forEach(item => item.style.animation = 'none');
+				menuPlay.parentElement.style.animation = 'none';
 				display.style.translate = 0;
 				await asyncControl(7e2);
 				key.style.top = '20px';
