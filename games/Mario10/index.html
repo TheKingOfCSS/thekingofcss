@@ -456,9 +456,9 @@
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			font: bold 20px/1.2 system-ui, verdana;
+			font: bold 18px/1.2 system-ui, verdana;
 			color: #fff;
-			background: #000;
+			background: #f00;
 			padding: 7px 0 8px;
 			letter-spacing: 1px;
 		}
@@ -958,7 +958,7 @@
 								item.style.animation = 'none';
 								item.style.left = Math.random() * 90 + '%';
 								setTimeout(() => item.style.animation = 'zLogo 3s linear infinite', Math.random() * 1e4);
-								sleepPercent += 20;
+								sleepPercent < 1e3 ? sleepPercent += 20 : '';
 								zSound.currentTime = 0;
 								zSound.play();
 								sleep.style.setProperty('--sleep', sleepPercent + '%');
