@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vardanyan</title>
+	<link rel="shortcut icon" href="music/logo.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.Vardanyan {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			background: #111;
+			height: 100vh;
+		}
+		.Vardanyan .piano {
+			width: 60vw;
+			height: 27vw;
+			background: #000;
+			border-radius: 25px;
+			-webkit-box-shadow: 0 5px 0 #f2f2f2, -2px -0.5vw 0 #fff, 2px -0.5vw 0 #fff, inset 10px 0 5px #222, inset -10px 0 5px #222;
+			box-shadow: 0 5px 0 #f2f2f2, -2px -0.5vw 0 #fff, 2px -0.5vw 0 #fff, inset 10px 0 5px #222, inset -10px 0 5px #222;
+		}
+		.Vardanyan .piano .display {
+			text-align: center;
+			color: #fff;
+			padding: .7vw 4vw .7vw;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			position: relative;
+		}
+		.Vardanyan .piano .display .volume {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-column-gap: .7vw;
+			column-gap: .7vw;
+			scale: .9;
+		}
+		.Vardanyan .piano .display .volume span {
+			font: 1.05vw verdana;
+		}
+		.Vardanyan .piano .display .volume #vol {
+			accent-color: #fff;
+			outline: 0;
+			cursor: pointer;
+			width: 7vw;
+		}
+		.Vardanyan .piano .display .more {
+			width: 11.5vw;
+		}
+		.Vardanyan .piano .display .more img {
+			height: 3vw;
+			position: absolute;
+			top: .3vw;
+			right: 2vw;
+			border-radius: 5px;
+			pointer-events: none;
+		}
+		.Vardanyan .piano .display h1 {
+			font: bold 1.8vw verdana;
+			letter-spacing: 2px;
+			color: transparent;
+			background: -webkit-gradient(linear, left top, right top, from(#fff), color-stop(transparent), to(#fff)) -20% / 300%;
+			background: linear-gradient(to right, #fff, transparent, #fff) -20% / 300%;
+			-webkit-background-clip: text;
+			-webkit-animation: piano 3s linear infinite;
+			animation: piano 3s linear infinite
+		}
+		@-webkit-keyframes piano {
+			50%, to { background-position-x: -170%; }
+		}
+		@keyframes piano {
+			50%, to { background-position-x: -170%; }
+		}
+		.Vardanyan .piano .keyBlock {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			height: 22.3vw;
+			border-radius: 15px;
+			overflow: hidden;
+			margin: 0 2vw;
+			padding-bottom: 0.8vw;
+			position: relative;
+		}
+		.Vardanyan .piano .keyBlock .key {
+			width: calc(100% / 10);
+			height: 100%;
+			background: #fff;
+			border-right: 1px solid #000;
+			cursor: pointer;
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: end;
+			-ms-flex-align: end;
+			align-items: flex-end;
+			padding-bottom: 1vw;
+			font: bold 1.4vw sans-serif;
+			color: #333;
+		}
+		.Vardanyan .piano .keyBlock .key.abs {
+			position: absolute;
+			width: calc(100% / 16);
+			height: 60%;
+			top: 0;
+			left: calc(var(--l) * calc(100% / 9));
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #111), to(#000));
+			background: linear-gradient(#111 50%, #000);
+			border-radius: 0 0 9px 9px;
+			color: #ddd;
+			font: 1.2vw sans-serif;
+		}
+		.Vardanyan .piano .keyBlock .key.abs:hover {
+			background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
+			background: linear-gradient(#333, #000);
+		}
+		.Vardanyan .piano .keyBlock .key.abs.active {
+			background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#0e1a12));
+			background: linear-gradient(#333, #0e1a12);
+		}
+		.Vardanyan .piano .keyBlock .key:not(.abs)::after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			height: .75vw;
+			border-radius: 0 0 15px 15px;
+			background: #d7d7d7;
+		}
+		.Vardanyan .piano .keyBlock .key:last-child {
+			border: 0;
+		}
+		.Vardanyan .piano .keyBlock .key:hover {
+			-webkit-box-shadow: inset -5px 0 12px #2225;
+			box-shadow: inset -5px 0 12px #2225;
+			background: #e2e2e2;
+		}
+		.Vardanyan .piano .keyBlock .key.active {
+			background: #c9c9c9;
+		}
+		.Vardanyan .piano .keyBlock .key:hover::after {
+			-webkit-box-shadow: inset -5px 0 5px #2225;
+			box-shadow: inset -5px 0 5px #2225;
+			background: #aaa;
+		}
+		.Vardanyan .piano .keyBlock .key.active::after {
+			background: #747474;
+		}
+	</style>
+</head>
+<body>
+	<div class="Vardanyan">
+		<div class="piano">
+			<div class="display">
+				<div class="volume">
+					<span>Volume</span>
+					<input type="range" min="0" max="1" step="any" value="1" id="vol">
+				</div>
+				<h1>Vardanyan Piano</h1>
+				<div class="more">
+					<img src="music/logo2.png" alt="Img">
+				</div>
+			</div>
+			<div class="keyBlock">
+				<div class="key" data-key="A"></div>
+				<div class="key" data-key="S"></div>
+				<div class="key" data-key="D"></div>
+				<div class="key" data-key="F"></div>
+				<div class="key" data-key="G"></div>
+				<div class="key" data-key="H"></div>
+				<div class="key" data-key="J"></div>
+				<div class="key" data-key="K"></div>
+				<div class="key" data-key="L"></div>
+				<div class="key" data-key=";"></div>
+				<div class="key abs" style="--l: .6;" data-key="Q"></div>
+				<div class="key abs" style="--l: 1.5;" data-key="E"></div>
+				<div class="key abs" style="--l: 3.3;" data-key="T"></div>
+				<div class="key abs" style="--l: 4.2;" data-key="Y"></div>
+				<div class="key abs" style="--l: 5.1;" data-key="U"></div>
+				<div class="key abs" style="--l: 6.9;" data-key="O"></div>
+				<div class="key abs" style="--l: 7.8;" data-key="P"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const key = document.querySelectorAll('.Vardanyan .piano .keyBlock .key');
+		const keys = {};
+		key.forEach((item, index) => (item.innerText = item.dataset.key, keys[item.dataset.key] = new Audio(`music/${item.dataset.key.toUpperCase()}.wav`), item.onclick = async () => (item.classList.add('active'), keys[item.dataset.key.toUpperCase()].currentTime = 0, keys[item.dataset.key.toUpperCase()].play(), await asyncControl(1e2), item.classList.remove('active'))));
+		vol.oninput = () => Object.values(keys).forEach(item => item.volume = vol.value);
+		document.onkeydown = async e => keys.hasOwnProperty(e.key.toUpperCase()) && !e.repeat ? (keys[e.key.toUpperCase()].currentTime = 0, keys[e.key.toUpperCase()].play(), document.querySelector(`[data-key="${e.key.toUpperCase()}"]`).classList.add('active'), await asyncControl(1e2), document.querySelector(`[data-key="${e.key.toUpperCase()}"]`).classList.remove('active')) : '';
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
