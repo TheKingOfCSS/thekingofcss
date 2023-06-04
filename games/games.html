@@ -112,7 +112,10 @@
 		.menu .section.mar4 .example::after,
 		.menu .section.mar6 .example::after,
 		.menu .section.mar9 .example::after,
-		.menu .section.battle .example::after {
+		.menu .section.battle .example::after,
+		.menu .section.snake .example::after,
+		.menu .section.flap2 .example::after,
+		.menu .section.robotCode .example::after {
 			content: 'TOP';
 			position: absolute;
 			top: -25px;
@@ -146,6 +149,42 @@
 		}
 		.menu .section.mar10 .example {
 			background: url(Mario10/bg.jpg) no-repeat center 0 / 160%;
+		}
+		.menu .section.snake .example {
+			background: url(snake/img/grass.avif) no-repeat center 0 / cover;
+			display: grid;
+			place-items: center;
+			padding-top: 10px;
+		}
+		.menu .section.snake .example .sn {
+			width: 60%;
+			height: 70%;
+			background: url(snake/img/snake.png) no-repeat center -2px / 100% 140%;
+			position: relative;
+			filter: drop-shadow(0 -0.5vw 0 #7FB139) drop-shadow(0 -15px 0 #5A8026);
+		}
+		.menu .section.snake .example .sn::after {
+			content: '';
+			position: absolute;
+			width: 18px;
+			height: 70px;
+			background: #f00;
+			position: absolute;
+			top: calc(100% - 12px);
+			left: 44.5%;
+			border-radius: 50%;
+			-webkit-transform-origin: top;
+			transform-origin: top;
+			-webkit-animation: tongue .1s infinite;
+			animation: tongue .1s infinite;
+		}
+		@-webkit-keyframes tongue {
+			35% { rotate: 30deg; }
+			70% { rotate: -30deg; }
+		}
+		@keyframes tongue {
+			35% { rotate: 30deg; }
+			70% { rotate: -30deg; }
 		}
 		.menu .section.flap1 .example {
 			background: url(FlappyBird/img/2.png) no-repeat center / 40%, url(FlappyBird/img/bg.webp) no-repeat center bottom / 200%;
@@ -251,6 +290,12 @@
 		<a class="section mar10" href="Mario10/index.html">
 			<div class="example"></div>
 			<p>Mario 10</p>
+		</a>
+		<a class="section snake" href="snake/index.html">
+			<div class="example">
+				<div class="sn"></div>
+			</div>
+			<p>Snake</p>
 		</a>
 		<a class="section flap1" href="FlappyBird/index.html">
 			<div class="example"></div>
