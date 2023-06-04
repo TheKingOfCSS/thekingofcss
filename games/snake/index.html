@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Snake</title>
+	<link rel="shortcut icon" href="img/snake.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		img {
+			pointer-events: none;
+		}
+		:root {
+			--rot: 0;
+			--hairColor: #5a8026;
+			--hairHeight: -.5vw;
+			--tongue: 15px;
+			--gameBg: url(img/grass.avif) center / 15%;
+		}
+		.game {
+			height: 100vh;
+			-webkit-transition: .5s .2s;
+			transition: .5s .2s;
+			opacity: 0;
+		}
+		.game .display {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			padding: 20px 35px;
+			background: linear-gradient(45deg, #7fb139, #5a8026);
+			color: #fff;
+			-webkit-box-shadow: 0 0 20px #7fb139, 0 3px 10px #fff;
+			box-shadow: 0 0 20px #7fb139, 0 3px 10px #fff;
+			z-index: 1;
+			position: relative;
+		}
+		.game .display .point {
+			width: 7vw;
+    		white-space: nowrap;
+		}
+		.game .display span {
+			font: bold 1.4vw verdana;
+			text-shadow: 0 2px 3px #000, 1px 5px 20px #fff;
+		}
+		.game .display .time {
+			font-size: 1.5vw;
+			width: 12.1vw;
+    		white-space: nowrap;
+		}
+		.game .display .currentFood {
+			-webkit-filter: drop-shadow(0 0 15px #fff);
+			filter: drop-shadow(0 0 15px #fff);
+			position: relative;
+		}
+		.game .display .currentFood .currentImg {
+			height: 3vw;
+			position: absolute;
+			top: -25%;
+			left: 0;
+		}
+		.game .display .coin {
+			position: relative;
+			width: 2vw;
+			-webkit-filter: drop-shadow(0 0 15px #fff);
+			filter: drop-shadow(0 0 15px #fff);
+		}
+		.game .display .coin .coinImg {
+			position: absolute;
+			top: -50%;
+			left: 0;
+			height: 4vw;
+		}
+		.game .display .coin span {
+			position: absolute;
+			left: 4vw;
+			white-space: nowrap;
+			font-size: 1.5vw;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.game .board {
+			background: var(--gameBg);
+			position: relative;
+			overflow: hidden;
+		}
+		.game .board .item {
+			width: calc(100% / 50);
+			height: calc(100% / 25);
+			position: absolute;
+			left: calc(var(--senior) * calc(100% / 50));
+			top: calc(var(--king) * calc(100% / 25));
+		}
+		.game .board .food {
+			background: url(img/apple.png) no-repeat center / contain;
+			-webkit-filter: drop-shadow(0 0 15px #fff);
+			filter: drop-shadow(0 0 15px #fff);
+			z-index: 2;
+		}
+		.game .board .snake:nth-child(2) {
+			background: url(img/snake.png) no-repeat center -30% / 120%;
+			-webkit-filter: drop-shadow(0 -.5vw 0 #7FB139) drop-shadow(0 var(--hairHeight) 0 var(--hairColor));
+			filter: drop-shadow(0 -.5vw 0 #7FB139) drop-shadow(0 var(--hairHeight) 0 var(--hairColor));
+			z-index: 2;
+		}
+		.game .board .snake:nth-child(2)::after,
+		.menu .control .snakeFace::after {
+			content: '';
+			position: absolute;
+			width: 3px;
+			height: var(--tongue);
+			background: #f00;
+			position: absolute;
+			top: calc(100% - 5px);
+			left: 50%;
+			border-radius: 50%;
+			-webkit-transform-origin: top;
+			transform-origin: top;
+			-webkit-animation: tongue .1s infinite;
+			animation: tongue .1s infinite;
+		}
+		@-webkit-keyframes tongue {
+			35% { rotate: 30deg; }
+			70% { rotate: -30deg; }
+		}
+		@keyframes tongue {
+			35% { rotate: 30deg; }
+			70% { rotate: -30deg; }
+		}
+		.game .board .snake:not(:nth-child(2)) {
+			background: #7FB139;
+			-webkit-box-shadow: inset 0 0 12px #3c6502;
+			box-shadow: inset 0 0 12px #3c6502;
+			border-radius: 50%;
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 50%;
+			left: -50%;
+			translate: -50% -50%;
+			font: bold 8vw sans-serif;
+			letter-spacing: -25vw;
+			color: #fff;
+			text-shadow: 0 4px 2px #137700, 0 11px 7px #201f1f;
+			z-index: 2;
+			-webkit-transition: left 1s, letter-spacing 1.7s, rotate 1.5s;
+			transition: left 1s, letter-spacing 1.7s, rotate 1.5s;
+			white-space: nowrap;
+		}
+		.menu {
+			position: fixed;
+			inset: 0;
+			background: url(img/grass.jpg) center / 30%;
+			z-index: 10;
+			-webkit-animation: menu 1.5s infinite;
+			animation: menu 1.5s infinite;
+			padding-top: 2.5vw;
+			text-align: center;
+			-webkit-transition: .7s;
+			transition: .7s;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+		}
+		@-webkit-keyframes menu {
+			50% { background-size: 28%; }
+		}
+		@keyframes menu {
+			50% { background-size: 28%; }
+		}
+		.menu h1 {
+			font: bold 9vw cursive;
+			color: #fff;
+			text-shadow: -.4vw .8vw .2vw #000, -.5vw 1.2vw .2vw #58ff00;
+			-webkit-animation: menuTitle 1.5s infinite;
+			animation: menuTitle 1.5s infinite;
+			will-change: transform;
+		}
+		@-webkit-keyframes menuTitle {
+			50% { scale: 1.1; translate: 0 -2vw; letter-spacing: 1vw; }
+		}
+		@keyframes menuTitle {
+			50% { scale: 1.1; translate: 0 -2vw; letter-spacing: 1vw; }
+		}
+		.menu .generalCoin {
+			position: absolute;
+			top: .5vw;
+			left: .5vw;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-column-gap: .5vw;
+			column-gap: .5vw;
+		}
+		.menu .generalCoin img {
+			height: 7vw;
+		}
+		.menu .generalCoin span {
+			color: #ff0;
+			font: bold 2.2vw sans-serif;
+			text-shadow: 0 3px 5px #000, 0 3px 15px #fff;
+		}
+		.menu .control {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			row-gap: 2vw;
+			position: relative;
+			width: 30vw;
+    		margin: 2vw auto 0;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.menu .control .snakeFace {
+			position: absolute;
+			top: 40%;
+			right: 110%;
+			translate: 0 -50%;
+			width: 12vw;
+			height: 12vw;
+			background: url(img/snake.png) no-repeat center -30% / 120%;
+			-webkit-filter: drop-shadow(0 -.5vw 0 #7FB139) drop-shadow(0 calc(var(--hairHeight) * 2.5) 0 var(--hairColor)) drop-shadow(0 -2vw 2vw #fff);
+			filter: drop-shadow(0 -.5vw 0 #7FB139) drop-shadow(0 calc(var(--hairHeight) * 2.5) 0 var(--hairColor)) drop-shadow(0 -2vw 2vw #fff);
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.menu .control .snakeFace::after {
+			width: 1vw;
+			height: calc(var(--tongue) * 6);
+			top: calc(100% - 1.8vw);
+			translate: -50%;
+		}
+		.menu .control .btn {
+			padding: 1.3vw 4vw;
+			font: bold 3.5vw cursive;
+			background: #fff;
+			border-radius: 5vw;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			-webkit-box-shadow: 0 1.2vw 1.2vw #0009, inset 0 0 3vw #000;
+			box-shadow: 0 1.2vw 1.2vw #0009, inset 0 0 3vw #000;
+		}
+		.menu .control .btn:hover {
+			background: #58ff00;
+			letter-spacing: .2vw;
+		}
+		.menu .control .btn:active {
+			background: #ff009d;
+			color: #fff;
+			letter-spacing: 0;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #05220b;
+			padding: 10px 0 8px;
+			letter-spacing: 1px;
+		}
+		.menu .set,
+		.menu .speedBlock {
+			position: absolute;
+			top: 50%;
+			left: -50%;
+			width: 50%;
+			height: 85%;
+			translate: -50% calc(-50% - 30px);
+			background: url(img/grass.avif) center / 10%;
+			border-radius: 50px;
+			-webkit-box-shadow: 0 0 30px 10px #fff;
+			box-shadow: 0 0 30px 10px #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.menu .speedBlock {
+			translate: -50% calc(-30% - 30px);
+			left: 150%;
+			width: 20%;
+			height: auto;
+			padding: 1vw;
+		}
+		.menu .speedBlock .var {
+			width: 80%;
+			padding: 1.5vw 0;
+			margin: .5vw auto;
+			background: #fff;
+			font: bold 1.8vw sans-serif;
+			cursor: pointer;
+			-webkit-transition: .3s;
+			transition: .3s;
+			border-radius: 5vw;
+		}
+		.menu .speedBlock .var.active,
+		.menu .speedBlock .var:hover {
+			background: #000;
+			color: #fff;
+		}
+		.menu .set #closeSet,
+		.menu .speedBlock #closeSpeed {
+			position: absolute;
+			top: 0;
+			left: 95%;
+			width: 3vw;
+			height: 3vw;
+			border-radius: 50%;
+			border: 2px solid #000;
+			display: grid;
+			place-items: center;
+			font: bold 2vw sans-serif;
+			padding-bottom: .2vw;
+			cursor: pointer;
+			background: #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			will-change: transform;
+		}
+		.menu .set #closeSet:hover,
+		.menu .speedBlock #closeSpeed:hover {
+			rotate: 180deg;
+			background: #000;
+			color: #fff;
+		}
+		.menu .speedBlock #closeSpeed {
+			left: 88%;
+		}
+		.menu .set h2 {
+			font: bold 2vw sans-serif;
+			color: #fff;
+			text-shadow: 0 3px 6px #000;
+			padding-top: 1.2vw;
+		}
+		.menu .set .line {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			margin: 2vw 0 .8vw;
+			-webkit-column-gap: 1.5vw;
+			column-gap: 1.5vw;
+			position: relative;
+		}
+		.menu .set .line .lockBlock {
+			position: absolute;
+			top: 50%;
+			left: 105%;
+			translate: 0 -50%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-column-gap: .5vw;
+			column-gap: .5vw;
+		}
+		.menu .set .line .lockBlock img {
+			height: 4.5vw;
+			-webkit-filter: drop-shadow(0 4px 2px #fff);
+			filter: drop-shadow(0 4px 2px #fff);
+		}
+		.menu .set .line .lockBlock span {
+			font: bold 1.5vw sans-serif;
+			color: #ff0;
+			white-space: nowrap;
+			translate: 0 40%;
+			text-shadow: 0 3px 5px #000, 0 3px 15px #fff;
+		}
+		.menu .set .line > *:not(.lockBlock) {
+			opacity: .3;
+			pointer-events: none;
+		}
+		.menu .set .line .pic {
+			-webkit-box-shadow: 0 -4px 3px #fff, 0 4px 5px #000;
+			box-shadow: 0 -4px 3px #fff, 0 4px 5px #000;
+			width: calc(100% / 6.2);
+			height: 9vw;
+			cursor: pointer;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		.menu .set .line .pic:hover * {
+			scale: 1.2;
+		}
+		.menu .set .line .pic img {
+			width: 100%;
+			height: 100%;
+			-o-object-fit: cover;
+			object-fit: cover;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.menu .set .line .pic .colorPic {
+			height: 100%;
+			background: #c2eea2;
+			-webkit-box-shadow: inset 0 0 15px #000;
+			box-shadow: inset 0 0 15px #000;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 20px;
+		}
+		.menu .set .line .pic:nth-last-child(1) .colorPic {
+			background: #aec5c1;
+		}
+		.menu .set .line .hairC {
+			width: 5vw;
+			height: 5vw;
+			background: var(--colorH);
+			border-radius: 15px;
+			-webkit-box-shadow: 0 -4px 3px #525252, 0 4px 5px #000;
+			box-shadow: 0 -4px 3px #525252, 0 4px 5px #000;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.menu .set .line .hairC:hover {
+			scale: 1.08;
+		}
+		.menu .set .line #tong,
+		.menu .set .line #hairL {
+			width: 30%;
+			accent-color: #fff;
+			cursor: pointer;
+			outline: 0;
+			scale: 1.4;
+		}
+		.menu .set .rest h4 {
+			color: #000;
+			font: bold 2vw sans-serif;
+			cursor: pointer;
+			margin-top: 2.5vw;
+			text-shadow: 0 3px 6px #fff;
+			-webkit-transition: .2s;
+			transition: .2s;
+			will-change: transform;
+		}
+		.menu .set .rest h4:hover {
+			scale: 1.08;
+		}
+		.menu .logo {
+			position: absolute;
+			bottom: 75px;
+			right: 20px;
+			-webkit-filter: drop-shadow(0 0 10px #fff);
+			filter: drop-shadow(0 0 10px #fff);
+		}
+		.menu .logo img {
+			height: 90px;
+			border-radius: 10px;
+			-webkit-box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
+			box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="display">
+			<span class="point">Point &nbsp;0</span>
+			<div class="currentFood">
+				<img src="img/apple.webp" alt="Img" class="currentImg">
+			</div>
+			<span class="time">Time: &nbsp;00m 00s</span>
+			<div class="coin">
+				<img src="img/coin.png" alt="Img" class="coinImg">
+				<span>x 0</span>
+			</div>
+			<span class="record">My Record &nbsp;0</span>
+		</div>
+		<div class="board"></div>
+		<h2 class="gameOver">GameOver</h2>
+	</div>
+	<div class="menu">
+		<div class="generalCoin">
+			<img src="img/coin.png" alt="Img">
+			<span>Coin 0</span>
+		</div>
+		<h1>Snake</h1>
+		<div class="control">
+			<div class="snakeFace"></div>
+			<div class="btn play">Play</div>
+			<div class="btn settings">Settings</div>
+			<div class="btn speed">Speed</div>
+		</div>
+		<div class="set">
+			<div id="closeSet">x</div>
+			<h2>Game Background</h2>
+			<div class="line">
+				<div class="lockBlock">
+					<img src="img/lock.png" alt="Img">
+					<span>Coin 50</span>
+				</div>
+				<div class="pic" style="--mbg: url(img/grass.avif) center / 15%;">
+					<img src="img/grass.avif" alt="Img">
+				</div>
+				<div class="pic" style="--mbg: url(img/grass.jpg) center / 10%;">
+					<img src="img/grass.jpg" alt="Img">
+				</div>
+				<div class="pic" style="--mbg: url(img/soil.avif) center / 10% 25%;">
+					<img src="img/soil.avif" alt="Img">
+				</div>
+				<div class="pic" style="--mbg: #c2eea2;">
+					<div class="colorPic"></div>
+				</div>
+				<div class="pic" style="--mbg: #aec5c1;">
+					<div class="colorPic"></div>
+				</div>
+			</div>
+			<h2>Hair Color</h2>
+			<div class="line">
+				<div class="lockBlock">
+					<img src="img/lock.png" alt="Img">
+					<span>Coin 100</span>
+				</div>
+				<div class="hairC" style="--colorH: #5a8026;"></div>
+				<div class="hairC" style="--colorH: #fff;"></div>
+				<div class="hairC" style="--colorH: #ffc400;"></div>
+				<div class="hairC" style="--colorH: #ad12ff;"></div>
+				<div class="hairC" style="--colorH: #0058ff;"></div>
+				<div class="hairC" style="--colorH: #ff0000;"></div>
+			</div>
+			<h2>Tongue Length</h2>
+			<div class="line">
+				<div class="lockBlock">
+					<img src="img/lock.png" alt="Img">
+					<span>Coin 200</span>
+				</div>
+				<input type="range" id="tong" min="15" max="40" step="any" value="0">
+			</div>
+			<h2>Hair Length</h2>
+			<div class="line">
+				<div class="lockBlock">
+					<img src="img/lock.png" alt="Img">
+					<span>Coin 400</span>
+				</div>
+				<input type="range" id="hairL" min=".5" max="1" step="any" value="0">
+			</div>
+			<div class="rest">
+				<h4>Reset</h4>
+			</div>
+		</div>
+		<div class="speedBlock">
+			<div id="closeSpeed">x</div>
+			<div class="var" style="--spd: 50;">Very Fast</div>
+			<div class="var" style="--spd: 90;">Fast</div>
+			<div class="var active" style="--spd: 125;">Normal</div>
+			<div class="var" style="--spd: 160;">Slowly</div>
+			<div class="var" style="--spd: 200;">Very Slowly</div>
+		</div>
+		<a href="https://www.facebook.com/elbakyankrtahamalir" target="_blank" class="logo" title="Էլբակյան կրթահամալիր">
+    		<img src="img/logo.png" alt="Logo">
+    	</a>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+	</div>
+	<script>
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const game = document.querySelector('.game');
+		const display = document.querySelector('.game .display');
+		const board = document.querySelector('.game .board');
+		const time = document.querySelector('.game .display .time');
+		const currentFood = document.querySelector('.game .display .currentFood .currentImg');
+		const coin = document.querySelector('.game .display .coin span');
+		const gameOver = document.querySelector('.game .gameOver');
+		const playGame = document.querySelector('.menu .control .btn.play');
+		const settings = document.querySelector('.menu .control .btn.settings');
+		const speedBtn = document.querySelector('.menu .control .btn.speed');
+		const setOpt = document.querySelector('.menu .set');
+		const snakeFace = document.querySelector('.menu .control .snakeFace');
+		const menuPicBg = document.querySelectorAll('.menu .set .line .pic');
+		const menuHairC = document.querySelectorAll('.menu .set .line .hairC');
+		const info = document.querySelectorAll('.game .display :is(.point, .record)');
+		const allLine = document.querySelectorAll('.menu .set .line');
+		const rest = document.querySelector('.menu .set .rest h4');
+		const speed = document.querySelectorAll('.menu .speedBlock .var');
+		const rootData = document.querySelector(':root');
+		const generalCoin = document.querySelector('.menu .generalCoin span');
+		board.style.height = game.offsetHeight - display.offsetHeight + 'px';
+		const bagCoins = localStorage.getItem('kingSnakeGameCoins') || 0;
+		rest.onclick = () => (localStorage.removeItem('kingSnakeGameCoins'), allLine.forEach(item => (item.querySelectorAll('*').forEach(item => (item.style.opacity = null, item.style.pointerEvents = null)), item.querySelectorAll('.lockBlock img').forEach(item => item.src = 'img/lock.png'))), generalCoin.innerText = 'Coin 0', clickVoice(clickSound));
+		generalCoin.innerText = 'Coin ' + bagCoins;
+		const eatSound = new Audio('img/eat.mp3');
+		const runSound = new Audio('img/run.mp3');
+		const gameOverSound = new Audio('img/gameOver.mp3');
+		const clickSound = new Audio('img/click.mp3');
+		const click2Sound = new Audio('img/click2.mp3');
+		const clickVoice = x => (x.play(), x.currentTime = 0);
+		settings.onclick = () => (setOpt.style.left = '50%', setOpt.style.rotate = '-360deg', snakeFace.style.right = '160%', snakeFace.style.rotate = '-360deg', clickVoice(clickSound));
+		closeSet.onclick = () => (setOpt.style = null, snakeFace.style = null, clickVoice(clickSound));
+		closeSpeed.onclick = () => (speed[0].parentElement.style = null, playGame.parentElement.style = null, clickVoice(clickSound));
+		menuPicBg.forEach((item, index) => item.onclick = () => (rootData.style.setProperty('--gameBg', item.style.getPropertyValue('--mbg')), clickVoice(click2Sound)));
+		menuHairC.forEach((item, index) => item.onclick = () => (rootData.style.setProperty('--hairColor', item.style.getPropertyValue('--colorH')), clickVoice(click2Sound)));
+		tong.oninput = () => rootData.style.setProperty('--tongue', tong.value + 'px');
+		hairL.oninput = () => rootData.style.setProperty('--hairHeight', -hairL.value + 'vw');
+		speed.forEach(item => item.onclick = () => (data.gameSpeed = item.style.getPropertyValue('--spd'), speed.forEach(item => item.classList.remove('active')), item.classList.add('active'), clickVoice(click2Sound)));
+		speedBtn.onclick = () => (speed[0].parentElement.style.left = '50%', playGame.parentElement.style = 'translate: 0 100vh; rotate: 180deg;', clickVoice(clickSound));
+		const data = Object.seal({
+			gameSpeed: 125,
+			foodX: null,
+			foodY: null,
+			foodCur: null,
+			snakeX: 5,
+			snakeY: 10,
+			speedX: 0,
+			speedY: 0,
+			point: 0,
+			myRecord: localStorage.getItem('kingSnakeGame') || 0,
+			gameTrue: false,
+			snakeBody: [],
+			foodData: ['img/apple.webp', 'img/watermelon.png', 'img/strawberry.png'],
+			mission: 1249,
+			min: 0,
+			sec: 0,
+			coinPlus: 0
+		});
+		bagCoins >= 50 ? (allLine[0].querySelectorAll('*').forEach(item => (item.style.opacity = 1, item.style.pointerEvents = 'auto')), allLine[0].querySelector('.lockBlock img').src = 'img/unlock.png') : '';
+		bagCoins >= 1e2 ? (allLine[1].querySelectorAll('*').forEach(item => (item.style.opacity = 1, item.style.pointerEvents = 'auto')), allLine[1].querySelector('.lockBlock img').src = 'img/unlock.png') : '';
+		bagCoins >= 2e2 ? (allLine[2].querySelectorAll('*').forEach(item => (item.style.opacity = 1, item.style.pointerEvents = 'auto')), allLine[2].querySelector('.lockBlock img').src = 'img/unlock.png') : '';
+		bagCoins >= 4e2 ? (allLine[3].querySelectorAll('*').forEach(item => (item.style.opacity = 1, item.style.pointerEvents = 'auto')), allLine[3].querySelector('.lockBlock img').src = 'img/unlock.png') : '';
+		playGame.onclick = () => {
+			clickVoice(clickSound);
+			playGame.style.pointerEvents = 'none';
+			game.style.opacity = 1;
+			playGame.parentElement.parentElement.style.clipPath = 'circle(0 at 100% 100%)';
+			playGame.parentElement.previousElementSibling.style.animationPlayState = 'paused';
+			const showPoint = document.createElement('div');
+			info[1].innerHTML = 'My Record &nbsp;' + data.myRecord;
+			const setTime = setInterval(() => (data.sec++, data.sec < 10 ? data.sec = '0' + data.sec : '', data.sec % 60 == 0 ? (data.min++, data.sec = 0) : '', time.innerHTML = data.min < 10 ? 'Time: &nbsp;0' + data.min + 'm ' + data.sec + 's' : 'Time: &nbsp;' + data.min + 'm ' + data.sec + 's'), 1e3);
+			const general = x => (clearInterval(drawGame), clearInterval(setTime), document.onkeydown = null, gameOver.innerText = x, gameOver.style = 'left: 50%; letter-spacing: 3px; rotate: 360deg;', runSound.pause());
+			const gameControl = function*() {
+				yield async () => (general('You Are Winner'), await asyncControl(3e3), location['reload']());
+				yield async () => (general('GameOver'), await asyncControl(3e2), gameOverSound.play(), await asyncControl(25e2), location['reload']());
+			};
+			const genObject = gameControl();
+			const changeFood = () => {
+				data.foodX = Math.floor(Math.random() * 50);
+				data.foodY = Math.floor(Math.random() * 25);
+				let foodCurR = Math.floor(Math.random() * data.foodData.length);
+				while(foodCurR == data.foodCur) {
+					foodCurR = Math.floor(Math.random() * data.foodData.length);
+				}
+				data.foodCur = foodCurR;
+				currentFood.src = data.foodData[data.foodCur];
+			};
+			changeFood();
+			const drawGame = setInterval(() => {
+				if (data.gameTrue) {
+					genObject.next();
+					return genObject.next().value();
+				};
+				if (data.snakeX == data.foodX && data.snakeY == data.foodY) {
+					data.point++;
+					showPoint.style = `left: calc(${data.foodX+1} * calc(100% / 50)); top: calc(${data.foodY+1} * calc(100% / 25)); position: absolute; color: #fff; font: bold 1.8vw sans-serif; text-shadow: 0 3px 5px #000; transition: .2s;`;
+					let thisX;
+					eatSound.currentTime = .13;
+					eatSound.play();
+					void async function() {
+						if (document.querySelector('.game .board .food').style.getPropertyValue('background-image').includes('watermelon')) {
+							thisX = 2;
+							data.coinPlus += 2;
+							coin.style.translate = '0 -2vw';
+							await asyncControl(3e2);
+							coin.style.translate = '0 3vw';
+							await asyncControl(5);
+							coin.style.translate = null;
+							coin.innerText = 'x ' + data.coinPlus;
+						} else {
+							thisX = 1;
+							data.coinPlus += 1;
+							coin.style.translate = '0 -2vw';
+							await asyncControl(3e2);
+							coin.style.translate = '0 3vw';
+							await asyncControl(5);
+							coin.style.translate = null;
+							coin.innerText = 'x ' + data.coinPlus;
+						}
+					}();
+					localStorage.setItem('kingSnakeGameCoins', data.coinPlus + +bagCoins);
+					setTimeout(() => showPoint.style.scale = 0, 3e2);
+					showPoint.innerText = '+ ' + thisX;
+					info[0]['innerHTML'] = 'Point &nbsp;' + data.point;
+					data.point > data.myRecord ? localStorage.setItem('kingSnakeGame', data.point) : '';
+					changeFood();
+					data.snakeBody.length++;
+				}
+				if (data.point == data.mission) return genObject.next().value();
+				let current = `<div class="item food" style="--king: ${data.foodY}; --senior: ${data.foodX}; background-image: url(${data.foodData[data.foodCur]});"></div>`;
+				for (let i = data.snakeBody.length-1; i > 0; i--) {
+					data.snakeBody[i] = data.snakeBody[i-1];
+				}
+				data.snakeX += data.speedX;
+				data.snakeY += data.speedY;
+				data.snakeBody[0] = [data.snakeX, data.snakeY];
+				data.snakeBody.forEach((item, index) => (index == 0 ? current += `<div class="item snake" style="--king: ${item[1]}; --senior: ${item[0]}; rotate: var(--rot);"></div>` : current += `<div class="item snake" style="--king: ${item[1]}; --senior: ${item[0]};"></div>`, index != 0 && data.snakeBody[0][1] == item[1] && data.snakeBody[0][0] == item[0] ? (data.gameTrue = true, eatSound.play()) : ''));
+				board.innerHTML = current;
+				let snakeS = document.querySelector('.snake');
+				snakeS.offsetLeft < 0 || snakeS.offsetLeft + snakeS.offsetWidth > game.offsetWidth || snakeS.offsetTop < 0 || snakeS.offsetTop + snakeS.offsetHeight > game.offsetHeight - game.firstElementChild.offsetHeight ? data.gameTrue = true : '';
+				board.append(showPoint);
+			}, data.gameSpeed);
+			document.onkeydown = e => (runSound.play(), e.which == 37 && data.speedX != 1 ? (data.speedX = -1, data.speedY = 0, game.style.setProperty('--rot', '90deg')) : e.which == 38 && data.speedY != 1 ? (data.speedX = 0, data.speedY = -1, game.style.setProperty('--rot', '180deg')) : e.which == 39 && data.speedX != -1 ? (data.speedX = 1, data.speedY = 0, game.style.setProperty('--rot', '-90deg')) : e.which == 40 && data.speedY != -1 ? (data.speedX = 0, data.speedY = 1, game.style.setProperty('--rot', '360deg')) : '');
+			runSound.onended = () => runSound.play();
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
