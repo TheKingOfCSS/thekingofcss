@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Luigi</title>
+	<link rel="shortcut icon" href="img/logo.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		img {
+			pointer-events: none;
+		}
+		body {
+			background: #222;
+		}
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: url(img/bg.avif) 0 100% / 50% 140%;
+			-webkit-animation: bg 3s linear infinite;
+			animation: bg 3s linear infinite;
+			--right: -50%;
+			--jump: 24%;
+			-webkit-transition: 1.5s .3s;
+			transition: 1.5s .3s;
+		}
+		@-webkit-keyframes bg {
+			to { background-position-x: 100vw; }
+		}
+		@keyframes bg {
+			to { background-position-x: 100vw; }
+		}
+		.game .Luigi {
+			position: absolute;
+			bottom: var(--jump);
+			right: var(--right);
+			width: 138px;
+			height: 138px;
+			background: url(img/luigi.gif) no-repeat 0px -2px / 290px 145px;
+			border-radius: 65px 85px 5px 40px;
+			-webkit-transition: .6s;
+			transition: .6s;
+		}
+		.game .enemy {
+			position: absolute;
+			bottom: 24%;
+			right: calc(var(--right) - 95px);
+			width: 110px;
+			height: 119px;
+			background: url(img/luigi.gif) no-repeat -138px -20px / 290px 145px;
+			border-radius: 62px 254px 38px 194px;
+			-webkit-transition: right .7s, bottom .6s;
+			transition: right .7s, bottom .6s;
+		}
+		.game .enemy .wish {
+			position: absolute;
+			top: -100px;
+			right: -50px;
+			width: 120px;
+			height: 120px;
+			background: url(img/meat.png) no-repeat 0 20% / 100px 80px, url(img/cloud.png) no-repeat 0 / contain;
+			-webkit-filter: drop-shadow(0 0 12px #fff);
+			filter: drop-shadow(0 0 12px #fff);
+			-webkit-transition: .5s;
+			transition: .5s;
+			translate: -30px 40px;
+			opacity: 0;
+		}
+		.game .enemy .wish.thinking {
+			translate: 0;
+			opacity: 1;
+		}
+		.game .display {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
+			align-items: flex-start;
+			padding: 5px 30px 0 15px;
+		}
+		.game .display .coin {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			padding-top: 15px;
+		}
+		.game .display .coin img {
+			height: 60px;
+		}
+		.game .display .coin span {
+			color: #fff;
+			font: bold 22px sans-serif;
+		}
+		.game .display .castle {
+			position: relative;
+		}
+		.game .display .castle img {
+			height: 110px;
+			-webkit-filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 30px #fff);
+			filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 30px #fff);
+		}
+		.game .display .castle .d {
+			position: absolute;
+			top: 25px;
+			left: -80px;
+			text-align: center;
+		}
+		.game .display .castle .d.d2 {
+			top: 100%;
+			left: -13px;
+		}
+		.game .display .castle .d.d3 {
+			top: calc(100% + 20px);
+			left: 40%;
+		}
+		.game .display .castle .d img {
+			height: 50px;
+		}
+		.game .display .castle .d.d3 img {
+			height: 70px;
+		}
+		.game .display .castle .d span {
+			color: #fff;
+			font: bold 19px sans-serif;
+			display: block;
+			margin-top: 5px;
+		}
+		.game .mis {
+			position: absolute;
+			bottom: 30%;
+			width: 45px;
+			height: 40px;
+			-webkit-animation: d 2.9s linear infinite;
+			animation: d 2.9s linear infinite;
+			border-radius: 15px 15px 30px 30px;
+		}
+		.game .mis.m1 {
+			left: -10%;
+			background: url(img/d1.png) no-repeat 0 0 / 45px 40px;
+			-webkit-filter: drop-shadow(0 0 2px #fff);
+			filter: drop-shadow(0 0 2px #fff);
+		}
+		.game .mis.m2 {
+			left: -10%;
+			background: url(img/d2.png) no-repeat 0 0 / 45px 40px;
+			-webkit-filter: drop-shadow(0 0 7px #fff);
+			filter: drop-shadow(0 0 7px #fff);
+		}
+		.game .mis.m3 {
+			left: -10%;
+			background: url(img/d3.gif) no-repeat -16px -9px / 77px 54px;
+			-webkit-filter: drop-shadow(0 0 2px #fff);
+			filter: drop-shadow(0 0 2px #fff);
+		}
+		.game .mis.m4 {
+			left: -10%;
+			top: 5%;
+			background: url(img/coin.gif) no-repeat -6px -6px / 51px 51px;
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+		}
+		@-webkit-keyframes d {
+			to { left: 110%; }
+		}
+		@keyframes d {
+			to { left: 110%; }
+		}
+		.game .coil {
+			position: absolute;
+			bottom: 23.4%;
+			left: -10%;
+			width: 45px;
+			height: 151px;
+			background: url(img/coil.gif) no-repeat -24px -30px / 90px 180px;
+			-webkit-animation: d 2.9s linear infinite;
+			animation: d 2.9s linear infinite;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background:  -webkit-gradient(linear, left top, right top, color-stop(30%, #117900), color-stop(50%, #18a500), color-stop(85%, transparent)) no-repeat center / cover, url(img/bg.jpg) no-repeat 18vw center / 100% #000;
+			background:  linear-gradient(to right, #117900 30%, #18a500 50%, transparent 85%) no-repeat center / cover, url(img/bg.jpg) no-repeat 18vw center / 100% #000;
+			text-align: center;
+			-webkit-animation: menu 1.2s infinite;
+			animation: menu 1.2s infinite;
+			padding-top: 5vw;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		@-webkit-keyframes menu {
+			50% { background-size: cover, 110%; }
+		}
+		@keyframes menu {
+			50% { background-size: cover, 110%; }
+		}
+		.menu h1 {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+		}
+		.menu h1 span {
+			font: bold 13vw sans-serif;
+			color: #fff;
+			-webkit-animation: title .4s calc(var(--i) * .05s) infinite;
+			animation: title .4s calc(var(--i) * .05s) infinite;
+			text-shadow: 0 12px 10px #000;
+			-webkit-transition: .2s .2s;
+			transition: .2s .2s;
+		}
+		.menu h1 span:hover {
+			color: #f036ff;
+			-webkit-transition: none;
+			transition: none;
+			rotate: -10deg
+		}
+		@-webkit-keyframes title {
+			50% { translate: 0 -30px; scale: 1.2; }
+		}
+		@keyframes title {
+			50% { translate: 0 -30px; scale: 1.2; }
+		}
+		.menu .play {
+			padding: 1.8vw 4vw;
+			font: bold 5vw sans-serif;
+			background: #fff;
+			display: inline-block;
+			border-radius: 6vw 0;
+			margin-top: 4vw;
+			cursor: pointer;
+			position: relative;
+			z-index: 1;
+			overflow: hidden;
+			-webkit-box-shadow: -4px 3px 0 #fff, 4px 3px 0 #fff;
+			box-shadow: -4px 3px 0 #fff, 4px 3px 0 #fff;
+			color: #fff;
+			-webkit-transition: .3s;
+			transition: .3s;
+			--rg: #000;
+		}
+		.menu .play::before {
+			content: '';
+			position: absolute;
+			inset: -100px;
+			background: conic-gradient(var(--rg) 30%, transparent 30%);
+			z-index: -1;
+			-webkit-animation: play 1s linear infinite;
+			animation: play 1s linear infinite;
+			-webkit-filter: blur(60px);
+			filter: blur(60px);
+		}
+		@-webkit-keyframes play {
+			to { rotate: 360deg; }
+		}
+		@keyframes play {
+			to { rotate: 360deg; }
+		}
+		.menu .play::after {
+			content: '';
+			position: absolute;
+			inset: 3px;
+			background: #029212;
+			z-index: -1;
+			border-radius: 6vw 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.menu .play:hover {
+			-webkit-box-shadow: -2px 3px 0 #fff, 2px 3px 0 #222;
+			box-shadow: -2px 3px 0 #fff, 2px 3px 0 #222;
+			--rg: #000;
+			translate: 0 10px;
+		}
+		.menu .play:hover::before {
+			-webkit-animation-duration: .6s;
+			animation-duration: .6s;
+		}
+		.menu .play:hover::after {
+			background: #1a0d0d;
+			inset: 1px;
+		}
+		.menu .play:active::after {
+			background: #ba00ff;
+			box-shadow: inset 0 0 35px #fff;
+			inset: 3px;
+		}
+		.menu .logo {
+			position: absolute;
+			bottom: 75px;
+			left: 20px;
+			-webkit-filter: drop-shadow(0 0 10px #fff);
+			filter: drop-shadow(0 0 10px #fff);
+		}
+		.menu .logo img {
+			height: 90px;
+			border-radius: 10px;
+			-webkit-box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
+			box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #1c1e1c;
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+		}
+		.game .ball {
+			position: absolute;
+			bottom: 24%;
+			left: -10%;
+			width: 65px;
+			height: 65px;
+			background: url(img/ball.webp) no-repeat 0 / 65px;
+			border-radius: 50px;
+			-webkit-animation: d 2.7s linear infinite, rotate 1s linear infinite;
+			animation: d 2.7s linear infinite, rotate 1s linear infinite;
+		}
+		.game .ball.b2 {
+			position: absolute;
+			bottom: 24%;
+			left: -10%;
+			width: 57px;
+			height: 63px;
+			background: url(img/goomba.webp) no-repeat 2px 1px / 55px 65px;
+			border-radius: 20px;
+			-webkit-animation: d 2.9s linear infinite;
+			animation: d 2.9s linear infinite;
+			-webkit-transform-origin: bottom;
+			transform-origin: bottom;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		@-webkit-keyframes rotate {
+			to { rotate: 360deg; }
+		}
+		@keyframes rotate {
+			to { rotate: 360deg; }
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 20%;
+			left: 50%;
+			translate: -50% -50%;
+			font: bold 7vw verdana;
+			color: #f00;
+			text-shadow: -3px 5px 0 #fff, -4px -2px 10px #deff00;
+			opacity: 0;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		@-webkit-keyframes gameOver {
+			50% { text-shadow: -3px 5px 0 #fff, -4px -2px 10px #f00; }
+		}
+		@keyframes gameOver {
+			50% { text-shadow: -3px 5px 0 #fff, -4px -2px 10px #f00; }
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="Luigi"></div>
+		<div class="enemy">
+			<div class="wish"></div>
+		</div>
+		<div class="coil"></div>
+		<div class="mis m1"></div>
+		<div class="mis m2"></div>
+		<div class="mis m3"></div>
+		<div class="mis m4"></div>
+		<div class="ball b1"></div>
+		<div class="ball b2"></div>
+		<h2 class="gameOver">GameOver</h2>
+		<div class="display">
+			<div class="coin">
+				<img src="img/coin.gif" alt="Img">
+				<span>x 0 / 5</span>
+			</div>
+			<div class="castle">
+				<div class="d">
+					<img src="img/d1.png" alt="Img">
+					<span>0 / 10</span>
+				</div>
+				<div class="d d2">
+					<img src="img/d2.png" alt="Img">
+					<span>0 / 20</span>
+				</div>
+				<div class="d d3">
+					<img src="img/d3.gif" alt="Img">
+					<span>0 / 30</span>
+				</div>
+				<img src="img/castle.webp" alt="Img">
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<h1>
+			<span style="--i: 1;">L</span>
+			<span style="--i: 2;">u</span>
+			<span style="--i: 3;">i</span>
+			<span style="--i: 4;">g</span>
+			<span style="--i: 5;">i</span>
+		</h1>
+		<div class="play">Play</div>
+		<a href="https://www.facebook.com/elbakyankrtahamalir" target="_blank" class="logo">
+    		<img src="img/logo2.png" alt="Logo" title="Էլբակյան կրթահամալիր">
+    	</a>
+    	<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		</p>
+	</div>
+	<script>
+		const game = document.querySelector('.game');
+		const Luigi = document.querySelector('.game .Luigi');
+		const enemy = document.querySelector('.game .enemy');
+		const coil = document.querySelector('.game .coil');
+		const mission = document.querySelectorAll('.game .mis');
+		const records = document.querySelectorAll('.game .display .castle .d span');
+		const coin = document.querySelector('.game .display .coin span');
+		const ball = document.querySelectorAll('.game .ball');
+		const gameOver = document.querySelector('.game .gameOver');
+		const playGame = document.querySelector('.menu .play');
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const themeSound = new Audio('img/theme.mp3');
+		const winSound = new Audio('img/win.mp3');
+		const jumpSound = new Audio('img/jump.wav');
+		const jump2Sound = new Audio('img/jump2.wav');
+		const jump3Sound = new Audio('img/jump3.wav');
+		const jump4Sound = new Audio('img/jump4.wav');
+		const jump5Sound = new Audio('img/jump5.wav');
+		const coinSound = new Audio('img/coin.mp3');
+		const pipeSound = new Audio('img/pipe.mp3');
+		const ahaSound = new Audio('img/aha.mp3');
+		const yeahSound = new Audio('img/yeah.mp3');
+		const yesSound = new Audio('img/yes.mp3');
+		const gameOverSound = new Audio('img/gameOver.mp3');
+		const koopaSound = new Audio('img/koopa.wav');
+		const LuigiSound = new Audio('img/mario.mp3');
+		const Luigi2Sound = new Audio('img/mario2.mp3');
+		const runSound = new Audio('img/run.mp3');
+		const run2Sound = new Audio('img/run2.mp3');
+		const run3Sound = new Audio('img/run3.wav');
+		const run4Sound = new Audio('img/run4.wav');
+		const run5Sound = new Audio('img/run5.wav');
+		themeSound.volume = .4;
+		jumpSound.volume = .6;
+		pipeSound.volume = .6;
+		run3Sound.volume = .4;
+		run4Sound.volume = .6;
+		run5Sound.volume = .6;
+		playGame.onclick = async () => {
+			Luigi.style.transition = '1.5s';
+			enemy.style.transition = '1.5s';
+			playGame.parentElement.style.left = '100%';
+			themeSound.play();
+			themeSound.onended = () => themeSound.play();
+			mission[0].style.animationDelay = Math.random() * (7 - 4) + 4 + 's';
+			mission[1].style.animationDelay = Math.random() * (7 - 5) + 5 + 's';
+			mission[2].style.animationDelay = Math.random() * (12 - 7) + 7 + 's';
+			mission[3].style.animationDelay = Math.random() * (27 - 14) + 14 + 's';
+			ball[0].style.animationDelay = Math.random() * (27 - 7) + 7 + 's';
+			ball[1].style.animationDelay = Math.random() * (27 - 7) + 7 + 's';
+			coil.style.animationDelay = Math.random() * (17 - 7) + 7 + 's';
+			game.style.clipPath = 'circle(20% at 100% 70%)';
+			await asyncControl(1e3);
+			game.style.setProperty('--right', '50%');
+			game.style.clipPath = 'circle(30% at 50% 70%)';
+			[LuigiSound, Luigi2Sound][Math.floor(Math.random() * 2)].play();
+			LuigiSound.onended = () => setTimeout(() => [runSound, run3Sound, run4Sound, run5Sound][Math.floor(Math.random() * 4)].play(), 3e2);
+			Luigi2Sound.onended = () => setTimeout(() => [runSound, run3Sound, run4Sound, run5Sound][Math.floor(Math.random() * 4)].play(), 3e2);
+			await asyncControl(18e2);
+			game.style.clipPath = 'circle(100%)';
+			Luigi.style.transition = null;
+			enemy.style.transition = null;
+			
+			const data = Object.seal({
+				_point_1: 0,
+				_point_2: 0,
+				_point_3: 0,
+				_point_4: 0,
+				_end_1: 10,
+				_end_2: 20,
+				_end_3: 30,
+				_end_4: 5
+			});
+			let drawGame;
+			let jump = true;
+			let y = Luigi.offsetTop + Luigi.offsetHeight;
+			let ri;
+			let goomba = true;
+			let meat = 0;
+			function* gameControl() {
+				yield async w => {
+					winSound.play();
+					themeSound.pause();
+					clearInterval(drawGame);
+					document.onkeydown = null;
+					document.onkeyup = null;
+					gameOver.style = 'opacity: 1; top: 40%; animation: gameOver 1s linear infinite; color: #fff; text-shadow: -3px 5px 0 #000, -4px -2px 10px #deff00; font-size: 9vw;';
+					gameOver.innerText = 'Winner';
+					await asyncControl(1e3);
+					enemy.style.background = 'url(img/luigi2.png) no-repeat -161px -20px / 290px 145px';
+					enemy.style.borderRadius = '62px 375% 38px 194px';
+					enemy.style.width = '93px';
+					await asyncControl(3e2);
+					enemy.style.scale = '-1 1';
+					await asyncControl(3e2);
+					enemy.style.right = '-20%';
+					await asyncControl(3e2);
+					Luigi.style.right = '100%';
+					await asyncControl(35e2);
+					location['reload']();
+				};
+				yield void async function() {
+					gameOverSound.play();
+					themeSound.pause();
+					Luigi.style.rotate = '-400deg';
+					game.style.setProperty('--jump', 16 + '%');
+					Luigi.style.transition = 'rotate .9s, bottom .8s .3s, right .7s linear';
+					clearInterval(drawGame);
+					document.onkeydown = null;
+					document.onkeyup = null;
+					await asyncControl(5e2);
+					koopaSound.play();
+					game.style.animationPlayState = 'paused';
+					coil.style.animationPlayState = 'paused';
+					Luigi.style.backgroundImage = 'url(img/luigi.png)';
+					enemy.style.background = 'url(img/luigi2.png) no-repeat -161px -20px / 290px 145px';
+					enemy.style.borderRadius = '62px 375% 38px 194px';
+					enemy.style.width = '93px';
+					enemy.style.right = 'calc(var(--right) - 25px)';
+					await asyncControl(4e2);
+					enemy.firstElementChild.classList.add('thinking');
+					await asyncControl(7e2);
+					enemy.firstElementChild.classList.remove('thinking');
+					gameOver.style = 'opacity: 1; top: 40%; animation: gameOver 1s linear infinite;';
+					await asyncControl(4e2);
+					Luigi.style.right = '110%';
+					enemy.style.right = 'calc(110% - 35px)';
+					enemy.style.transitionTimingFunction = 'linear';
+					enemy.style.background = null;
+					enemy.style.borderRadius = null;
+					enemy.style.width = null;
+					enemy.style.bottom = '20%';
+					await asyncControl(25e2);
+					location['reload']();
+				}();
+			}
+			const genObject = gameControl();
+			drawGame = setInterval(() => {
+				meat += .5;
+				meat % 5e2 == 0 ? (enemy.firstElementChild.classList.add('thinking'), setTimeout(() => enemy.firstElementChild.classList.remove('thinking'), 2e3)) : '';
+				mission.forEach(item => {
+					if (item.offsetLeft > game.offsetWidth) {
+						void async function() {
+							item.style.animation = 'none';
+							if (!item.className.includes('m4')) {
+								await asyncControl(Math.random() * (1e4 - 3e3) + 3e3);
+								item.style.bottom = Math.random() * (50 - 25) + 25 + '%';
+							} else {
+								await asyncControl(Math.random() * (25e3 - 15e3) + 15e3);
+								item.style.top = Math.random() * (25 - 1) + 1 + '%';
+							}
+							item.style.animation = null;
+						}();
+					}
+					if (item.offsetLeft + item.offsetWidth >= Luigi.offsetLeft && item.offsetLeft <= Luigi.offsetLeft + Luigi.offsetWidth && Luigi.offsetTop < item.offsetTop + item.offsetHeight && Luigi.offsetTop + Luigi.offsetHeight > item.offsetTop) {
+						void async function() {
+							item.style.animation = 'none';
+							if (item.className.includes('m1')) {
+								data._point_1 < data._end_1 ? data._point_1++ : '';
+								data._point_1 == data._end_1 ? mission[0].style.display = 'none' : '';
+								records[0].innerText = data._point_1 + ' / ' + data._end_1;
+								[ahaSound, yeahSound, yesSound][Math.floor(Math.random() * 3)].play();
+							} else if (item.className.includes('m2')) {
+								data._point_2 < data._end_2 ? data._point_2++ : '';
+								data._point_2 == data._end_2 ? mission[1].style.display = 'none' : '';
+								records[1].innerText = data._point_2 + ' / ' + data._end_2;
+								[ahaSound, yeahSound, yesSound][Math.floor(Math.random() * 3)].play();
+							} else if (item.className.includes('m3')) {
+								data._point_3 < data._end_3 ? data._point_3++ : '';
+								data._point_3 == data._end_3 ? mission[2].style.display = 'none' : '';
+								records[2].innerText = data._point_3 + ' / ' + data._end_3;
+								[ahaSound, yeahSound, yesSound][Math.floor(Math.random() * 3)].play();
+							} else if (item.className.includes('m4')) {
+								data._point_4 < data._end_4 ? data._point_4++ : '';
+								data._point_4 == data._end_4 ? coin.style.display = 'none' : '';
+								coin.innerText = 'x ' + data._point_4 + ' / ' + data._end_4;
+								coinSound.play();
+							}
+							await asyncControl(Math.random() * (12e3 - 3e3) + 3e3);
+							if (!item.className.includes('m4')) {
+								item.style.bottom = Math.random() * (50 - 25) + 25 + '%';
+							} else {
+								item.style.top = Math.random() * (25 - 1) + 1 + '%';
+							}
+							item.style.animation = null;
+						}();
+					}
+				});
+				if (coil.offsetLeft + coil.offsetWidth - 30 >= Luigi.offsetLeft && coil.offsetLeft <= Luigi.offsetLeft + Luigi.offsetWidth && Luigi.offsetTop < coil.offsetTop + coil.offsetHeight && Luigi.offsetTop + Luigi.offsetHeight > coil.offsetTop + 40) {
+					void async function() {
+						run2Sound.play();
+						jump = false;
+						Luigi.style.bottom = '87%';
+						await asyncControl(1e2);
+						enemy.style.bottom = '87%';
+						await asyncControl(4e2);
+						Luigi.style.bottom = null;
+						await asyncControl(1e2);
+						enemy.style.bottom = null;
+					}();
+				}
+				Luigi.offsetTop + Luigi.offsetHeight >= y - 10 ? jump = true : '';
+				data._point_1 == data._end_1 && data._point_2 == data._end_2 && data._point_3 == data._end_3 && data._point_4 == data._end_4 ? genObject.next().value() : '';
+				if (coil.offsetLeft > game.offsetWidth) {
+					void async function() {
+						coil.style.animation = 'none';
+						await asyncControl(Math.random() * (25e3 - 10e3) + 10e3);
+						coil.style.animation = null;
+					}();
+				}
+				ball.forEach(item => {
+					if (item.offsetLeft > game.offsetWidth) {
+						void async function() {
+							item.style.animation = 'none';
+							await asyncControl(Math.random() * (18e3 - 7e3) + 7e3);
+							item.style.animation = null;
+						}();
+					}
+				});
+				if (Luigi.offsetTop + Luigi.offsetHeight >= ball[1].offsetTop && ball[1].offsetLeft + ball[1].offsetWidth - 20 >= Luigi.offsetLeft && ball[1].offsetLeft + 30 <= Luigi.offsetLeft + Luigi.offsetWidth && Luigi.offsetTop + Luigi.offsetHeight < ball[1].offsetTop + 20) {
+					void async function() {
+						goomba = false;
+						ball[1].style.scale = '1 .2';
+						ball[1].style.backgroundImage = 'url(img/goomba.png)';
+						pipeSound.currentTime = .2;
+						pipeSound.play();
+						await asyncControl(5e2);
+						ball[1].style.animation = 'none';
+						await asyncControl(Math.random() * (18e3 - 7e3) + 7e3);
+						ball[1].style.animation = null;
+						ball[1].style.scale = null;
+						ball[1].style.backgroundImage = null;
+						goomba = true;
+					}();
+				} else if (Luigi.offsetTop + Luigi.offsetHeight >= ball[1].offsetTop && ball[1].offsetLeft + ball[1].offsetWidth - 20 >= Luigi.offsetLeft && ball[1].offsetLeft + 30 <= Luigi.offsetLeft + Luigi.offsetWidth && goomba) {
+					genObject.next();
+					genObject.next();
+				}
+				if (Luigi.offsetTop + Luigi.offsetHeight >= ball[0].offsetTop && ball[0].offsetLeft + ball[0].offsetWidth - 30 >= Luigi.offsetLeft && ball[0].offsetLeft + 30 <= Luigi.offsetLeft + Luigi.offsetWidth) {
+					genObject.next();
+					genObject.next();
+				}
+			}, 1);
+			document.onkeydown = e => {
+				if (e.which == 38 && jump) {
+					void async function() {
+						[jumpSound, jump2Sound, jump3Sound, jump4Sound, jump5Sound][Math.floor(Math.random() * 5)].play();
+						jump = false;
+						Luigi.style.bottom = '50%';
+						await asyncControl(1e2);
+						enemy.style.bottom = '50%';
+						await asyncControl(4e2);
+						Luigi.style.bottom = null;
+						await asyncControl(1e2);
+						enemy.style.bottom = null;
+					}();
+				}
+				e.which == 37 ? ([runSound, run3Sound, run4Sound, run5Sound][Math.floor(Math.random() * 4)].play(), game.style.setProperty('--right', '60%'), clearTimeout(ri)) : '';
+			};
+			document.onkeyup = e => e.which == 37 ? ri = setTimeout(() => game.style.setProperty('--right', '50%'), 4e2) : '';
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
