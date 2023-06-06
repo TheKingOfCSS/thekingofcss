@@ -21,6 +21,7 @@
 			animation: bg 3s linear infinite;
 			--right: -50%;
 			--jump: 24%;
+			--paused: paused;
 			-webkit-transition: 1.5s .3s;
 			transition: 1.5s .3s;
 		}
@@ -137,8 +138,8 @@
 			bottom: 30%;
 			width: 45px;
 			height: 40px;
-			-webkit-animation: d 2.9s linear infinite;
-			animation: d 2.9s linear infinite;
+			-webkit-animation: d 2.9s linear infinite var(--paused);
+			animation: d 2.9s linear infinite var(--paused);
 			border-radius: 15px 15px 30px 30px;
 		}
 		.game .mis.m1 {
@@ -180,8 +181,8 @@
 			width: 45px;
 			height: 151px;
 			background: url(img/coil.gif) no-repeat -24px -30px / 90px 180px;
-			-webkit-animation: d 2.9s linear infinite;
-			animation: d 2.9s linear infinite;
+			-webkit-animation: d 2.9s linear infinite var(--paused);
+			animation: d 2.9s linear infinite var(--paused);
 		}
 		.menu {
 			position: fixed;
@@ -329,8 +330,8 @@
 			height: 65px;
 			background: url(img/ball.webp) no-repeat 0 / 65px;
 			border-radius: 50px;
-			-webkit-animation: d 2.7s linear infinite, rotate 1s linear infinite;
-			animation: d 2.7s linear infinite, rotate 1s linear infinite;
+			-webkit-animation: d 2.7s linear infinite var(--paused), rotate 1s linear infinite;
+			animation: d 2.7s linear infinite var(--paused), rotate 1s linear infinite;
 		}
 		.game .ball.b2 {
 			position: absolute;
@@ -340,8 +341,8 @@
 			height: 63px;
 			background: url(img/goomba.webp) no-repeat 2px 1px / 55px 65px;
 			border-radius: 20px;
-			-webkit-animation: d 2.9s linear infinite;
-			animation: d 2.9s linear infinite;
+			-webkit-animation: d 2.9s linear infinite var(--paused);
+			animation: d 2.9s linear infinite var(--paused);
 			-webkit-transform-origin: bottom;
 			transform-origin: bottom;
 			-webkit-transition: .3s;
@@ -467,6 +468,7 @@
 		run4Sound.volume = .6;
 		run5Sound.volume = .6;
 		playGame.onclick = async () => {
+			game.style.setProperty('--paused', 'running');
 			Luigi.style.transition = '1.5s';
 			enemy.style.transition = '1.5s';
 			playGame.parentElement.style.left = '100%';
@@ -490,7 +492,6 @@
 			game.style.clipPath = 'circle(100%)';
 			Luigi.style.transition = null;
 			enemy.style.transition = null;
-			
 			const data = Object.seal({
 				_point_1: 0,
 				_point_2: 0,
