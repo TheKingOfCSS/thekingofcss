@@ -78,6 +78,15 @@ const movie = document.querySelector('.movie');
 const natureBlock = document.querySelector('.movie .nature .natureBlock');
 const natureRight = document.querySelectorAll('.movie .natureInfo .natureRight');
 const snapInfo = document.querySelectorAll('.selfies .snap :is(p, .snapInfo)');
+const scroll4 = document.querySelector('.scroll3');
+const fixedSec3 = document.querySelector('.fixedSec3 .sec');
+const fixedProgress3 = document.querySelector('.scroll3 .closeFixed .progress');
+const iconLock = document.querySelector('.selfies .appleLock .item .iconLock');
+const fastTop = document.querySelectorAll('.fast :is(h3, h2)');
+const fastBottom = document.querySelectorAll('.fast :is(h4, p)');
+const fastLock = document.querySelector('.fast .lockBlock .lock');
+const fastVideo = document.querySelector('.fast .fastLast video');
+const models = document.querySelectorAll('.models .item');
 const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
 iphoneColorInp.forEach((item, index) => {
 	item.onchange = () => {
@@ -263,19 +272,13 @@ iphoneColorInp.forEach((item, index) => {
 				iphoneColorChief.style.rotate = null;
 			}();
 			colorTarget = index;
-			setTimeout(() => {
-				colorBool = true;
-				iphoneColorInp.forEach(item => item.style.pointerEvents = null);
-			}, 74e1);
+			setTimeout(() => (colorBool = true, iphoneColorInp.forEach(item => item.style.pointerEvents = null)), 74e1);
 		}
 	};
 });
 homeSlideBtn[1].onclick = () => {
 	homeSlideBtn[0].disabled = false;
-	homeSlideItem.forEach((item, index) => {
-		homeData[index]--;
-		item.style.setProperty('--i', homeData[index]);
-	});
+	homeSlideItem.forEach((item, index) => (homeData[index]--, item.style.setProperty('--i', homeData[index])));
 	homeSlideItem[homeCur].style.scale = .9;
 	homeSlideItem[homeCur].style.opacity = 0;
 	homeCur++;
@@ -286,10 +289,7 @@ homeSlideBtn[1].onclick = () => {
 };
 homeSlideBtn[0].onclick = () => {
 	homeSlideBtn[1].disabled = false;
-	homeSlideItem.forEach((item, index) => {
-		homeData[index]++;
-		item.style.setProperty('--i', homeData[index]);
-	});
+	homeSlideItem.forEach((item, index) => (homeData[index]++, item.style.setProperty('--i', homeData[index])));
 	homeCur--;
 	homeCur == 0 ? homeSlideBtn[0].disabled = true : '';
 	homeSlideItem[homeCur].style.scale = null;
@@ -344,106 +344,33 @@ window.onscroll = () => {
 	scrollY >= selfies.offsetTop - innerHeight / 1.5 ? (selfies.firstElementChild.style.animation = 'selfies .5s', selfies.firstElementChild.style.rotate = (scrollY - (selfies.offsetTop - innerHeight / 1.5)) / 3 + 'deg', selfies.children[1].style.transform = 'perspective(850px)') : (selfies.firstElementChild.style.animation = null, selfies.children[1].style.transform = null, selfies.firstElementChild.style.rotate = null);
 	scrollY >= selfies.children[2].children[1].offsetTop - innerHeight / 1.2 ? selfies.children[2].children[1].currentTime = (scrollY - (selfies.children[2].children[1].offsetTop - innerHeight / 1.2)) / 1e3 : selfies.children[2].children[1].currentTime = 0;
 	snapInfo.forEach((item, index) => scrollY > item.parentElement.offsetTop - innerHeight / 2 + index * 150 ? item.style = 'opacity: 1; translate: 0;' : item.style = null);
+	scrollY >= selfies.offsetTop + innerWidth / 1.5 ? iconLock.style.animation = 'lock 1.5s steps(11) forwards' : iconLock.style.animation = null;
+	fastTop.forEach((item, index) => scrollY >= (item.parentElement.offsetTop - innerHeight / 2) + index * 70 ? item.style = 'translate: 0; opacity: 1;' : item.style = null);
+	fastBottom.forEach((item, index) => scrollY >= (item.parentElement.offsetTop + innerWidth / 3) + index * 70 ? item.style = 'translate: 0; opacity: 1;' : item.style = null);
+	scrollY >= fastLock.parentElement.parentElement.parentElement.offsetTop + innerWidth / 2.2 ? fastLock.style.animation = 'lock 1.5s steps(11) forwards' : fastLock.style.animation = null;
+	scrollY >= fastVideo.parentElement.parentElement.offsetTop + innerHeight / 4 && scrollY <= fastVideo.parentElement.parentElement.offsetTop + innerHeight / 3 ? fastVideo.play() : '';
+	models.forEach((item, index) => scrollY >= item.parentElement.offsetTop - innerHeight / 2 + index * innerWidth / 4.5 ? item.style.clipPath = `circle(${Math.min((scrollY - (item.parentElement.offsetTop - innerHeight / 2 + index * innerWidth / 4.5)) / 7, 1e2)}% at 50% 0)` : item.style.clipPath = null);
 };
 scroll2.onscroll = () => (fixedSec.style.translate = -scroll2.scrollTop * 2e2 / scroll2.scrollHeight + 'vw', fixedProgress.style.background = `linear-gradient(to right, #000 ${scroll2.scrollTop * 1e2 / (scroll2.scrollHeight - scroll2.clientHeight)}%, #D2D2D7 ${scroll2.scrollTop * 1e2 / (scroll2.scrollHeight - scroll2.clientHeight)}%)`);
 scroll3.onscroll = () => (fixedSec2.style.translate = -scroll3.scrollTop * 380 / scroll3.scrollHeight + 'vw', fixedProgress2.style.background = `linear-gradient(to right, #000 ${scroll3.scrollTop * 1e2 / (scroll3.scrollHeight - scroll3.clientHeight)}%, #D2D2D7 ${scroll3.scrollTop * 1e2 / (scroll3.scrollHeight - scroll3.clientHeight)}%)`);
+scroll4.onscroll = () => (fixedSec3.style.translate = -scroll4.scrollTop * 255 / scroll4.scrollHeight + 'vw', fixedProgress3.style.background = `linear-gradient(to right, #000 ${scroll4.scrollTop * 100 / (scroll4.scrollHeight - scroll4.clientHeight)}%, #D2D2D7 ${scroll4.scrollTop * 100 / (scroll4.scrollHeight - scroll4.clientHeight)}%)`);
+threeAr.parentElement.onclick = () => (fixedSec3.parentElement.style.left = 0, scroll4.style.left = 0, selfies.style.translate = '-100vw', document.body.style.overflow = 'hidden', clearTimeout(fixedTime3));
+fixedProgress3.previousElementSibling.onclick = () => (scroll4.style.left = null, fixedSec3.parentElement.style.left = null, selfies.style.translate = null, document.body.style.overflow = null, fixedTime3 = setTimeout(() => scroll4.scrollTop = 0, 11e2));
 let fixedTime;
 let fixedTime2;
-gridInfoMore.parentElement.onclick = () => {
-	scroll2.style.left = 0;
-	fixedSec.parentElement.style.left = 0;
-	gridSlider.style.translate = '-100vw';
-	document.body.style.overflow = 'hidden';
-	clearTimeout(fixedTime);
-};
-fixedClose.onclick = () => {
-	scroll2.style.left = null;
-	fixedSec.parentElement.style.left = null;
-	gridSlider.style.translate = null;
-	document.body.style.overflow = null;
-	fixedTime = setTimeout(() => scroll2.scrollTop = 0, 11e2);
-};
-epicMore.parentElement.onclick = () => {
-	fixedSec2.parentElement.style.left = 0;
-	scroll3.style.left = 0;
-	epicImg[0].parentElement.parentElement.style.translate = '-100vw';
-	document.body.style.overflow = 'hidden';
-	clearTimeout(fixedTime2);
-};
-fixedProgress2.previousElementSibling.onclick = () => {
-	fixedSec2.parentElement.style.left = null;
-	scroll3.style.left = null;
-	epicImg[0].parentElement.parentElement.style.translate = null;
-	document.body.style.overflow = null;
-	fixedTime2 = setTimeout(() => scroll3.scrollTop = 0, 11e2);
-};
+let fixedTime3;
+gridInfoMore.parentElement.onclick = () => (scroll2.style.left = 0, fixedSec.parentElement.style.left = 0, gridSlider.style.translate = '-100vw', document.body.style.overflow = 'hidden', clearTimeout(fixedTime));
+fixedClose.onclick = () => (scroll2.style.left = null, fixedSec.parentElement.style.left = null, gridSlider.style.translate = null, document.body.style.overflow = null, fixedTime = setTimeout(() => scroll2.scrollTop = 0, 11e2));
+epicMore.parentElement.onclick = () => (fixedSec2.parentElement.style.left = 0, scroll3.style.left = 0, epicImg[0].parentElement.parentElement.style.translate = '-100vw', document.body.style.overflow = 'hidden', clearTimeout(fixedTime2));
+fixedProgress2.previousElementSibling.onclick = () => (fixedSec2.parentElement.style.left = null, scroll3.style.left = null, epicImg[0].parentElement.parentElement.style.translate = null, document.body.style.overflow = null, fixedTime2 = setTimeout(() => scroll3.scrollTop = 0, 11e2));
 let repRot = 0;
 let playerBool = true;
-steadyPlayPause.onclick = () => {
-	repRot += 360;
-	playerBool = false;
-	steadyPlayPause.firstElementChild.style.translate = '-3vw';
-	steadyPlayPause.lastElementChild.style.transform = `rotate(${repRot}deg)`;
-	if (steadyHand.firstElementChild.paused) {
-		steadyHand.firstElementChild.play();
-		steadyPlayPause.lastElementChild.className = 'btnC pause';
-		setTimeout(() => {
-			steadyPlayPause.firstElementChild.innerText = 'Play Action-Mode Video';
-			steadyPlayPause.firstElementChild.style.translate = null;
-		}, 130);
-	} else {
-		steadyHand.firstElementChild.pause();
-		steadyPlayPause.lastElementChild.className = 'btnC play';
-		setTimeout(() => {
-			steadyPlayPause.firstElementChild.innerText = 'Pause Action-Mode Video';
-			steadyPlayPause.firstElementChild.style.translate = null;
-		}, 130);
-	}
-};
-steadyHand.firstElementChild.onended = () => {
-	repRot += 360;
-	steadyPlayPause.firstElementChild.style.translate = '-3vw';
-	steadyPlayPause.lastElementChild.style.transform = `rotate(${repRot}deg)`;
-	steadyPlayPause.lastElementChild.className = 'btnC Replay';
-	setTimeout(() => {
-		steadyPlayPause.firstElementChild.innerText = steadyPlayPause.lastElementChild.classList[1] + ' Action-Mode Video';
-		steadyPlayPause.firstElementChild.style.translate = null;
-	}, 130);
-};
+steadyPlayPause.onclick = () => (repRot += 360, playerBool = false, steadyPlayPause.firstElementChild.style.translate = '-3vw', steadyPlayPause.lastElementChild.style.transform = `rotate(${repRot}deg)`, steadyHand.firstElementChild.paused ? (steadyHand.firstElementChild.play(), steadyPlayPause.lastElementChild.className = 'btnC pause', setTimeout(() => (steadyPlayPause.firstElementChild.innerText = 'Play Action-Mode Video', steadyPlayPause.firstElementChild.style.translate = null), 130)) : (steadyHand.firstElementChild.pause(), steadyPlayPause.lastElementChild.className = 'btnC play', setTimeout(() => (steadyPlayPause.firstElementChild.innerText = 'Pause Action-Mode Video', steadyPlayPause.firstElementChild.style.translate = null), 130)));
+steadyHand.firstElementChild.onended = () => (repRot += 360, steadyPlayPause.firstElementChild.style.translate = '-3vw', steadyPlayPause.lastElementChild.style.transform = `rotate(${repRot}deg)`, steadyPlayPause.lastElementChild.className = 'btnC Replay', setTimeout(() => (steadyPlayPause.firstElementChild.innerText = steadyPlayPause.lastElementChild.classList[1] + ' Action-Mode Video', steadyPlayPause.firstElementChild.style.translate = null), 130));
 let svgRot = 0;
 let movBool = true;
-natureBlock.lastElementChild.onclick = () => {
-	svgRot += 360;
-	natureBlock.lastElementChild.style.rotate = svgRot + 'deg';
-	if (natureBlock.firstElementChild.paused) {
-		natureBlock.firstElementChild.play();
-		natureBlock.lastElementChild.innerHTML = `
-			<svg viewBox="0 0 20 20" fill="#1D1D1F">
-				<g>
-					<rect class="cls-1" x="3.75" y="3" width="4.5" height="14" rx="1.5"/>
-					<rect class="cls-1" x="11.75" y="3" width="4.5" height="14" rx="1.5"/>
-				</g>
-			</svg>
-		`;
-	} else {
-		natureBlock.firstElementChild.pause();
-		natureBlock.lastElementChild.innerHTML = `
-			<svg viewBox="0 0 20 20" fill="#1D1D1F">
-				<path d="M5 15.25V4.77a1.44 1.44 0 011.44-1.62 1.86 1.86 0 011.11.31l8.53 5c.76.44 1.17.8 1.17 1.51s-.41 1.07-1.17 1.51l-8.53 5a1.86 1.86 0 01-1.11.31A1.42 1.42 0 015 15.25z"/>
-			</svg>
-		`;
-		movBool = false;
-	}
-};
-natureBlock.firstElementChild.onended = () => {
-	svgRot += 360;
-	natureBlock.lastElementChild.style.rotate = svgRot + 'deg';
-	natureBlock.lastElementChild.innerHTML = `
-		<svg viewBox="0 0 20 20" fill="#1D1D1F">
-			<path d="M16.75 9.4a1.5 1.5 0 00-1.5 1.5A4.88 4.88 0 1110.38 6h.2L9.31 7.32a1.5 1.5 0 001.06 2.56 1.45 1.45 0 001.06-.44L15 5.88a1.52 1.52 0 00.44-1.06A1.54 1.54 0 0015 3.75L11.43.19a1.49 1.49 0 00-2.12 0 1.51 1.51 0 000 2.12l.75.75a7.85 7.85 0 108.19 7.84 1.5 1.5 0 00-1.5-1.5z"/>
-		</svg>
-	`;
-};
+natureBlock.lastElementChild.onclick = () => (svgRot += 360, natureBlock.lastElementChild.style.rotate = svgRot + 'deg', natureBlock.firstElementChild.paused ? (natureBlock.firstElementChild.play(), natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><g><rect class="cls-1" x="3.75" y="3" width="4.5" height="14" rx="1.5"/><rect class="cls-1" x="11.75" y="3" width="4.5" height="14" rx="1.5"/></g></svg>`) : (natureBlock.firstElementChild.pause(), natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><path d="M5 15.25V4.77a1.44 1.44 0 011.44-1.62 1.86 1.86 0 011.11.31l8.53 5c.76.44 1.17.8 1.17 1.51s-.41 1.07-1.17 1.51l-8.53 5a1.86 1.86 0 01-1.11.31A1.42 1.42 0 015 15.25z"/></svg>`, movBool = false));
+natureBlock.firstElementChild.onended = () => (svgRot += 360, natureBlock.lastElementChild.style.rotate = svgRot + 'deg', natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><path d="M16.75 9.4a1.5 1.5 0 00-1.5 1.5A4.88 4.88 0 1110.38 6h.2L9.31 7.32a1.5 1.5 0 001.06 2.56 1.45 1.45 0 001.06-.44L15 5.88a1.52 1.52 0 00.44-1.06A1.54 1.54 0 0015 3.75L11.43.19a1.49 1.49 0 00-2.12 0 1.51 1.51 0 000 2.12l.75.75a7.85 7.85 0 108.19 7.84 1.5 1.5 0 00-1.5-1.5z"/></svg>`);
 document.oncontextmenu = () => false;
-document.addEventListener('keydown', e => e.ctrlKey ? e.preventDefault() : e.which == 123 ? e.preventDefault() : '');
+document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
