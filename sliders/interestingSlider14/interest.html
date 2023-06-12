@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interesting Slider 14 / The King Of CSS</title>
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		#closePack {
+			position: fixed;
+			top: -100%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			font: 26px sans-serif;
+			cursor: pointer;
+			width: 50px;
+			height: 40px;
+			background: #000;
+			color: #fff;
+			border-radius: 0 0 30px 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			padding-top: 2px;
+			z-index: 10000;
+			border: 2px solid #fff;
+			border-top: 0;
+			-webkit-box-shadow: 0 3px 5px #000;
+			box-shadow: 0 3px 5px #000;
+			-webkit-transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: box-shadow .4s, border-color .4s, top 2s;
+			transition: box-shadow .4s, border-color .4s, top 2s, -webkit-box-shadow .4s;
+			-webkit-animation: toPackClose 1s 1s forwards;
+			animation: toPackClose 1s 1s forwards;
+		}
+		#closePack:hover {
+			border-color: #f00;
+			-webkit-box-shadow: 0 5px 8px #f00;
+			box-shadow: 0 5px 8px #f00;
+		}
+		#closePack:active {
+			border-color: #0f0;
+			-webkit-box-shadow: 0 5px 8px #0f0;
+			box-shadow: 0 5px 8px #0f0;
+		}
+		@-webkit-keyframes toPackClose {
+			to { top: 0; }
+		}
+		@keyframes toPackClose {
+			to { top: 0; }
+		}
+		.slider {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: #000;
+		}
+		.slider .item {
+			position: absolute;
+			inset: 0;
+			background: url(../wonderfulParallaxSlider/1.jpg) no-repeat center / cover;
+			transition: rotate 1.2s, background .3s, scale .5s;
+			scale: 1.01;
+		}
+		.slider .item:nth-child(1) {
+			clip-path: polygon(0 22%, 0 0, 45% 0, 45% 0, 15% 50%, 15% 50%);
+			transform-origin: left top;
+		}
+		.slider .item:nth-child(2) {
+			clip-path: polygon(0 22%, 0 22%, 15% 50%, 15% 50%, 15% 50%, 0 68%);
+			transform-origin: left center;
+		}
+		.slider .item:nth-child(3) {
+			clip-path: polygon(0 68%, 0 68%, 15% 50%, 15% 50%, 45% 100%, 0 100%);
+			transform-origin: left bottom;
+		}
+		.slider .item:nth-child(4) {
+			clip-path: polygon(45% 0, 55% 0, 85% 50%, 55% 100%, 45% 100%, 15% 50%);
+			transform-origin: center;
+		}
+		.slider .item:nth-child(5) {
+			clip-path: polygon(85% 50%, 85% 50%, 85% 50%, 100% 68%, 100% 100%, 55% 100%);
+			transform-origin: right bottom;
+		}
+		.slider .item:nth-child(6) {
+			clip-path: polygon(85% 50%, 85% 50%, 85% 50%, 100% 22%, 100% 68%, 100% 68%);
+			transform-origin: right center;
+		}
+		.slider .item:nth-child(7) {
+			clip-path: polygon(85% 50%, 55% 0, 55% 0, 100% 0, 100% 14%, 100% 22%);
+			transform-origin: right top;
+		}
+		.slider button {
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			padding: 5px 30px 8px;
+			font-size: 4rem;
+			background: #0009;
+			color: #fff;
+			-webkit-box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			border-radius: 12px;
+			border: 0;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			z-index: 1;
+		}
+		.slider button:hover {
+			background: #fff;
+			color: #000;
+		}
+		@-webkit-keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@-webkit-keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		@keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		.slider button.prev {
+			left: 3%;
+			-webkit-animation: vers1Prev 1s infinite;
+			animation: vers1Prev 1s infinite;
+		}
+		.slider button.next {
+			right: 3%;
+			-webkit-animation: vers1Next 1s infinite;
+			animation: vers1Next 1s infinite;
+		}
+		.slider .radio {
+			position: absolute;
+			bottom: 3%;
+			left: 0;
+			width: 100%;
+			text-align: center;
+		}
+		.slider .radio input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 30px;
+			height: 15px;
+			background: #0005;
+			cursor: pointer;
+			margin: 0 5px;
+			position: relative;
+			overflow: hidden;
+			-webkit-box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 4px;
+			z-index: 1;
+		}
+		.slider .radio input:checked {
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+			background: #fff;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+	</style>
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="slider">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<button class="prev">&#10092;</button>
+		<button class="next">&#10093;</button>
+		<div class="radio">
+			<input type="radio" name="dot" checked>
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+		</div>
+	</div>
+	<script>
+		const interest14 = document.querySelectorAll('.slider .item');
+		const interest14Btn = document.querySelectorAll('.slider button');
+		const interest14Inp = document.querySelectorAll('.slider .radio input');
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const image = ['../wonderfulParallaxSlider/1.jpg', '../wonderfulParallaxSlider/2.jpg', '../wonderfulParallaxSlider/3.jpg', '../wonderfulParallaxSlider/4.jpg', '../img/4.webp'];
+		let cur = 0;
+		let interest14Cur = 0;
+		let interest14Bool = true;
+		const control = async numeric => (numeric ? cur += numeric : '', interest14Btn.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), interest14Inp.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), cur == image.length ? cur = 0 : cur < 0 ? cur = image.length-1 : '', interest14Cur += numeric ? numeric * 360 : 360, interest14.forEach(item => item.style = `rotate: ${interest14Cur}deg; scale: 1.5;`), interest14[3].style.rotate = -interest14Cur + 'deg', await asyncControl(8e2), interest14.forEach(item => (item.style.backgroundImage = `url(${image[cur]})`, item.style.scale = null)), interest14Inp[cur].checked = true, interest14Btn.forEach(item => item.style = null), await asyncControl(4e2), interest14Inp.forEach(item => item.style = null));
+		interest14Btn[0].onclick = () => control(-1);
+		interest14Btn[1].onclick = () => control(1);
+		interest14Inp.forEach((item, index) => item.onchange = () => (cur = index, control()));
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
