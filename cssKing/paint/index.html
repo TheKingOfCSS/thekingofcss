@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Paint</title>
+	<link rel="shortcut icon" href="paint.png">
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.tools {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			-ms-flex-line-pack: start;
+			align-content: flex-start;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			padding: 12px 6px;
+			-webkit-box-shadow: 5px 0 15px #0009;
+			box-shadow: 5px 0 15px #0009;
+			row-gap: 20px;
+			cursor: pointer;
+			background: #2229;
+			text-align: center;
+		}
+		.tools .size,
+		.tools .roundSquare,
+		.tools .color {
+			width: 40px;
+			height: 40px;
+			border: 1px solid #000;
+			border-radius: 5px;
+			display: grid;
+			place-items: center;
+			background: #fff;
+			-webkit-transition: .2s;
+			transition: .2s;
+			--w: 0;
+			--r: 0;
+		}
+		.tools .color {
+			background: var(--c);
+			border-color: #000;
+		}
+		.tools #color {
+			width: 100%;
+			height: 40px;
+		}
+		.tools .size.active,
+		.tools .roundSquare.active,
+		.tools .color.active {
+			-webkit-box-shadow: 0 0 5px 3px #0f0;
+			box-shadow: 0 0 5px 3px #0f0;
+		}
+		.tools .roundSquare:after {
+			content: '';
+			width: 22px;
+			height: 22px;
+			background: #000;
+		}
+		.tools .roundSquare.two:after {
+			border-radius: 50%;
+		}
+		.tools .size::after {
+			content: '';
+			width: var(--w);
+			height: var(--w);
+			background: #000;
+			border-radius: var(--r);
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.tools #size {
+			width: 100%;
+			accent-color: #000;
+			cursor: pointer;
+		}
+		.tools #sizeTxt {
+			width: 100%;
+			color: #fff;
+			font: bold 16px sans-serif;
+			margin-top: -15px;
+		}
+		.tools #save {
+			width: 100%;
+			-webkit-transition: .3s;
+			transition: .3s;
+			will-change: transform;
+		}
+		.tools #save:hover {
+			scale: 1.05;
+		}
+		.tools #save img {
+			width: 70px;
+			margin-top: -10px;
+			pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="tools">
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size"></div>
+		<div class="size active"></div>
+		<input type="range" min=".01" max="100" value=".1" step="any" id="size">
+		<span id="sizeTxt">0.1px</span>
+		<hr width="100%" color="#fff">
+		<div class="roundSquare active"></div>
+		<div class="roundSquare two"></div>
+		<hr width="100%" color="#fff">
+		<div class="color active" style="--c: #000;"></div>
+		<div class="color" style="--c: #f00;"></div>
+		<div class="color" style="--c: #fa0;"></div>
+		<div class="color" style="--c: #080;"></div>
+		<div class="color" style="--c: #00f;"></div>
+		<div class="color" style="--c: #ff0;"></div>
+		<div class="color" style="--c: #00ff14;"></div>
+		<div class="color" style="--c: #eee;"></div>
+		<input type="color" id="color">
+		<div id="save">
+			<img src="save.png" alt="img">
+		</div>
+		<a href="#" id="saveImg" download="Image" hidden></a>
+	</div>
+	<canvas id="c"></canvas>
+	<script>
+		const data = Object.seal({
+			sizeBtn: document.querySelectorAll('.tools .size'),
+			roundSquare: document.querySelectorAll('.tools .roundSquare'),
+			color: document.querySelectorAll('.tools .color'),
+			size: [30, 25, 22, 20, 15, 10, 7, 5, 2, 1],
+			colorData: ['#000000', '#ff0000', '#ffa500', '#008800', '#0000ff', '#ffff00', '#00ff14', '#eeeeee'],
+			bool: false,
+		});
+		data.sizeBtn.forEach((item, index) => (item.style.setProperty('--w', data.size[index] + 'px'), item.onclick = () => (data.sizeBtn.forEach(item => item.className = 'size'), ctx.lineWidth = data.size[index], item.className = 'size active', size.value = data.size[index], sizeTxt.innerText = data.size[index] + 'px')));
+		data.color.forEach((item, index) => item.onclick = () => (ctx.strokeStyle = item.style.getPropertyValue('--c'), data.color.forEach(item => item.className = 'color'), item.className = 'color active', color.value = data.colorData[index]));
+		size.oninput = () => (ctx.lineWidth = size.value, sizeTxt.innerText = size.value > .1 && size.value < 1e2 ? parseFloat(size.value).toFixed(1) + 'px' : size.value < .1 ? .01 + 'px' : size.value + 'px', data.sizeBtn.forEach(item => item.className = 'size'));
+		color.oninput = () => (ctx.strokeStyle = color.value, data.color.forEach(item => item.className = 'color'));
+		data.roundSquare[0].onclick = () => (ctx.lineCap = 'butt', data.sizeBtn.forEach(item => item.style.setProperty('--r', 0)), data.roundSquare[0].className = 'roundSquare active', data.roundSquare[1].className = 'roundSquare two');
+		data.roundSquare[1].onclick = () => (ctx.lineCap = 'round', data.sizeBtn.forEach(item => item.style.setProperty('--r', '50%')), data.roundSquare[0].className = 'roundSquare', data.roundSquare[1].className = 'roundSquare two active');
+		c.style = 'margin-left: 100px; outline: 1px solid #0005;';
+		c.width = innerWidth - 117;
+		c.height = innerHeight;
+		const ctx = c.getContext('2d');
+		c.onmousedown = () => (data.bool = true, ctx.beginPath());
+		c.onmouseup = () => data.bool = false;
+		c.onmouseleave = () => data.bool = false;
+		c.onmousemove = e => data.bool ? (ctx.fill = 'red', ctx.lineTo(e.x - 100, e.pageY), ctx.stroke()) : '';
+		save.onclick = () => (saveImg.href = c.toDataURL(), saveImg.click());
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
