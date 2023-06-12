@@ -122,6 +122,10 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('wonderfulParallaxSlider/wonderful.html'), 1000);
 		} else if (index == 92) {
 			setTimeout(() => window.location.replace('modernSlider/index.html'), 1000);
+		} else if (index == 93) {
+			setTimeout(() => window.location.replace('interestingSlider14/interest.html'), 1000);
+		} else if (index == 94) {
+			setTimeout(() => window.location.replace('interestingSlider15/interest.html'), 1000);
 		}
 	};
 });
