@@ -29,6 +29,19 @@
 			background: #2229;
 			text-align: center;
 		}
+		.tools :is(#undo, #redo) {
+			display: inline-block;
+			width: 50%;
+			height: 35px;
+			transition: .2s;
+		}
+		.tools :is(#undo, #redo):hover {
+			scale: 1.15;
+		}
+		.tools :is(#undo, #redo) img {
+			pointer-events: none;
+			width: 100%;
+		}
 		.tools .size,
 		.tools .roundSquare,
 		.tools .color {
@@ -105,6 +118,12 @@
 </head>
 <body>
 	<div class="tools">
+		<div id="undo">
+			<img src="undo.png" alt="Img">
+		</div>
+		<div id="redo">
+			<img src="redo.png" alt="Img">
+		</div>
 		<div class="size"></div>
 		<div class="size"></div>
 		<div class="size"></div>
@@ -144,6 +163,10 @@
 			size: [30, 25, 22, 20, 15, 10, 7, 5, 2, 1],
 			colorData: ['#000000', '#ff0000', '#ffa500', '#008800', '#0000ff', '#ffff00', '#00ff14', '#eeeeee'],
 			bool: false,
+			chords: [''],
+			cur: 0,
+			img: document.createElement('img'),
+			undoRedo: numeric => (data.cur += numeric, data.cur < 1 ? (data.cur = 0, ctx.clearRect(0, 0, c.width, c.height)) : data.cur > data.chords.length-1 ? data.cur = data.chords.length-1 : '', data.img.src = data.chords[data.cur], data.img.onload = () => (ctx.clearRect(0, 0, c.width, c.height), ctx.drawImage(data.img, 0, 0, c.width, c.height))),
 		});
 		data.sizeBtn.forEach((item, index) => (item.style.setProperty('--w', data.size[index] + 'px'), item.onclick = () => (data.sizeBtn.forEach(item => item.className = 'size'), ctx.lineWidth = data.size[index], item.className = 'size active', size.value = data.size[index], sizeTxt.innerText = data.size[index] + 'px')));
 		data.color.forEach((item, index) => item.onclick = () => (ctx.strokeStyle = item.style.getPropertyValue('--c'), data.color.forEach(item => item.className = 'color'), item.className = 'color active', color.value = data.colorData[index]));
@@ -155,11 +178,15 @@
 		c.width = innerWidth - 117;
 		c.height = innerHeight;
 		const ctx = c.getContext('2d');
+		ctx.fillStyle = '#fff';
+		ctx.fillRect(0, 0, c.width, c.height);
 		c.onmousedown = () => (data.bool = true, ctx.beginPath());
-		c.onmouseup = () => data.bool = false;
+		c.onmouseup = () => (data.bool = false, data.cur++, data.chords.length = data.cur, data.chords.push(c.toDataURL()));
+		undo.onclick = () => data.undoRedo(-1);
+		redo.onclick = () => data.undoRedo(1);
 		c.onmouseleave = () => data.bool = false;
 		c.onmousemove = e => data.bool ? (ctx.fill = 'red', ctx.lineTo(e.x - 100, e.pageY), ctx.stroke()) : '';
-		save.onclick = () => (saveImg.href = c.toDataURL(), saveImg.click());
+		save.onclick = () => (saveImg.href = c.toDataURL('image/png'), saveImg.click());
 		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 		console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
