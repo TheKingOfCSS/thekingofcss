@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interesting Slider 16 / The King Of CSS</title>
+	<style>
+		* { margin: 0; padding: 0; outline: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		#closePack {
+			position: fixed;
+			top: -100%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			font: 26px sans-serif;
+			cursor: pointer;
+			width: 50px;
+			height: 40px;
+			background: #000;
+			color: #fff;
+			border-radius: 0 0 30px 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			padding-top: 2px;
+			z-index: 10000;
+			border: 2px solid #fff;
+			border-top: 0;
+			-webkit-box-shadow: 0 3px 5px #000;
+			box-shadow: 0 3px 5px #000;
+			-webkit-transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: border-color .4s, top 2s, -webkit-box-shadow .4s;
+			transition: box-shadow .4s, border-color .4s, top 2s;
+			transition: box-shadow .4s, border-color .4s, top 2s, -webkit-box-shadow .4s;
+			-webkit-animation: toPackClose 1s 1s forwards;
+			animation: toPackClose 1s 1s forwards;
+		}
+		#closePack:hover {
+			border-color: #f00;
+			-webkit-box-shadow: 0 5px 8px #f00;
+			box-shadow: 0 5px 8px #f00;
+		}
+		#closePack:active {
+			border-color: #0f0;
+			-webkit-box-shadow: 0 5px 8px #0f0;
+			box-shadow: 0 5px 8px #0f0;
+		}
+		@-webkit-keyframes toPackClose {
+			to { top: 0; }
+		}
+		@keyframes toPackClose {
+			to { top: 0; }
+		}
+		.slider {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+			background: url(../wonderfulParallaxSlider/1.jpg) no-repeat center / cover;
+		}
+		.slider .line {
+			height: calc(100% / 10);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+		}
+		.slider .line .block {
+			width: 100%;
+			background: url(../wonderfulParallaxSlider/1.jpg) no-repeat center / cover;
+			-webkit-transition: scale 1s;
+			transition: scale 1s;
+		}
+		.slider button {
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			padding: 5px 30px 8px;
+			font-size: 4rem;
+			background: #0009;
+			color: #fff;
+			-webkit-box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+			border-radius: 12px;
+			border: 0;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			z-index: 1;
+		}
+		.slider button:hover {
+			background: #fff;
+			color: #000;
+		}
+		@-webkit-keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@keyframes vers1Prev {
+			50% { left: 2%; }
+		}
+		@-webkit-keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		@keyframes vers1Next {
+			50% { right: 2%; }
+		}
+		.slider button.prev {
+			left: 3%;
+			-webkit-animation: vers1Prev 1s infinite;
+			animation: vers1Prev 1s infinite;
+		}
+		.slider button.next {
+			right: 3%;
+			-webkit-animation: vers1Next 1s infinite;
+			animation: vers1Next 1s infinite;
+		}
+		.slider .radio {
+			position: absolute;
+			bottom: 3%;
+			left: 0;
+			width: 100%;
+			text-align: center;
+		}
+		.slider .radio input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 30px;
+			height: 15px;
+			background: #0005;
+			cursor: pointer;
+			margin: 0 5px;
+			position: relative;
+			overflow: hidden;
+			-webkit-box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 4px;
+			z-index: 1;
+		}
+		.slider .radio input:checked {
+			-webkit-transform: scale(1.2);
+			transform: scale(1.2);
+			background: #fff;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+	</style>
+</head>
+<body>
+	<button id="closePack">X</button>
+	<div class="slider">
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<div class="line">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<button class="prev">&#10092;</button>
+		<button class="next">&#10093;</button>
+		<div class="radio">
+			<input type="radio" name="dot" checked>
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+			<input type="radio" name="dot">
+		</div>
+	</div>
+	<script>
+		const interest16 = document.querySelector('.slider');
+		const interest16Line = document.querySelectorAll('.slider .line');
+		const interest16Block = document.querySelectorAll('.slider .line .block');
+		const interest16Btn = document.querySelectorAll('.slider button');
+		const interest16Inp = document.querySelectorAll('.slider .radio input');
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const image = ['../wonderfulParallaxSlider/1.jpg', '../wonderfulParallaxSlider/2.jpg', '../wonderfulParallaxSlider/3.jpg', '../wonderfulParallaxSlider/4.jpg', '../img/4.webp'];
+		let interest16Cur = 0;
+		let interest16Bool = true;
+		interest16.style.backgroundSize = `${interest16.offsetWidth}px ${interest16.offsetHeight}px`;
+		interest16Line.forEach((item, i) => [...item.children].forEach((item, index) => (item.style.backgroundSize = `${interest16.offsetWidth}px ${interest16.offsetHeight}px`, item.style.backgroundPosition = `${-interest16.offsetWidth / 18 * index}px ${-interest16.offsetHeight / 10 * i}px`)));
+		const control = async numeric => interest16Bool ? (interest16Bool = false, numeric ? interest16Cur += numeric : '', interest16Inp.forEach(item => item.style = 'pointer-events: none; opacity: .7;'), interest16Cur == image.length ? interest16Cur = 0 : interest16Cur < 0 ? interest16Cur = image.length-1 : '', interest16.style.backgroundImage = `url(${image[interest16Cur]})`, interest16Block.forEach(item => (item.style.scale = 0, item.style.borderRadius = '50%', item.style.transition = 'scale 1s, border-radius 1s 1s')), await asyncControl(1e3), interest16Inp[interest16Cur].checked = true, interest16Block.forEach(item => (item.style.scale = null, item.style.transition = 'scale 1s', item.style.backgroundImage = `url(${image[interest16Cur]})`)), await asyncControl(1e3), interest16Block.forEach(item => item.style.borderRadius = null), interest16Bool = true, interest16Inp.forEach(item => item.style = null)) : '';
+		interest16Btn[0].onclick = () => control(-1);
+		interest16Btn[1].onclick = () => control(1);
+		interest16Inp.forEach((item, index) => item.onchange = () => (interest16Cur = index, control()));
+		console['log']('%cCreator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		closePack.onclick = () => window.location.href = '../index.html';
+	</script>
+</body>
+</html>
