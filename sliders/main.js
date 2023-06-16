@@ -126,6 +126,10 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider14/interest.html'), 1000);
 		} else if (index == 94) {
 			setTimeout(() => window.location.replace('interestingSlider15/interest.html'), 1000);
+		} else if (index == 95) {
+			setTimeout(() => window.location.replace('interestingSlider16/interest.html'), 1000);
+		} else if (index == 96) {
+			setTimeout(() => window.location.replace('interestingSlider17/interest.html'), 1000);
 		}
 	};
 });
