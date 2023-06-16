@@ -1,5 +1,3 @@
-/* Mega Work NoteBook */
-
 const megaWorkTitle = document.querySelector('.notebookBlock h1');
 const megaWorkDeveloper = document.querySelector('.notebookBlock h2');
 const MegaWorkNoteBook = document.querySelector('.notebookBlock .noteBook');
@@ -32,7 +30,6 @@ setTimeout(() => {
 		}, 2000);
 	}, 300);
 }, 2000);
-
 const NoteBookNeon = document.querySelector('.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .NeonControl #neon');
 const NoteBookKeyboardNeon = document.querySelectorAll('.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn >*:not(.kface)');
 const NoteBookKeyboardFaceNeon = document.querySelectorAll('.notebookBlock .noteBook .keyboadCube:not(.screen) .boardTop .keyboard .line .keybtn .kface');
@@ -71,7 +68,6 @@ NoteBookNeon.oninput = function() {
 		});
 	}
 };
-
 NoteBookControlsButton.forEach((item, index) => {
 	item.onclick = function() {
 		MegaWorkNoteBook.classList.remove('start');
@@ -387,6 +383,3 @@ document.querySelector('.mBtn.butRobot7').onclick = () => {
 		}, 1000);
 	}, 1200);
 };
-
-
-
