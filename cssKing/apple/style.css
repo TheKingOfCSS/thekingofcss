@@ -2293,13 +2293,102 @@ header .head h1 {
 .models .item:nth-child(4) img:last-child {
 	width: 75%;
 }
-.continue {
+.textSlider {
+	padding: 8vw 0;
+	background: #F5F5F7;
+}
+.textSlider h2 {
 	text-align: center;
-	font: bold 7vw verdana;
-	margin-bottom: 10vw;
+	font: bold 3.3vw sans-serif;
+	color: #1D1D1F;
+}
+.textSlider .blockSlide {
+	margin-top: 6vw;
+	position: relative;
+	overflow: hidden;
+}
+.textSlider .blockSlide .big {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 250%;
+	-webkit-column-gap: 1.3vw;
+	column-gap: 1.3vw;
+	padding-left: 18vw;
+	position: relative;
+	left: 0;
+	-webkit-transition: .7s;
+	transition: .7s;
+}
+.textSlider .blockSlide .big .item {
+	width: 20vw;
+	height: 20vw;
+	background: #fff;
+	border-radius: 1.5vw;
+	-webkit-box-shadow: 5px 5px 15px #0001;
+	box-shadow: 5px 5px 15px #0001;
+	padding: 2vw 2.5vw;
+}
+.textSlider .blockSlide .big .item img {
+	height: 2.7vw;
+}
+.textSlider .blockSlide .big .item p {
+	font: bold 1.1vw sans-serif;
+	color: #1D1D1F;
+	margin: 2.5vw 0 1.2vw;
+}
+.textSlider .blockSlide .big .item p span {
+	color: transparent;
+    background: -webkit-gradient(linear, left top, right top, color-stop(15%, #2ca2b4), color-stop(17%, #5598de), color-stop(25%, #616bff), color-stop(43%, #f65aad), color-stop(80%, #ec3d43));
+    background: linear-gradient(90deg, #2ca2b4 15%, #5598de 17%, #616bff 25%, #f65aad 43%, #ec3d43 80%);
+    -webkit-background-clip: text;
+}
+.textSlider .blockSlide .big .item:nth-child(5) p span:last-of-type {
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(20%, #f65aad), color-stop(55%, #ec3d43));
+	background-image: linear-gradient(90deg, #f65aad 20%, #ec3d43 55%);
+}
+.textSlider .blockSlide .big .item a {
+	font: 1.1vw sans-serif;
+	color: #287ED4;
+	margin-top: 2.5vw;
+}
+.textSlider .blockSlide .big .item a span {
+	margin-left: .5vw;
+	display: inline-block;
+	translate: 0 1px;
+}
+.textSlider .blockSlide button {
+	position: absolute;
+	top: 50%;
+	translate: 0 -50%;
+	width: 3.5vw;
+	height: 3.5vw;
+	display: grid;
+	place-items: center;
+	font-size: 2vw;
+	background: #040434c9;
+	color: #fff;
+	border-radius: 50%;
+	z-index: 2;
+	border: 0;
+	cursor: pointer;
+	-webkit-transition: .2s;
+	transition: .2s;
+	line-height: 3vw;
+}
+.textSlider .blockSlide button:hover {
+	background: #08087bc9;
+}
+.textSlider .blockSlide .prev {
+	left: 1.5%;
+	opacity: 0;
+	pointer-events: none;
+}
+.textSlider .blockSlide .next {
+	right: 1.5%;
 }
 .Instructor {
-	margin-bottom: 15px;
+	margin: 15px 0;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
