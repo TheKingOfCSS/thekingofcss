@@ -383,4 +383,5 @@ document.querySelector('.mBtn.butRobot7').onclick = () => {
 		}, 1000);
 	}, 1200);
 };
-console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+console['log']('%cThe King Of CSS', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
