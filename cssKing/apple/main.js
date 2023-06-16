@@ -87,6 +87,10 @@ const fastBottom = document.querySelectorAll('.fast :is(h4, p)');
 const fastLock = document.querySelector('.fast .lockBlock .lock');
 const fastVideo = document.querySelector('.fast .fastLast video');
 const models = document.querySelectorAll('.models .item');
+const textNext = document.querySelector('.textSlider .blockSlide .next');
+const textPrev = document.querySelector('.textSlider .blockSlide .prev');
+const textBig = document.querySelector('.textSlider .blockSlide .big');
+let textCur = 0;
 const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
 iphoneColorInp.forEach((item, index) => {
 	item.onchange = () => {
@@ -371,6 +375,9 @@ let svgRot = 0;
 let movBool = true;
 natureBlock.lastElementChild.onclick = () => (svgRot += 360, natureBlock.lastElementChild.style.rotate = svgRot + 'deg', natureBlock.firstElementChild.paused ? (natureBlock.firstElementChild.play(), natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><g><rect class="cls-1" x="3.75" y="3" width="4.5" height="14" rx="1.5"/><rect class="cls-1" x="11.75" y="3" width="4.5" height="14" rx="1.5"/></g></svg>`) : (natureBlock.firstElementChild.pause(), natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><path d="M5 15.25V4.77a1.44 1.44 0 011.44-1.62 1.86 1.86 0 011.11.31l8.53 5c.76.44 1.17.8 1.17 1.51s-.41 1.07-1.17 1.51l-8.53 5a1.86 1.86 0 01-1.11.31A1.42 1.42 0 015 15.25z"/></svg>`, movBool = false));
 natureBlock.firstElementChild.onended = () => (svgRot += 360, natureBlock.lastElementChild.style.rotate = svgRot + 'deg', natureBlock.lastElementChild.innerHTML = `<svg viewBox="0 0 20 20" fill="#1D1D1F"><path d="M16.75 9.4a1.5 1.5 0 00-1.5 1.5A4.88 4.88 0 1110.38 6h.2L9.31 7.32a1.5 1.5 0 001.06 2.56 1.45 1.45 0 001.06-.44L15 5.88a1.52 1.52 0 00.44-1.06A1.54 1.54 0 0015 3.75L11.43.19a1.49 1.49 0 00-2.12 0 1.51 1.51 0 000 2.12l.75.75a7.85 7.85 0 108.19 7.84 1.5 1.5 0 00-1.5-1.5z"/></svg>`);
+const textData = [0, -24, -45, -66, -88, -110];
+textNext.onclick = () => (textPrev.style = 'opacity: 1; pointer-events: auto;', textCur++, textCur == textData.length-1 ? textNext.style = 'opacity: 0; pointer-events: none;' : '', textBig.style.left = textData[textCur] + '%');
+textPrev.onclick = () => (textNext.style = 'opacity: 1; pointer-events: auto;', textCur--, textCur == 0 ? textPrev.style = 'opacity: 0; pointer-events: none;' : '', textBig.style.left = textData[textCur] + '%');
 document.oncontextmenu = () => false;
 document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
