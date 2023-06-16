@@ -383,3 +383,4 @@ document.querySelector('.mBtn.butRobot7').onclick = () => {
 		}, 1000);
 	}, 1200);
 };
+console['log']('%cBy The King Of CSS3', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
