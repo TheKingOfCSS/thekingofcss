@@ -8,6 +8,9 @@ headLink.forEach(item => {
 	item.onmouseleave = () => overlay.style.opacity = 0;
 	item.nextElementSibling.onmouseleave = () => overlay.style.opacity = 0;
 });
+const parallaxData = [];
+const parallaxKing = document.querySelectorAll('.Instructor .parallax span');
+parallaxKing.forEach((item, index) => (parallaxData.push([Math.random() * (70 - -70) + -70, Math.random() * (-70 - -60) + -60]), item.style.translate = `${parallaxData[index][0]}vw ${parallaxData[index][1]}vw`));
 const leftH2 = document.querySelector('.presentation .display .left h2');
 const rightH2 = document.querySelector('.presentation .display .right h2');
 const headH1 = document.querySelector('header .head h1');
@@ -87,6 +90,7 @@ const fastBottom = document.querySelectorAll('.fast :is(h4, p)');
 const fastLock = document.querySelector('.fast .lockBlock .lock');
 const fastVideo = document.querySelector('.fast .fastLast video');
 const models = document.querySelectorAll('.models .item');
+const textSlider = document.querySelector('.textSliderOffset');
 const textNext = document.querySelector('.textSlider .blockSlide .next');
 const textPrev = document.querySelector('.textSlider .blockSlide .prev');
 const textBig = document.querySelector('.textSlider .blockSlide .big');
@@ -354,6 +358,7 @@ window.onscroll = () => {
 	scrollY >= fastLock.parentElement.parentElement.parentElement.offsetTop + innerWidth / 2.2 ? fastLock.style.animation = 'lock 1.5s steps(11) forwards' : fastLock.style.animation = null;
 	scrollY >= fastVideo.parentElement.parentElement.offsetTop + innerHeight / 4 && scrollY <= fastVideo.parentElement.parentElement.offsetTop + innerHeight / 3 ? fastVideo.play() : '';
 	models.forEach((item, index) => scrollY >= item.parentElement.offsetTop - innerHeight / 2 + index * innerWidth / 4.5 ? item.style.clipPath = `circle(${Math.min((scrollY - (item.parentElement.offsetTop - innerHeight / 2 + index * innerWidth / 4.5)) / 7, 1e2)}% at 50% 0)` : item.style.clipPath = null);
+	scrollY >= textSlider.offsetTop && scrollY <= textSlider.offsetTop + innerWidth / 6 ? parallaxKing.forEach((item, index) => (item.style.transition = '.1s', parallaxData[index][0] > 0 ? item.style.translate = `${Math.max(-(scrollY - textSlider.offsetTop) / 5 + parallaxData[index][0], 0)}vw ${Math.min((scrollY - textSlider.offsetTop) / 5 + parallaxData[index][1], 0)}vw` : item.style.translate = `${Math.min((scrollY - textSlider.offsetTop) / 5 + parallaxData[index][0], 0)}vw ${Math.min((scrollY - textSlider.offsetTop) / 5 + parallaxData[index][1], 0)}vw`)) : scrollY >= textSlider.offsetTop + innerWidth / 6 ? parallaxKing.forEach((item, index) => (item.style.transition = '.5s', item.style.translate = 0)) : '';
 };
 scroll2.onscroll = () => (fixedSec.style.translate = -scroll2.scrollTop * 2e2 / scroll2.scrollHeight + 'vw', fixedProgress.style.background = `linear-gradient(to right, #000 ${scroll2.scrollTop * 1e2 / (scroll2.scrollHeight - scroll2.clientHeight)}%, #D2D2D7 ${scroll2.scrollTop * 1e2 / (scroll2.scrollHeight - scroll2.clientHeight)}%)`);
 scroll3.onscroll = () => (fixedSec2.style.translate = -scroll3.scrollTop * 380 / scroll3.scrollHeight + 'vw', fixedProgress2.style.background = `linear-gradient(to right, #000 ${scroll3.scrollTop * 1e2 / (scroll3.scrollHeight - scroll3.clientHeight)}%, #D2D2D7 ${scroll3.scrollTop * 1e2 / (scroll3.scrollHeight - scroll3.clientHeight)}%)`);
