@@ -1366,7 +1366,7 @@ header .head h1 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-	height: 12vw;
+	height: 20vw;
 }
 .epic .textSlider h3 {
     font: bold 7.5vw sans-serif;
@@ -2294,8 +2294,9 @@ header .head h1 {
 	width: 75%;
 }
 .textSlider {
-	padding: 8vw 0;
+	padding: 8vw 0 15px;
 	background: #F5F5F7;
+	overflow: hidden;
 }
 .textSlider h2 {
 	text-align: center;
@@ -2306,6 +2307,7 @@ header .head h1 {
 	margin-top: 6vw;
 	position: relative;
 	overflow: hidden;
+	padding-bottom: 30px;
 }
 .textSlider .blockSlide .big {
 	display: -webkit-box;
@@ -2387,18 +2389,21 @@ header .head h1 {
 .textSlider .blockSlide .next {
 	right: 1.5%;
 }
-.Instructor {
-	margin: 15px 0;
+.textSlider .Instructor {
+	margin: 30vw 0 15px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
-.Instructor p {
+.textSlider .Instructor .parallax {
+	letter-spacing: 2px;
+	margin-bottom: 10px;
+}
+.textSlider .Instructor p {
 	color: #1D1D1F;
-	font: bold 17px verdana;
+	font: bold 18px verdana;
 	letter-spacing: 5px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -2407,13 +2412,13 @@ header .head h1 {
 	transition: .5s;
 	cursor: pointer;
 }
-.Instructor .letter {
+.textSlider .Instructor .letter {
 	font-weight: bold;
 	-webkit-transition: .5s;
 	transition: .5s;
 	cursor: pointer;
 }
-.Instructor .letter:hover {
+.textSlider .Instructor .letter:hover {
 	scale: 2;
 	-webkit-transition: none;
 	transition: none;
