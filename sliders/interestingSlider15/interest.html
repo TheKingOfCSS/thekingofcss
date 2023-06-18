@@ -61,12 +61,12 @@
 		.slider .parent {
 			position: absolute;
 			inset: 0;
-			background: url(../wonderfulParallaxSlider/1.jpg) no-repeat center / cover fixed;
+			background: url(../img/1.jpg) no-repeat center / cover fixed;
 		}
 		.slider .parent .item {
 			position: absolute;
 			inset: 0;
-			background: url(../wonderfulParallaxSlider/2.jpg) no-repeat center / cover fixed;
+			background: url(../img/1.jpg) no-repeat center / cover fixed;
 			-webkit-transition: -webkit-clip-path .8s;
 			transition: -webkit-clip-path .8s;
 			transition: clip-path .8s;
@@ -204,7 +204,7 @@
 		const interest15Btn = document.querySelectorAll('.slider button');
 		const interest15Inp = document.querySelectorAll('.slider .radio input');
 		const asyncControl = time => new Promise(res => setTimeout(res, time));
-		const image = ['../wonderfulParallaxSlider/1.jpg', '../wonderfulParallaxSlider/2.jpg', '../wonderfulParallaxSlider/3.jpg', '../wonderfulParallaxSlider/4.jpg', '../img/4.webp'];
+		const image = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/4.webp', '../img/5.jpg'];
 		let interest15Cur = 0;
 		let interest15Bool = true;
 		const control = async numeric => interest15Bool ? (interest15Bool = false, numeric ? interest15Cur += numeric : '', interest15Cur == image.length ? interest15Cur = 0 : interest15Cur < 0 ? interest15Cur = image.length-1 : '', interest15Inp.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), interest15Line.forEach(item => item.style = 'opacity: 1;'), interest15Item.forEach(item => item.style = `background-image: url(${image[interest15Cur]})`), interest15Item[0].style.clipPath = 'polygon(0 0, 100% 0, 0 100%)', interest15Item[1].style.clipPath = 'polygon(0 100%, 100% 0, 100% 100%)', interest15Line[0].style.top = '-100%', interest15Line[3].style.top = '100%', interest15Inp[interest15Cur].checked = true, await asyncControl(50), interest15Line[1].style.top = '-100%', interest15Line[4].style.top = '100%', await asyncControl(90), interest15Line[2].style.top = '-100%', interest15Line[5].style.top = '100%', await asyncControl(1e3), interest15Inp.forEach(item => item.style = null), interest15Bool = true, interest15.style.backgroundImage = `url(${image[interest15Cur]})`, interest15Line.forEach(item => item.style = 'transition: none;'), interest15Item.forEach(item => item.style = 'transition: none;')) : '';
