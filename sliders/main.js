@@ -130,6 +130,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider16/interest.html'), 1000);
 		} else if (index == 96) {
 			setTimeout(() => window.location.replace('interestingSlider17/interest.html'), 1000);
+		} else if (index == 97) {
+			setTimeout(() => window.location.replace('interestingSlider18/interest.html'), 1000);
 		}
 	};
 });
