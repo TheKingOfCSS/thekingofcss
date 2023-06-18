@@ -62,7 +62,7 @@
 		.slider .item {
 			position: absolute;
 			inset: 0;
-			background: url(../wonderfulParallaxSlider/1.jpg) no-repeat center / cover;
+			background: url(../img/1.jpg) no-repeat center / cover;
 			transition: rotate 1.2s, background .3s, scale .5s;
 			scale: 1.01;
 		}
@@ -197,11 +197,11 @@
 		const interest14Btn = document.querySelectorAll('.slider button');
 		const interest14Inp = document.querySelectorAll('.slider .radio input');
 		const asyncControl = time => new Promise(res => setTimeout(res, time));
-		const image = ['../wonderfulParallaxSlider/1.jpg', '../wonderfulParallaxSlider/2.jpg', '../wonderfulParallaxSlider/3.jpg', '../wonderfulParallaxSlider/4.jpg', '../img/4.webp'];
+		const image = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/4.webp', '../img/5.jpg'];
 		let cur = 0;
 		let interest14Cur = 0;
 		let interest14Bool = true;
-		const control = async numeric => (numeric ? cur += numeric : '', interest14Btn.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), interest14Inp.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), cur == image.length ? cur = 0 : cur < 0 ? cur = image.length-1 : '', interest14Cur += numeric ? numeric * 360 : 360, interest14.forEach(item => item.style = `rotate: ${interest14Cur}deg; scale: 1.5;`), interest14[3].style.rotate = -interest14Cur + 'deg', await asyncControl(8e2), interest14.forEach(item => (item.style.backgroundImage = `url(${image[cur]})`, item.style.scale = null)), interest14Inp[cur].checked = true, interest14Btn.forEach(item => item.style = null), await asyncControl(4e2), interest14Inp.forEach(item => item.style = null));
+		const control = async numeric => (interest14Bool ? (interest14Bool = false, numeric ? cur += numeric : '', interest14Btn.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), interest14Inp.forEach(item => item.style = 'opacity: .5; pointer-events: none;'), cur == image.length ? cur = 0 : cur < 0 ? cur = image.length-1 : '', interest14Cur += numeric ? numeric * 360 : 360, interest14.forEach(item => (item.style.rotate = interest14Cur + 'deg', item.style.scale = 1.5)), interest14[3].style.rotate = -interest14Cur + 'deg', await asyncControl(8e2), interest14.forEach(item => (item.style.backgroundImage = `url(${image[cur]})`, item.style.scale = null)), interest14Inp[cur].checked = true, interest14Btn.forEach(item => item.style = null), await asyncControl(4e2), interest14Inp.forEach(item => item.style = null, interest14Bool = true)) : '');
 		interest14Btn[0].onclick = () => control(-1);
 		interest14Btn[1].onclick = () => control(1);
 		interest14Inp.forEach((item, index) => item.onchange = () => (cur = index, control()));
