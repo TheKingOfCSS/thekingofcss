@@ -298,19 +298,6 @@
 			box-shadow: inset 0 0 35px #fff;
 			inset: 3px;
 		}
-		.menu .logo {
-			position: absolute;
-			bottom: 75px;
-			left: 20px;
-			-webkit-filter: drop-shadow(0 0 10px #fff);
-			filter: drop-shadow(0 0 10px #fff);
-		}
-		.menu .logo img {
-			height: 90px;
-			border-radius: 10px;
-			-webkit-box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
-			box-shadow: 0 5px 2px #fff, 0 5px 4px #fff;
-		}
 		.menu .author {
 			position: absolute;
 			bottom: 0;
@@ -419,9 +406,6 @@
 			<span style="--i: 5;">i</span>
 		</h1>
 		<div class="play">Play</div>
-		<a href="https://www.facebook.com/elbakyankrtahamalir" target="_blank" class="logo">
-    		<img src="img/logo2.png" alt="Logo" title="Էլբակյան կրթահամալիր">
-    	</a>
     	<p class="author">
 			Instructor Hovo Vardanyan
 			<br>
@@ -468,6 +452,7 @@
 		run4Sound.volume = .6;
 		run5Sound.volume = .6;
 		playGame.onclick = async () => {
+			playGame.style.pointerEvents = 'none';
 			game.style.setProperty('--paused', 'running');
 			Luigi.style.transition = '1.5s';
 			enemy.style.transition = '1.5s';
