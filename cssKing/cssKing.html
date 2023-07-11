@@ -372,6 +372,8 @@
 			x >= 150 ? x = -50 : '';
 			title.style.backgroundImage = `linear-gradient(to right, #fff ${x}%, #777 ${x + 5}% ${x + 10}%, #fff ${x + 20}%)`;
 		}, 1);
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
 </body>
 </html>
