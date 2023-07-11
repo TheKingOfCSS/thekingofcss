@@ -164,39 +164,11 @@
             ],
 			theme: ['darkcyan', 'crimson', 'slategrey'],
         };
-        clothingSlider.onmousewheel = e => {
-            e.deltaY > 0 ? clothData.clothCurrent++ : clothData.clothCurrent--;
-            clothData.clothCurrent < 0 ? clothData.clothCurrent = 2 : clothData.clothCurrent > 2 ? clothData.clothCurrent = 0 : '';
-            clothingSliderVertical.style.top = -clothData.clothCurrent + '00%';
-			clothingSlider.style.background = clothData.theme[clothData.clothCurrent];
-        };
-        clothingSlider.onmousedown = e => {
-            clothData.clothMouse = e.x;
-            clothData.clothBool = true;
-        };
+        clothingSlider.onmousewheel = e => (e.deltaY > 0 ? clothData.clothCurrent++ : clothData.clothCurrent--, clothData.clothCurrent < 0 ? clothData.clothCurrent = 2 : clothData.clothCurrent > 2 ? clothData.clothCurrent = 0 : '', clothingSliderVertical.style.top = -clothData.clothCurrent + '00%', clothingSlider.style.background = clothData.theme[clothData.clothCurrent]);
+        clothingSlider.onmousedown = e => (clothData.clothMouse = e.x, clothData.clothBool = true);
         clothingSlider.onmouseup = () => clothData.clothBool = false;
         clothingSlider.onmouseleave = () => clothData.clothBool = false;
-        clothingSlider.onmousemove = e => {
-            if (clothData.clothBool) {
-                if (e.x < clothData.clothMouse) {
-                    clothData.clothX[clothData.clothCurrent] -= 1;
-                    clothData.clothX[clothData.clothCurrent] < -6 ? clothData.clothX[clothData.clothCurrent] = -3 : '';
-                    clothingPart[clothData.clothCurrent].style.left = clothData.clothX[clothData.clothCurrent] + '00%';
-                    clothData.clothBool = false;
-                    Array.from(clothingPart[clothData.clothCurrent].children).forEach((item, index) => {
-                         item.style = `--i:${clothData.clothZ[Math.abs(clothData.clothX[clothData.clothCurrent])][index]}`;
-                    });
-                } else if (e.x > clothData.clothMouse) {
-                    clothData.clothX[clothData.clothCurrent] += 1;
-                    clothData.clothX[clothData.clothCurrent] > 0 ? clothData.clothX[clothData.clothCurrent] = -3 : '';
-                    clothingPart[clothData.clothCurrent].style.left = clothData.clothX[clothData.clothCurrent] + '00%';
-                    clothData.clothBool = false;
-                    Array.from(clothingPart[clothData.clothCurrent].children).forEach((item, index) => {
-                         item.style = `--i:${clothData.clothZ[Math.abs(clothData.clothX[clothData.clothCurrent])][index]}`;
-                    });
-                }
-            }
-        };
+        clothingSlider.onmousemove = e => clothData.clothBool ? e.x < clothData.clothMouse ? (clothData.clothX[clothData.clothCurrent] -= 1, clothData.clothX[clothData.clothCurrent] < -6 ? clothData.clothX[clothData.clothCurrent] = -3 : '', clothingPart[clothData.clothCurrent].style.left = clothData.clothX[clothData.clothCurrent] + '00%', clothData.clothBool = false, Array.from(clothingPart[clothData.clothCurrent].children).forEach((item, index) => item.style = `--i:${clothData.clothZ[Math.abs(clothData.clothX[clothData.clothCurrent])][index]}`)) : e.x > clothData.clothMouse ? (clothData.clothX[clothData.clothCurrent] += 1, clothData.clothX[clothData.clothCurrent] > 0 ? clothData.clothX[clothData.clothCurrent] = -3 : '', clothingPart[clothData.clothCurrent].style.left = clothData.clothX[clothData.clothCurrent] + '00%', clothData.clothBool = false, Array.from(clothingPart[clothData.clothCurrent].children).forEach((item, index) => item.style = `--i:${clothData.clothZ[Math.abs(clothData.clothX[clothData.clothCurrent])][index]}`)) : '' : '';
         console['log']('%cAuthor and Creator Senior Developer Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 		closePack.onclick = () => window.location.href = '../index.html';
     </script>
