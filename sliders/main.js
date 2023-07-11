@@ -134,6 +134,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider18/interest.html'), 1000);
 		} else if (index == 98) {
 			setTimeout(() => window.location.replace('interestingSlider19/interest.html'), 1000);
+		} else if (index == 99) {
+			setTimeout(() => window.location.replace('samsung/index.html'), 1000);
 		}
 	};
 });
@@ -285,15 +287,11 @@ let current8Rot = 0;
 	vers7ItemTop.forEach((item, index) => {
 		item.style.backgroundSize = vers7.offsetWidth + 'px ' + vers7.offsetHeight + 'px';
 		item.style.backgroundPosition = -vers7.offsetWidth / vers7ItemTop.length * index + 'px 0';
-		
 		vers7ItemBottom[index].style.backgroundSize = vers7.offsetWidth + 'px ' + vers7.offsetHeight + 'px';
-		
 		vers8ItemTop[index].style.backgroundSize = vers8.offsetWidth + 'px ' + vers8.offsetHeight + 'px';
 		vers8ItemBottom[index].style.backgroundSize = vers8.offsetWidth + 'px ' + vers8.offsetHeight + 'px';
 		vers8ItemTop[index].style.backgroundPosition = -vers8.offsetWidth / vers8ItemTop.length * index + 'px 0';
-		
 		vers8ItemBottom[index].style.backgroundPosition = -vers8.offsetWidth / vers8ItemTop.length * index + 'px 100%';
-		
 		vers7ItemBottom[index].style.backgroundPosition = -vers7.offsetWidth / vers7ItemTop.length * index + 'px 100%';
 	});
 	requestAnimationFrame(vers7Size);
