@@ -4,7 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Instructor Hovo Vardanyan</title>
 	<style>
-		* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		* { margin: 0; padding: 0; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		img {
+			pointer-events: none;
+		}
+		p:not(:last-child) {
+			user-select: text;
+		}
 		body {
 			background: #111;
 			text-align: center;
@@ -231,6 +237,8 @@
 		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
 		document.querySelector('.info .author span').innerText = new Date().getFullYear();
 		document.querySelector('.info .age').innerText = new Date(Date.now() - new Date('8/28/94').getTime()).getFullYear() - 1970;
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
 </body>
 </html>
