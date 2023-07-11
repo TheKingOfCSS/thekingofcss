@@ -2622,6 +2622,8 @@
 		TheKingOfCSS3.style.setProperty('--time', Math.random() * (50 - 2) + 2 + 's');
 		TheKingOfCSS3.style.setProperty('--bg', `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`);
 		TheKingOfCSS3.style.setProperty('--rot', variant[1][Math.floor(Math.random() * variant[1].length)] + '720deg');
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
 </body>
 </html>
