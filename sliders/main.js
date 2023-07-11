@@ -1532,6 +1532,9 @@ vers53Inp.forEach((item, index) => {
 		}
 	};
 });
+const theKingOfSliders = document.querySelectorAll('.theKingOfSliders span');
+theKingOfSliders.forEach((item, index) => (item.style.transition = Math.random() * (1 - .5) + .5 + 's', index % 2 ? item.style.translate = -innerWidth + 'px' : item.style.translate = innerWidth + 'px'));
+window.addEventListener('scroll', () => theKingOfSliders.forEach((item, index) => scrollY >= document.body.scrollHeight - innerHeight - 20 ? item.style.translate = 0 : (item.style.transition = Math.random() * (1 - .5) + .5 + 's', index % 2 ? item.style.translate = -innerWidth + 'px' : item.style.translate = innerWidth + 'px')));
 document.oncontextmenu = () => false;
 document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 console['log']('%cAll These Sliders were Created and Coded by Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
