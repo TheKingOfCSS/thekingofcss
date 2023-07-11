@@ -1534,6 +1534,8 @@ vers53Inp.forEach((item, index) => {
 		}
 	};
 });
+document.oncontextmenu = () => false;
+document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 console['log']('%cAll These Sliders were Created and Coded by Hovo Vardanyan', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 console['log']('%cThe King Of CSS3 and Perfect JavaScript Writer', 'font: bold 25px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 console['log']('%cDeveloper Hovo Vardanyan', 'font: bold 22px serif;  padding: 10px;');
