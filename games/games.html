@@ -381,6 +381,8 @@
 	</div>
 	<script>
 		document.querySelector('.backMega').onclick = () => window.location.href = '../index.html';
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
 </body>
 </html>
