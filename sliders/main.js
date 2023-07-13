@@ -136,6 +136,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider19/interest.html'), 1000);
 		} else if (index == 99) {
 			setTimeout(() => window.location.replace('samsung/index.html'), 1000);
+		} else if (index == 100) {
+			setTimeout(() => window.location.replace('interestingSlider20/interest.html'), 1000);
 		}
 	};
 });
