@@ -2040,7 +2040,16 @@
 			left: 0;
 			width: 100%;
 			z-index: 10;
+			-webkit-transition: 1.4s;
 			transition: 1.4s;
+		}
+		.level h2 {
+			position: absolute;
+			top: 12px;
+			left: 50%;
+			translate: -50%;
+			font: bold 20px verdana;
+			text-shadow: 0 3px 6px #000, 0 -3px 8px #000;
 		}
 		.level .show {
 			position: absolute;
@@ -2049,9 +2058,11 @@
 			top: -30px;
 			left: 50%;
 			translate: -50%;
+			background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(transparent));
 			background: linear-gradient(#fff, transparent);
 			border-radius: 50px 50px 0 0;
 			cursor: pointer;
+			-webkit-transition: .2s;
 			transition: .2s;
 		}
 		.level .show:hover {
@@ -2065,7 +2076,9 @@
 			height: 2px;
 			width: 18px;
 			background: #fff;
+			-webkit-box-shadow: 0 3px 4px #0009;
 			box-shadow: 0 3px 4px #0009;
+			-webkit-transition: 2s;
 			transition: 2s;
 		}
 		.level .show::before {
@@ -2083,14 +2096,21 @@
 			rotate: -30deg;
 		}
 		.level:has(.show.active) {
+			-webkit-box-shadow: inset 0 5px 25px -14px #ff0d97;
 			box-shadow: inset 0 5px 25px -14px #ff0d97;
 		}
 		.level .logos {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
 			gap: 20px;
 			padding: 50px;
+			background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#000));
 			background: linear-gradient(transparent, #000);
 		}
 		.level .logos img {
@@ -2680,6 +2700,7 @@
 	</div>
 	<div class="level">
 		<div class="show"></div>
+		<h2>Achievements</h2>
 		<div class="logos">
 			<img src="aboutMe/img/k1.png" alt="Img">
 			<img src="aboutMe/img/k2.png" alt="Img">
