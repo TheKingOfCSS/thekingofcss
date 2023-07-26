@@ -2034,6 +2034,68 @@
 		.TheKingOfCSS3 .text .letter:nth-child(7) {
 			width: 85px;
 		}
+		.level {
+			position: fixed;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			z-index: 10;
+			transition: 1.4s;
+		}
+		.level .show {
+			position: absolute;
+			width: 55px;
+			height: 30px;
+			top: -30px;
+			left: 50%;
+			translate: -50%;
+			background: linear-gradient(#fff, transparent);
+			border-radius: 50px 50px 0 0;
+			cursor: pointer;
+		}
+		.level .show::before,
+		.level .show::after {
+			content: '';
+			position: absolute;
+			top: 12px;
+			height: 2px;
+			width: 18px;
+			background: #fff;
+			box-shadow: 0 3px 4px #0009;
+			transition: 2s;
+		}
+		.level .show::before {
+			left: 11px;
+    		rotate: -30deg;
+		}
+		.level .show::after {
+			right: 11px;
+    		rotate: 30deg;
+		}
+		.level .show.active::before {
+			rotate: 30deg;
+		}
+		.level .show.active::after {
+			rotate: -30deg;
+		}
+		.level:has(.show.active) {
+			box-shadow: inset 0 5px 25px -14px #ff0d97;
+		}
+		.level .logos {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 20px;
+			padding: 50px;
+			background: linear-gradient(transparent, #000);
+		}
+		.level .logos img {
+			width: calc(33% - 15px);
+			border: 2px solid #fff;
+			padding: 10px;
+			background: #000;
+			pointer-events: none;
+		}
 		@media screen and (max-width: 1024px) {
 			body {
 				overflow: visible;
@@ -2612,6 +2674,14 @@
 			</div>
 		</div>
 	</div>
+	<div class="level">
+		<div class="show"></div>
+		<div class="logos">
+			<img src="aboutMe/img/k1.png" alt="Img">
+			<img src="aboutMe/img/k2.png" alt="Img">
+			<img src="aboutMe/img/k3.png" alt="Img">
+		</div>
+	</div>
 	<script>
 		const TheKingOfCSS3 = document.querySelector('.TheKingOfCSS3');
 		const span = document.querySelectorAll('.TheKingOfCSS3 .text .letter span');
@@ -2622,6 +2692,11 @@
 		TheKingOfCSS3.style.setProperty('--time', Math.random() * (50 - 2) + 2 + 's');
 		TheKingOfCSS3.style.setProperty('--bg', `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`);
 		TheKingOfCSS3.style.setProperty('--rot', variant[1][Math.floor(Math.random() * variant[1].length)] + '720deg');
+		const level = document.querySelector('.level');
+		const levelShow = document.querySelector('.level .show');
+		const levelDisplay = document.querySelector('.level .logos');
+		let levelTrue = true;
+		levelShow.onclick = () => (level.style.top = levelTrue ? `calc(100% - ${levelDisplay.offsetHeight}px)` : null, levelShow.classList.toggle('active'), levelTrue = !levelTrue);
 		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
