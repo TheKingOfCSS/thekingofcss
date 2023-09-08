@@ -144,6 +144,10 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('tvSlider/index.html'), 1000);
 		} else if (index == 103) {
 			setTimeout(() => window.location.replace('interestingSlider21/interest.html'), 1000);
+		} else if (index == 104) {
+			setTimeout(() => window.location.replace('interestingSlider22/interest.html'), 1000);
+		} else if (index == 105) {
+			setTimeout(() => window.location.replace('interestingSlider23/interest.html'), 1000);
 		}
 	};
 });
