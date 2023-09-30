@@ -148,6 +148,8 @@ version.forEach((item, index) => {
 			setTimeout(() => window.location.replace('interestingSlider22/interest.html'), 1000);
 		} else if (index == 105) {
 			setTimeout(() => window.location.replace('interestingSlider23/interest.html'), 1000);
+		} else if (index == 106) {
+			setTimeout(() => window.location.replace('interestingSlider24/interest.html'), 1000);
 		}
 	};
 });
