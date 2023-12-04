@@ -764,7 +764,7 @@
 					let Brect = item.getBoundingClientRect();
 					MRect.bottom >= Brect.top && Brect.left <= MRect.right && Brect.right >= MRect.left && MRect.top <= Brect.bottom ? gameOver() : '';
 				});
-				if (MRect.top < PRect.bottom - PRect.height / 2 && PRect.left < MRect.right - 100 && PRect.right > MRect.left + 100 && myCoin >= 0) {
+				if (MRect.top < PRect.bottom - PRect.height / 2 && PRect.left < MRect.right - 100 && PRect.right > MRect.left + 100 && myCoin >= 50) {
 					clearInterval(drawGame);
 					clearInterval(j);
 					clearInterval(d);
