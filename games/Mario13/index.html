@@ -349,6 +349,8 @@
 							}
 						}
 					});
+					box.firstElementChild.style.scale = null;
+					await asyncControl(5e2);
 					box.style.pointerEvents = 'none';
 					box.style.opacity = .1;
 					let time;
@@ -383,9 +385,12 @@
 								item.style.translate = 0;
 								await asyncControl(8e2);
 								item.lastElementChild.firstElementChild.innerText = 0;
-								game.querySelectorAll('.box').forEach(item => {
-									item.style.pointerEvents = null;
-									item.style.opacity = null;
+								game.querySelectorAll('.box').forEach((item, index) => {
+									if (index != 9) {
+										item.style.pointerEvents = null;
+										item.style.opacity = null;
+										item.firstElementChild.style.scale = 0;
+									}
 								});
 							});
 							await asyncControl(12e2);
@@ -439,7 +444,7 @@
 				if (item2 != 'Mario') {
 					const img = document.createElement('img');
 					box[item2].appendChild(img);
-					img.style = 'width: 40%; filter: drop-shadow(0 0 20px #fff);';
+					img.style = 'width: 40%; filter: drop-shadow(0 0 20px #fff); scale: 0; transition: .4s;';
 					img.src = data[index][0];
 					img.dataset.name = data[index][1];
 					img.dataset.index = index;
