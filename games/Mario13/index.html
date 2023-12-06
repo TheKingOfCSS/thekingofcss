@@ -360,16 +360,12 @@
 						disTime.parentElement.style.left = 0;
 						Mario.style.animation = 'Mario .2s infinite';
 						superMario = true;
-						clearInterval(1);
-						clearInterval(2);
-						clearInterval(3);
-						clearInterval(4);
-						clearInterval(5);
-						clearInterval(6);
+						clearInterval(1); clearInterval(2); clearInterval(3); clearInterval(4); clearInterval(5); clearInterval(6); clearInterval(7); clearInterval(8); clearInterval(9); clearInterval(10); clearInterval(11); clearInterval(12); clearInterval(13); clearInterval(14); clearInterval(15); clearInterval(16); clearInterval(17); clearInterval(18); clearInterval(19); clearInterval(20);
 						sec = 5;
 						disTime.innerText = sec;
 						time = setInterval(() => {
 							sec--;
+							sec < 0 ? sec = 0 : '';
 							sec == 0 ? (clearInterval(time), Mario.style.animation = null, disTime.parentElement.style.left = null, superMario = false, theme.play(), star.pause()) : '';
 							disTime.innerText = sec;
 						}, 1e3);
@@ -394,10 +390,13 @@
 								});
 							});
 							await asyncControl(12e2);
-							MarioLife.innerText--;
+							MarioLife.innerText > 0 ? MarioLife.innerText-- : '';
 							if (MarioLife.innerText == 0) {
 								gameTrue = false;
 								gameOverSound.play();
+								theme.pause();
+								clearInterval(time);
+								disTime.parentElement.style.left = null;
 								game.querySelectorAll('.box').forEach(item => {
 									item.style.pointerEvents = 'none';
 									item.style.background = '#222';
