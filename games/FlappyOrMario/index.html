@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flappy Or Mario</title>
+	<link rel="shortcut icon" href="img/flappy.gif" id="short">
+	<style>
+		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		.game {
+			--King: url(img/flappy.gif);
+			--w: 58px;
+			--h: 37px;
+			--sW: 67px;
+			--sH: 53px;
+			--sL: -5px;
+			--sT: -8px;
+			height: 1e2vh;
+			position: relative;
+			overflow: hidden;
+			background: url(img/sky.jpg) 68% 0 / 60% 60vh;
+			animation: sky 15s linear infinite;
+		}
+		.game .Flappy {
+			position: absolute;
+			top: 40%;
+			left: 55%;
+			width: var(--w);
+			height: var(--h);
+			background: var(--King) no-repeat var(--sL) var(--sT) / var(--sW) var(--sH);
+			border-radius: 25px 25px 12px 20px;
+			scale: -1 1;
+			transition: top .1s, scale .1s;
+			z-index: 1;
+		}
+		.game .rock {
+			position: absolute;
+			top: 0;
+			width: 28%;
+			height: 100%;
+			background: url(img/rock.jpg) 65% 0 / 40vh 33.3vh;
+			animation: rock 2s linear infinite;
+			box-shadow: 20px 0 35px #0008;
+		}
+		.game .rock.left {
+			left: 0%;
+		}
+		.game .rock.right {
+			right: 0%;
+			scale: -1 1;
+		}
+		.game .pipe {
+			position: absolute;
+			top: -120px;
+			width: 15%;
+			height: 100px;
+			background: url(img/pipe.png) no-repeat center / 100% 100%;
+			animation: pipe 7s linear 2s infinite;
+		}
+		.game .pipe.left {
+			left: 28%;
+		}
+		.game .pipe.right {
+			right: 28%;
+			scale: -1 1;
+			animation-delay: 4s;
+		}
+		.game :is(.pipe:nth-child(6), .pipe:nth-child(7)){
+			animation-delay: 6.5s;
+		}
+		.game .coin {
+			position: absolute;
+			top: -120px;
+			width: 35px;
+			height: 35px;
+			background: url(img/coin.gif) no-repeat center / 35px 35px;
+			border-radius: 50px;
+			animation: pipe 7s linear 3s infinite;
+		}
+		.game .coin.left {
+			left: 30%;
+		}
+		.game .coin.right {
+			right: 30%;
+			animation-delay: 5s;
+		}
+		.game .point {
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+		}
+		.game .point img {
+			height: 50px;
+		}
+		.game .point span {
+			font: bold 24px sans-serif;
+			color: #fff;
+			letter-spacing: 2px;
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			translate: -50% -50%;
+			z-index: 3;
+			font: bold 6vw verdana;
+			color: #f00;
+			text-shadow: 0 5px 3px #fff, 0 10px 3px #000;
+			letter-spacing: -65px;
+			opacity: 0;
+			transition: .5s;
+		}
+		.game .enemy1 {
+			position: absolute;
+			left: 40%;
+			top: -70px;
+			width: 40px;
+			height: 65px;
+			background: url(img/enemy1.png) no-repeat center / 40px 65px;
+		}
+		.game .enemy2 {
+			position: absolute;
+			left: 40%;
+			top: -110px;
+			width: 70px;
+			height: 100px;
+			background: url(img/koopa.gif) no-repeat -13px -6px / 102px 110px;
+			border-radius: 40px;
+		}
+		@keyframes sky {
+			to { background-position-y: 60vh; }
+		}
+		@keyframes rock {
+			to { background-position-y: 33.3vh; }
+		}
+		@keyframes pipe {
+			to { top: 105%; }
+		}
+		.menu {
+			position: fixed;
+			inset: 0;
+			background: url(img/rock.jpg) 50% 0 / 15% 25%;
+			z-index: 10;
+			text-align: center;
+			padding-top: 5vw;
+			animation: menu 2s linear infinite;
+			clip-path: circle(100%);
+			transition: .9s;
+		}
+		.menu h1 {
+			font: bold 9vw verdana;
+			color: #fff;
+			-webkit-text-stroke: 2px #fff;
+			text-shadow: 0 .6vw 0 #000, 0 .9vw .5vw #000;
+		}
+		.menu h1 b {
+			color: #ffa700;
+			animation: title 2s infinite;
+		}
+		.menu h1 span {
+			color: #f00;
+			animation: title 2s infinite;
+		}
+		.menu .play {
+			font: bold 5vw verdana;
+			padding: 1.2vw 3vw;
+			display: inline-block;
+			border-radius: 5vw;
+			cursor: pointer;
+			margin-top: 7vw;
+			box-shadow: 0 .5vw .5vw #000;
+			color: #fff;
+			text-shadow: 0 .35vw .3vw #000;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+			transition: .2s;
+		}
+		.menu .play::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(45deg, #ffa700 50%, transparent 50%);
+			z-index: -1;
+			transition: .4s;
+			pointer-events: none;
+		}
+		.menu .play::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(45deg, transparent 50%, #f00 50%);
+			z-index: -1;
+			transition: .4s;
+			pointer-events: none;
+		}
+		.menu .play:hover::before {
+			rotate: 180deg;
+		}
+		.menu .play:hover::after {
+			rotate: -180deg;
+		}
+		.menu .play:active {
+			box-shadow: 0 .5vw .5vw #fff;
+		}
+		.menu .menuF {
+			position: absolute;
+			top: 15vw;
+			height: 100px;
+			pointer-events: none;
+			left: -150px;
+			animation: left 6s linear infinite;
+		}
+		.menu .menuM {
+			position: absolute;
+			top: 15vw;
+			height: 140px;
+			pointer-events: none;
+			right: -150px;
+			scale: -1 1;
+			animation: right 6s linear infinite;
+		}
+		@keyframes menu {
+			to { background-position-y: 25vh; }
+		}
+		@keyframes left {
+			50% { left: 1e2%; scale: 1; }
+			50.1%, 1e2% { scale: -1 1; }
+		}
+		@keyframes right {
+			50% { right: 1e2%; scale: -1 1; }
+			50.1%, 1e2% { scale: none; }
+			65% { z-index: 1; }
+		}
+		@keyframes title {
+			50% { letter-spacing: -3vw; color: transparent; text-shadow: none; }
+		}
+		.menu .play:nth-of-type(2) {
+			margin-top: 2vw;
+			font-size: 4.2vw;
+		}
+		.menu .record {
+			display: flex;
+			justify-content: center;
+			margin-top: 2.5vw;
+			color: #fff;
+			font: bold 1.3vw verdana;
+			column-gap: 20px;
+			text-shadow: 0 .3vw 5px #000;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: rgba(255, 0, 0, .87);
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		const AC = x => document['createElement'](x);
+		const menu = AC('div');
+		const game = AC('div');
+		document.body.prepend(menu);
+		const playGame = AC('div');
+		const selectHero = AC('div');
+		const menuM = AC('img');
+		const menuF = AC('img');
+		menuM.alt = 'Img';
+		menuF.alt = 'Img';
+		menuM.className = 'menuM';
+		menuF.className = 'menuF';
+		menuM.src = 'img/mario.gif';
+		menuF.src = 'img/flappy.gif';
+		playGame.className = 'play';
+		selectHero.className = 'play';
+		const title = AC('h1');
+		playGame.innerText = 'Play';
+		selectHero.innerText = 'Flappy';
+		title.innerHTML = '<b>Flappy</b> or <span>Mario</span>';
+		menu.className = 'menu';
+		const br = AC('br');
+		const authorHovoVardanyan = AC('p');
+		authorHovoVardanyan.innerHTML = `
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2023
+		`;
+		authorHovoVardanyan.className = 'author';
+		const recordScreen = AC('div');
+		recordScreen.className = 'record';
+		const recordMario = AC('h3');
+		const recordFlappy = AC('h3');
+		const recordLine = AC('h3');
+		recordScreen.append(recordFlappy, recordLine, recordMario);
+		recordLine.innerText = '|';
+		recordFlappy.innerText = 'Flappy Record - ' + (localStorage.getItem('MarioOrFlappyRF') || 0);
+		recordMario.innerText = 'Mario Record - ' + (localStorage.getItem('MarioOrFlappyRM') || 0);
+		menu.append(title, playGame, br, selectHero, menuM, menuF, recordScreen, authorHovoVardanyan);
+		let variant = true;
+		let variantR = 'F';
+		selectHero.onclick = () => {
+			if (variant) {
+				selectHero.innerText = 'Mario';
+				game.style = '--King: url(img/mario.gif); --w: 58px; --h: 76px; --sW: 75px; --sH: 82px; --sL: -10px; --sT: 0;';
+				variantR = 'M';
+			} else {
+				selectHero.innerText = 'Flappy';
+				game.style = null;
+				variantR = 'F';
+			}
+			variant = !variant;
+		};
+		playGame.onclick = () => {
+			playGame.style.pointerEvents = 'none';
+			menu.style.clipPath = 'circle(0 at 0% 0%)';
+			setTimeout(() => menu.remove(), 9e2);
+			document.body.prepend(game);
+			game.className = 'game';
+			const Flappy = AC('div');
+			game.append(Flappy);
+			Flappy.className = 'Flappy';
+			const rock = [];
+			const pipe = [];
+			const coin = [];
+			for (let i = 0; i < 2; i++) {
+				const rockElem = AC('div');
+				rockElem.className = 'rock';
+				rockElem.className += i == 0 ? ' left' : ' right';
+				rock.push(rockElem);
+				game.append(rockElem);
+			}
+			for (let i = 0; i < 4; i++) {
+				const pipeElem = AC('div');
+				pipeElem.className = 'pipe';
+				pipeElem.className += i == 0 || i == 2 ? ' left' : ' right';
+				pipe.push(pipeElem);
+				game.append(pipeElem);
+			}
+			for (let i = 0; i < 2; i++) {
+				const coinElem = AC('div');
+				coinElem.className = 'coin';
+				coinElem.className += i == 0 ? ' left' : ' right';
+				coin.push(coinElem);
+				game.append(coinElem);
+			}
+			const elemPoint = AC('div');
+			elemPoint.className = 'point';
+			const elemPointImg = AC('img');
+			elemPointImg.alt = 'Img';
+			elemPointImg.src = 'img/coin.gif';
+			const elemPointInf = AC('span');
+			elemPoint.append(elemPointImg, elemPointInf);
+			const point = AC('b');
+			point.innerText = 0;
+			elemPointInf.append('1000 / ', point);
+			const gameOverInfo = AC('h2');
+			gameOverInfo.className = 'gameOver';
+			gameOverInfo.innerText = 'GameOver';
+			const enemy1 = AC('div');
+			const enemy2 = AC('div');
+			enemy1.className = 'enemy1';
+			enemy2.className = 'enemy2';
+			game.append(elemPoint, gameOverInfo, enemy1, enemy2);
+			const asyncControl = time => new Promise(res => setTimeout(res, time));
+			const key = {};
+			const gameOverSound = new Audio('img/gameOver.mp3');
+			const coinSound = new Audio('img/coin.mp3');
+			const FjumpSound = new Audio('img/Fjump.mp3');
+			const MjumpSound = new Audio('img/Mjump.mp3');
+			const winSound = new Audio('img/win.mp3');
+			const themeSound = new Audio('img/theme.mp3');
+			themeSound.play();
+			gameOverSound.volume = .5;
+			coinSound.volume = .5;
+			FjumpSound.volume = .5;
+			MjumpSound.volume = .5;
+			winSound.volume = .7;
+			themeSound.volume = .5;
+			let y = Flappy.offsetTop;
+			let x = Flappy.offsetLeft;
+			let sizeR = 0;
+			let sizeL = 0;
+			let rotR = 0;
+			let rotL = 0;
+			let dir = 'left';
+			let shortcut = 0;
+			let shortcutBool = true;
+			pipe.forEach(item => item.style.width = Math.random() * (20 - 10) + 10 + '%');
+			enemy1.style.left = Math.random() * (69 - 28) + 28 + '%';
+			enemy2.style.left = Math.random() * (69 - 28) + 28 + '%';
+			const down = setInterval(() => {
+				y += 15;
+				sizeL += 2.5;
+				sizeR += 2.5;
+				rotL > -45 ? rotL -= sizeL : '';
+				rotR < 45 ? rotR += sizeR : '';
+				Flappy.style.top = y + 'px';
+				Flappy.style.rotate = dir == 'left' ? rotL + 'deg' : rotR + 'deg';
+			}, 70);
+			document.onkeydown = e => {
+				key[e.which] = true;
+				if (e.which == 32 || e.which == 38) {
+					y -= 90;
+					sizeL = -10;
+					sizeR = -10;
+					rotL = 45;
+					rotR = -45;
+					Flappy.style.top = y + 'px';
+					Flappy.style.rotate = dir == 'left' ? rotL + 'deg' : rotR + 'deg';
+					FjumpSound.currentTime = 0;
+					MjumpSound.currentTime = 0;
+					!variant ? MjumpSound.play() : FjumpSound.play();
+				}
+				e.which == 40 ? (y += 30, Flappy.style.top = y + 'px') : '';
+			};
+			document.onkeyup = e => delete key[e.which];
+			const draw = setInterval(() => {
+				if (key[37]) {
+					x > rock[0].offsetLeft + rock[0].offsetWidth - 5 ? x -= 2 : '';
+					dir = 'left';
+					Flappy.style.left = x + 'px';
+					Flappy.style.scale = null;
+					Flappy.style.rotate = rotL + 'deg';
+				}
+				if (key[39]) {
+					x < rock[1].offsetLeft - Flappy.offsetWidth + 5 ? x += 2 : '';
+					dir = 'right';
+					Flappy.style.left = x + 'px';
+					Flappy.style.scale = 1;
+					Flappy.style.rotate = rotR + 'deg';
+				}
+				pipe.forEach(item => (item.offsetTop > innerHeight ? item.style.width = Math.random() * (20 - 10) + 10 + '%' : '', item.className.includes('left') ? Flappy.offsetLeft < item.offsetLeft + item.offsetWidth - 15 && Flappy.offsetTop < item.offsetTop + item.offsetHeight && Flappy.offsetTop + Flappy.offsetHeight > item.offsetTop ? gameOver(true) : '' : Flappy.offsetLeft + Flappy.offsetWidth > item.offsetLeft + 15 && Flappy.offsetTop < item.offsetTop + item.offsetHeight && Flappy.offsetTop + Flappy.offsetHeight > item.offsetTop ? gameOver(true) : ''));
+				coin[0].offsetTop > innerHeight ? coin[0].style.left = Math.random() * (65 - 30) + 30 + '%' : '';
+				coin[1].offsetTop > innerHeight ? coin[1].style.right = Math.random() * (65 - 30) + 30 + '%' : '';
+				coin.forEach(async item => {
+					if (Flappy.offsetTop <= item.offsetTop + item.offsetHeight && Flappy.offsetLeft + Flappy.offsetWidth >= item.offsetLeft && Flappy.offsetLeft <= item.offsetLeft + item.offsetWidth && Flappy.offsetTop + Flappy.offsetHeight >= item.offsetTop) {
+						item.style.animation = 'none';
+						coinSound.currentTime = 0;
+						coinSound.play();
+						point.innerText++;
+						point.innerText == 20 ? enemy1.style.animation = 'pipe 3s linear infinite' : '';
+						point.innerText == 40 ? enemy2.style.animation = 'pipe 3s linear infinite' : '';
+						if (+point.innerText > +localStorage.getItem(`MarioOrFlappyR${variantR}`)) {
+							localStorage.setItem(`MarioOrFlappyR${variantR}`, point.innerText);
+						}
+						if (point.innerText == 1e3) {
+							(async function() {
+								gameOverInfo.innerText = 'Winner';
+								gameOverInfo.style = 'opacity: 1; letter-spacing: 0; top: 50%; color: #0f0;';
+								global();
+								winSound.play();
+								coin.forEach(item => item.style.display = 'none');
+								Flappy.style.left = '48%';
+								Flappy.style.transition = '.5s';
+								Flappy.style.rotate = null;
+								Flappy.style.scale = 'none';
+								await asyncControl(1e3);
+								Flappy.style.transition = 'top 1.5s';
+								Flappy.style.top = '-120%';
+								Flappy.style.rotate = '-45deg';
+								await asyncControl(5e3);
+								location.reload();
+							})();
+						}
+						await asyncControl(Math.random() * (3e3 - 2e3) + 2e3);
+						item.style.animation = null;
+					}
+				});
+				enemy2.style.scale = Flappy.offsetLeft < enemy2.offsetLeft ? '-1 1' : '1';
+				Flappy.offsetTop > innerHeight || Flappy.offsetTop + Flappy.offsetHeight < -50 ? gameOver(true) : '';
+				enemy1.offsetTop > innerHeight ? enemy1.style.left = Math.random() * (69 - 28) + 28 + '%' : '';
+				enemy2.offsetTop > innerHeight ? enemy2.style.left = Math.random() * (69 - 28) + 28 + '%' : '';
+				(Flappy.offsetTop < enemy1.offsetTop + enemy1.offsetHeight && Flappy.offsetLeft + Flappy.offsetWidth > enemy1.offsetLeft && Flappy.offsetLeft < enemy1.offsetLeft + enemy1.offsetWidth && Flappy.offsetTop + Flappy.offsetHeight > enemy1.offsetTop) || (Flappy.offsetTop < enemy2.offsetTop + enemy2.offsetHeight && Flappy.offsetLeft + Flappy.offsetWidth > enemy2.offsetLeft && Flappy.offsetLeft < enemy2.offsetLeft + enemy2.offsetWidth && Flappy.offsetTop + Flappy.offsetHeight > enemy2.offsetTop) ? gameOver() : '';
+				shortcut++;
+				shortcut % 1e3 == 0 ? (short.href = shortcutBool ? 'img/face.png' : 'img/flappy.gif', shortcutBool = !shortcutBool) : '';
+			}, 1);
+			const global = () => {
+				clearInterval(down);
+				clearInterval(draw);
+				themeSound.pause();
+				game.style.animationPlayState = 'paused';
+				rock.forEach(item => item.style.animationPlayState = 'paused');
+				pipe.forEach(item => item.style.animationPlayState = 'paused');
+				document.onkeydown = null;
+				document.onkeyup = null;
+			};
+			const gameOver = async x => {
+				global();
+				coin.forEach(item => item.style.animationPlayState = 'paused');
+				gameOverSound.play();
+				x ? await asyncControl(3e2) : '';
+				Flappy.style.transition = '.5s';
+				Flappy.style.top = '110%';
+				Flappy.style.rotate = '-1e3deg';
+				gameOverInfo.style = 'opacity: 1; letter-spacing: 0; top: 50%;';
+				await asyncControl(3e3);
+				location.reload();
+			};
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
