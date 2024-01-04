@@ -378,6 +378,7 @@
 			const winSound = new Audio('img/win.mp3');
 			const themeSound = new Audio('img/theme.mp3');
 			themeSound.play();
+			themeSound.onended = () => themeSound.play();
 			gameOverSound.volume = .5;
 			coinSound.volume = .5;
 			FjumpSound.volume = .5;
