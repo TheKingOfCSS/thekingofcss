@@ -5,7 +5,7 @@
 	<title>Mario come to the Goomba</title>
 	<link rel="shortcut icon" href="img/Goomba.webp">
 	<style>
-		* { margin: 0; padding: 0; user-select: none; box-sizing: border-box; }
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		.game {
 			--st: paused;
 			--qu: paused;
@@ -16,7 +16,9 @@
 			height: 100vh;
 			position: relative;
 			overflow: hidden;
+			background: -webkit-gradient(linear, left top, left bottom, from(var(--bg1)), to(var(--bg2))), url(img/bg.gif) center 0 / 50% 100%;
 			background: linear-gradient(var(--bg1), var(--bg2)), url(img/bg.gif) center 0 / 50% 100%;
+			-webkit-animation: bg 14s linear infinite;
 			animation: bg 14s linear infinite;
 		}
 		.game .Goomba {
@@ -37,6 +39,7 @@
 			height: 108px;
 			background: url(img/Mario.gif) no-repeat -70px -8px / 210px 124px;
 			border-radius: 10px;
+			-webkit-transition: .5s left linear;
 			transition: .5s left linear;
 		}
 		.game :is(.floor, .topFloor) {
@@ -46,18 +49,22 @@
 			width: 100%;
 			height: 105px;
 			background: url(img/stone.png) 0 0 / 55px;
+			-webkit-animation: stone .3s linear infinite;
 			animation: stone .3s linear infinite;
 		}
 		.game .topFloor {
 			bottom: 78%;
 			height: 55px;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.game .enem {
 			position: absolute;
 			bottom: 102px;
 			right: -20%;
+			-webkit-animation: enemy 5s linear infinite var(--en);
 			animation: enemy 5s linear infinite var(--en);
+			-webkit-transition: left .3s, bottom .5s;
 			transition: left .3s, bottom .5s;
 			z-index: 1;
 		}
@@ -92,13 +99,20 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-column-gap: 3px;
 			column-gap: 3px;
+			-webkit-box-shadow: inset 0 -5px 20px 10px #0007;
 			box-shadow: inset 0 -5px 20px 10px #0007;
 			padding: 8px;
 			border-bottom-right-radius: 30px;
 			pointer-events: none;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.game .life img {
@@ -113,11 +127,17 @@
 			position: absolute;
 			top: -100px;
 			left: 0;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-column-gap: 3px;
 			column-gap: 3px;
 			pointer-events: none;
 			padding: 5px;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.game .Mlife img {
@@ -136,6 +156,7 @@
 			width: 100%;
 			height: 100%;
 			background: #f00;
+			-webkit-box-shadow: inset 0 0 15px #000000b3;
 			box-shadow: inset 0 0 15px #000000b3;
 			border-radius: 50px;
 		}
@@ -154,6 +175,7 @@
 			color: #fff;
 			text-shadow: 0 3px 10px #000;
 			z-index: 1;
+			-webkit-transition: .8s;
 			transition: .8s;
 		}
 		.game .stone {
@@ -162,8 +184,12 @@
 			right: -100px;
 			width: 60px;
 			height: 80px;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
+			-webkit-animation: enemy 8.5s linear infinite var(--st);
 			animation: enemy 8.5s linear infinite var(--st);
 			z-index: 1;
 		}
@@ -173,12 +199,14 @@
 			left: 0;
 			width: 100%;
 			height: 4px;
+			background: -webkit-gradient(linear, left top, right top, color-stop(100%, #f00), to(#000));
 			background: linear-gradient(to right, #f00 100%, #000 100%);
 		}
 		.game .stone span {
 			width: 50%;
 			height: 50%;
 			background: url(img/stone.png) repeat center / 50px;
+			-webkit-transition: .3s;
 			transition: .3s;
 		}
 		.game .question {
@@ -189,7 +217,9 @@
 			height: 50px;
 			background: url(img/question.gif) no-repeat center / cover;
 			border-radius: 7px;
+			-webkit-animation: enemy 8s linear infinite var(--qu);
 			animation: enemy 8s linear infinite var(--qu);
+			-webkit-transition: .2s;
 			transition: .2s;
 			z-index: 1;
 		}
@@ -201,9 +231,15 @@
 			width: 50px;
 			height: 100px;
 			background: #fff5;
+			-webkit-clip-path: polygon(45% 100%, 0 0, 100% 0, 55% 100%);
 			clip-path: polygon(45% 100%, 0 0, 100% 0, 55% 100%);
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: end;
+			-ms-flex-align: end;
 			align-items: flex-end;
+			-webkit-transition: 1s;
 			transition: 1s;
 		}
 		.game .power .pow::after {
@@ -219,8 +255,10 @@
 		.game .power .pow {
 			width: 100%;
 			height: 0;
+			background: -webkit-gradient(linear, left bottom, left top, from(#b529ff), color-stop(#702995), color-stop(#d41ab8), color-stop(#b529ff), color-stop(#702995), color-stop(#d41ab8), to(#f500ff));
 			background: linear-gradient(to top, #b529ff, #702995, #d41ab8, #b529ff, #702995, #d41ab8, #f500ff);
 			position: relative;
+			-webkit-transition: .5s;
 			transition: .5s;
 		}
 		.menu {
@@ -233,12 +271,16 @@
 			z-index: 10;
 			text-align: center;
 			padding-top: 5vw;
+			-webkit-animation: menu 10s infinite;
 			animation: menu 10s infinite;
+			-webkit-clip-path: circle(100%);
 			clip-path: circle(100%);
+			-webkit-transition: 1s;
 			transition: 1s;
 		}
 		.menu h1 {
 			font: bold 5vw verdana;
+			-webkit-animation: title 2s infinite;
 			animation: title 2s infinite;
 			will-change: transform;
 			color: #ffd800;
@@ -263,7 +305,9 @@
 			color: #fff;
 			display: inline-block;
 			cursor: pointer;
+			-webkit-box-shadow: 0 .6vw .1vw #fff, 0 .6vw .3vw #000, inset 0 0 1vw #0009;
 			box-shadow: 0 .6vw .1vw #fff, 0 .6vw .3vw #000, inset 0 0 1vw #0009;
+			-webkit-transition: .4s;
 			transition: .4s;
 		}
 		.menu .play:hover {
@@ -271,33 +315,63 @@
 			text-shadow: 0 0 .4vw #000;
 		}
 		.menu .play:active {
+			-webkit-box-shadow: 0 .1vw .1vw #000, 0 .1vw .9vw .3vw #fff, inset 0 0 1vw #0009;
 			box-shadow: 0 .1vw .1vw #000, 0 .1vw .9vw .3vw #fff, inset 0 0 1vw #0009;
 			translate: 0 1vw;
 			background: #932d00;
 		}
+		@-webkit-keyframes title {
+			50% { word-spacing: 3vw; scale: 1.2; }
+		}
 		@keyframes title {
 			50% { word-spacing: 3vw; scale: 1.2; }
+		}
+		@-webkit-keyframes menu {
+			50% { background-size: 150%; }
 		}
 		@keyframes menu {
 			50% { background-size: 150%; }
 		}
+		@-webkit-keyframes JGoomba {
+			50% { bottom: var(--Goomba); }
+		}
 		@keyframes JGoomba {
 			50% { bottom: var(--Goomba); }
+		}
+		@-webkit-keyframes RGoomba {
+			50% { left: 27%; bottom: calc(var(--Goomba) - 60px); rotate: 100deg; }
 		}
 		@keyframes RGoomba {
 			50% { left: 27%; bottom: calc(var(--Goomba) - 60px); rotate: 100deg; }
 		}
+		@-webkit-keyframes LGoomba {
+			50% { left: 25%; bottom: calc(var(--Goomba) - 55px); rotate: -120deg; }
+		}
 		@keyframes LGoomba {
 			50% { left: 25%; bottom: calc(var(--Goomba) - 55px); rotate: -120deg; }
+		}
+		@-webkit-keyframes stone {
+			to { background-position-x: -55px; }
 		}
 		@keyframes stone {
 			to { background-position-x: -55px; }
 		}
+		@-webkit-keyframes bg {
+			to { background-position-x: -50%; }
+		}
 		@keyframes bg {
 			to { background-position-x: -50%; }
 		}
+		@-webkit-keyframes enemy {
+			to { right: 100%; }
+		}
 		@keyframes enemy {
 			to { right: 100%; }
+		}
+		@-webkit-keyframes Mario {
+			0% { background-image: url(img/Mario.gif); }
+			50% { bottom: 250%; rotate: 360deg; }
+			to { rotate: 360deg; background-image: url(img/Mario.gif); }
 		}
 		@keyframes Mario {
 			0% { background-image: url(img/Mario.gif); }
