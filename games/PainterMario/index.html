@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Painter Mario</title>
+	<link rel="shortcut icon" href="img/face.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.game {
+			height: 100vh;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			-ms-flex-line-pack: justify;
+			align-content: space-between;
+			background: #000;
+			cursor: none;
+			position: relative;
+			overflow: hidden;
+		}
+		.game .box {
+			position: relative;
+			width: 5%;
+			height: 9%;
+			border: 5px solid #000;
+			background: #000 center / 40%;
+			-webkit-transition: 2s;
+			transition: 2s;
+			overflow: hidden;
+		}
+		.game .box::after {
+			content: '';
+			position: absolute;
+			inset: -15px;
+			background: linear-gradient(-45deg, #fff9, transparent);
+			-webkit-animation: M 5s linear infinite;
+			animation: M 5s linear infinite;
+		}
+		@-webkit-keyframes M {
+			50% { rotate: 360deg; }
+		}
+		@keyframes M {
+			50% { rotate: 360deg; }
+		}
+		.game .box.active {
+			-webkit-filter: brightness(1.5);
+			filter: brightness(1.5);
+			background: url(img/stone.png) center / 40%;
+			pointer-events: none;
+		}
+		.game .box.active::after {
+			opacity: 0;
+		}
+		.game .Mario {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 8%;
+			height: 9%;
+			background: url(img/Mario.png) no-repeat 0 0 / 100% 100%;
+			-webkit-transition: rotate .3s;
+			transition: rotate .3s;
+			pointer-events: none;
+			z-index: 2;
+		}
+		.game .Mario::before {
+			content: '';
+			position: absolute;
+			top: 27px;
+			left: 29px;
+			width: 10px;
+			height: 16px;
+			background: #000;
+			border-radius: 30px;
+			rotate: -25deg;
+			scale: 1 0;
+			-webkit-transform-origin: top;
+			transform-origin: top;
+			-webkit-animation: eye 2.5s infinite;
+			animation: eye 2.5s infinite;
+		}
+		.game .Mario::after {
+			content: '';
+			position: absolute;
+			top: 20px;
+			right: 65px;
+			width: 7px;
+			height: 14px;
+			background: #000;
+			border-radius: 30px;
+			rotate: -22deg;
+			scale: 1 0;
+			-webkit-transform-origin: top;
+			transform-origin: top;
+			-webkit-animation: eye 2.5s infinite;
+			animation: eye 2.5s infinite;
+		}
+		@-webkit-keyframes eye {
+			46%, 52% { scale: 1 0; }
+			48%, 50% { scale: none; }
+		}
+		@keyframes eye {
+			46%, 52% { scale: 1 0; }
+			48%, 50% { scale: none; }
+		}
+		.game .Mario h3 {
+			position: absolute;
+			top: 95%;
+			left: 0;
+			color: #ff0;
+			text-shadow: 0 2px 3px #000;
+			font: 18px verdana;
+			white-space: nowrap;
+		}
+		.game .bullet {
+			position: absolute;
+			top: -75px;
+			left: 0;
+			width: 50px;
+			height: 75px;
+			background: url(img/bullet.png) no-repeat 0 0 / 50px 75px;
+			z-index: 1;
+			-webkit-animation: bullet 2s linear infinite;
+			animation: bullet 2s linear infinite;
+		}
+		.game .bullet.bul2 {
+			-webkit-animation-direction: reverse;
+			animation-direction: reverse;
+			scale: -1;
+		}
+		.game .bullet.bul3 {
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s;
+		}
+		@-webkit-keyframes bullet {
+			to { top: 110%; }
+		}
+		@keyframes bullet {
+			to { top: 110%; }
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			z-index: 2;
+			font: bold 7vw verdana;
+			color: #f00;
+			-webkit-text-stroke: 2px #fff;
+			text-shadow: 0 1vw 1vw #000;
+			letter-spacing: 5vw;
+			opacity: 0;
+			pointer-events: none;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			-webkit-transition: 1.5s;
+			transition: 1.5s;
+			-webkit-clip-path: ellipse(100% 100%);
+			clip-path: ellipse(100% 100%);
+		}
+		.menu h1 {
+			font: bold 7vw verdana;
+			color: #fff;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			margin-top: 6vw;
+			-webkit-text-stroke: 2px #000;
+			text-shadow: 0 .3vw .2vw #fff;
+			position: relative;
+			z-index: 2;
+		}
+		.menu h1 span {
+			-webkit-animation: title .7s calc(var(--i) * .02s) infinite;
+			animation: title .7s calc(var(--i) * .02s) infinite;
+		}
+		.menu h1 span:hover {
+			color: #ff9d00;
+		}
+		@-webkit-keyframes title {
+			60% { scale: 1.5; translate: -20px; color: #000; }
+			65% { color: #f00; }
+		}
+		@keyframes title {
+			60% { scale: 1.5; translate: -20px; color: #000; }
+			65% { color: #f00; }
+		}
+		.menu::after {
+			content: '';
+			position: absolute;
+			inset: -50vw;
+			background: linear-gradient(45deg, #f00, #00f9);
+			-webkit-animation: M 2s linear infinite;
+			animation: M 2s linear infinite;
+		}
+		.menu .play {
+			display: inline-block;
+			background: #f00;
+			z-index: 2;
+			position: relative;
+			font: bold 4vw verdana;
+			padding: 1vw 2vw;
+			border-radius: 4vw;
+			color: #fff;
+			margin-top: 4vw;
+			cursor: pointer;
+			-webkit-box-shadow: 0 .5vw 1.5vw #000;
+			box-shadow: 0 .5vw 1.5vw #000;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.menu .play:hover {
+			background: #000;
+			-webkit-box-shadow: 0 .5vw 9.5vw #fff;
+			box-shadow: 0 .5vw 9.5vw #fff;
+		}
+		.menu .play:active {
+			background: #e00000;
+			-webkit-box-shadow: 0 .5vw 1.5vw #000;
+			box-shadow: 0 .5vw 1.5vw #000;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #111;
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="Mario">
+			<h3>Box 200 / <span>0</span></h3>
+		</div>
+		<div class="bullet bul1"></div>
+		<div class="bullet bul2"></div>
+		<div class="bullet bul3"></div>
+		<h2 class="gameOver">GameOver</h2>
+	</div>
+	<div class="menu">
+		<h1>
+			<span style="--i: 0;">P</span>
+			<span style="--i: 1;">a</span>
+			<span style="--i: 2;">i</span>
+			<span style="--i: 3;">n</span>
+			<span style="--i: 4;">t</span>
+			<span style="--i: 5;">e</span>
+			<span style="--i: 6;">r</span>
+			<span style="--i: 7;">&nbsp;</span>
+			<span style="--i: 8;">M</span>
+			<span style="--i: 9;">a</span>
+			<span style="--i: 10;">r</span>
+			<span style="--i: 11;">i</span>
+			<span style="--i: 12;">o</span>
+		</h1>
+		<div class="play">Play</div>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2024
+		</p>
+	</div>
+	<script>
+		const menu = document.querySelector('.menu');
+		const menuPlay = document.querySelector('.menu .play');
+		menuPlay.onclick = () => {
+			menu.style.clipPath = 'ellipse(0 0 at 67% 15%)';
+			BulletSound.play();
+			setTimeout(() => BulletSound2.play(), 3e2);
+			BulletSound.onended = () => BulletSound.play();
+			BulletSound2.onended = () => setTimeout(() => BulletSound2.play(), 3e2);
+		};
+		const MarioSound = new Audio('img/mario.mp3');
+		const BulletSound = new Audio('img/bullet.mp3');
+		const BulletSound2 = new Audio('img/bullet.mp3');
+		BulletSound.volume = .3;
+		BulletSound2.volume = .3;
+		const bad = new Audio('img/wind.mp3');
+		const WinSound = new Audio('img/win.mp3');
+		const gameOverSound = new Audio('img/gameOver.mp3');
+		const game = document.querySelector('.game');
+		const Mario = document.querySelector('.game .Mario');
+		const bullet = document.querySelectorAll('.game .bullet');
+		const gameOver = document.querySelector('.game .gameOver');
+		const point = document.querySelector('.game .Mario h3');
+		bullet.forEach(item => item.style.left = Math.random() * (game.offsetWidth - item.offsetWidth) + 'px');
+		let x = game.offsetWidth / 2;
+		let True = false;
+		let boxCoin = [];
+		for (let i = 0; i < 200; i++) {
+			const box = document.createElement('div');
+			game.append(box);
+			box.className = 'box';
+			boxCoin.push(0);
+		}
+		game.onmousemove = e => {
+			Mario.style.top = e.y - Mario.offsetHeight / 2 + 'px';
+			Mario.style.left = e.x - Mario.offsetWidth / 2 + 'px';
+			if (e.x > x) {
+				Mario.style.rotate = 'none';
+				point.style.scale = null;
+			} else {
+				Mario.style.rotate = 'y 180deg';
+				point.style.scale = '-1 1';
+			}
+			x = e.x;
+		};
+		document.querySelectorAll('.game .box').forEach((item, index) => {
+			item.onmouseover = () => {
+				MarioSound.play();
+				item.classList.add('active');
+				True = true;
+				boxCoin[index] = 1;
+				point.firstElementChild.innerText = boxCoin.reduce((total, item) => total + item, 0);
+			};
+		});
+		setInterval(() => {
+			bullet.forEach(item => {
+				item.offsetTop > game.offsetHeight ? item.style.left = Math.random() * (game.offsetWidth - item.offsetWidth) + 'px' : '';
+				document.querySelectorAll('.game .box').forEach((item2, index) => {
+					if (item.offsetTop + item.offsetHeight > item2.offsetTop && item.offsetTop < item2.offsetTop + item2.offsetHeight && item.offsetLeft + item.offsetWidth > item2.offsetLeft && item.offsetLeft < item2.offsetLeft + item2.offsetWidth && item2.classList.contains('active')) {
+						item2.classList.remove('active');
+						boxCoin[index] = 0;
+						point.firstElementChild.innerText = boxCoin.reduce((total, item) => total + item, 0);
+						bad.currentTime = .3;
+						bad.play();
+					}
+				});
+			});
+			if ([...document.querySelectorAll('.game .box')].every(item => item.className.includes('active'))) {
+				gameOver.style = 'opacity: 1; letter-spacing: 0; color: #0f0;';
+				gameOver.innerText = 'Winner';
+				WinSound.play();
+				BulletSound.pause();
+				BulletSound2.pause();
+				setTimeout(() => location.reload(), 55e2);
+			}
+			if (True) {
+				if ([...document.querySelectorAll('.game .box')].every(item => !item.className.includes('active'))) {
+					gameOver.style = 'opacity: 1; letter-spacing: 0;';
+					document.querySelectorAll('.game .box').forEach(item => item.onmouseover = null);
+					gameOverSound.play();
+					BulletSound.pause();
+					BulletSound2.pause();
+					setTimeout(() => location.reload(), 28e2);
+				}
+			}
+		}, 1);
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
