@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Forever King 1</title>
+	<link rel="shortcut icon" href="../../../cssKing/king.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		body {
+			height: 2000px;
+			background: #1A1A1A;
+		}
+		.parent {
+			overflow: hidden;
+			height: 100vh;
+			margin-top: 80vh;
+		}
+		.parent .big {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			height: 33vh;
+			-webkit-transform: rotate(20deg) scale(1.3) translate(-200px, -300px);
+			transform: rotate(20deg) scale(1.3) translate(-200px, -300px);
+			margin-bottom: 60px;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.parent .big:nth-child(odd) {
+			-webkit-transform: rotate(20deg) scale(1.3) translate(-50px, -300px);
+			transform: rotate(20deg) scale(1.3) translate(-50px, -300px);
+		}
+		.parent .big .item {
+			width: 20%;
+			height: 100%;
+			padding: 10px;
+		}
+		.parent .big .item img {
+			width: 100%;
+			height: 100%;
+			-o-object-fit: cover;
+			object-fit: cover;
+			padding: 15px 7px;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent">
+		<div class="big">
+			<div class="item"><img src="../../img/1.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/2.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/3.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/4.webp" alt="Img"></div>
+			<div class="item"><img src="../../img/5.jpg" alt="Img"></div>
+		</div>
+		<div class="big">
+			<div class="item"><img src="../../img/3.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/1.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/4.webp" alt="Img"></div>
+			<div class="item"><img src="../../img/2.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/5.jpg" alt="Img"></div>
+		</div>
+		<div class="big">
+			<div class="item"><img src="../../img/2.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/5.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/1.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/4.webp" alt="Img"></div>
+			<div class="item"><img src="../../img/3.jpg" alt="Img"></div>
+		</div>
+		<div class="big">
+			<div class="item"><img src="../../img/5.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/2.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/4.webp" alt="Img"></div>
+			<div class="item"><img src="../../img/1.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/3.jpg" alt="Img"></div>
+		</div>
+		<div class="big">
+			<div class="item"><img src="../../img/3.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/5.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/1.jpg" alt="Img"></div>
+			<div class="item"><img src="../../img/4.webp" alt="Img"></div>
+			<div class="item"><img src="../../img/2.jpg" alt="Img"></div>
+		</div>
+	</div>
+	<script>
+		const $ = document['querySelector']('.parent');
+		const $$ = document['querySelectorAll']('.parent .big');
+		let x = 0;
+		let y = 0;
+		let dir;
+		window['onscroll'] = () => $$['forEach']((__, _) => _ % 2 == 0 ? __['style']['transform'] = `rotate(20deg) scale(1.3) translate(${-scrollY / 7 - 50}px, -300px)` : __['style']['transform'] = `rotate(20deg) scale(1.3) translate(${scrollY / 7 - 200}px, -300px)`);
+		setInterval(() => {
+			scrollY > y ? dir = 'bottom' : scrollY < y ? dir = 'top' : '';
+			y = scrollY;
+			x < scrollY && dir == 'bottom' ? x += .5 : x > scrollY && dir == 'top' ? x -= .5 : '';
+			$['style']['translate'] = '0 ' + -x + 'px';
+		}, 0);
+	</script>
+</body>
+</html>
