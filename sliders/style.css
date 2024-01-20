@@ -1269,7 +1269,8 @@ img { width: 100%; height: 100%; pointer-events: none; -webkit-transition: 1s .5
 .version107,
 .version108,
 .version109,
-.version110 {
+.version110,
+.version111 {
 	background: #222;
 	overflow: hidden;
 }
@@ -2583,4 +2584,33 @@ img { width: 100%; height: 100%; pointer-events: none; -webkit-transition: 1s .5
 }
 .theKingOfSliders span {
 	transition: .5s;
+}
+.ForeverKing {
+	font-size: 3rem !important;
+	padding-top: 60px !important;
+}
+.ForeverKing span {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 70px;
+	height: 70px;
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(50%, transparent), color-stop(50.2%, #0f0), color-stop(55.2%, transparent), color-stop(61.2%, #0f0), color-stop(66%, transparent), color-stop(72.2%, #0f0), color-stop(77%, transparent), color-stop(83.2%, #0f0), color-stop(88.2%, transparent));
+	background: linear-gradient(to right bottom, transparent 50%, #0f0 50.2% 55%, transparent 55.2% 61%, #0f0 61.2% 66%, transparent 66% 72%, #0f0 72.2% 77%, transparent 77% 83%, #0f0 83.2% 88%, transparent 88.2%);
+}
+.ForeverKing::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	translate: -50%;
+	width: 90px;
+	height: 70px;
+	background: url(../cssKing/king.png) no-repeat center / contain;
+}
+.ForeverKing div {
+	font-size: 25px !important;
+	padding: 9px 55px 22px 8px !important;
+	-webkit-clip-path: polygon(0px 0px, 100% 13px, 0px 100%) !important;
+	clip-path: polygon(0px 0px, 100% 13px, 0px 100%) !important;
 }
