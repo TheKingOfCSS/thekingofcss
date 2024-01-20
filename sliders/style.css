@@ -2614,3 +2614,27 @@ img { width: 100%; height: 100%; pointer-events: none; -webkit-transition: 1s .5
 	-webkit-clip-path: polygon(0px 0px, 100% 13px, 0px 100%) !important;
 	clip-path: polygon(0px 0px, 100% 13px, 0px 100%) !important;
 }
+.version111 {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding: 80px;
+}
+.version111 .proScreen {
+	--proScreen: #fff;
+	width: 300px;
+	height: 200px;
+	border: 2px solid var(--proScreen);
+	-webkit-box-shadow: inset 0 0 35px var(--proScreen);
+	box-shadow: inset 0 0 35px var(--proScreen);
+	-webkit-transition: .4s;
+	transition: .4s;
+	cursor: pointer;
+}
+.version111 .proScreen:hover {
+	-webkit-transform: scale(1.1) rotate(-5deg);
+	transform: scale(1.1) rotate(-5deg);
+	--proScreen: #0f0;
+}
