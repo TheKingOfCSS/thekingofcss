@@ -95,6 +95,10 @@
 			x < scrollY && dir == 'bottom' ? x += .5 : x > scrollY && dir == 'top' ? x -= .5 : '';
 			$['style']['translate'] = '0 ' + -x + 'px';
 		}, 0);
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cThe King of CSS  and  Master of JavaScript', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cSenior Developer Hovo Vardanyan', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 	</script>
 </body>
 </html>
