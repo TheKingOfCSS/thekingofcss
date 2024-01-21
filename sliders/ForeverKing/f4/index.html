@@ -7,9 +7,16 @@
 	<style>
 		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		.parent {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-column-gap: 60px;
 			column-gap: 60px;
 			height: 100vh;
 		}
@@ -23,21 +30,28 @@
 		.parent .item img {
 			width: 100%;
 			height: 100%;
+			-o-object-fit: cover;
 			object-fit: cover;
 		}
 		.parent .item img.over {
 			position: absolute;
 			top: 0;
 			left: 0;
+			-webkit-clip-path: circle(38%);
 			clip-path: circle(38%);
+			-webkit-transition: 1.2s;
 			transition: 1.2s;
 		}
 		.parent .item img.over.two {
+			-webkit-clip-path: circle(31%);
 			clip-path: circle(31%);
+			-webkit-transition: 1s;
 			transition: 1s;
 		}
 		.parent .item img.over.three {
+			-webkit-clip-path: circle(23%);
 			clip-path: circle(23%);
+			-webkit-transition: .7s;
 			transition: .7s;
 		}
 		.parent .item:hover img.over {
@@ -60,11 +74,16 @@
 			height: 125px;
 			padding: 10px;
 			scale: 0;
+			-webkit-transition: .5s;
 			transition: .5s;
+			-webkit-animation: round 6s linear infinite;
 			animation: round 6s linear infinite;
 		}
 		.parent .item:hover .round {
 			scale: 1;
+		}
+		@-webkit-keyframes round {
+			to { rotate: 360deg; }
 		}
 		@keyframes round {
 			to { rotate: 360deg; }
@@ -75,6 +94,7 @@
 			left: 50%;
 			translate: -300% -50%;
 			width: 40px;
+			-webkit-transition: .7s;
 			transition: .7s;
 			opacity: 0;
 		}
@@ -118,9 +138,7 @@
 		</div>
 	</div>
 	<script>
-		const $ = document['querySelector']('.parent .Vardanyan');
-		
-//		document.oncontextmenu = () => false;
+		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 		console['log']('%cThe King of CSS  and  Master of JavaScript', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
 		console['log']('%cSenior Developer Hovo Vardanyan', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
