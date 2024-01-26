@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Forever King 5</title>
+	<link rel="shortcut icon" href="../../../cssKing/king.png">
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		.switch_checkbox_work {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-box-pack: space-evenly;
+			-ms-flex-pack: space-evenly;
+			justify-content: space-evenly;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			background: #1b1b1b;
+			height: 1e2vh;
+		}
+		.switch_checkbox_work .product {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-ms-flex-pack: distribute;
+			justify-content: space-around;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			width: 250px;
+			height: 470px;
+			-webkit-box-shadow: 1px 1px 5px rgb(255,255,255,.5);
+			box-shadow: 1px 1px 5px rgb(255,255,255,.5);
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.switch_checkbox_work .product:hover {
+			-webkit-box-shadow: 1px 1px 5px rgb(255,255,255,.7);
+			box-shadow: 1px 1px 5px rgb(255,255,255,.7);
+		}
+		.switch_checkbox_work .check_version1 label input {
+			position: absolute;
+			visibility: hidden;
+			display: none;
+		}
+		.switch_checkbox_work .check_version1 label {
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version1 label .vrs1_block {
+			position: relative;
+			width: 80px;
+			height: 41px;
+			background: #315E7F;
+			border-radius: 2px;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .check_version1 label .vrs1_block:before {
+			content: '';
+			position: absolute;
+			top: -3px;
+			left: 25px;
+			width: 50px;
+			height: 45px;
+			background: #fff;
+			-webkit-clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			opacity: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .check_version1 label .vrs1_block:after {
+			content: '';
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			width: 35px;
+			height: 35px;
+			border-radius: 2px;
+			background: #DFEAEC;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-box-shadow: inset 0 0 2px rgb(0,0,0,.5);
+			box-shadow: inset 0 0 2px rgb(0,0,0,.5);
+		}
+		.switch_checkbox_work .check_version1 label span {
+			position: absolute;
+			top: 0;
+			right: 8px;
+			font-size: 2.5em;
+			color: #fff;
+			line-height: 1;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .check_version1 label input:checked + .vrs1_block {
+			background: #23da62;
+		}
+		.switch_checkbox_work .check_version1 label input:checked + .vrs1_block:before {
+			left: 0px;
+			opacity: 1;
+		}
+		.switch_checkbox_work .check_version1 label input:checked + .vrs1_block:after {
+			left: 42px; 
+		}
+		.switch_checkbox_work .check_version1 label input:checked ~ span {
+			right: 35px;
+			opacity: 0;
+		}
+		.switch_checkbox_work .check_version2 label input {
+			position: absolute;
+			visibility: hidden;
+			left: -100em;
+		}
+		.switch_checkbox_work .check_version2 label {
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version2 label .vrs2_block  {
+			position: relative;
+			width: 105px;
+			height: 47px;
+			background: #ddd;
+			border-radius: 50px;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .check_version2 label .vrs2_block:after {
+			content: '';
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			width: 35px;
+			height: 35px;
+			background: #fff;
+			border-radius: 50%;
+			-webkit-box-shadow: 0 0 8px 2px rgb(53,53,53,.5);
+			box-shadow: 0 0 8px 2px rgb(53,53,53,.5);
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version2 label input:checked + .vrs2_block {
+			background: #0EBEFF;
+		}
+		.switch_checkbox_work .check_version2 label input:checked + .vrs2_block:after {
+			left: 64px;
+		}
+		.switch_checkbox_work .check_version3 label {
+			position: relative;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version3 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 100px;
+			height: 8px;
+			background: #444;
+			border-radius: 5px;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version3 label input:before {
+			content: '';
+			position: absolute;
+			top: -14px;
+			left: 0;
+			width: 35px;
+			height: 35px;
+			background: #ccc;
+			border: 2px solid #666;
+			border-radius: 50%;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version3 label input:after {
+			content: '';
+			position: absolute;
+			top: -8px;
+			left: 6px;
+			width: 23px;
+			height: 23px;
+			background: #666;
+			border-radius: 50%;
+			cursor: pointer;
+			-webkit-transform-origin: bottom;
+			transform-origin: bottom;
+			-webkit-transition: left .5s, -webkit-transform 1s;
+			transition: left .5s, -webkit-transform 1s;
+			transition: transform 1s, left .5s;
+			transition: transform 1s, left .5s, -webkit-transform 1s;
+		}
+		.switch_checkbox_work .check_version3 label input:checked {
+			background: #23DA62;
+			-webkit-transition-delay: .2s;
+			transition-delay: .2s;
+		}
+		.switch_checkbox_work .check_version3 label input:checked:before {
+			left: 75px;
+			border-left-color: #00ff57;
+		}
+		.switch_checkbox_work .check_version3 label input:checked:after {
+			left: 75px;
+			-webkit-transform: scale(0);
+			transform: scale(0);
+			-webkit-transition: left .5s, -webkit-transform .3s;
+			transition: left .5s, -webkit-transform .3s;
+			transition: transform .3s, left .5s;
+			transition: transform .3s, left .5s, -webkit-transform .3s;
+		}
+		.switch_checkbox_work .check_version4 label {
+			position: relative;
+			display: block;
+		}
+		.switch_checkbox_work .check_version4 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 120px;
+			height: 56px;
+			border: 2px solid #fff;
+			border-radius: 42px;
+			cursor: pointer;
+			outline: 0;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(-16%, #313131), color-stop(39%, #fffcd0));
+			background: linear-gradient(to bottom, #313131 -16%, #fffcd0 39%);
+			-webkit-box-shadow: inset 9px 8px 12px -8px #4c4c4c, inset -9px 8px 12px -8px #4c4c4c;
+			box-shadow: inset 9px 8px 12px -8px #4c4c4c, inset -9px 8px 12px -8px #4c4c4c;
+			-webkit-transform: rotate(10deg);
+			transform: rotate(10deg);
+			-webkit-transition: .5s;
+			transition: .5s;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version4 label input:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 0;
+			height: 53px;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(-16%, #109000), color-stop(39%, #00de11));
+			background: linear-gradient(to bottom, #109000 -16%, #00de11 39%);
+			-webkit-box-shadow: inset 9px 8px 12px -8px #4c4c4c, inset -9px 8px 12px -8px #4c4c4c;
+			box-shadow: inset 9px 8px 12px -8px #4c4c4c, inset -9px 8px 12px -8px #4c4c4c;
+			border-radius: 42px;
+			-webkit-transition: 1s;
+			transition: 1s;
+			-webkit-transition-delay: .3s;
+			transition-delay: .3s;
+		}
+		.switch_checkbox_work .check_version4 label input:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 50px;
+			height: 53px;
+			background: #fff;
+			border-radius: 50%;
+			-webkit-box-shadow: 0px 0px 6px #737373;
+			box-shadow: 0px 0px 6px #737373;
+			-webkit-transition: .8s;
+			transition: .8s;
+			-webkit-transition-delay: .3s;
+			transition-delay: .3s;
+		}
+		.switch_checkbox_work .check_version4 label input:checked {
+			-webkit-transform: rotate(-10deg);
+			transform: rotate(-10deg);
+		}
+		.switch_checkbox_work .check_version4 label input:checked:before {
+			width: 100%;
+			-webkit-transition: .8s;
+			transition: .8s;
+			-webkit-transition-delay: .3s;
+			transition-delay: .3s;
+		}
+		.switch_checkbox_work .check_version4 label input:checked:after {
+			right: calc(100% - 50px);
+		}
+		.switch_checkbox_work .check_version4 label span {
+			position: absolute;
+			top: 0;
+			font-size: 18px;
+			font-family: sans-serif;
+			color: #fff;
+			text-transform: uppercase;
+		}
+		.switch_checkbox_work .check_version4 label .on {
+			left: -38px;
+			color: #424242;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.switch_checkbox_work .check_version4 label .off {
+			right: -44px;
+			-webkit-transition: 1s;
+			transition: 1s;
+		}
+		.switch_checkbox_work .check_version4 label input:checked ~ .on {
+			color: #fff;
+		}
+		.switch_checkbox_work .check_version4 label input:checked ~ .off {
+			color: #424242;
+		}
+		.switch_checkbox_work .check_version5 label {
+			position: relative;
+			display: block;
+		}
+		.switch_checkbox_work .check_version5 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			outline: none;
+			position: relative;
+			width: 120px;
+			height: 50px;
+			background: #eee;
+			border-radius: 42px;
+			border: 2px solid #999;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version5 label input:before {
+			content: '';
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			width: 40px;
+			height: 40px;
+			background: #eee;
+			border-radius: 50%;
+			border: 2px solid #999;
+			z-index: 2;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version5 label input:after {
+			content: 'No';
+			position: absolute;
+			top: 9px;
+			right: 15px;
+			font-size: 26px;
+			font-family: sans-serif;
+			color: #9999AE;
+			text-transform: uppercase;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .check_version5 label span:before {
+			content: 'Yes';
+			position: absolute;
+			top: 11px;
+			left: 15px;
+			font-size: 26px;
+			font-family: sans-serif;
+			color: #fff;
+			text-transform: uppercase;
+			cursor: pointer;
+			opacity: 0;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.switch_checkbox_work .check_version5 label input:checked {
+			background: #33CCFF;
+		}
+		.switch_checkbox_work .check_version5 label input:checked:before {
+			left: 72px;
+		}
+		.switch_checkbox_work .check_version5 label input:checked:after {
+			opacity: 0;
+		}
+		.switch_checkbox_work .check_version5 label input:checked + span:before {
+			opacity: 1;
+		}
+		.switch_checkbox_work .check_version6 label {
+			position: relative;
+			display: block;
+		}
+		.switch_checkbox_work .check_version6 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			outline: none;
+			position: relative;
+			width: 120px;
+			height: 50px;
+			background: #19232B;
+			border-radius: 42px;
+			border: 2px solid #999;
+			cursor: pointer;
+			-webkit-transition: .5s;
+			transition: .5s;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version6 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			width: 43px;
+			height: 43px;
+			border-radius: 50%;
+			background: transparent;
+			-webkit-box-shadow: inset -15px 0px #ffe000;
+			box-shadow: inset -15px 0px #ffe000;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.switch_checkbox_work .check_version6 label input:after {
+			content: '';
+			position: absolute;
+			top: 2px;
+			right: -80px;
+			width: 43px;
+			height: 43px;
+			border-radius: 50%;
+			background: radial-gradient(circle at 42% 24%, #ffffff 10%, #FFE300 20%, #f28600 64%);
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.switch_checkbox_work .check_version6 label input:checked {
+			border-color: #f9b800;
+			-webkit-transition-delay: .3s;
+			transition-delay: .3s;
+		}
+		.switch_checkbox_work .check_version6 label input:checked:before {
+			right: 100%;
+			-webkit-transform: rotate(-360deg);
+			transform: rotate(-360deg);
+		}
+		.switch_checkbox_work .check_version6 label input:checked:after {
+			right: 2px;
+			-webkit-transform: rotate(-360deg);
+			transform: rotate(-360deg);
+			-webkit-transition-delay: .2s;
+			transition-delay: .2s;
+		}
+		.switch_checkbox_work .check_version7 label {
+			position: relative;
+			color: #fff;
+			font-size: 22px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .check_version7 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 35px;
+			height: 35px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			margin-right: 15px;
+			cursor: pointer;
+			outline: 0;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version7 label input:before {
+			content: '';
+			position: absolute;
+			top: -11px;
+			left: 100%;
+			width: 50px;
+			height: 50px;
+			background: green;
+			-webkit-clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.switch_checkbox_work .check_version7 label input:checked:before {
+			left: -5px;
+		}
+		.switch_checkbox_work .check_version8 label {
+			position: relative;
+			color: #fff;
+			font-size: 22px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .check_version8 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 35px;
+			height: 35px;
+			background: #fff;
+			border: 2px solid #008000;
+			border-radius: 5px;
+			margin-right: 15px;
+			cursor: pointer;
+			outline: 0;
+		}
+		.switch_checkbox_work .check_version8 label input:before {
+			content: '';
+			position: absolute;
+			top: -8px;
+			left: 3px;
+			width: 50px;
+			height: 50px;
+			background: green;
+			-webkit-clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			-webkit-transform: scale(2.5);
+			transform: scale(2.5);
+			opacity: 0;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .check_version8 label input:checked:before {
+			top: -11px;
+			left: -5px;
+			opacity: 1;
+			-webkit-transform: scale(1);
+			transform: scale(1);
+			-webkit-transition: opacity .4s, -webkit-transform 1s;
+			transition: opacity .4s, -webkit-transform 1s;
+			transition: transform 1s, opacity .4s;
+			transition: transform 1s, opacity .4s, -webkit-transform 1s;
+		}
+		.switch_checkbox_work .check_version9 label {
+			position: relative;
+			color: #fff;
+			font-size: 22px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .check_version9 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 35px;
+			height: 35px;
+			border: 2px solid #008000;
+			border-radius: 5px;
+			margin-right: 15px;
+			cursor: pointer;
+			outline: 0;
+		}
+		.switch_checkbox_work .check_version9 label input:before {
+			content: '';
+			position: absolute;
+			top: -8px;
+			left: -50px;
+			width: 34px;
+			height: 41px;
+			background: green;
+			-webkit-clip-path: polygon(0 30%, 35% 60%, 100% 0, 100% 25%, 35% 85%, 0 55%);
+			clip-path: polygon(0 30%, 35% 60%, 100% 0, 100% 25%, 35% 85%, 0 55%);
+			opacity: 0;
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.switch_checkbox_work .check_version9 label input:checked:before {
+			left: 4px;
+			opacity: 1;
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+			-webkit-transition: opacity .2s, left .5s, -webkit-transform .8s;
+			transition: opacity .2s, left .5s, -webkit-transform .8s;
+			transition: transform .8s, opacity .2s, left .5s;
+			transition: transform .8s, opacity .2s, left .5s, -webkit-transform .8s;
+		}
+		.switch_checkbox_work .check_version10 label {
+			position: relative;
+			color: #fff;
+			font-size: 22px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .check_version10 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 35px;
+			height: 35px;
+			background: #fff;
+			border-radius: 5px;
+			margin-right: 15px;
+			cursor: pointer;
+			outline: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .check_version10 label input:before {
+			content: '';
+			position: absolute;
+			top: -14px;
+			left: -9px;
+			width: 6px;
+			height: 15px;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+			background: #fff;
+			-webkit-transform: rotate(-35deg);
+			transform: rotate(-35deg);
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .check_version10 label input:after {
+			content: '';
+			position: absolute;
+			top: -28px;
+			left: 46px;
+			width: 6px;
+			height: 31px;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+			background: #fff;
+			-webkit-transform: rotate(43deg);
+			transform: rotate(43deg);
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .check_version10 label input:checked {
+			background: green;
+		}
+		.switch_checkbox_work .check_version10 label input:checked:before {
+			top: 14px;
+			left: 6px;
+		}
+		.switch_checkbox_work .check_version10 label input:checked:after {
+			top: 1px;
+			left: 18px;
+		}
+		.switch_checkbox_work .check_version11 label {
+			position: relative;
+			color: #fff;
+			font-size: 22px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .check_version11 label input {
+			position: relative;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 35px;
+			height: 35px;
+			background: #fff;
+			-webkit-clip-path: polygon(88% 0, 5% 0%, 3% 2%, 0 6%, 0% 96%, 1% 97%, 3% 100%, 96% 100%, 98% 99%, 100% 96%, 100% 35%, 92% 39%, 92% 92%, 8% 92%, 8% 8%, 77% 8%);
+			clip-path: polygon(88% 0, 5% 0%, 3% 2%, 0 6%, 0% 96%, 1% 97%, 3% 100%, 96% 100%, 98% 99%, 100% 96%, 100% 35%, 92% 39%, 92% 92%, 8% 92%, 8% 8%, 77% 8%);
+			margin-right: 15px;
+			cursor: pointer;
+			outline: 0;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .check_version11 label span:before {
+			content: '';
+			position: absolute;
+			top: -48px;
+			left: 11px;
+			width: 80px;
+			height: 72px;
+			-webkit-clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			clip-path: polygon(23% 61%, 22% 58%, 23% 56%, 27% 57%, 35% 67%, 57% 38%, 59% 36%, 62% 36%, 63% 38%, 60% 42%, 36% 73%, 33% 72%, 35% 73%, 27% 65%);
+			background: #fff;
+			cursor: pointer;
+			opacity: 0;
+			-webkit-transition: opacity .2s, top .9s, left .9s;
+			transition: opacity .2s, top .9s, left .9s;
+		}
+		.switch_checkbox_work .check_version11 label input:checked + span:before {
+			top: -28px;
+			left: -10px;
+			opacity: 1;
+			-webkit-transition: .7s;
+			transition: .7s;
+		}
+		.switch_checkbox_work .radio_version1 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version1 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+		}
+		.switch_checkbox_work .radio_version1 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			width: 24px;
+			height: 24px;
+			background: #36ff36;
+			border-radius: 50%;
+			-webkit-transform: scale(0);
+			transform: scale(0);
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .radio_version1 label input:checked {
+			border-color: #36ff36;
+		}
+		.switch_checkbox_work .radio_version1 label input:checked:before {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+		}
+		.switch_checkbox_work .radio_version2 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version2 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .radio_version2 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: -52px;
+			width: 24px;
+			height: 24px;
+			background: #36ff36;
+			border-radius: 50%;
+			-webkit-transform-origin: 50% 0;
+			transform-origin: 50% 0;
+			opacity: 0;
+			-webkit-transition: opacity 1.2s, left 1s, -webkit-transform 1.2s;
+			transition: opacity 1.2s, left 1s, -webkit-transform 1.2s;
+			transition: transform 1.2s, opacity 1.2s, left 1s;
+			transition: transform 1.2s, opacity 1.2s, left 1s, -webkit-transform 1.2s;
+		}
+		.switch_checkbox_work .radio_version2 label input:checked {
+			overflow: visible;
+		}
+		.switch_checkbox_work .radio_version2 label input:checked:before {
+			left: 2px;
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+			opacity: 1;
+			-webkit-transition: opacity .3s, left .4s, -webkit-transform .4s;
+			transition: opacity .3s, left .4s, -webkit-transform .4s;
+			transition: transform .4s, opacity .3s, left .4s;
+			transition: transform .4s, opacity .3s, left .4s, -webkit-transform .4s;
+		}
+		.switch_checkbox_work .radio_version3 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version3 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+		}
+		.switch_checkbox_work .radio_version3 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			width: 24px;
+			height: 24px;
+			background: radial-gradient(#00e200 32%, #009219 44%);
+			border-radius: 50%;
+			-webkit-transform: scale(1.9);
+			transform: scale(1.9);
+			opacity: 0;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.switch_checkbox_work .radio_version3 label input:checked {
+			border-color: #00e200;
+		}
+		.switch_checkbox_work .radio_version3 label input:checked:before {
+			opacity: 1;
+			-webkit-transform: scale(1);
+			transform: scale(1);
+			-webkit-transition: opacity .2s, -webkit-transform .4s;
+			transition: opacity .2s, -webkit-transform .4s;
+			transition: transform .4s, opacity .2s;
+			transition: transform .4s, opacity .2s, -webkit-transform .4s;
+		}
+		.switch_checkbox_work .radio_version4 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version4 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+		}
+		.switch_checkbox_work .radio_version4 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			-webkit-box-shadow: inset -5px 0px #36ff36;
+			box-shadow: inset -5px 0px #36ff36;
+			-webkit-transition: .7s;
+			transition: .7s;
+		}
+		.switch_checkbox_work .radio_version4 label input:checked:before {
+			-webkit-box-shadow: inset -5px 0px 0 12px #36ff36;
+			box-shadow: inset -5px 0px 0 12px #36ff36;
+		}
+		.switch_checkbox_work .radio_version5 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version5 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .radio_version5 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: -15px;
+			width: 24px;
+			height: 24px;
+			background: -webkit-gradient(linear, left top, right top, color-stop(50%, #36ff36), color-stop(50%, transparent));
+			background: linear-gradient(to right, #36ff36 50%, transparent 50%);
+			border-radius: 50%;
+			-webkit-transition: 2s;
+			transition: 2s;
+		}
+		.switch_checkbox_work .radio_version5 label input:after {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 19px;
+			width: 24px;
+			height: 24px;
+			background: -webkit-gradient(linear, right top, left top, color-stop(50%, #36ff36), color-stop(50%, transparent));
+			background: linear-gradient(to left, #36ff36 50%, transparent 50%);
+			border-radius: 50%;
+			-webkit-transition: 2s;
+			transition: 2s;
+		}
+		.switch_checkbox_work .radio_version5 label input:checked:before,
+		.switch_checkbox_work .radio_version5 label input:checked:after {
+			top: 2px;
+			left: 2px;
+			-webkit-transform: rotate(5000deg);
+			transform: rotate(5000deg);
+		}
+		.switch_checkbox_work .radio_version6 label {
+			position: relative;
+			color: #fff;
+			font-size: 20px;
+			font-family: sans-serif;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.switch_checkbox_work .radio_version6 label input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+			cursor: pointer;
+			outline: none;
+			overflow: hidden;
+		}
+		.switch_checkbox_work .radio_version6 label input:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: -15px;
+			width: 24px;
+			height: 24px;
+			background: -webkit-gradient(linear, left top, right top, color-stop(50%, #36ff36), color-stop(50%, transparent));
+			background: linear-gradient(to right, #36ff36 50%, transparent 50%);
+			border-radius: 50%;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .radio_version6 label input:after {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 19px;
+			width: 24px;
+			height: 24px;
+			background: -webkit-gradient(linear, right top, left top, color-stop(50%, #36ff36), color-stop(50%, transparent));
+			background: linear-gradient(to left, #36ff36 50%, transparent 50%);
+			border-radius: 50%;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.switch_checkbox_work .radio_version6 label input:checked:before,
+		.switch_checkbox_work .radio_version6 label input:checked:after {
+			top: 2px;
+			left: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="switch_checkbox_work">
+		<div class="product">
+			<div class="check_version1">
+				<label>
+					<input type="checkbox" name="check1">
+					<div class="vrs1_block"></div>
+					<span>×</span>
+				</label>
+			</div>
+			<div class="check_version2">
+				<label>
+					<input type="checkbox" name="check2">
+					<div class="vrs2_block"></div>
+				</label>
+			</div>
+			<div class="check_version3">
+				<label>
+					<input type="checkbox" name="check3">
+				</label>
+			</div>
+			<div class="check_version4">
+				<label>
+					<input type="checkbox" name="check4">
+					<span class="on">On</span>
+					<span class="off">Off</span>
+				</label>
+			</div>
+			<div class="check_version5">
+				<label>
+					<input type="checkbox" name="check5">
+					<span class="on-off"></span>
+				</label>
+			</div>
+			<div class="check_version6">
+				<label>
+					<input type="checkbox" name="check6">
+				</label>
+			</div>
+		</div>
+		<div class="product">
+			<div class="check_version7">
+				<label>
+					<input type="checkbox" name="check7">
+					Ceckbox 1
+				</label>
+			</div>
+			<div class="check_version8">
+				<label>
+					<input type="checkbox" name="check8">
+					Ceckbox 2
+				</label>
+			</div>
+			<div class="check_version9">
+				<label>
+					<input type="checkbox" name="check9">
+					Ceckbox 3
+				</label>
+			</div>
+			<div class="check_version10">
+				<label>
+					<input type="checkbox" name="check10">
+					Ceckbox 4
+				</label>
+			</div>
+			<div class="check_version11">
+				<label>
+					<input type="checkbox" name="check11">
+					Ceckbox 5
+					<span class="bord"></span>
+				</label>
+			</div>
+		</div>
+		<div class="product">
+			<div class="radio_version1">
+				<label>
+					<input type="radio" name="radio">
+					Radio 1
+				</label>
+			</div>
+			<div class="radio_version2">
+				<label>
+					<input type="radio" name="radio">
+					Radio 2
+				</label>
+			</div>
+			<div class="radio_version3">
+				<label>
+					<input type="radio" name="radio">
+					Radio 3
+				</label>
+			</div>
+			<div class="radio_version4">
+				<label>
+					<input type="radio" name="radio">
+					Radio 4
+				</label>
+			</div>
+			<div class="radio_version5">
+				<label>
+					<input type="radio" name="radio">
+					Radio 5
+				</label>
+			</div>
+			<div class="radio_version6">
+				<label>
+					<input type="radio" name="radio">
+					Radio 6
+				</label>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cThe King of CSS  and  Master of JavaScript', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+		console['log']('%cSenior Developer Hovo Vardanyan', 'font: bold 30px sans-serif; text-shadow: 0 3px 1px #33ff3b, -3px 5px 4px #000; padding: 10px;');
+	</script>
+</body>
+</html>
