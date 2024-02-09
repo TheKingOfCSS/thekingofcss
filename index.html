@@ -42,6 +42,15 @@
 			position: relative;
 			text-shadow: 0 2px 8px #000;
 		}
+		.authorAndCreator a {
+			text-decoration: underline 2px solid transparent;
+			text-underline-offset: 10px;
+			color: #fff;
+			transition: .4s;
+		}
+		.authorAndCreator a:hover {
+			text-decoration-color: #fff;
+		}
 		.menu {
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -2162,7 +2171,7 @@
 	</style>
 </head>
 <body>
-	<h1 class="authorAndCreator">Senior Developer Hovo Vardanyan</h1>
+	<h1 class="authorAndCreator">Senior Developer <a href="aboutMe/aphorism.html">Hovo Vardanyan</a></h1>
 	<div class="menu">
 		<div class="section"><a href="sliders/index.html">111 Sliders</a></div>
 		<div class="section"><a href="games/games.html">34 Games</a></div>
