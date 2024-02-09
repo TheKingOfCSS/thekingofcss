@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Instructor Hovo Vardanyan</title>
+	<title>Philosopher Hovo Vardanyan</title>
 	<style>
 		* { margin: 0; padding: 0; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
 		body {
@@ -77,12 +77,28 @@
 		.info img {
 			width: 33%;
 		}
+		.author {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
 	</style>
 </head>
 <body>
 	<div class="backMega">Back</div>
 	<h1 class="authorAndCreator">Aphorisms</h1>
 	<div class="info">
+		<img src="img/aphorism/93.jpg" alt="Img">
+		<img src="img/aphorism/97.jpg" alt="Img">
+		<img src="img/aphorism/100.jpg" alt="Img">
+		<img src="img/aphorism/102.jpg" alt="Img">
+		<img src="img/aphorism/107.jpg" alt="Img">
+		<img src="img/aphorism/110.jpg" alt="Img">
+		<img src="img/aphorism/111.jpg" alt="Img">
+		<img src="img/aphorism/109.jpg" alt="Img">
+		<img src="img/aphorism/108.jpg" alt="Img">
+		<img src="img/aphorism/113.jpg" alt="Img">
+		<img src="img/aphorism/112.jpg" alt="Img">
+		<img src="img/aphorism/114.jpg" alt="Img">
 		<img src="img/aphorism/1.png" alt="Img">
 		<img src="img/aphorism/2.png" alt="Img">
 		<img src="img/aphorism/3.png" alt="Img">
@@ -172,10 +188,20 @@
 		<img src="img/aphorism/90.png" alt="Img">
 		<img src="img/aphorism/88.jpg" alt="Img">
 		<img src="img/aphorism/89.jpg" alt="Img">
+		<img src="img/aphorism/91.jpg" alt="Img">
+		<img src="img/aphorism/92.jpg" alt="Img">
+		<img src="img/aphorism/94.jpg" alt="Img">
+		<img src="img/aphorism/95.jpg" alt="Img">
+		<img src="img/aphorism/101.jpg" alt="Img">
+		<img src="img/aphorism/103.jpg" alt="Img">
+		<img src="img/aphorism/104.jpg" alt="Img">
+		<img src="img/aphorism/105.jpg" alt="Img">
 		<img src="img/aphorism/84.jpg" alt="Img">
 	</div>
+	<p class="author">&copy; Philosopher Hovo Vardanyan <span></span></p>
 	<script>
 		document.querySelector('.backMega').onclick = () => window.location.href = 'about.html';
+		document.querySelector('.author span').innerText = new Date().getFullYear();
 		document.querySelectorAll('.info img').forEach(item => item.oncontextmenu = e => e.stopPropagation());
 		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
