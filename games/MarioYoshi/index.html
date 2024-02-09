@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Baby Mario Legacy</title>
+	<link rel="shortcut icon" href="img/mario.gif">
+	<style>
+		* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+		.game {
+			height: 100vh;
+			position: relative;
+			background: url(img/sky.png) repeat 0 10% / 40%;
+			-webkit-animation: sky 7s linear infinite;
+			animation: sky 7s linear infinite;
+			overflow: hidden;
+			--YJ: 4e2px;
+			--Y: 97px;
+			--M: 97px;
+			--MJ: 450px;
+		}
+		.game::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: url(img/rain.gif) no-repeat center / cover;
+			-webkit-filter: brightness(5);
+			filter: brightness(5);
+		}
+		.game .Mario {
+			position: absolute;
+			bottom: var(--M);
+			left: 40%;
+			width: 73px;
+			height: 84px;
+			background: url(img/mario.gif) no-repeat -13px -23px / 100px 130px;
+			scale: -1 1;
+			border-radius: 15px 40px 45px 30px;
+		}
+		.game .Mario .umb {
+			position: absolute;
+			top: -89px;
+			left: -20px;
+			width: 120px;
+			height: 120px;
+			background: url(img/umbrella.webp) no-repeat 7px 1px / 106px 140px;
+			border-radius: 70px;
+			-webkit-filter: drop-shadow(0 0 3px #0008);
+			filter: drop-shadow(0 0 3px #0008);
+			-webkit-animation: umbrella .3s infinite;
+			animation: umbrella .3s infinite;
+			-webkit-transform-origin: bottom;
+			transform-origin: bottom;
+			scale: 1 0;
+			-webkit-transition: .1s;
+			transition: .1s;
+		}
+		.game .Yoshi {
+			position: absolute;
+			bottom: var(--Y);
+			left: 25%;
+			width: 107px;
+			height: 109px;
+			background: url(img/yoshi.gif) no-repeat -3px -12px / 118px 130px;
+			border-radius: 80px 40px 75px 12px;
+		}
+		.game .Goomba {
+			position: absolute;
+			bottom: 98px;
+			right: -100px;
+			width: 50px;
+			height: 50px;
+			background: url(img/goomba.gif) no-repeat 0 0 / 50px 50px;
+			border-radius: 30px 30px 5px 5px;
+			-webkit-animation: 5s linear infinite;
+			animation: 5s linear infinite;
+		}
+		.game .Koopa {
+			position: absolute;
+			bottom: 250px;
+			right: -100px;
+			width: 66px;
+			height: 73px;
+			background: url(img/koopa.gif) no-repeat -4px 0 / 75px 75px;
+			border-radius: 15px 15px 5px 5px;
+			scale: -1 1;
+			-webkit-animation: 5s linear infinite;
+			animation: 5s linear infinite;
+		}
+		.game .floor {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100px;
+			background: url(img/floor.png) repeat-x 0 / 100px;
+			-webkit-animation: floor .3s linear infinite;
+			animation: floor .3s linear infinite;
+		}
+		.game .floor2 {
+			position: absolute;
+			bottom: 270px;
+			left: 100%;
+			width: 100%;
+			height: 50px;
+			background: url(img/floor.png) repeat-x 0 0 / 100px;
+			-webkit-transition: 3s linear;
+			transition: 3s linear;
+		}
+		.game .floor3 {
+			position: absolute;
+			bottom: 550px;
+			left: 100%;
+			width: 100%;
+			height: 30px;
+			background: url(img/floor.png) repeat-x 0 0 / 100px;
+			-webkit-transition: 3s linear;
+			transition: 3s linear;
+		}
+		.game .metter {
+			position: absolute;
+			bottom: 120px;
+			left: 32%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-transition: .2s;
+			transition: .2s;
+			text-shadow: 0 0 6px #000;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.game .metter span {
+			font: bold 20px verdana;
+			color: #fff;
+		}
+		.game .metter i {
+			width: 100px;
+			height: 3px;
+			background: #fff;
+		}
+		.game .metter strong {
+			position: absolute;
+			bottom: 60%;
+			left: 50%;
+			translate: -50%;
+			font: bold 20px verdana;
+			color: #fff;
+			white-space: nowrap;
+		}
+		@-webkit-keyframes sky {
+			to { background-position-x: -40vw; }
+		}
+		@keyframes sky {
+			to { background-position-x: -40vw; }
+		}
+		@-webkit-keyframes floor {
+			to { background-position-x: -100px; }
+		}
+		@keyframes floor {
+			to { background-position-x: -100px; }
+		}
+		@-webkit-keyframes koopa {
+			30% { bottom: 400px; }
+			45% { bottom: 350px; }
+			to { right: 100%; }
+		}
+		@keyframes koopa {
+			30% { bottom: 400px; }
+			45% { bottom: 350px; }
+			to { right: 100%; }
+		}
+		@-webkit-keyframes goomba {
+			to { right: 100%; }
+		}
+		@keyframes goomba {
+			to { right: 100%; }
+		}
+		@-webkit-keyframes MJump {
+			60% { bottom: 250px; }
+		}
+		@keyframes MJump {
+			60% { bottom: 250px; }
+		}
+		@-webkit-keyframes MNJump {
+			60% { bottom: var(--MJ); }
+		}
+		@keyframes MNJump {
+			60% { bottom: var(--MJ); }
+		}
+		@-webkit-keyframes YJump {
+			60% { bottom: var(--YJ); }
+		}
+		@keyframes YJump {
+			60% { bottom: var(--YJ); }
+		}
+		@-webkit-keyframes umbrella {
+			60% { top: -86px; }
+		}
+		@keyframes umbrella {
+			60% { top: -86px; }
+		}
+		.game .gameOver {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			z-index: 1;
+			font: bold 7vw verdana;
+			color: #f00;
+			-webkit-text-stroke: 3px #000;
+			text-shadow: 0 .5vw .5vw #fff;
+			-webkit-transition: 1s;
+			transition: 1s;
+			letter-spacing: -5vw;
+			opacity: 0;
+			rotate: 180deg;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url(img/menu.webp) center / 40%;
+			z-index: 2;
+			text-align: center;
+			padding-top: 3vw;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.menu h1 {
+			font: bold 7vw verdana;
+			color: #f00;
+			-webkit-text-stroke: 2px #000;
+			text-shadow: 0 .5vw .5vw #080;
+			-webkit-animation: title 1s infinite;
+			animation: title 1s infinite;
+		}
+		@-webkit-keyframes title {
+			50% { text-shadow: 0 .7vw .5vw #0f0; letter-spacing: 3px; scale: 1.07;  }
+		}
+		@keyframes title {
+			50% { text-shadow: 0 .7vw .5vw #0f0; letter-spacing: 3px; scale: 1.07;  }
+		}
+		.menu .play {
+			font: bold 4vw verdana;
+			padding: 1vw 2vw 1.4vw 2vw;
+			background: #fff;
+			border-radius: 5vw;
+			display: inline-block;
+			margin-top: 8vw;
+			-webkit-transition: .3s;
+			transition: .3s;
+			cursor: pointer;
+			border: 2px solid #000;
+			position: relative;
+		}
+		.menu .play::after {
+			content: '';
+			position: absolute;
+			top: -83px;
+			left: 60%;
+			width: 95px;
+			height: 105px;
+			background: url(img/mario.gif) no-repeat center / 95px 105px;
+			-webkit-transition: left .5s;
+			transition: left .5s;
+		}
+		.menu .play:hover {
+			background: #f00;
+			color: #fff;
+		}
+		.menu .play:hover::after {
+			left: -15px;
+			scale: -1 1;
+		}
+		.menu .play:active {
+			background: #db0000;
+			color: #fff;
+		}
+		.menu .author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			font: bold 18px/1.2 system-ui, verdana;
+			color: #fff;
+			background: #f00;
+			padding: 7px 0 8px;
+			letter-spacing: 1px;
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="floor"></div>
+		<div class="floor2"></div>
+		<div class="floor3"></div>
+		<div class="Mario">
+			<div class="umb"></div>
+		</div>
+		<div class="Yoshi"></div>
+		<div class="metter">
+			<span>&#10092;</span>
+			<i></i>
+			<span>&#10093;</span>
+			<strong>50m</strong>
+		</div>
+		<div class="Goomba"></div>
+		<div class="Koopa"></div>
+		<h2 class="gameOver">GameOver</h2>
+	</div>
+	<div class="menu">
+		<h1>Baby Mario<br>Legacy</h1>
+		<div class="play">Play</div>
+		<p class="author">
+			Instructor Hovo Vardanyan
+			<br>
+			&copy; Copyright All Right Reserved 2024
+		</p>
+	</div>
+	<script>
+		const play = document.querySelector('.menu .play');
+		const themeSound = new Audio('img/theme.mp3');
+		themeSound.volume = .5;
+		play.onclick = () => {
+			play.parentElement.style.top = '1e2%';
+			themeSound.play();
+			startGame();
+			Goomba.style.animationName = 'goomba';
+			Koopa.style.animationName = 'koopa';
+		};
+		const game = document.querySelector('.game');
+		const Mario = document.querySelector('.game .Mario');
+		const Yoshi = document.querySelector('.game .Yoshi');
+		const Goomba = document.querySelector('.game .Goomba');
+		const Koopa = document.querySelector('.game .Koopa');
+		const umbrella = document.querySelector('.game .Mario .umb');
+		const metterLine = document.querySelector('.game .metter i');
+		const metterDigit = document.querySelector('.game .metter strong');
+		const floor1 = document.querySelector('.game .floor');
+		const floor2 = document.querySelector('.game .floor2');
+		const floor3 = document.querySelector('.game .floor3');
+		const gameOverInfo = document.querySelector('.game .gameOver');
+		const asyncControl = time => new Promise(res => setTimeout(res, time));
+		const winSound = new Audio('img/win.mp3');
+		const YoshiSound = new Audio('img/yoshijump.mp3');
+		const MarioSound = new Audio('img/mario.mp3');
+		const MarioJumpSound = new Audio('img/marioJump.mp3');
+		const powerSound = new Audio('img/power.mp3');
+		const gameoverSound = new Audio('img/gameover.mp3');
+		const umbrellaSound = new Audio('img/downUmbrella.mp3');
+		const kickSound = new Audio('img/kick.mp3');
+		YoshiSound.volume = .5;
+		MarioJumpSound.volume = .4;
+		const key = {};
+		let trick = true;
+		let umbTrue = true;
+		let metter = 50;
+		let metterL = 1e2;
+		let metterLeft = 32;
+		let YoshiLeft = 25;
+		let level2 = false;
+		let level3 = false;
+		let finish = true;
+		let kickBool = true;
+		const startGame = () => {
+			Goomba.style.animationDelay = Math.random() * 5 + 's';
+			Koopa.style.animationDelay = Math.random() * 8 + 's';
+			Goomba.onanimationiteration = async () => {
+				Goomba.style.animation = 'none';
+				await asyncControl(Math.random() * 8e3);
+				Goomba.style.animation = 'goomba 5s linear infinite';
+			};
+			Koopa.onanimationiteration = async () => {
+				Koopa.style.animation = 'none';
+				await asyncControl(Math.random() * 7e3);
+				Koopa.style.animation = 'koopa 5s linear infinite';
+			};
+			document.onkeydown = async e => {
+				key[e.which] = true;
+				if (key[38] && Math.floor(metter) != 0) {
+					Mario.style.animation = 'MJump .8s';
+					Mario.onanimationend = () => Mario.style.animation = null;
+					MarioJumpSound.play();
+				}
+				if (key[39] && trick && Math.floor(metter) != 0) {
+					Mario.style.rotate = '360deg';
+					Mario.style.bottom = '85px';
+					Mario.style.transition = '.8s';
+					trick = false;
+					umbTrue = true;
+					umbrella.style.scale = null;
+					MarioSound.currentTime = .2;
+					MarioSound.play();
+					await asyncControl(800);
+					Mario.style.rotate = null;
+					Mario.style.bottom = null;
+					Mario.style.transition = null;
+					trick = true;
+				}
+				if (key[87] && Math.floor(metter) != 0) {
+					Yoshi.style.animation = 'YJump 1s';
+					Yoshi.onanimationend = () => Yoshi.style.animation = null;
+					YoshiSound.play();
+				}
+				if (key[87] && Math.floor(metter) == 0) {
+					Yoshi.style.animation = 'YJump 1s';
+					Mario.style.animation = 'MNJump 1s';
+					Yoshi.onanimationend = () => (Yoshi.style.animation = null, Mario.style.animation = null);
+					YoshiSound.play();
+				}
+				if (key[13]) {
+					umbrella.style.scale = umbTrue ? 1 : null;
+					powerSound.currentTime = 0;
+					umbrellaSound.currentTime = 0;
+					umbTrue ? powerSound.play() : (umbrellaSound.play(), powerSound.pause());
+					umbTrue = !umbTrue;
+				}
+				if (key[32] && kickBool) {
+					kickBool = false;
+					const bullet = document.createElement('div');
+					bullet.style = `width: 15px; height: 15px; background: #ffba00; border-radius: 50%; position: absolute; left: ${Yoshi.offsetLeft + Yoshi.offsetWidth - 10}px; top: ${Yoshi.offsetTop + 50}px; box-shadow: inset 0 0 7px #0009, 0 0 5px #000; transition: 1s linear;`;
+					game.appendChild(bullet);
+					bullet.className = 'bullet';
+					setTimeout(() => bullet.style.left = '102%', 10);
+					setTimeout(() => kickBool = true, 1e2);
+					kickSound.currentTime = 0;
+					kickSound.play();
+				}
+			};
+			document.onkeyup = e => delete key[e.which];	
+			const draw = setInterval(() => {
+				if (Goomba.offsetLeft <= Mario.offsetLeft + Mario.offsetWidth && Mario.offsetTop + Mario.offsetHeight > Goomba.offsetTop && Goomba.offsetLeft + Goomba.offsetWidth - 40 > Mario.offsetLeft) {
+					gameOver();
+				}
+				const bul = document.querySelectorAll('.game .bullet');
+				bul.forEach(item => {
+					item.offsetLeft > innerWidth ? item.remove() : '';
+					if (item.offsetLeft + item.offsetWidth >= Goomba.offsetLeft && item.offsetTop + item.offsetHeight >= Goomba.offsetTop) {
+						item.remove();
+						Goomba.style.animation = 'none';
+						setTimeout(() => {
+							Goomba.style.animation = 'goomba 5s linear infinite';
+						}, Math.random() * 8e3);
+					}
+					if (item.offsetLeft + item.offsetWidth >= Koopa.offsetLeft && item.offsetTop + item.offsetHeight >= Koopa.offsetTop && item.offsetTop < Koopa.offsetTop + Koopa.offsetHeight) {
+						item.remove();
+						Koopa.style.animation = 'none';
+						setTimeout(() => {
+							Koopa.style.animation = 'koopa 5s linear infinite';
+						}, Math.random() * 8e3);
+					}
+				});
+				if (Koopa.offsetLeft <= Mario.offsetLeft + Mario.offsetWidth / 7 && Koopa.offsetLeft >= Mario.offsetLeft && Mario.offsetTop > Koopa.offsetTop + Koopa.offsetHeight) {
+					const stone = document.createElement('div');
+					stone.style = `width: 20px; height: 20px; background: #000; border-radius: 50%; position: absolute; left: ${Koopa.offsetLeft + Koopa.offsetWidth / 2}px; top: ${Koopa.offsetTop + Koopa.offsetHeight}px; box-shadow: inset 0 0 8px #444; transition: .8s linear;`;
+					game.appendChild(stone);
+					stone.className = 'stone';
+					setTimeout(() => {
+						stone.style.top = '100%';
+					}, 15);
+				}
+				const stone = document.querySelectorAll('.game .stone');
+				stone.forEach(item => item.offsetTop + item.offsetHeight >= Mario.offsetTop ? (item.remove(), gameOver()) : '');
+				metter > .1 ? metter -= .01 : '';
+				metterL > 0 ? metterL -= .02 : '';
+				Math.floor(metter) != 0 ? (metterLeft += .0014, YoshiLeft += .003) : '';
+				metterDigit.innerText = Math.floor(metter) + 'm';
+				metterLine.style.width = metterL + 'px';
+				metterDigit.parentElement.style.left = metterLeft + '%';
+				!level3 ? Yoshi.style.left = YoshiLeft + '%' : '';
+				Math.floor(metter) <= 30 ? metterDigit.parentElement.style.bottom = '50px' : '';
+				if (Math.floor(metter) == 0 && !level2) {
+					level2 = true;
+					Mario.style.bottom = '145px';
+					Mario.style.left = '39%';
+					Mario.style.transition = '.4s';
+					setTimeout(() => metterDigit.parentElement.style.opacity = 0, 5e2);
+					setTimeout(() => {
+						floor2.style.left = 0;
+						setTimeout(() => floor2.style.animation = 'floor .3s linear infinite', 3e3);
+					}, 3e3);
+				}
+				if (floor2.offsetLeft < Yoshi.offsetLeft && key[87]) {
+					Mario.style.bottom = null;
+					game.style.setProperty('--Y', '317px');
+					game.style.setProperty('--YJ', '620px');
+					game.style.setProperty('--M', '370px');
+					game.style.setProperty('--MJ', '670px');
+					level3 = true;
+				}
+				if (level3) {
+					if (finish) {
+						finish = false;
+						setTimeout(() => {
+							floor3.style.left = 0;
+							setTimeout(() => floor3.style.animation = 'floor .3s linear infinite', 3e3);
+						}, 3e3);
+					}
+					if (floor3.offsetLeft < Yoshi.offsetLeft && key[87]) {
+						game.style.setProperty('--Y', '577px');
+						game.style.setProperty('--YJ', '870px');
+						game.style.setProperty('--M', '620px');
+						game.style.setProperty('--MJ', '920px');
+						setTimeout(() => {
+							game.style.animationPlayState = 'paused';
+							floor1.style.animationPlayState = 'paused';
+							floor2.style.animationPlayState = 'paused';
+							floor3.style.animationPlayState = 'paused';
+							Yoshi.style.left = '100%';
+							Mario.style.left = '100%';
+							Yoshi.style.transition = '2s linear';
+							Mario.style.transition = '2s linear';
+							winGame();
+						}, 3e3);
+					}
+				}
+			}, 1);
+			const gameOver = async () => {
+				Mario.style.animation = 'none';
+				await asyncControl(1e2);
+				Mario.style.backgroundImage = 'url(img/end.png)';
+				Mario.style.bottom = '200px';
+				Mario.style.transition = '.3s bottom';
+				metterDigit.parentElement.style.opacity = 0;
+				clearInterval(draw);
+				document.onkeydown = null;
+				document.onkeyup = null;
+				Mario.style.scale = 1;
+				themeSound.pause();
+				gameoverSound.play();
+				await asyncControl(6e2);
+				gameOverInfo.style = 'opacity: 1; letter-spacing: 0; rotate: none;';
+				Mario.style.bottom = '-200px';
+				await asyncControl(6e2);
+				Yoshi.style.scale = '-1 1';
+				Yoshi.style.left = '-150px';
+				Yoshi.style.transition = '1.4s left linear';
+				await asyncControl(3e3);
+				location.reload();
+			};
+			const winGame = async () => {
+				gameOverInfo.style = 'opacity: 1; letter-spacing: 0; rotate: none; color: #0f0;';
+				gameOverInfo.innerText = 'Winner';
+				clearInterval(draw);
+				themeSound.pause();
+				winSound.play();
+				await asyncControl(5e3);
+				location.reload();
+			};
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 20px;');
+	</script>
+</body>
+</html>
