@@ -2168,9 +2168,48 @@
 				width: calc(70% - 15px);
 			}
 		}
+		.lesson {
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			z-index: 10;
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.lesson::after {
+			content: 'Leesons';
+			position: absolute;
+			bottom: -1.55vw;
+			left: 50%;
+			translate: -50%;
+			color: #FBB906;
+			font: bold 2.2vw sans-serif;
+			text-shadow: 0 0 15px #000, 0 0 55px #fff;
+			background: #000;
+			padding: 3px 15px;
+			border-radius: 0 0 18px 18px;
+		}
+		.lesson img {
+			width: 25vw;
+			border-radius: 30px;
+			-webkit-box-shadow: 0 0 15px #fff, 0 0 55px #fff;
+			box-shadow: 0 0 15px #fff, 0 0 55px #fff;
+			-webkit-transition: .2s;
+			transition: .2s;
+		}
+		.lesson:hover {
+			scale: 1.05;
+		}
+		.lesson:hover img {
+			-webkit-box-shadow: 0 0 25px #fff, 0 0 75px 3px #fff;
+			box-shadow: 0 0 25px #fff, 0 0 75px 3px #fff;
+		}
 	</style>
 </head>
 <body>
+	<a href="https://www.youtube.com/watch?v=Fpn-Td_JJvo&list=PLH5VYZt_qTPKS3-slCOfPtaBhfezlUY6C" class="lesson" target="_blank">
+		<img src="aboutMe/img/lessons.jpg" alt="Img">
+	</a>
 	<h1 class="authorAndCreator">Senior Developer <a href="aboutMe/aphorism.html">Hovo Vardanyan</a></h1>
 	<div class="menu">
 		<div class="section"><a href="sliders/index.html">111 Sliders</a></div>
