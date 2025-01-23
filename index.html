@@ -2132,6 +2132,95 @@
 		.level .logos img:last-of-type {
 			padding: 5px;
 		}
+		.allLessons {
+			position: fixed;
+			top: 85px;
+			left: 30px;
+			font: bold 24px sans-serif;
+			color: #fff;
+			cursor: pointer;
+			z-index: 10;
+			text-shadow: 0 3px 5px #000;
+			-webkit-box-shadow: 0 3px 4px #fff;
+			box-shadow: 0 3px 4px #fff;
+			background: #f00;
+			padding: 5px 10px 8px 8px;
+			border-radius: 5px;
+			-webkit-transition: .3s;
+			transition: .3s;
+			will-change: transform;
+		}
+		.allLessons:hover {
+			background: #099e1f;
+			scale: 1.05;
+		}
+		.allLessonsBlock {
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, .95);
+			z-index: 100;
+			-webkit-backdrop-filter: blur(5px);
+			backdrop-filter: blur(5px);
+			-webkit-transition: 2s linear;
+			transition: 2s linear;
+			-webkit-clip-path: circle(0 at 0 0);
+			clip-path: circle(0 at 0 0);
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-column-gap: 5px;
+			column-gap: 5px;
+		}
+		.allLessonsBlock .lesson {
+			width: 32.5%;
+			height: 34%;
+			background: #000;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			border: 3px solid #fff;
+			overflow: hidden;
+		}
+		.allLessonsBlock .lesson img {
+			width: 100%;
+			-webkit-transition: .15s;
+			transition: .15s;
+			will-change: transform;
+		}
+		.allLessonsBlock .lesson:hover {
+			border-color: #0f0;
+		}
+		.allLessonsBlock .lesson:hover img {
+			scale: 1.03;
+			rotate: -1deg;
+		}
+		.allLessonsBlock .closeLessonsBlock {
+			position: absolute;
+			top: 18px;
+			left: 50%;
+			translate: -50%;
+			background: #fff;
+			color: #000;
+			border-radius: 50%;
+			font: bold 24px sans-serif;
+			padding: 1px 10px 3px 10px;
+			cursor: pointer;
+			-webkit-transition: .3s;
+			transition: .3s;
+		}
+		.allLessonsBlock .closeLessonsBlock:hover {
+			background: #f00;
+			color: #fff;
+		}
 		@media screen and (max-width: 1024px) {
 			body {
 				overflow: visible;
@@ -2150,6 +2239,14 @@
 			.level .logos img {
 				width: calc(49% - 15px);
 			}
+			.allLessons {
+				position: static;
+				margin: 10px 0 30px;
+			}
+			.allLessonsBlock .lesson {
+				width: 31%;
+				height: 205px;
+			}
 		}
 		@media screen and (max-width: 768px) {
 			.authorAndCreator {
@@ -2167,49 +2264,45 @@
 			.level .logos img {
 				width: calc(70% - 15px);
 			}
-		}
-		.lesson {
-			position: absolute;
-			right: 20px;
-			top: 20px;
-			z-index: 10;
-			-webkit-transition: .2s;
-			transition: .2s;
-		}
-		.lesson::after {
-			content: 'Leesons';
-			position: absolute;
-			bottom: -1.55vw;
-			left: 50%;
-			translate: -50%;
-			color: #FBB906;
-			font: bold 2.2vw sans-serif;
-			text-shadow: 0 0 15px #000, 0 0 55px #fff;
-			background: #000;
-			padding: 3px 15px;
-			border-radius: 0 0 18px 18px;
-		}
-		.lesson img {
-			width: 25vw;
-			border-radius: 30px;
-			-webkit-box-shadow: 0 0 15px #fff, 0 0 55px #fff;
-			box-shadow: 0 0 15px #fff, 0 0 55px #fff;
-			-webkit-transition: .2s;
-			transition: .2s;
-		}
-		.lesson:hover {
-			scale: 1.05;
-		}
-		.lesson:hover img {
-			-webkit-box-shadow: 0 0 25px #fff, 0 0 75px 3px #fff;
-			box-shadow: 0 0 25px #fff, 0 0 75px 3px #fff;
+			.allLessons {
+				font-size: 23px;
+				position: relative;
+				top: auto;
+				left: auto;
+				z-index: 5;
+			}
+			.allLessonsBlock {
+    			-webkit-box-orient: vertical;
+    			-webkit-box-direction: normal;
+    			-ms-flex-direction: column;
+    			flex-direction: column;
+				gap: 10px 0;
+				padding-top: 15px;
+			}
+			.allLessonsBlock .closeLessonsBlock {
+				top: 10px;
+			}
+			.allLessonsBlock .lesson {
+				width: 300px;
+    			height: 190px;
+			}
 		}
 	</style>
 </head>
 <body>
-	<a href="https://www.youtube.com/watch?v=Fpn-Td_JJvo&list=PLH5VYZt_qTPKS3-slCOfPtaBhfezlUY6C" class="lesson" target="_blank">
-		<img src="aboutMe/img/lessons.jpg" alt="Img">
-	</a>
+	<div class="allLessons">Դասընթացներ</div>
+	<div class="allLessonsBlock">
+		<div class="closeLessonsBlock">x</div>
+		<a href="https://youtube.com/playlist?list=PLH5VYZt_qTPKS3-slCOfPtaBhfezlUY6C&si=hzx1u9M1lGoXRV4m" class="lesson" target="_blank">
+			<img src="aboutMe/img/lessons.jpg" alt="Img">
+		</a>
+		<a href="https://youtube.com/playlist?list=PLH5VYZt_qTPL_sKEuYWrsCxK0UCtgIved&si=gnHsZX6PHir6zGC-" class="lesson" target="_blank">
+			<img src="aboutMe/img/lessons2.jpg" alt="Img">
+		</a>
+		<a href="https://youtube.com/playlist?list=PLH5VYZt_qTPISnGlRwaPAlh8Bi-xuuMBM&si=jOV42NH8CKWfpeQb" class="lesson" target="_blank">
+			<img src="aboutMe/img/lessons3.jpg" alt="Img">
+		</a>
+	</div>
 	<h1 class="authorAndCreator">Senior Developer <a href="aboutMe/aphorism.html">Hovo Vardanyan</a></h1>
 	<div class="menu">
 		<div class="section"><a href="sliders/index.html">111 Sliders</a></div>
@@ -2785,8 +2878,24 @@
 		const level = document.querySelector('.level');
 		const levelShow = document.querySelector('.level .show');
 		const levelDisplay = document.querySelector('.level .logos');
+		const allLessons = document.querySelector('.allLessons');
+		const allLessonsBlock = document.querySelector('.allLessonsBlock');
+		const closeLessonsBlock = document.querySelector('.allLessonsBlock .closeLessonsBlock');
 		let levelTrue = true;
+		let lessonsBlockOpen = false;
 		levelShow.onclick = () => (level.style.top = levelTrue ? `calc(100% - ${levelDisplay.offsetHeight}px)` : null, levelShow.classList.toggle('active'), levelTrue = !levelTrue);
+		allLessons.onclick = () => {
+			setTimeout(() => lessonsBlockOpen = true, 18e2);
+			innerWidth > 1024 ? allLessons.style.left = '-12%' : '';
+			allLessonsBlock.style.clipPath = 'circle(100%)';
+		};
+		closeLessonsBlock.onclick = () => {
+			if (lessonsBlockOpen) {
+				lessonsBlockOpen = false;
+				setTimeout(() => (allLessons.style.left = null, lessonsBlockOpen = true), 18e2);
+				allLessonsBlock.style.clipPath = null;
+			}
+		};
 		document.oncontextmenu = () => false;
 		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
 	</script>
