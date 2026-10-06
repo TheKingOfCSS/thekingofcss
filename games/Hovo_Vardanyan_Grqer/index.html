@@ -693,7 +693,11 @@
 		const startGame = document.querySelector('.menu .startGame');
 		startGame.onclick = () => {
 			startGame.style.pointerEvents = 'none';
-			menu.style.clipPath = 'circle(0 at 50% 0)';
+			if (innerWidth > 768) {
+				menu.style.clipPath = 'circle(0 at 50% 0)';
+			} else {
+				menu.style.top = '-100%';
+			}
 			const gameTheme = new Audio('img/music.mp3');
 			gameTheme.play();
 			gameTheme.onended = () => gameTheme.play();
