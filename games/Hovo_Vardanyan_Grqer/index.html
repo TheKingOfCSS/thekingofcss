@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Հովո Վարդանյան | Գրքեր</title>
+	<style>
+		* { margin: 0; padding: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-box-sizing: border-box; box-sizing: border-box; }
+		:root {
+			--chord: 20%;
+		}
+		.game {
+			height: 100vh;
+			position: relative;
+			overflow: hidden;
+		}
+		.game .top {
+			height: 55%;
+			background: url(img/back.jpg) center / 30%;
+			position: relative;
+			-webkit-box-shadow: 0px 10px 20px 4px #ffd78d, 0px 41px 20px 14px #fff;
+			box-shadow: 0px 10px 20px 4px #ffd78d, 0px 41px 20px 14px #fff;
+		}
+		.game .bottom {
+			height: 45%;
+			background: repeating-linear-gradient(45deg, #fff4cd 1%, transparent 9%, #ffde6b 10%);
+			position: relative;
+			-webkit-transition: .8s;
+			transition: .8s;
+			padding-left: 25%;
+		}
+		.bookItem {
+			-webkit-perspective: 850px;
+			perspective: 850px;
+			width: 215px;
+			height: 310px;
+			-webkit-filter: drop-shadow(0 0 5px #fff9);
+			filter: drop-shadow(0 0 5px #fff9);
+			position: absolute;
+			left: calc(100% / 5 * var(--i) + 100% / 10);
+			top: 15%;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.bookItem .book {
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			position: relative;
+			height: 100%;
+			-webkit-transform: rotateY(25deg);
+			transform: rotateY(25deg);
+			-webkit-transition: .9s;
+			transition: .9s;
+		}
+		.bookItem .book .item {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+		}
+		.bookItem .book .item.face {
+			-webkit-transform: translateZ(7px);
+			transform: translateZ(7px);
+		}
+		.bookItem .book .item.back {
+			-webkit-transform: rotateY(180deg) translateZ(7px);
+			transform: rotateY(180deg) translateZ(7px);
+		}
+		.bookItem .book .item.right {
+			-webkit-transform: rotateY(90deg) translateZ(207px);
+			transform: rotateY(90deg) translateZ(207px);
+			width: 14px;
+			background: repeating-linear-gradient(to right, #8c8c8c 0%, #fff 1.099%);
+		}
+		.bookItem .book .item.left {
+			-webkit-transform: rotateY(-90deg) translateZ(7px);
+			transform: rotateY(-90deg) translateZ(7px);
+			width: 14px;
+		}
+		.bookItem .book.DuImTiezerq .face {
+			background: url(img/DuImTiezerqFront.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.DuImTiezerq .back {
+			background: url(img/DuImTiezerqBack.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.DuImTiezerq .left {
+			background: #222;
+		}
+		.bookItem .book.UrEirAysqanJamanak .face {
+			background: url(img/UrEirAysqanJamanakFront.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.UrEirAysqanJamanak .back {
+			background: url(img/UrEirAysqanJamanakFrontBack.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.UrEirAysqanJamanak .left {
+			background: #700902;
+		}
+		.bookItem .book.Anverjutyun .face {
+			background: url(img/AnverjutyunFront.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.Anverjutyun .back {
+			background: url(img/AnverjutyunBack.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.Anverjutyun .left {
+			background: #fff;
+		}
+		.bookItem .book.EsAprelEmDa .face {
+			background: url(img/EsAprelEmDaFront.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.EsAprelEmDa .back {
+			background: url(img/EsAprelEmDaBack.jpg) no-repeat center / cover;
+		}
+		.bookItem .book.EsAprelEmDa .left {
+			background: #35568b;
+		}
+		.bookItem .book .item.left h3 {
+			font: 9px sans-serif;
+			-webkit-transform: rotate(90deg);
+			transform: rotate(90deg);
+			white-space: nowrap;
+			color: #afafaf;
+		}
+		.bookItem .book.Anverjutyun .item.left h3 {
+			color: #222;
+		}
+		.game .top .bookItem:hover .book {
+			-webkit-transform: rotateY(-180deg);
+			transform: rotateY(-180deg);
+		}
+		.game .bottom .Author {
+			margin-top: -10px;
+			display: inline-block;
+			font: bold 18px sans-serif;
+			padding: 12px 29px;
+			background: #fff03e;
+			-webkit-box-shadow: inset -1px -1px 13px #000, 8px 8px 0 -4px #ff2727, -8px -8px 0 -4px #fff;
+			box-shadow: inset -1px -1px 13px #000, 8px 8px 0 -4px #ff2727, -8px -8px 0 -4px #fff;
+			border-radius: 20px / 30px;
+			text-align: center;
+			-webkit-transition: bottom .8s, background .1s, color .1s;
+			transition: bottom .8s, background .1s, color .1s;
+			position: relative;
+			top: 0;
+			z-index: 2;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.game .bottom .point {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 115px;
+			height: 130px;
+			background: repeating-linear-gradient(45deg, #20517e, #25080c 2%);
+			border-top-right-radius: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			text-indent: -12px;
+			color: #fff;
+			-webkit-box-shadow: 6px -6px 0 #1f1f1f, inset -4px 4px 0 #909090;
+			box-shadow: 6px -6px 0 #1f1f1f, inset -4px 4px 0 #909090;
+			text-shadow: 0 0 5px #000, 0 0 10px #fff;
+			z-index: 2;
+			-webkit-transition: 1.3s;
+			transition: 1.3s;
+		}
+		.game .bottom .point span {
+			font: bold 25px verdana;
+			text-indent: -15px;
+		}
+		.game .bottom .point h4 {
+			font: bold 20px verdana;
+		}
+		.game .bottom .point.time {
+			width: 125px;
+			left: auto;
+			right: 0;
+			border-top-right-radius: 0;
+			border-top-left-radius: 100%;
+			-webkit-box-shadow: -6px -6px 0 #1f1f1f, inset 4px 4px 0 #909090;
+			box-shadow: -6px -6px 0 #1f1f1f, inset 4px 4px 0 #909090;
+			text-indent: 10px;
+		}
+		.game .bottom .point.time span {
+			text-indent: 13px;
+			margin-top: 4px;
+		}
+		.game .bottom .point.time h4 {
+			font: bold 18px verdana;
+			margin-top: 2px;
+		}
+		.game .bottom .text {
+			font: bold 22px sans-serif;
+			position: absolute;
+			left: 13%;
+			width: 50%;
+			bottom: 13%;
+			padding: 30px;
+			background: #fffef8;
+			-webkit-box-shadow: inset -1px -1px 13px #000, 16px 15px 0 -4px #000, -16px -15px 0 -4px #000;
+			box-shadow: inset -1px -1px 13px #000, 16px 15px 0 -4px #000, -16px -15px 0 -4px #000;
+			border-radius: 10px;
+			text-align: center;
+			-webkit-transition: bottom .8s, background .1s, color .1s;
+			transition: bottom .8s, background .1s, color .1s;
+			z-index: 2;
+		}
+		.game .bottom .options {
+			max-width: 25%;
+			font: bold 18px sans-serif;
+			position: absolute;
+			bottom: 13%;
+			padding: 5px;
+			background: #fffef8;
+			border-radius: 10px;
+			border: 1px solid;
+			-webkit-transition: .8s;
+			transition: .8s;
+		}
+		.game .bottom .options h4 {
+			background: #222;
+			color: #fff;
+			padding: 7px 15px;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 5px;
+		}
+		.game .bottom .options h4:hover {
+			background: #d87c00;
+		}
+		.game #gameOverElem {
+			position: absolute;
+			bottom: -20%;
+			left: 50%;
+			translate: -50%;
+			font: bold 5vw sans-serif;
+			color: #ffa100;
+			text-shadow: 0vw .9vw .6vw #000, -.7vw -.9vw .9vw #000;
+			-webkit-transition: .8s;
+			transition: .8s;
+			white-space: nowrap;
+			-webkit-text-stroke: 1px #fff;
+		}
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			z-index: 10;
+			text-align: center;
+			padding: 2% 0;
+			-webkit-transition: 2.2s;
+			transition: 2.2s;
+			-webkit-clip-path: circle(100%);
+			clip-path: circle(100%);
+		}
+		.menu .AuthorImg {
+			width: 45%;
+			pointer-events: none;
+		}
+		.menu h1 {
+			font: bold 3vw sans-serif;
+			margin-top: 3vw;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			color: #00af0d;
+			-webkit-text-stroke: 1px #000;
+			text-shadow: 2px 4px 0 #fff, -2px 5px 5px #0009;
+		}
+		.menu h1 span {
+			-webkit-animation: title 3s calc(var(--t) * .1s) linear infinite;
+			animation: title 3s calc(var(--t) * .1s) linear infinite;
+		}
+		@-webkit-keyframes title {
+			50% { translate: 0 -15px; }
+		}
+		@keyframes title {
+			50% { translate: 0 -15px; }
+		}
+		.menu .bookItem:nth-of-type(1) {
+			left: 2%;
+			top: auto;
+			bottom: 25%;
+			scale: .7;
+		}
+		.menu .bookItem:nth-of-type(2) {
+			left: 13%;
+			top: auto;
+			bottom: 3%;
+			scale: .7;
+		}
+		.menu .bookItem:nth-of-type(3) {
+			left: auto;
+			right: 2%;
+			top: auto;
+			bottom: 25%;
+			scale: .7;
+			-webkit-filter: drop-shadow(0 0 5px #0005);
+			filter: drop-shadow(0 0 5px #0005);
+		}
+		.menu .bookItem:nth-of-type(4) {
+			left: auto;
+			right: 13%;
+			top: auto;
+			bottom: 3%;
+			scale: .7;
+			-webkit-transform: scale(25deg);
+			transform: scale(25deg);
+		}
+		.menu .bookItem .book {
+			-webkit-animation: book 8s infinite;
+			animation: book 8s infinite;
+		}
+		@-webkit-keyframes book {
+			7% { -webkit-transform: rotateY(25deg); transform: rotateY(25deg); }
+			50% { -webkit-transform: rotateY(385deg); transform: rotateY(385deg); }
+		}
+		@keyframes book {
+			7% { -webkit-transform: rotateY(25deg); transform: rotateY(25deg); }
+			50% { -webkit-transform: rotateY(385deg); transform: rotateY(385deg); }
+		}
+		.menu .startGame {
+			margin-top: 13vw;
+			font: bold 2vw sans-serif;
+			background: #333;
+			color: #fff;
+			padding: 20px 30px;
+			border-radius: 30px;
+			display: inline-block;
+			cursor: pointer;
+			-webkit-box-shadow: 0 3px 3px #000, inset 0 0 10px #000;
+			box-shadow: 0 3px 3px #000, inset 0 0 10px #000;
+			text-shadow: 1px 2px 2px #0009;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+		.menu .startGame:hover {
+			background: #fff;
+			color: #000;
+		}
+		.menu #copyright {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			background: #000;
+			color: #fff;
+			font: bold 18px/1.2 system-ui, verdana;
+			padding: 8px 0;
+			letter-spacing: 1px;
+		}
+		@media screen and (max-width: 1300px) {
+			.menu .bookItem {
+				scale: .5 !important;
+			}
+		}
+		@media screen and (max-width: 1200px) {
+			.game .bottom .text {
+				font-size: 21px;
+			}
+			.game .bookItem {
+				scale: .7;
+			}
+		}
+		@media screen and (max-width: 900px) {
+			:root {
+				--chord: 30%;
+			}
+			.menu {
+				padding-top: 6%;
+			}
+			.menu .bookItem {
+				scale: .45 !important;
+			}
+			.menu .AuthorImg {
+				width: 75%;
+			}
+			.menu h1 {
+				font-size: 5vw;
+			}
+			.menu .startGame {
+				font-size: 3vw;
+			}
+			.game .top {
+				height: 40%;
+			}
+			.game .bookItem {
+				scale: .55;
+				top: -4%;
+				left: calc(100% / 5 * var(--i) + 100% / 20);
+			}
+			.game .bottom {
+				padding-left: 0;
+				height: 60%;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: column;
+				flex-direction: column;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center;
+			}
+			.game .bottom .Author {
+				font-size: 16px;
+				padding: 9px 22px;
+			}
+			.game .bottom .text {
+				font-size: 16.5px;
+				padding: 15px;
+				width: 80%;
+				position: static;
+				translate: none;
+				margin-top: 3%;
+			}
+			.game .bottom .options {
+				max-width: none;
+				font-size: 16px;
+				position: static;
+				margin-top: 1%;
+			}
+			.game .bottom .options h4 {
+				padding: 8px 15px;
+			}
+			.game #gameOverElem {
+				font-size: 5.5vw;
+			}
+			.menu #copyright {
+				font-size: 15px;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			.game .bottom .text {
+				width: 90%;
+				font-size: 15.5px;
+				line-height: 1.3;
+			}
+			.game .bottom .point {
+				width: 100px;
+    			height: 110px;
+			}
+			.game .bottom .point.time {
+				width: 100px;
+    			height: 110px;
+			}
+			.game .bottom .point span {
+				font-size: 20px;
+			}
+			.game .bottom .point h4 {
+				font-size: 16px;
+			}
+			.game .bottom .point.time span {
+				font-size: 18px;
+			}
+			.game .bottom .point.time h4 {
+				font-size: 15px;
+			}
+			.menu {
+				padding-top: 0;
+			}
+			.menu .AuthorImg {
+				width: 85%;
+			}
+			.menu h1 {
+				font-size: 6vw;
+				margin-top: 7vw;
+			}
+			.menu .startGame {
+				font-size: 3.4vw;
+				margin-top: 18vw;
+			}
+			
+		}
+		@media screen and (max-width: 650px) {
+			.game .bookItem {
+				left: calc(100% / 5 * var(--i) + 100% / 50);
+			}
+			.game .bottom .options {
+				font-size: 15px;
+			}
+			.game .bottom .options h4 {
+				padding: 10px 15px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="game">
+		<div class="top">
+			<div class="bookItem" style="--i: 0;">
+				<div class="book DuImTiezerq">
+					<div class="item face"></div>
+					<div class="item back"></div>
+					<div class="item right"></div>
+					<div class="item left">
+						<h3>Հովո Վարդանյան</h3>
+					</div>
+				</div>
+			</div>
+			<div class="bookItem" style="--i: 1;">
+				<div class="book UrEirAysqanJamanak">
+					<div class="item face"></div>
+					<div class="item back"></div>
+					<div class="item right"></div>
+					<div class="item left">
+						<h3>Հովո Վարդանյան</h3>
+					</div>
+				</div>
+			</div>
+			<div class="bookItem" style="--i: 2;">
+				<div class="book Anverjutyun">
+					<div class="item face"></div>
+					<div class="item back"></div>
+					<div class="item right"></div>
+					<div class="item left">
+						<h3>Հովո Վարդանյան</h3>
+					</div>
+				</div>
+			</div>
+			<div class="bookItem" style="--i: 3;">
+				<div class="book EsAprelEmDa">
+					<div class="item face"></div>
+					<div class="item back"></div>
+					<div class="item right"></div>
+					<div class="item left">
+						<h3>Հովո Վարդանյան</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<h2 class="Author">Հեղինակի ո՞ր գրքից է այս հատվածը</h2>
+			<div class="point only">
+				<span>0</span>
+				<h4>Միավոր</h4>
+			</div>
+			<div class="point time">
+				<span>60վ</span>
+				<h4>Ժամանակ</h4>
+			</div>
+			<div class="text">
+				— Որքան էլ նրան թաքցնես քո հոգու ու հիշողությունների ամենամոռացված անկյունում, և 
+որքան էլ նրան կողպես նոր ծանոթություններով, 
+ճամփորդություններով, նոր զգացումներով, միևնույն է՝ նա միշտ քո ներսում է, թեկուզև կողպված:
+			</div>
+			<div class="options">
+				<h4>Դու իմ տիեզերք</h4>
+				<h4>Ուր էիր այսքան ժամանակ</h4>
+				<h4>Անվերջություն</h4>
+				<h4>Ես ապրել եմ դա</h4>
+			</div>
+		</div>
+		<h5 id="gameOverElem">Գրքերը նորից ընթերցիր 🙂</h5>
+	</div>
+	<div class="menu">
+		<img src="img/Author.jpg" alt="Img" title="Հովո Վարդանյան | Գրքեր" class="AuthorImg">
+		<h1>
+			<span style="--t: 0;">Հ</span>
+			<span style="--t: 1;">ե</span>
+			<span style="--t: 2;">ղ</span>
+			<span style="--t: 3;">ի</span>
+			<span style="--t: 4;">ն</span>
+			<span style="--t: 5;">ա</span>
+			<span style="--t: 6;">կ</span>
+			<span style="--t: 7;">ի</span>
+			<span style="--t: 8;">&nbsp;</span>
+			<span style="--t: 9;">Գ</span>
+			<span style="--t: 10;">ր</span>
+			<span style="--t: 11;">ք</span>
+			<span style="--t: 12;">ե</span>
+			<span style="--t: 13;">ր</span>
+			<span style="--t: 14;">ը</span>
+		</h1>
+		<div class="bookItem" style="--i: 0;">
+			<div class="book DuImTiezerq">
+				<div class="item face"></div>
+				<div class="item back"></div>
+				<div class="item right"></div>
+				<div class="item left">
+					<h3>Հովո Վարդանյան</h3>
+				</div>
+			</div>
+		</div>
+		<div class="bookItem" style="--i: 1;">
+			<div class="book UrEirAysqanJamanak">
+				<div class="item face"></div>
+				<div class="item back"></div>
+				<div class="item right"></div>
+				<div class="item left">
+					<h3>Հովո Վարդանյան</h3>
+				</div>
+			</div>
+		</div>
+		<div class="bookItem" style="--i: 2;">
+			<div class="book Anverjutyun">
+				<div class="item face"></div>
+				<div class="item back"></div>
+				<div class="item right"></div>
+				<div class="item left">
+					<h3>Հովո Վարդանյան</h3>
+				</div>
+			</div>
+		</div>
+		<div class="bookItem" style="--i: 3;">
+			<div class="book EsAprelEmDa">
+				<div class="item face"></div>
+				<div class="item back"></div>
+				<div class="item right"></div>
+				<div class="item left">
+					<h3>Հովո Վարդանյան</h3>
+				</div>
+			</div>
+		</div>
+		<div class="startGame">Սկսել խաղը</div>
+		<p id="copyright">&copy; Copyright All Right Reserved 2026</p>
+	</div>
+	<script>
+		const menu = document.querySelector('.menu');
+		const startGame = document.querySelector('.menu .startGame');
+		startGame.onclick = () => {
+			startGame.style.pointerEvents = 'none';
+			menu.style.clipPath = 'circle(0 at 50% 0)';
+			const gameTheme = new Audio('img/music.mp3');
+			gameTheme.play();
+			gameTheme.onended = () => gameTheme.play();
+			const timeElem = document.querySelector('.game .bottom .point.time span');
+			const text = document.querySelector('.game .bottom .text');
+			const options = document.querySelector('.game .bottom .options');
+			const books = document.querySelectorAll('.game .top .bookItem');
+			const pointElem = document.querySelector('.game .bottom .point.only span');
+			const Author = document.querySelector('.game .bottom .Author');
+			window.onresize = () => innerWidth > 9e2 ? options.style.left = text.getBoundingClientRect().right + 9 + 'px' : '';
+			options.style.left = text.getBoundingClientRect().right + 9 + 'px';
+			const falseSound = new Audio('img/falseanswer.mp3');
+			const winnerSound = new Audio('img/winner.mp3');
+			const pointSound = new Audio('img/point.mp3');
+			const asyncControl = time => new Promise(resolve => setTimeout(resolve, time));
+			let time = 60;
+			const data = [
+				[`— Որքան էլ նրան թաքցնես քո հոգու ու հիշողությունների ամենամոռացված անկյունում, և 
+	որքան էլ նրան կողպես նոր ծանոթություններով, 
+	ճամփորդություններով, նոր զգացումներով, միևնույն է՝ նա միշտ քո ներսում է, թեկուզև կողպված...`, 3],
+				[`— Այո՛, կցանկանայի նրա հետ սկսել ամեն 
+	ինչ զրոյից՝ առաջին բարևից. հարցնել, թե նա ի՞նչ 
+	երգ է սիրում՝ հստակ գիտենալով հարցի պատասխանը, բայց ոչի՛նչ, թող նա խոսի, թող պատմի, ես 
+	պատրաստ եմ լսել սկզբից և անվերջ։`, 3],
+				[`— Իհա՛րկե համարում եմ, որովհետև ունենալ նրա պես հրաշալիքին քո կյանքի մեջ՝ թեկուզև 
+	կարճ ժամանակով, դա արդեն մեծ երջանկություն 
+	է: Ճիշտ է՝ ես կարող էի լինել շատ ավելի երջանիկ, 
+	եթե ամեն օր կարողանայի նրան ամուր գրկել, բայց 
+	ես նրան գրկում եմ մտքերիս մեջ...`, 3],
+				[`— Հոգու ընկերը վեհ գաղափար է. դա նշանակում է, որ դուք երկուսդ նույն մարդն եք տարբեր 
+	մարմիններում՝ մտածում ու գործում եք, զգում ու 
+	ապրում եք նույն կերպ, նույն գաղափարներով...`, 3],
+				[`— Իհա՛րկե, մենք շատ երազանքներ ունեինք. 
+	պատկերացնում էինք մեր ապագան, կառուցում 
+	էինք մեր օրերը, մեր անելիքները. նույնիսկ երեխաներին էինք պատկերացնում՝ թե քանիսն էին 
+	լինելու և թե անուններն ինչ էինք դնելու...`, 3],
+				[`— Ինչո՞ւ ես ուշադիր նայում ինձ...
+	— Ես կարող եմ քեզ նայել մի ամբողջ հավերժություն...
+	— Այնքան երջանիկ եմ, որ մենք գտանք միմյանց. կյանքն առանց քեզ չէր կարող նույնը լինել...`, 1],
+				[`Սիրո մեջ եղե՛ք հաստատուն,
+	երբե՛ք չլինեք փոփոխական։`, 2],
+				[`Տիեզերական զգացողություն է,
+	երբ բռնում ես այն մարդու ձեռքը,
+	ով իսկ քո տիեզերքն է։`, 2],
+				[`Երբ երջանկությանը դուք էլ չգտնեք,
+	գլուխներդ կախ միմյանց կհիշեք։`, 2],
+				[`Ամենաամուր հարաբերությունը,
+	որ ստեղծել եք միասին,
+	միևնույն է՝ այն ապակուց է.
+	ցանկացած անզգույշ արարքից կարող է փշրվել։`, 2],
+				[`— Նրան դեռ սիրո՞ւմ ես...
+	— Սիրո՞ւմ. ասու՞մ ես՝ սիրո՞ւմ եմ։ Ես քնում ու արթնանում եմ նրա բույրով, նրա ժպիտով, նրա ձայնով, նրա ձայնը միշտ լսում եմ իմ ներսում...`, 3],
+				[`Շնորհակալ եմ Տեր,
+	Ես գնահատում եմ,
+	Ամեն ինձ տրված օրը,
+	Առատ թթվածինը,
+	Մեզ պարգևած լույսը։
+	`, 0],
+				[`Եթե մի օր կհասկանաս,
+	Որ դու կուզես գրկել անչափ,
+	Հիշիր դու նախ, որ ես այսքան,
+	Ապրել եմ միշտ քեզ չգրկած։
+	`, 0],
+				[`Ուզում եմ, որ մի օր սիրել սովորես,
+	Ուզում եմ մի օր իսկական սիրես,
+	Ուզում եմ զգաս, սերը խորապես,
+	Միայն խնդրում եմ, մեզ չհամեմատես։
+	`, 0],
+				[`Դու իմ սիրո սիրուն գաղտնիք,
+	Ես կպահեմ քեզ բոլորից,
+	Քեզ կունենամ իմ մեջ ընդմիշտ,
+	Քեզ իմ սիրուն սիրո գաղտնիք։
+	`, 0],
+				[`Ընդհակառակը, ձեռքդ կբռնեի
+	Ու ճակատդ նուրբ կհամբուրեի,
+	Ես համոզված եմ, դու կմնայիր,
+	Հանուն մեր սիրո կպայքարեիր։ 
+	`, 0],
+				[`Քեզանից հետո շատ բան է փոխվել,
+	Աշխարհի գույնն է ինձ համար փոխվել,
+	Անգամ թթվածինը ուրիշ է դարձել,
+	Ծանոթ վայրերը, օտար եմ կարծել։
+	`, 0],
+				[`Երանի՜ այն մարդուն, որը կարողացել է հասակ առնելով, մեծ կյանք մտնելով, մարդկային շինծու փոխհարաբերությունների օվկիանոսում գտնվելով, պահպանել ամուր կապը իր մանկության ազնվության հետ, մաքրության հետ, անկեղծության և մանկական երջանկության հետ։`, 1],
+			];
+			let randData = [];
+			let rand = Math.floor(Math.random() * data.length);
+			while(randData.some(item => item == rand)) {
+				rand = Math.floor(Math.random() * data.length);
+			}
+			randData[rand] = rand;
+			text.innerText = data[rand][0];
+			[...options.children].forEach((item, index) => {
+				item.onclick = async () => {
+					if (index == data[rand][1]) {
+						pointElem.innerText++;
+						pointSound.play();
+						pointSound.currentTime = .2;
+						books[index].firstElementChild.style.transform = 'rotateY(-330deg)';
+						books[index].style.filter = 'drop-shadow(0 0 10px #0f0)';
+						books[index].style.pointerEvents = 'none';
+						text.style = 'background: #00a200; color: #fff;';
+						time = 61;
+						item.style = 'background: #00a71a; text-shadow: 0 0 5px #000;';
+						[...options.children].forEach(item => item.style.pointerEvents = 'none');
+						await asyncControl(9e2);
+						books[index].firstElementChild.style.transition = 'none';
+						books[index].firstElementChild.style.transform = null;
+						books[index].style.filter = null;
+						books[index].style.pointerEvents = null;
+						text.style = null;
+						await asyncControl(100);
+						books[index].firstElementChild.style.transition = null;
+						if (pointElem.innerText != data.length) {
+							rand = Math.floor(Math.random() * data.length);
+							while(randData.some(item => item == rand)) {
+								rand = Math.floor(Math.random() * data.length);
+							}
+							randData[rand] = rand;
+							text.innerText = data[rand][0];
+							[...options.children].forEach(item => item.style = null);
+						}
+						if (pointElem.innerText == data.length) {
+							winner();
+						}
+					} else {
+						gameOver();
+					}
+				};
+			});
+			const gameOver = async () => {
+				clearInterval(setTime);
+				falseSound.play();
+				falseSound.currentTime = .1;
+				options.parentElement.style = 'pointer-events: none; filter: brightness(.3)';
+				text.style = 'background: #f00; color: #fff;';
+				await asyncControl(6e2);
+				timeElem.parentElement.style.right = '-50%';
+				pointElem.parentElement.style.left = '-50%';
+				await asyncControl(6e2);
+				if (innerWidth > 9e2) {
+					text.style.bottom = '-100%';
+					options.style.bottom = '-100%';
+				} else {
+					text.style.opacity = 0;
+					text.style.transition = '.6s';
+					options.style.opacity = 0;
+				}
+				Author.style.top = '150%';
+				await asyncControl(4e2);
+				gameOverElem.style.bottom = 'var(--chord)';
+				await asyncControl(22e2);
+				location.reload();
+			};
+			const winner = async () => {
+				clearInterval(setTime);
+				gameTheme.pause();
+				winnerSound.play();
+				winnerSound.currentTime = .2;
+				options.parentElement.style = 'pointer-events: none;';
+				await asyncControl(6e2);
+				timeElem.parentElement.style.right = '-50%';
+				pointElem.parentElement.style.left = '-50%';
+				await asyncControl(6e2);
+				if (innerWidth > 9e2) {
+					text.style.bottom = '-100%';
+					options.style.bottom = '-100%';
+				} else {
+					text.style.opacity = 0;
+					text.style.transition = '.6s';
+					options.style.opacity = 0;
+				}
+				Author.style.top = '150%';
+				await asyncControl(4e2);
+				gameOverElem.style = 'bottom: var(--chord); color: #00c100; -webkit-text-stroke-color: #000; text-shadow: 0vw 0.9vw 2vw #ff8100, -0.7vw -0.9vw 2vw #fff;';
+				gameOverElem.innerText = 'Ապրե՛ք, դուք հաղթեցիք 😊';
+				await asyncControl(6e3);
+				location.reload();
+			};
+			const setTime = setInterval(() => {
+				time--;
+				if (time <= 0) {
+					gameOver();
+					gameTheme.pause();
+				}
+				timeElem.innerText = time + 'վ';
+			}, 1e3);
+		};
+		document.oncontextmenu = () => false;
+		document.addEventListener('keydown', e => e.ctrlKey || e.which == 123 ? e.preventDefault() : '');
+		console['log']('%cBy The King Of CSS', 'color: #000000; font: bold 2rem sans-serif; text-shadow: 0 3px 3px #fff, -4px 7px 7px #000; padding: 50px;');
+	</script>
+</body>
+</html>
