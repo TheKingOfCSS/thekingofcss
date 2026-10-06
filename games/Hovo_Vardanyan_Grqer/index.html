@@ -312,7 +312,7 @@
 		.menu .bookItem:nth-of-type(2) {
 			left: 13%;
 			top: auto;
-			bottom: 2%;
+			bottom: 0;
 			scale: .7;
 		}
 		.menu .bookItem:nth-of-type(3) {
@@ -328,7 +328,7 @@
 			left: auto;
 			right: 13%;
 			top: auto;
-			bottom: 2%;
+			bottom: 0;
 			scale: .7;
 			-webkit-transform: scale(25deg);
 			transform: scale(25deg);
@@ -513,8 +513,9 @@
 		}
 		@media screen and (max-width: 570px) {
 			.game .bookItem {
-				scale: .38;
+				scale: .34;
 				left: calc(100% / 5 * var(--i));
+				translate: -12%;
 			}
 			.game .top {
 				height: 35%;
