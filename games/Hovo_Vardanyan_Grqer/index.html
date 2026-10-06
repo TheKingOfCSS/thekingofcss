@@ -511,6 +511,32 @@
 				padding: 10px 15px;
 			}
 		}
+		@media screen and (max-width: 570px) {
+			.game .bookItem {
+				scale: .4;
+			}
+			.game .top {
+				height: 35%;
+			}
+			.game .bottom {
+				height: 65%;
+			}
+			.game .bottom .options {
+				z-index: 5;
+				margin-top: 2%;
+			}
+			.game .bottom .text {
+				margin-top: 4%;
+			}
+			.menu .bookItem:nth-of-type(1),
+			.menu .bookItem:nth-of-type(2) {
+				left: 0;
+			}
+			.menu .bookItem:nth-of-type(3),
+			.menu .bookItem:nth-of-type(4) {
+				right: 0;
+			}
+		}
 	</style>
 </head>
 <body>
